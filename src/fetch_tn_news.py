@@ -1,8 +1,9 @@
 """
 fetch_tn_news.py
-Pulls Tamil Nadu-specific innovation, policy, startup, and tech news from RSS
-feeds and curated sources. Focuses on: TN government initiatives, startup
-ecosystem, innovation sectors, policies/incentives, and opportunity mapping.
+Pulls Tamil Nadu-specific innovation, policy, startup, and community news.
+Uses a 7-day window because TN-specific coverage is sparser than global.
+Sources span government, startup media, college cells, startup clubs, and
+South India regional tech press.
 """
 
 import os
@@ -14,61 +15,102 @@ from typing import List, Dict
 
 USER_AGENT = "TN-Innovation-Digest/1.0 (Research aggregator; contact: pixerp@yahoo.com)"
 
-# ── TN & South India-focused RSS Sources ─────────────────────────────────────
-RSS_FEEDS = {
-    # TN Government & Policy
-    "TN e-Governance":          "https://tnega.tn.gov.in/rss",
-    "PIB Chennai":               "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
-    "MeitY (PIB)":              "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+# ─────────────────────────────────────────────────────────────────────────────
+# Sources — tiered: TN-dedicated (low relevance bar) vs. national (higher bar)
+# ─────────────────────────────────────────────────────────────────────────────
+TN_DEDICATED_SOURCES = {
+    # These are South India / TN-focused — any innovation/tech story qualifies
+    "The Hindu (Tech)":         "https://www.thehindu.com/sci-tech/?service=rss",
+    "The Hindu Business":       "https://www.thehindubusinessline.com/feeder/default.rss",
+    "DT Next":                  "https://www.dtnext.in/rss",
+    "New Indian Express TN":    "https://www.newindianexpress.com/states/tamil-nadu/rssfeed/?id=168",
+    "Dinamani Business":        "https://www.dinamani.com/business/rss",
+    "Chennai Online":           "https://www.chennaionline.com/rss",
+}
 
-    # Chennai / TN Tech & Startup Media
+NATIONAL_SOURCES = {
+    # National sources — need explicit TN/Chennai mention to qualify
     "YourStory":                "https://yourstory.com/feed",
     "Inc42":                    "https://inc42.com/feed/",
+    "Entrackr":                 "https://entrackr.com/feed/",
     "ET Startups":              "https://economictimes.indiatimes.com/tech/startups/rssfeeds/78570550.cms",
     "ET Tech":                  "https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms",
     "Medianama":                "https://www.medianama.com/feed/",
-    "Entrackr":                 "https://entrackr.com/feed/",
-    "The Hindu BusinessLine":   "https://www.thehindubusinessline.com/feeder/default.rss",
-    "The Hindu Tech":           "https://www.thehindu.com/sci-tech/?service=rss",
-    "Livemint Tech":            "https://www.livemint.com/rss/technology",
-    "NASSCOM":                  "https://nasscom.in/feed",
-
-    # Global with India/TN coverage
-    "TechCrunch India":         "https://techcrunch.com/tag/india/feed/",
     "VCCircle":                 "https://www.vccircle.com/feed",
     "TechCircle":               "https://techcircle.vccircle.com/feed",
+    "Livemint Tech":            "https://www.livemint.com/rss/technology",
+    "TechCrunch India":         "https://techcrunch.com/tag/india/feed/",
+    "NASSCOM":                  "https://nasscom.in/feed",
+    "Business Standard Tech":   "https://www.business-standard.com/rss/technology-108.rss",
 }
 
-# Keywords to identify TN relevance
-TN_KEYWORDS = [
-    "tamil nadu", "chennai", "coimbatore", "madurai", "trichy", "tirunelveli",
-    "tidel park", "sipcot", "tansim", "startuptn", "tn government",
-    "tamilnadu", "tn state", "anna university", "iit madras", "nit trichy",
-    "guide program", "iitm research park", "iitm pravartak", "cii southern",
-    "iit-m", "iitm", "amrita", "vit vellore", "ssn college",
-    "south india", "southern india",
+INSTITUTION_SOURCES = {
+    # Research and startup ecosystem institutions
+    "PIB Chennai":              "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    "DST India":                "https://dst.gov.in/rss.xml",
+    "Startup India Blog":       "https://www.startupindia.gov.in/content/sih/en/news.html",
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Keywords
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Explicit TN geography
+TN_GEOGRAPHY = [
+    "tamil nadu", "tamilnadu", "chennai", "coimbatore", "madurai", "trichy",
+    "tiruchirappalli", "tirunelveli", "salem", "erode", "tirupur", "vellore",
+    "thanjavur", "cuddalore", "puducherry", "pondicherry", "karur",
+    "dindigul", "namakkal", "dharmapuri",
 ]
 
-# Keywords for AI/innovation relevance
+# TN institutions and orgs
+TN_INSTITUTIONS = [
+    "iit madras", "iitm", "iit-m", "anna university", "nit trichy", "nit-t",
+    "psg tech", "ssn college", "srm university", "sastra", "amrita chennai",
+    "vit vellore", "ceg anna university", "tidel park", "sipcot",
+    "startuptn", "startup tn", "tansim", "tnega", "iitm pravartak",
+    "iitm research park", "anna university bic", "psg science tech",
+    "tie chennai", "tie-chennai", "nasscom 10000", "nasscom chennai",
+    "cii southern", "cii-sr", "ficci tamilnadu", "assocham south",
+    "tvs group", "ashok leyland", "la&t chennai", "zoho", "freshworks",
+    "chargebee", "kissflow", "zynga india chennai", "rtcamp",
+]
+
+# Innovation / tech / startup keywords (any sector)
 INNOVATION_KEYWORDS = [
-    "artificial intelligence", "machine learning", "ai startup", "deep learning",
-    "innovation", "startup", "incubat", "accelerat", "funding", "investment",
-    "technology", "digital", "semiconductor", "electronics", "ev", "electric vehicle",
-    "aerospace", "defense tech", "medtech", "agritech", "fintech", "edtech",
-    "policy", "incentive", "scheme", "mission", "hub", "park", "zone",
-    "research", "r&d", "patent", "ipr", "manufacturing", "industry 4.0",
-    "data center", "cloud", "iot", "robotics", "automation", "drone",
-    "cleantech", "greentech", "biotech", "healthtech", "spacetech",
-    "venture capital", "vc", "angel", "series a", "seed round",
+    "startup", "innovation", "incubat", "accelerat", "funding", "investment",
+    "artificial intelligence", "machine learning", "ai", "deep learning",
+    "technology", "tech", "digital", "software", "platform", "saas",
+    "semiconductor", "electronics", "ev", "electric vehicle", "battery",
+    "aerospace", "defense", "drone", "space", "satellite",
+    "medtech", "healthtech", "agritech", "fintech", "edtech", "cleantech",
+    "robotics", "automation", "iot", "data center", "cloud",
+    "policy", "scheme", "incentive", "mission", "hub", "park", "zone",
+    "research", "r&d", "patent", "spinoff", "spin-off",
+    "venture", "vc", "angel", "series a", "seed round", "grant",
+    "hackathon", "demo day", "pitch", "cohort", "fellowship",
+    "e-cell", "entrepreneurship cell", "founder", "co-founder",
+    "manufacturing", "industry 4.0", "make in india",
+    "unicorn", "soonicorn", "yc batch", "y combinator",
+    "gcc", "global capability center", "gdc",
 ]
 
 
-def is_relevant(title: str, summary: str) -> bool:
-    """Check if article is relevant to TN innovation ecosystem."""
+def is_relevant_tn_dedicated(title: str, summary: str) -> bool:
+    """For TN-dedicated sources — require EITHER geography OR institution."""
     text = (title + " " + summary).lower()
-    has_tn = any(kw in text for kw in TN_KEYWORDS)
+    has_geography = any(kw in text for kw in TN_GEOGRAPHY)
+    has_institution = any(kw in text for kw in TN_INSTITUTIONS)
     has_innovation = any(kw in text for kw in INNOVATION_KEYWORDS)
-    # Must have TN connection + innovation/tech relevance
+    # Accept if (geo or institution) AND has at least a light innovation angle
+    return (has_geography or has_institution) and has_innovation
+
+
+def is_relevant_national(title: str, summary: str) -> bool:
+    """For national sources — require TN geography AND innovation."""
+    text = (title + " " + summary).lower()
+    has_tn = any(kw in text for kw in TN_GEOGRAPHY) or any(kw in text for kw in TN_INSTITUTIONS)
+    has_innovation = any(kw in text for kw in INNOVATION_KEYWORDS)
     return has_tn and has_innovation
 
 
@@ -78,23 +120,22 @@ def strip_html(text: str) -> str:
 
 def categorize(source: str, title: str, summary: str) -> str:
     text = (title + " " + summary).lower()
-    if any(w in text for w in ["policy", "government", "scheme", "mission", "incentive", "meity", "nasscom", "ministry", "regulation", "initiative", "budget", "cabinet"]):
-        return "Policy & Incentives"
-    if any(w in text for w in ["raised", "funding", "series a", "series b", "seed", "crore", "million", "valuation", "round", "investment", "vc ", "venture"]):
+    if any(w in text for w in ["raised", "funding", "series a", "series b", "seed", "crore", "million", "valuation", "investment round", "venture"]):
         return "Startup Funding"
-    if any(w in text for w in ["launch", "new startup", "founded", "incubat", "accelerat", "cohort", "yc ", "y combinator", "founded"]):
-        return "New Startup"
-    if any(w in text for w in ["iit madras", "anna university", "iitm", "research", "r&d", "lab", "institute", "university", "innovation center"]):
+    if any(w in text for w in ["hackathon", "demo day", "pitch", "cohort", "fellowship", "bootcamp", "meetup", "e-cell", "entrepreneurship cell", "tie ", "nasscom 10000", "accelerat", "incubat", "yc batch"]):
+        return "Startup Club & Events"
+    if any(w in text for w in ["policy", "government", "scheme", "mission", "incentive", "ministry", "regulation", "initiative", "budget", "cabinet", "tidel", "sipcot", "tansim"]):
+        return "Policy & Incentives"
+    if any(w in text for w in ["iit madras", "anna university", "iitm", "research", "r&d", "lab", "patent", "spinoff", "spin-off"]):
         return "Research & Innovation"
-    if any(w in text for w in ["semiconductor", "electronics", "ev", "electric vehicle", "aerospace", "defense", "manufacture", "industry"]):
-        return "Industry & Manufacturing"
-    if any(w in text for w in ["opportunity", "sector", "trend", "market", "growth", "potential", "hub", "ecosystem"]):
-        return "Ecosystem & Opportunities"
+    if any(w in text for w in ["launch", "founded", "new startup", "announced"]):
+        return "New Startup"
+    if any(w in text for w in ["gcc", "global capability center", "talent", "hiring", "jobs", "workforce"]):
+        return "Talent & GCC"
     return "General"
 
 
-def fetch_feed(name: str, url: str, max_age_hours: int = 72) -> List[Dict]:
-    """Parse a single RSS feed and return recent relevant articles."""
+def fetch_feed(name: str, url: str, max_age_hours: int, dedicated: bool) -> List[Dict]:
     headers = {"User-Agent": USER_AGENT}
     try:
         resp = requests.get(url, headers=headers, timeout=12)
@@ -109,7 +150,9 @@ def fetch_feed(name: str, url: str, max_age_hours: int = 72) -> List[Dict]:
     cutoff = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
     articles = []
 
-    for entry in feed.entries[:30]:
+    relevance_fn = is_relevant_tn_dedicated if dedicated else is_relevant_national
+
+    for entry in feed.entries[:40]:
         try:
             pub_parsed = entry.get("published_parsed") or entry.get("updated_parsed")
             if pub_parsed:
@@ -126,12 +169,12 @@ def fetch_feed(name: str, url: str, max_age_hours: int = 72) -> List[Dict]:
 
             if not title:
                 continue
-            if not is_relevant(title, summary):
+            if not relevance_fn(title, summary):
                 continue
 
             articles.append({
                 "title":     title,
-                "summary":   summary[:600],
+                "summary":   summary[:700],
                 "url":       entry.get("link", ""),
                 "source":    name,
                 "published": pub_dt.strftime("%Y-%m-%d"),
@@ -143,26 +186,51 @@ def fetch_feed(name: str, url: str, max_age_hours: int = 72) -> List[Dict]:
     return articles
 
 
-def fetch_all_tn(max_age_hours: int = 72) -> List[Dict]:
-    """Fetch from all TN sources; deduplicate by title; return sorted."""
+def fetch_all_tn(max_age_hours: int = 168) -> List[Dict]:
+    """
+    Fetch from all TN sources with a 7-day default window.
+    Deduplicates by title; returns sorted newest-first.
+    """
     all_articles: List[Dict] = []
     seen_titles: set = set()
 
-    for name, url in RSS_FEEDS.items():
-        articles = fetch_feed(name, url, max_age_hours)
-        for a in articles:
+    # Fetch TN-dedicated sources (lower bar)
+    for name, url in TN_DEDICATED_SOURCES.items():
+        for a in fetch_feed(name, url, max_age_hours, dedicated=True):
             key = a["title"].lower()[:80]
             if key not in seen_titles:
                 seen_titles.add(key)
                 all_articles.append(a)
 
-    # Sort by published date descending
+    # Fetch national sources (higher bar — needs explicit TN mention)
+    for name, url in NATIONAL_SOURCES.items():
+        for a in fetch_feed(name, url, max_age_hours, dedicated=False):
+            key = a["title"].lower()[:80]
+            if key not in seen_titles:
+                seen_titles.add(key)
+                all_articles.append(a)
+
+    # Fetch institution sources
+    for name, url in INSTITUTION_SOURCES.items():
+        for a in fetch_feed(name, url, max_age_hours, dedicated=False):
+            key = a["title"].lower()[:80]
+            if key not in seen_titles:
+                seen_titles.add(key)
+                all_articles.append(a)
+
     all_articles.sort(key=lambda x: x["published"], reverse=True)
-    print(f"[TN Fetch] {len(all_articles)} relevant TN innovation articles found")
+
+    # Category breakdown for logging
+    from collections import Counter
+    cats = Counter(a["category"] for a in all_articles)
+    print(f"[TN Fetch] {len(all_articles)} articles across {len(seen_titles)} unique titles")
+    for cat, cnt in cats.most_common():
+        print(f"           {cat}: {cnt}")
+
     return all_articles
 
 
 if __name__ == "__main__":
-    articles = fetch_all_tn(max_age_hours=72)
-    for a in articles[:10]:
+    articles = fetch_all_tn(max_age_hours=168)
+    for a in articles[:15]:
         print(f"[{a['category']}] {a['source']}: {a['title'][:80]}")
