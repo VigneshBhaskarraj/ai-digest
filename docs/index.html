@@ -3,593 +3,733 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Digest — Friday, May 01, 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>⚡ AI Digest — Morning Edition · Friday, May 01, 2026</title>
+  <meta name="description" content="Daily AI news digest — top stories, quick hits, and research picks.">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
 
-    :root {
-      --bg:        #080c14;
-      --surface:   #0e1420;
-      --surface2:  #141a26;
-      --border:    #1e2a3d;
-      --text:      #e2e8f0;
-      --muted:     #64748b;
-      --accent:    #00d4ff;
-      --accent2:   #a78bfa;
-      --gold:      #fbbf24;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 
-    /* Subtle grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
+body {
+  background: #F5EFE3;
+  font-family: 'DM Sans', sans-serif;
+  color: #2C1810;
+}
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-      position: relative;
-      z-index: 1;
-    }
+/* ── Feed ─────────────────────────────── */
+.feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.feed::-webkit-scrollbar { display: none; }
 
-    /* Header */
-    .header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-    }
+/* ── Cards ────────────────────────────── */
+.card {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 2rem 1.75rem;
+  position: relative;
+  border-bottom: 1px solid #E0D5C4;
+}
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
+.card-header-type { background: #F5EFE3; justify-content: center; }
+.card-story-type  { background: #FAF7F0; }
+.card-hits-type   { background: #F5EFE3; }
+.card-arxiv-type  { background: #F0EBE0; }
+.card-pulse-type  { background: #FAF7F0; }
 
-    .brand {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
+/* ── Card Top Bar ─────────────────────── */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
 
-    .session-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      color: var(--muted);
-      background: var(--surface);
-    }
+.category-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F5EFE3;
+  border-radius: 20px;
+  padding: 4px 14px;
+}
 
-    .header-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
+.card-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #B09880;
+}
 
-    .headline {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      line-height: 1.25;
-      color: var(--text);
-      max-width: 700px;
-    }
+/* ── Card Body ────────────────────────── */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 0 1rem;
+}
 
-    .headline span {
-      color: var(--accent);
-    }
+.card-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9B7E6A;
+  margin-bottom: 0.85rem;
+}
 
-    /* Vike Note */
-    .vike-note {
-      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(167,139,250,0.06));
-      border: 1px solid rgba(0,212,255,0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 2.5rem;
-      font-size: 0.875rem;
-      font-style: italic;
-      color: #94a3b8;
-    }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #2C1810;
+  margin-bottom: 1.1rem;
+}
 
-    .vike-note strong {
-      font-style: normal;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.4rem;
-    }
+.card-title em {
+  font-style: italic;
+  color: #7A4F35;
+}
 
-    /* Section */
-    .section-block {
-      margin-bottom: 2.5rem;
-    }
+.card-divider {
+  width: 36px;
+  height: 2px;
+  background: #C4A882;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
 
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+.card-why {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #5C4033;
+  max-width: 600px;
+}
 
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+/* ── Card Bottom ──────────────────────── */
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #E0D5C4;
+}
 
-    /* Story Cards */
-    .story-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      margin-bottom: 0.875rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
+.read-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #7A4F35;
+  border: 1px solid #C4A882;
+  border-radius: 20px;
+  padding: 7px 18px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+}
+.read-btn:hover {
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border-color: #5C3D2E;
+}
 
-    .story-card:hover {
-      border-color: rgba(0,212,255,0.3);
-      transform: translateY(-1px);
-    }
+.swipe-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #C4A882;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.05em;
+}
 
-    .story-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.625rem;
-      flex-wrap: wrap;
-    }
+.swipe-arrow {
+  animation: bounce 1.6s ease-in-out infinite;
+  display: inline-block;
+  font-size: 14px;
+}
 
-    .category-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 500;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-      border: 1px solid;
-      letter-spacing: 0.03em;
-    }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
 
-    .story-source {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
+/* ── Header Card ──────────────────────── */
+.header-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9B7E6A;
+  margin-bottom: 2rem;
+}
 
-    .story-title a {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-      line-height: 1.35;
-    }
+.header-brand a {
+  color: #7A4F35;
+  text-decoration: none;
+  border: 1px solid #C4A882;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-left: 8px;
+  font-size: 9px;
+}
 
-    .story-title a:hover {
-      color: var(--accent);
-    }
+.header-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #B09880;
+  margin-bottom: 1.25rem;
+}
 
-    .story-why {
-      font-size: 0.825rem;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
+.header-session {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #F5EFE3;
+  background: #5C3D2E;
+  border-radius: 20px;
+  padding: 4px 14px;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
 
-    /* Quick Hits */
-    .quick-hits-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-    }
+.header-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #2C1810;
+  margin-bottom: 1.5rem;
+}
 
-    .quick-hit {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.75rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
+.header-note {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #5C4033;
+  border-left: 3px solid #C4A882;
+  padding-left: 1rem;
+  max-width: 540px;
+}
 
-    .quick-hit:hover {
-      border-color: rgba(167,139,250,0.3);
-    }
+.header-note strong {
+  color: #7A4F35;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
 
-    .hit-dot {
-      color: var(--accent2);
-      font-size: 0.75rem;
-      margin-top: 0.25rem;
-      flex-shrink: 0;
-    }
+.start-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
-    .hit-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-    }
+/* ── Quick Hits Card ──────────────────── */
+.hits-list { list-style: none; }
+.hit-item {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #E0D5C4;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.hit-item:last-child { border-bottom: none; }
+.hit-dot { color: #C4A882; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.hit-content {}
+.hit-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2C1810;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.hit-title:hover { color: #7A4F35; }
+.hit-source { font-size: 10px; color: #9B7E6A; font-family: 'DM Mono', monospace; margin-left: 4px; }
+.hit-liner { font-size: 12px; color: #9B7E6A; margin-top: 3px; line-height: 1.5; }
 
-    .hit-title:hover { color: var(--accent2); }
+/* ── arXiv Card ───────────────────────── */
+.arxiv-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #E0D5C4; }
+.arxiv-item:last-child { border-bottom: none; margin-bottom: 0; }
+.arxiv-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2C1810;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+  display: block;
+  line-height: 1.35;
+}
+.arxiv-title:hover { color: #7A4F35; }
+.arxiv-tldr { font-size: 13px; color: #5C4033; line-height: 1.65; }
 
-    .hit-source {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
+/* ── Pulse Card ───────────────────────── */
+.pulse-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #2C1810;
+}
 
-    .hit-liner {
-      font-size: 0.775rem;
-      color: #64748b;
-      margin-top: 0.2rem;
-    }
+/* ── Filter Bar ──────────────────────── */
+.filter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(245,239,227,0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #E0D5C4;
+  padding: 0.6rem 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.filter-row {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  align-items: center;
+}
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #B09880;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 52px;
+}
+.filter-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #7A4F35;
+  background: #EDE4D6;
+  border: 1px solid #D4C4B0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.filter-chip:hover { background: #D4C4B0; }
+.filter-chip.active {
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border-color: #5C3D2E;
+}
 
-    /* arXiv */
-    .arxiv-card {
-      padding: 0.875rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent2);
-      border-radius: 8px;
-      margin-bottom: 0.75rem;
-    }
+/* push cards up so filter bar doesn't overlap last card */
+.feed { padding-bottom: 0; }
+.card { padding-bottom: 5.5rem; }
+.footer-card { padding-bottom: 2rem; }
 
-    .arxiv-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
+/* ── Fixed Progress Bar ───────────────── */
+.progress-rail {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 80px;
+  background: #E0D5C4;
+  border-radius: 3px;
+  z-index: 100;
+}
+.progress-fill {
+  width: 100%;
+  background: #5C3D2E;
+  border-radius: 3px;
+  height: 10%;
+  transition: height 0.3s ease;
+}
 
-    .arxiv-title:hover { color: var(--accent2); }
-
-    .arxiv-tldr {
-      font-size: 0.775rem;
-      color: #64748b;
-    }
-
-    /* Community Pulse */
-    .pulse-box {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      font-size: 0.875rem;
-      color: #94a3b8;
-      line-height: 1.7;
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .footer-brand {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .footer-time {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--border);
-    }
-
-    /* Refresh button */
-    .refresh-btn {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid rgba(0,212,255,0.3);
-      border-radius: 6px;
-      padding: 0.4rem 1rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: background 0.2s, border-color 0.2s, transform 0.1s;
-    }
-    .refresh-btn:hover {
-      background: rgba(0,212,255,0.08);
-      border-color: var(--accent);
-    }
-    .refresh-btn:active { transform: scale(0.97); }
-    .refresh-btn.spinning .btn-icon { animation: spin 0.8s linear infinite; }
-    .last-updated {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Fade in */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .header        { animation: fadeUp 0.4s ease both; }
-    .vike-note     { animation: fadeUp 0.4s ease 0.1s both; }
-    .section-block { animation: fadeUp 0.4s ease 0.15s both; }
-  </style>
+/* ── Footer Card ──────────────────────── */
+.footer-card {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: #5C3D2E;
+}
+.footer-brand-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #F5EFE3;
+  margin-bottom: 0.75rem;
+}
+.footer-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C4A882;
+  margin-bottom: 2rem;
+}
+.footer-restart {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #F5EFE3;
+  border: 1px solid rgba(245,239,227,0.35);
+  border-radius: 20px;
+  padding: 8px 22px;
+  cursor: pointer;
+  background: transparent;
+  letter-spacing: 0.06em;
+}
+.footer-restart:hover { background: rgba(245,239,227,0.1); }
+</style>
 </head>
 <body>
-<div class="container">
 
-  <header class="header">
-    <div class="header-top">
-      <span class="brand">⚡ AI Digest</span>
-      <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap">
-        <a href="india.html" style="font-family:'DM Mono',monospace;font-size:0.65rem;color:#ff6b35;text-decoration:none;border:1px solid rgba(255,107,53,0.3);border-radius:4px;padding:0.25rem 0.6rem;">🇮🇳 India AI Pulse</a>
-        <span class="session-badge">🌅 Morning Edition</span>
-        <span class="header-date">Friday, May 01, 2026 · 01:40 UTC</span>
+<div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
+
+<div class="feed" id="feed">
+  
+    <section class="card card-header-type" data-index="0">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
+        <span class="header-brand">⚡ AI Digest <a href="india.html">🇮🇳 India Pulse</a></span>
+        <span class="card-counter">1 / 11</span>
       </div>
-    </div>
-    <h1 class="headline">Anthropic races toward $900B valuation as open-source models surge and Apple scrambles to meet AI-driven Mac demand</h1>
-  </header>
+      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
+        <div class="header-date">Friday, May 01, 2026 · 02:12 UTC</div>
+        <div class="header-session">🌅 Morning Edition</div>
+        <h1 class="header-headline">Anthropic races toward $900B valuation as OpenAI releases GPT-5.5 Cyber and restricts access, mirroring the Mythos playbook they criticized</h1>
+        <div class="header-note"><strong>Today's signal</strong>If you're transitioning into GenAI roles, the Codex /goal feature and the rapid productization of vertical agents like Legora show that the market wants builders who can ship autonomous workflows, not just fine-tune models — stop chasing research papers and start solving real business problems with agents.</div>
+      </div>
+      <div class="card-bottom">
+        <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
+        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe up</span>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="1">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7A4F35">Industry News</span>
+        <span class="card-counter">2 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">Anthropic targets $900B valuation in funding round closing within 2 weeks</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">Anthropic is asking for allocation submissions within 48 hours for a round that would make it one of the most valuable private AI companies ever. This signals massive institutional confidence in Claude's capabilities and sets a new benchmark for frontier AI valuations. For builders, this means Anthropic will have unprecedented capital to compete on compute, talent, and product development.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="2">
+      <div class="card-top">
+        <span class="category-pill" style="background:#5C3D2E">Model Releases</span>
+        <span class="card-counter">3 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">OpenAI releases GPT-5.5 Cyber for security testing, then restricts access to 'critical defenders only'</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">After publicly criticizing Anthropic for limiting Claude Mythos access, OpenAI is doing exactly the same thing with GPT-5.5 Cyber. The UK's AI Security Institute evaluated it for finding security vulnerabilities, suggesting these models are becoming genuinely dangerous offensive security tools. This sets the precedent that frontier cybersecurity models will be gated, not open.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="3">
+      <div class="card-top">
+        <span class="category-pill" style="background:#3B4852">Tools & Products</span>
+        <span class="card-counter">4 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">Simon Willison</div>
+        <h2 class="card-title">OpenAI's Codex CLI adds /goal command for autonomous coding loops</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">Version 0.128.0 adds a Ralph-style goal loop where Codex keeps iterating until it evaluates the goal as complete. This is the first major coding agent to ship built-in autonomous goal pursuit in production. Expect rapid adoption from teams building internal tools where 'just make it work' is more valuable than perfect code.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="4">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7A4F35">Industry News</span>
+        <span class="card-counter">5 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">Musk testifies xAI trained Grok by distilling OpenAI models</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">Under oath, Musk admitted xAI used model distillation on OpenAI's outputs to train Grok, arguing it's 'standard practice.' This legitimizes distillation as a competitive strategy and will accelerate legal battles over whether training on competitor outputs violates TOS or IP. Every frontier lab will now need to decide whether to aggressively defend against distillation or accept it as inevitable.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://techcrunch.com/2026/04/30/elon-musk-testifies-that-xai-trained-grok-on-openai-models/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="5">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7A4F35">Industry News</span>
+        <span class="card-counter">6 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">Legal AI startup Legora hits $5.6B valuation in head-to-head battle with Harvey</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">The legal AI vertical is consolidating fast with two well-funded rivals now running dueling ad campaigns and expanding into each other's markets. This validates that vertical AI agents with workflow integration can command multi-billion dollar valuations. For builders: pick a professional vertical, nail the workflow, and the money will follow.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="6">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7A4F35">Industry News</span>
+        <span class="card-counter">7 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">Google Gemini AI assistant rolling out to millions of vehicles</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">Google is embedding conversational AI directly into cars at scale, bypassing smartphones entirely for in-vehicle experiences. This is the first major consumer distribution play for Gemini outside of search and Workspace. Automotive is becoming a genuine platform for AI assistants, not just a gimmick.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://techcrunch.com/2026/04/30/googles-gemini-ai-assistant-is-hitting-the-road-in-millions-of-vehicles/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-hits-type" data-index="7">
+      <div class="card-top">
+        <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
+        <span class="card-counter">8 / 11</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto">
+        <ul class="hits-list">
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener" class="hit-title">Apple facing months-long Mac Mini, Studio, and Neo shortages due to AI demand</a>
+              <span class="hit-source">— TechCrunch</span>
+              <p class="hit-liner">Apple admits it underestimated AI-driven Mac demand and will be supply-constrained for 'several months' on mini, Studio, and Neo.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.techmeme.com/260430/p62#a260430p62" target="_blank" rel="noopener" class="hit-title">Intel shares jumped 114% in April, best month on record</a>
+              <span class="hit-source">— CNBC</span>
+              <p class="hit-liner">Intel's market cap surged past $470B with a record April driven by AI chip momentum.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.techmeme.com/260430/p57#a260430p57" target="_blank" rel="noopener" class="hit-title">Meta HR chief can't rule out further layoffs as AI automation ramps</a>
+              <span class="hit-source">— Business Insider</span>
+              <p class="hit-liner">Meta's Janelle Gale says more cuts are possible, though Zuckerberg claims AI automation isn't the primary driver.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://techcrunch.com/2026/04/30/openai-announces-new-advanced-security-for-chatgpt-accounts-including-a-partnership-with-yubico/" target="_blank" rel="noopener" class="hit-title">OpenAI launches Advanced Account Security with Yubico partnership</a>
+              <span class="hit-source">— TechCrunch</span>
+              <p class="hit-liner">ChatGPT and Codex accounts now support hardware security keys for high-risk users.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.techmeme.com/260430/p59#a260430p59" target="_blank" rel="noopener" class="hit-title">US Senate unanimously bans senators from trading on prediction markets</a>
+              <span class="hit-source">— CNBC</span>
+              <p class="hit-liner">New rule blocks senators from trading on Kalshi and Polymarket amid insider trading concerns.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.techmeme.com/260430/p58#a260430p58" target="_blank" rel="noopener" class="hit-title">Alphabet stock up 34% in April, best month since 2004; Meta down 8.5% Thursday</a>
+              <span class="hit-source">— CNBC</span>
+              <p class="hit-liner">Google's AI momentum drove its best monthly performance in 22 years while Meta stumbled.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t09hyw/amd_halo_box_ryzen_395_128gb_photos/" target="_blank" rel="noopener" class="hit-title">AMD Ryzen 395 128GB 'Halo Box' photos surface ahead of June launch</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">AMD's high-memory inference box is coming in June for local LLM enthusiasts.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener" class="hit-title">CopyFail: severe new Linux vulnerability threatens multi-tenant servers and CI/CD</a>
+              <span class="hit-source">— Ars Technica</span>
+              <p class="hit-liner">Critical Linux flaw impacts Kubernetes containers and CI/CD workflows used in ML infrastructure.</p>
+            </div>
+          </li></ul>
+      </div>
+    </section>
+    <section class="card card-arxiv-type" data-index="8">
+      <div class="card-top">
+        <span class="category-pill" style="background:#384840">Research Picks</span>
+        <span class="card-counter">9 / 11</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto">
+        
+          <div class="arxiv-item">
+            <a href="https://www.reddit.com/r/MachineLearning/comments/1szyjpk/r_joint_embedding_variational_bayes_tmlr_26/" target="_blank" rel="noopener" class="arxiv-title">Joint Embedding Variational Bayes</a>
+            <p class="arxiv-tldr">Adds variational semantics to joint-embedding architectures for non-contrastive representation learning, published in TMLR '26 — useful for anyone building self-supervised models.</p>
+          </div>
+      </div>
+    </section>
+    <section class="card card-pulse-type" data-index="9">
+      <div class="card-top">
+        <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
+        <span class="card-counter">10 / 11</span>
+      </div>
+      <div class="card-body">
+        <p class="pulse-text">"Local LLM builders are celebrating April 2026 as potentially the best month ever for open models, with strong comparisons between Qwen 3.6 27B and Gemma 4 31B. Meanwhile, ML researchers are melting down over ICML 2026 rejections: unanimous 4s are getting desk-rejected, with accusations of review system breakdown and alleged bias toward Chinese research networks. The compiler crowd is hyped about a 5,000-line Python ML compiler stack that actually makes sense compared to TVM's 500K+ lines of C++ chaos."</p>
+      </div>
+    </section>
+    <section class="footer-card" data-index="10">
+      <div class="footer-brand-lg">⚡ AI Digest</div>
+      <div class="footer-sub">Generated Friday, May 01, 2026 · 02:12 UTC</div>
+      <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
+    </section>
+</div>
 
-  <div class="vike-note"><strong>📌 Today's Focus</strong>If you're transitioning to Gen AI: ignore the Musk trial drama and focus on the distillation admission—expect frontier labs to aggressively gate models, so build expertise in fine-tuning and domain adaptation now while open weights are still flowing.</div>
-
-  <div class="section-block">
-    <h2 class="section-title"><span class="section-icon">🔥</span> Top Stories</h2>
-    
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
-              📰 Industry News
-            </span>
-            <span class="story-source">TechCrunch</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/" target="_blank" rel="noopener">Anthropic targeting $900B+ valuation in round closing within two weeks</a>
-          </h3>
-          <p class="story-why">Anthropic is asking for allocation submissions within 48 hours for a fundraise that would put it at nearly $1 trillion valuation—marking the most aggressive AI company valuation yet. This signals that frontier model development remains the primary battleground, and companies building on these APIs should prepare for potential pricing shifts as competition intensifies.</p>
-        </article>
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#34d39920;color:#34d399;border-color:#34d39940">
-              🛠️ Tools & Products
-            </span>
-            <span class="story-source">TechCrunch</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener">OpenAI releases GPT-5.5 Cyber security model but restricts access to 'critical defenders'</a>
-          </h3>
-          <p class="story-why">After criticizing Anthropic for limiting Mythos access, OpenAI is doing the same with GPT-5.5 Cyber—a specialized model for finding security vulnerabilities. The UK AI Security Institute evaluated it and found real offensive capabilities. This sets a precedent that specialized frontier models will be gated, impacting security teams and red-teamers who need programmatic access.</p>
-        </article>
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
-              📰 Industry News
-            </span>
-            <span class="story-source">TechCrunch</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener">Apple surprised by AI-driven Mac demand, warns of multi-month supply constraints</a>
-          </h3>
-          <p class="story-why">Apple explicitly cited AI workloads driving unexpected Mac Mini, Studio, and Neo demand—supply will be constrained for 'several months.' This confirms that local inference and model development is driving real hardware purchases, not just cloud compute. If you're planning local deployment infrastructure, factor in longer lead times.</p>
-        </article>
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#34d39920;color:#34d399;border-color:#34d39940">
-              🛠️ Tools & Products
-            </span>
-            <span class="story-source">Simon Willison</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything" target="_blank" rel="noopener">OpenAI's Codex CLI adds /goal command with autonomous agent looping</a>
-          </h3>
-          <p class="story-why">Codex CLI 0.128.0 now includes /goal, which lets the agent autonomously loop until it evaluates the goal as complete—essentially OpenAI's version of agent frameworks like Ralph. This moves coding agents from single-shot responses to persistent, self-directed execution, making them viable for larger refactoring and feature work.</p>
-        </article>
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
-              📰 Industry News
-            </span>
-            <span class="story-source">TechCrunch</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://techcrunch.com/2026/04/30/elon-musk-testifies-that-xai-trained-grok-on-openai-models/" target="_blank" rel="noopener">Musk testifies that xAI trained Grok using OpenAI model distillation</a>
-          </h3>
-          <p class="story-why">Under oath, Musk admitted xAI distilled OpenAI models to train Grok, calling it 'standard practice.' This could set legal precedent on whether model distillation constitutes IP theft or fair competition. Expect frontier labs to aggressively protect models from distillation through detection systems and licensing terms.</p>
-        </article>
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
-              📰 Industry News
-            </span>
-            <span class="story-source">TechCrunch</span>
-          </div>
-          <h3 class="story-title">
-            <a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener">Legal AI startup Legora hits $5.6B valuation in battle with Harvey</a>
-          </h3>
-          <p class="story-why">Two legal AI companies are now multi-billion-dollar valuations with dueling ad campaigns, proving vertical AI is where real revenue lives. For builders: domain-specific models with proprietary data and workflows command premium valuations—generic copilots don't.</p>
-        </article>
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-row">
+    <span class="filter-label">Leaders</span>
+    <span class="filter-chip" data-filter="karpathy">Karpathy</span>
+    <span class="filter-chip" data-filter="sam altman">Sam Altman</span>
+    <span class="filter-chip" data-filter="demis">Demis</span>
+    <span class="filter-chip" data-filter="yann lecun">LeCun</span>
+    <span class="filter-chip" data-filter="ilya">Ilya</span>
+    <span class="filter-chip" data-filter="greg brockman">Brockman</span>
   </div>
-
-  <div class="section-block">
-    <h2 class="section-title"><span class="section-icon">⚡</span> Quick Hits</h2>
-    <div class="quick-hits-grid">
-      
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.techmeme.com/260430/p62#a260430p62" target="_blank" rel="noopener" class="hit-title">Intel shares surged 114% in April, best month on record, market cap past $470B</a>
-            <span class="hit-source"> — Techmeme</span>
-            <p class="hit-liner">Intel's AI chip ambitions are finally moving the market after years of Nvidia dominance</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.techmeme.com/260430/p58#a260430p58" target="_blank" rel="noopener" class="hit-title">Alphabet stock up 34% in April, best month since 2004; Meta down 8.5% on Thursday</a>
-            <span class="hit-source"> — Techmeme</span>
-            <p class="hit-liner">Market is rewarding Google's integrated AI strategy while punishing Meta's slower enterprise traction</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://techcrunch.com/2026/04/30/googles-gemini-ai-assistant-is-hitting-the-road-in-millions-of-vehicles/" target="_blank" rel="noopener" class="hit-title">Google's Gemini AI assistant rolling out to millions of vehicles</a>
-            <span class="hit-source"> — TechCrunch</span>
-            <p class="hit-liner">Gemini is becoming the default conversational AI in automotive, a major distribution win against Alexa and Siri</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://techcrunch.com/2026/04/30/openai-announces-new-advanced-security-for-chatgpt-accounts-including-a-partnership-with-yubico/" target="_blank" rel="noopener" class="hit-title">OpenAI rolls out advanced security mode with Yubico hardware keys</a>
-            <span class="hit-source"> — TechCrunch</span>
-            <p class="hit-liner">ChatGPT and Codex accounts now support hardware security keys for high-value targets</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/" target="_blank" rel="noopener" class="hit-title">Goodfire releases Silico, a mechanistic interpretability tool for debugging LLMs</a>
-            <span class="hit-source"> — MIT Tech Review</span>
-            <p class="hit-liner">New tool lets researchers adjust model parameters during training for fine-grained behavior control</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener" class="hit-title">Linux CopyFail vulnerability threatens multi-tenant servers and CI/CD workflows</a>
-            <span class="hit-source"> — Ars Technica</span>
-            <p class="hit-liner">Critical Linux bug impacting Kubernetes containers and CI/CD pipelines used for AI training</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.techmeme.com/260430/p57#a260430p57" target="_blank" rel="noopener" class="hit-title">Meta HR chief says further layoffs can't be ruled out, but AI automation not the driver</a>
-            <span class="hit-source"> — Techmeme</span>
-            <p class="hit-liner">Meta continues restructuring despite Zuckerberg's claim that AI isn't causing job cuts</p>
-          </div>
-        </div>
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1szwi1d/deepseek_released_thinkingwithvisualprimitives/" target="_blank" rel="noopener" class="hit-title">DeepSeek releases 'Thinking-with-Visual-Primitives' framework</a>
-            <span class="hit-source"> — r/LocalLLaMA</span>
-            <p class="hit-liner">New multimodal reasoning framework from DeepSeek focuses on visual primitive decomposition</p>
-          </div>
-        </div>
-    </div>
+  <div class="filter-row">
+    <span class="filter-label">Company</span>
+    <span class="filter-chip" data-filter="anthropic">Anthropic</span>
+    <span class="filter-chip" data-filter="openai">OpenAI</span>
+    <span class="filter-chip" data-filter="google">Google</span>
+    <span class="filter-chip" data-filter="meta">Meta</span>
+    <span class="filter-chip" data-filter="mistral">Mistral</span>
+    <span class="filter-chip" data-filter="huggingface">HuggingFace</span>
+    <span class="filter-chip" data-filter="nvidia">Nvidia</span>
   </div>
-
-  <div class="section-block"><h2 class="section-title"><span class="section-icon">🔬</span> arXiv Picks</h2>
-            <div class="arxiv-card">
-              <a href="https://www.reddit.com/r/MachineLearning/comments/1szyjpk/r_joint_embedding_variational_bayes_tmlr_26/" target="_blank" rel="noopener" class="arxiv-title">Joint Embedding Variational Bayes</a>
-              <p class="arxiv-tldr">Adds variational semantics to joint-embedding architectures for non-contrastive representation learning, published in TMLR—useful for self-supervised learning pipelines</p>
-            </div></div>
-
-  <div class="section-block">
-    <h2 class="section-title"><span class="section-icon">💬</span> Community Pulse</h2>
-    <div class="pulse-box">Local LLM builders are calling April 2026 one of the best months ever, with major releases from Qwen 3.6 and Gemma 4 showing competitive coding performance. AMD's Ryzen 395 with 128GB RAM (the 'Halo Box') is shipping in June, giving local inference a serious hardware boost. Meanwhile, ML researchers are furious about ICML 2026 rejections—papers with unanimous positive reviews (4444 scores) are getting rejected, and accusations of Chinese reviewer networks favoring their own papers are spreading across forums.</div>
+  <div class="filter-row">
+    <span class="filter-label">Topic</span>
+    <span class="filter-chip" data-filter="agent">Agents</span>
+    <span class="filter-chip" data-filter="model">Models</span>
+    <span class="filter-chip" data-filter="research">Research</span>
+    <span class="filter-chip" data-filter="vision">Vision</span>
+    <span class="filter-chip" data-filter="robotics">Robotics</span>
+    <span class="filter-chip" data-filter="open source">Open Source</span>
+    <span class="filter-chip" data-filter="safety">Safety</span>
   </div>
-
-  <footer class="footer">
-    <span class="footer-brand">VigneshBhaskarraj / ai-digest</span>
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-      <span class="last-updated" id="last-updated">Generated Friday, May 01, 2026 01:40 UTC</span>
-      <button class="refresh-btn" id="refresh-btn" onclick="triggerRefresh()">
-        <span class="btn-icon" id="btn-icon">↻</span> Refresh
-      </button>
-    </div>
-  </footer>
-
 </div>
 
 <script>
-  function triggerRefresh() {
-    const btn  = document.getElementById('refresh-btn');
-    const icon = document.getElementById('btn-icon');
-    const info = document.getElementById('last-updated');
+  const feed    = document.getElementById('feed');
+  const fill    = document.getElementById('progress-fill');
+  const allCards = Array.from(document.querySelectorAll('[data-index]'));
+  let visibleCards = allCards;
 
-    btn.classList.add('spinning');
-    btn.disabled = true;
-    info.textContent = 'Refreshing...';
-
-    // GitHub Actions manual trigger via repository_dispatch would need a PAT.
-    // For now: hard-reload the page after a short delay to pick up any new deploy.
-    setTimeout(() => {
-      window.location.reload(true);
-    }, 1800);
+  function updateProgress() {
+    const idx = visibleCards.findIndex(c => {
+      const r = c.getBoundingClientRect();
+      return r.top >= -10 && r.top < window.innerHeight / 2;
+    });
+    const cur = idx >= 0 ? idx : 0;
+    fill.style.height = ((cur + 1) / visibleCards.length * 100) + '%';
   }
 
-  // Show how long ago the page was generated
-  (function() {
-    const generated = new Date('Friday, May 01, 2026 01:40 UTC'.replace(' UTC','') + 'Z');
-    const now       = new Date();
-    const diffMin   = Math.round((now - generated) / 60000);
-    const el        = document.getElementById('last-updated');
-    if (!isNaN(diffMin) && el) {
-      if (diffMin < 1)       el.textContent = 'Just updated';
-      else if (diffMin < 60) el.textContent = `Updated ${diffMin}m ago`;
-      else                   el.textContent = `Updated ${Math.round(diffMin/60)}h ago`;
-    }
-  })();
-</script>
+  feed.addEventListener('scroll', updateProgress, { passive: true });
 
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      feed.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      feed.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+    }
+  });
+
+  // ── Filtering ─────────────────────────────────────────────────────────────
+  let activeFilter = null;
+
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const keyword = chip.dataset.filter;
+
+      if (activeFilter === keyword) {
+        // Deactivate filter — show all
+        activeFilter = null;
+        chip.classList.remove('active');
+        allCards.forEach(c => c.style.display = '');
+        visibleCards = allCards;
+        feed.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // Deactivate previous chip
+      document.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = keyword;
+
+      // Show/hide cards based on text content match
+      visibleCards = [];
+      allCards.forEach(c => {
+        const text = c.innerText.toLowerCase();
+        const isHeader = c.dataset.index === '0';
+        const isFooter = !c.classList.contains('card');
+        const matches = isHeader || isFooter || text.includes(keyword);
+        c.style.display = matches ? '' : 'none';
+        if (matches) visibleCards.push(c);
+      });
+
+      // Scroll to first matching story card
+      const firstStory = visibleCards.find(c => c.dataset.index !== '0');
+      if (firstStory) firstStory.scrollIntoView({ behavior: 'smooth' });
+
+      updateProgress();
+    });
+  });
+</script>
 </body>
 </html>
