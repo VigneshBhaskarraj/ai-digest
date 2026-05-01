@@ -1,0 +1,120 @@
+"""
+summarize.py
+Uses Anthropic Claude API to summarize and structure the fetched articles
+into a clean digest with sections, key highlights, and brief summaries.
+"""
+
+import os
+import json
+import anthropic
+from typing import List, Dict
+
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+
+SYSTEM_PROMPT = """You are an expert AI industry analyst. Your job is to read a list of raw news articles
+and produce a clean, structured daily digest for AI/ML professionals who want signal, not noise.
+
+You will be given a JSON list of articles with title, summary, source, and category.
+
+Return ONLY valid JSON (no markdown, no extra text) in this exact structure:
+{
+  "headline": "One punchy sentence summarizing the most important development today",
+  "top_stories": [
+    {
+      "title": "Story title (rewritten to be clear and direct)",
+      "source": "Source name",
+      "url": "original url",
+      "why_it_matters": "2-3 sentences explaining the significance for AI practitioners and builders",
+      "category": "Model Releases | Research | Tools & Products | Industry News | Community"
+    }
+  ],
+  "quick_hits": [
+    {
+      "title": "Brief title",
+      "source": "Source",
+      "url": "url",
+      "one_liner": "One sentence max"
+    }
+  ],
+  "arxiv_picks": [
+    {
+      "title": "Paper title",
+      "url": "url",
+      "tldr": "One sentence what the paper does and why it matters"
+    }
+  ],
+  "community_pulse": "2-3 sentences summarizing what the AI community on Reddit/forums is discussing or building",
+  "vike_note": "One sharp, opinionated sentence about what a data/AI professional transitioning to Gen AI roles should pay attention to most today"
+}
+
+Rules:
+- top_stories: 4 to 6 most important items only, prioritize model releases and major tool launches
+- quick_hits: 5 to 8 shorter items not covered in top stories
+- arxiv_picks: 2 to 3 most practically relevant papers only, skip pure theory
+- If there are no arXiv articles, return empty array for arxiv_picks
+- Be direct and opinionated in why_it_matters — no filler phrases
+- The vike_note is personalized career advice based on what matters most in the digest"""
+
+
+def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> Dict:
+    """
+    Send articles to Claude and get back a structured digest dict.
+    session_label: 'Morning' or 'Evening'
+    """
+    if not ANTHROPIC_API_KEY:
+        raise ValueError("ANTHROPIC_API_KEY not set")
+
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+    # Trim articles to keep token usage reasonable
+    payload = []
+    for a in articles[:60]:  # cap at 60 articles per run
+        payload.append({
+            "title":    a["title"],
+            "summary":  a["summary"][:300],
+            "source":   a["source"],
+            "url":      a["url"],
+            "category": a["category"],
+        })
+
+    user_message = f"""Here are the latest AI/ML news articles for the {session_label} digest.
+Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')}
+Session: {session_label}
+
+Articles JSON:
+{json.dumps(payload, indent=2)}
+
+Produce the structured digest JSON now."""
+
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=4096,
+        system=SYSTEM_PROMPT,
+        messages=[{"role": "user", "content": user_message}],
+    )
+
+    raw = message.content[0].text.strip()
+
+    # Strip accidental markdown fences
+    if raw.startswith("```"):
+        raw = raw.split("```")[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+    raw = raw.strip()
+
+    return json.loads(raw)
+
+
+if __name__ == "__main__":
+    # Quick test with dummy data
+    test_articles = [
+        {
+            "title": "Anthropic releases Claude 4 with extended thinking",
+            "summary": "Anthropic today announced Claude 4, featuring improved reasoning and agentic capabilities.",
+            "source": "Anthropic Blog",
+            "url": "https://anthropic.com",
+            "category": "Model Releases",
+        }
+    ]
+    result = summarize_articles(test_articles, "Morning")
+    print(json.dumps(result, indent=2))

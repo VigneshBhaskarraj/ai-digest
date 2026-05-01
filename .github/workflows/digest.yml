@@ -1,0 +1,68 @@
+name: AI Digest — Scheduled Run
+
+on:
+  schedule:
+    # Morning: 7:00 AM CST = 13:00 UTC
+    - cron: '0 13 * * *'
+    # Evening: 6:00 PM CST = 00:00 UTC (next day)
+    - cron: '0 0 * * *'
+
+  # Also allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      session:
+        description: 'Digest session'
+        required: true
+        default: 'morning'
+        type: choice
+        options:
+          - morning
+          - evening
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to push docs/index.html back to repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine session label
+        id: session
+        run: |
+          # Use manual input if triggered manually, otherwise derive from cron hour
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "label=${{ inputs.session }}" >> $GITHUB_OUTPUT
+          else
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -ge "10" ] && [ "$HOUR" -le "16" ]; then
+              echo "label=morning" >> $GITHUB_OUTPUT
+            else
+              echo "label=evening" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Run AI Digest pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NEWSAPI_KEY:        ${{ secrets.NEWSAPI_KEY }}
+          GITHUB_WORKSPACE:   ${{ github.workspace }}
+        run: python src/main.py --session ${{ steps.session.outputs.label }}
+
+      - name: Commit and push updated dashboard
+        run: |
+          git config --global user.name  "AI Digest Bot"
+          git config --global user.email "actions@github.com"
+          git add docs/index.html
+          git diff --staged --quiet || git commit -m "📊 AI Digest update — $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
