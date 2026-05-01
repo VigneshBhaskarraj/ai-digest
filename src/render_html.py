@@ -470,6 +470,7 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
     <div class="header-top">
       <span class="brand">⚡ AI Digest</span>
       <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap">
+        <a href="india.html" style="font-family:'DM Mono',monospace;font-size:0.65rem;color:#ff6b35;text-decoration:none;border:1px solid rgba(255,107,53,0.3);border-radius:4px;padding:0.25rem 0.6rem;">🇮🇳 India AI Pulse</a>
         <span class="session-badge">{session_emoji} {session_label} Edition</span>
         <span class="header-date">{date_str} · {time_str}</span>
       </div>

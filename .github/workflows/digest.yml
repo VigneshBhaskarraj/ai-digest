@@ -59,10 +59,16 @@ jobs:
           GITHUB_WORKSPACE:   ${{ github.workspace }}
         run: python src/main.py --session ${{ steps.session.outputs.label }}
 
+      - name: Run India AI Pulse pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_WORKSPACE:   ${{ github.workspace }}
+        run: python src/india_main.py
+
       - name: Commit and push updated dashboard
         run: |
           git config --global user.name  "AI Digest Bot"
           git config --global user.email "actions@github.com"
-          git add docs/index.html
-          git diff --staged --quiet || git commit -m "📊 AI Digest update — $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git add docs/index.html docs/india.html
+          git diff --staged --quiet || git commit -m "📊 AI Digest + 🇮🇳 India AI Pulse update — $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
