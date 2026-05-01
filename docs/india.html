@@ -6,372 +6,175 @@
   <title>🇮🇳 India AI Pulse · Friday, May 01, 2026</title>
   <meta name="description" content="Daily digest of AI investments, startups, and VC trends in India.">
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; overflow: hidden; }
 
-body {
-  background: #F5EFE3;
-  font-family: 'DM Sans', sans-serif;
-  color: #2C1810;
+body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
+
+.nav-tab-bar {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 200; background: #6366F1; border-radius: 999px; padding: 5px 6px;
+  display: flex; gap: 2px; box-shadow: 0 4px 24px rgba(99,102,241,0.35);
 }
+.nav-tab {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em;
+  padding: 6px 18px; border-radius: 999px; border: none; cursor: pointer;
+  background: transparent; color: rgba(255,255,255,0.7); text-decoration: none;
+  transition: background 0.18s, color 0.18s; white-space: nowrap;
+}
+.nav-tab.active, .nav-tab:hover { background: #fff; color: #4338CA; }
 
 .feed {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .feed::-webkit-scrollbar { display: none; }
 
 .card {
-  height: 100vh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  display: flex;
-  flex-direction: column;
-  padding: 2.25rem 2rem 1.75rem;
-  position: relative;
-  border-bottom: 1px solid #E0D5C4;
+  height: 100vh; scroll-snap-align: start; scroll-snap-stop: always;
+  position: relative; padding: 72px 2rem 1.5rem;
+  border-bottom: 1px solid #E2E8F0; overflow: hidden;
 }
 
-.card-header-type  { background: #F5EFE3; }
-.card-funding-type { background: #FAF7F0; }
-.card-startup-type { background: #F0EBE0; }
-.card-trend-type   { background: #FAF7F0; }
-.card-policy-type  { background: #F5EFE3; }
-.card-hits-type    { background: #F0EBE0; }
+.card-header-type  { background: #0F172A; }
+.card-funding-type { background: #FFFFFF; }
+.card-startup-type { background: #F8FAFC; }
+.card-trend-type   { background: #F1F5F9; }
+.card-policy-type  { background: #FFFFFF; }
+.card-hits-type    { background: #F8FAFC; }
 
-.card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: auto;
-}
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
 
 .category-pill {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #F5EFE3;
-  border-radius: 20px;
-  padding: 4px 14px;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #fff; border-radius: 999px; padding: 4px 14px;
 }
 
-.card-counter {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #B09880;
-}
+.card-counter { font-family: 'DM Mono', monospace; font-size: 11px; color: #94A3B8; }
 
 .card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.5rem 0 1rem;
+  display: flex; flex-direction: column;
+  overflow-y: auto; padding-bottom: 80px;
+  height: calc(100vh - 160px);
 }
 
 .card-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #E0D5C4;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid #E2E8F0;
 }
+.card-header-type .card-bottom { background: rgba(15,23,42,0.92); border-top-color: rgba(255,255,255,0.08); }
 
 .read-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #7A4F35;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 7px 18px;
-  text-decoration: none;
-  letter-spacing: 0.04em;
+  font-family: 'DM Mono', monospace; font-size: 11px; color: #6366F1;
+  border: 1.5px solid #6366F1; border-radius: 999px; padding: 8px 20px;
+  text-decoration: none; letter-spacing: 0.04em; transition: background 0.15s, color 0.15s;
 }
-.read-btn:hover { background: #5C3D2E; color: #F5EFE3; border-color: #5C3D2E; }
+.read-btn:hover { background: #6366F1; color: #fff; }
 
-.swipe-hint {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #C4A882;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.swipe-arrow { animation: bounce 1.6s ease-in-out infinite; display: inline-block; font-size: 14px; }
-@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.swipe-hint { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; display: flex; align-items: center; gap: 5px; }
+.swipe-arrow { animation: bounce 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
-.card-divider { width: 36px; height: 2px; background: #C4A882; border-radius: 2px; margin-bottom: 1rem; }
+.card-divider { width: 36px; height: 2px; background: #6366F1; border-radius: 2px; margin-bottom: 1rem; }
 
-/* Header card */
-.header-brand {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #9B7E6A;
-}
-.header-brand a {
-  color: #7A4F35;
-  text-decoration: none;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 4px 12px;
-  margin-left: 8px;
-  font-size: 9px;
-}
-.header-date {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #B09880;
-  margin-bottom: 1.25rem;
-}
-.header-headline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
-  font-weight: 800;
-  line-height: 1.2;
-  color: #2C1810;
-  margin-bottom: 1.5rem;
-}
-.header-note {
-  font-size: 13px;
-  line-height: 1.75;
-  color: #5C4033;
-  border-left: 3px solid #C4A882;
-  padding-left: 1rem;
-  max-width: 540px;
-}
-.header-note strong {
-  color: #7A4F35;
-  font-size: 10px;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.4rem;
-}
-.start-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  background: #5C3D2E;
-  color: #F5EFE3;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+/* Header */
+.header-date { font-family: 'DM Mono', monospace; font-size: 10px; color: #64748B; margin-bottom: 1rem; letter-spacing: 0.06em; }
+.header-headline { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4.5vw, 2.3rem); font-weight: 800; line-height: 1.2; color: #F8FAFC; margin-bottom: 1.5rem; }
+.header-note { font-size: 13px; line-height: 1.75; color: #94A3B8; border-left: 3px solid #6366F1; padding-left: 1rem; max-width: 540px; }
+.header-note strong { color: #A5B4FC; font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+.start-btn { font-family: 'DM Mono', monospace; font-size: 11px; background: #6366F1; color: #fff; border: none; border-radius: 999px; padding: 10px 26px; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; }
+.start-btn:hover { background: #4F46E5; }
 
-/* Funding card */
-.startup-name-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 800;
-  color: #2C1810;
-  line-height: 1.1;
-  margin-bottom: 0.4rem;
-}
-.funding-amount-lg {
-  font-family: 'DM Mono', monospace;
-  font-size: clamp(2rem, 7vw, 3rem);
-  font-weight: 500;
-  color: #3D5A3E;
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-.funding-meta-row {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.meta-chip {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: #E8DDD0;
-  color: #5C3D2E;
-  border-radius: 20px;
-  padding: 4px 12px;
-}
-.funding-focus {
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: #5C4033;
-}
+/* Funding */
+.startup-name-lg { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; color: #0F172A; line-height: 1.1; margin-bottom: 0.4rem; }
+.funding-amount-lg { font-family: 'DM Mono', monospace; font-size: clamp(2rem, 7vw, 3rem); font-weight: 500; color: #059669; line-height: 1; margin-bottom: 0.75rem; }
+.funding-meta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.meta-chip { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 4px 12px; }
+.funding-focus { font-size: 13.5px; line-height: 1.7; color: #475569; }
 
-/* Startup card */
-.startup-name-md {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.3rem;
-}
-.founder-line {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #9B7E6A;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.startup-what { font-size: 14px; line-height: 1.7; color: #5C4033; margin-bottom: 0.6rem; }
-.startup-why {
-  font-size: 13px;
-  line-height: 1.65;
-  color: #9B7E6A;
-  border-left: 2px solid #C4A882;
-  padding-left: 0.75rem;
-  font-style: italic;
-}
+/* Startup */
+.startup-name-md { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3.5vw, 1.75rem); font-weight: 700; color: #0F172A; margin-bottom: 0.3rem; }
+.founder-line { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+.startup-what { font-size: 14px; line-height: 1.7; color: #475569; margin-bottom: 0.6rem; }
+.startup-why { font-size: 13px; line-height: 1.65; color: #64748B; border-left: 2px solid #6366F1; padding-left: 0.75rem; font-style: italic; }
 
-/* Trend card */
-.trend-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #E0D5C4; }
+/* Trends */
+.trend-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #E2E8F0; }
 .trend-item:last-child { border-bottom: none; margin-bottom: 0; }
-.trend-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.5rem;
-}
-.trend-detail { font-size: 13px; color: #5C4033; line-height: 1.7; }
+.trend-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #0F172A; margin-bottom: 0.5rem; }
+.trend-detail { font-size: 13px; color: #475569; line-height: 1.7; }
 
-/* Policy card */
-.policy-title-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
-  text-decoration: none;
-  display: block;
-}
-.policy-title-lg:hover { color: #7A4F35; }
-.policy-body { font-size: 14px; line-height: 1.75; color: #5C4033; }
-.policy-source {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #9B7E6A;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-top: 0.75rem;
-  display: block;
-}
+/* Policy */
+.policy-title-lg { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 700; color: #0F172A; margin-bottom: 0.75rem; line-height: 1.3; text-decoration: none; display: block; }
+.policy-title-lg:hover { color: #6366F1; }
+.policy-body { font-size: 14px; line-height: 1.75; color: #475569; }
+.policy-source { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.75rem; display: block; }
 
 /* Quick hits */
 .hits-list { list-style: none; }
-.hit-item { padding: 0.85rem 0; border-bottom: 1px solid #E0D5C4; display: flex; gap: 0.75rem; align-items: flex-start; }
+.hit-item { padding: 0.85rem 0; border-bottom: 1px solid #E2E8F0; display: flex; gap: 0.75rem; align-items: flex-start; }
 .hit-item:last-child { border-bottom: none; }
-.hit-dot { color: #C4A882; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.hit-title { font-size: 13px; font-weight: 500; color: #2C1810; text-decoration: none; line-height: 1.4; }
-.hit-title:hover { color: #7A4F35; }
-.hit-source { font-size: 10px; color: #9B7E6A; font-family: 'DM Mono', monospace; margin-left: 4px; }
-.hit-liner { font-size: 12px; color: #9B7E6A; margin-top: 3px; line-height: 1.5; }
+.hit-dot { color: #6366F1; font-size: 12px; flex-shrink: 0; margin-top: 3px; }
+.hit-title { font-size: 13px; font-weight: 500; color: #0F172A; text-decoration: none; line-height: 1.4; }
+.hit-title:hover { color: #6366F1; }
+.hit-source { font-size: 10px; color: #94A3B8; font-family: 'DM Mono', monospace; margin-left: 4px; }
+.hit-liner { font-size: 12px; color: #64748B; margin-top: 3px; line-height: 1.5; }
 
 /* Progress rail */
-.progress-rail {
-  position: fixed;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 80px;
-  background: #E0D5C4;
-  border-radius: 3px;
-  z-index: 100;
-}
-.progress-fill {
-  width: 100%;
-  background: #5C3D2E;
-  border-radius: 3px;
-  height: 10%;
-  transition: height 0.3s ease;
-}
+.progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
+.progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
 
 /* Footer */
-.footer-card {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  background: #5C3D2E;
-}
-.footer-brand-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #F5EFE3;
-  margin-bottom: 0.75rem;
-}
-.footer-sub {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #C4A882;
-  margin-bottom: 2rem;
-}
-.footer-restart {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #F5EFE3;
-  border: 1px solid rgba(245,239,227,0.35);
-  border-radius: 20px;
-  padding: 8px 22px;
-  cursor: pointer;
-  background: transparent;
-}
-.footer-restart:hover { background: rgba(245,239,227,0.1); }
+.footer-card { height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: #1E1B4B; }
+.footer-brand-lg { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: #F8FAFC; margin-bottom: 0.75rem; }
+.footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A5B4FC; margin-bottom: 2rem; }
+.footer-restart { font-family: 'DM Mono', monospace; font-size: 11px; color: #F8FAFC; border: 1px solid rgba(165,180,252,0.4); border-radius: 999px; padding: 8px 24px; cursor: pointer; background: transparent; letter-spacing: 0.06em; }
+.footer-restart:hover { background: rgba(165,180,252,0.1); }
 </style>
 </head>
 <body>
+
+<nav class="nav-tab-bar">
+  <a class="nav-tab" href="index.html">⚡ Global</a>
+  <a class="nav-tab active" href="india.html">🇮🇳 India</a>
+</nav>
 
 <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
 
 <div class="feed" id="feed">
   
     <section class="card card-header-type" data-index="0">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
-        <span class="header-brand">🇮🇳 India AI Pulse <a href="index.html">⚡ Global</a></span>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">🇮🇳 India AI Pulse</span>
         <span class="card-counter">1 / 9</span>
       </div>
-      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
-        <div class="header-date">Friday, May 01, 2026 · 02:41 UTC</div>
-        <h1 class="header-headline">Calligo Technologies in advanced talks for $12-15M to scale India's indigenous RISC-V chip play as semiconductor bet heats up</h1>
-        <div class="header-note"><strong>Today's signal</strong>If you're an AI founder building below the model layer — chips, energy optimization, or security infrastructure — the capital window is open but narrow: hardware bets are back, but only for those with defensible IP and clear paths to commercial scale, not science projects.</div>
+      <div class="card-body" style="padding-bottom:80px">
+        <div class="header-date">Friday, May 01, 2026 · 04:51 UTC</div>
+        <h1 class="header-headline">Palo Alto Networks acquires Elevation Capital-backed Portkey as India's AI infrastructure startups hit the M&A radar, while Calligo eyes $12-15M for indigenous RISC-V chips</h1>
+        <div class="header-note"><strong>Today's signal</strong>If you're building AI infrastructure or tooling in India, Portkey's exit to Palo Alto proves strategic acquirers will pay for governance/security layers — stop chasing consumer apps and start building the boring middleware that enterprises actually need to operationalize AI at scale.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's pulse ↓</button>
-        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe up</span>
+        <span class="swipe-hint" style="color:#475569"><span class="swipe-arrow">↑</span> swipe up</span>
       </div>
     </section>
     <section class="card card-funding-type" data-index="1">
       <div class="card-top">
-        <span class="category-pill" style="background:#3D5A3E">Funding</span>
+        <span class="category-pill" style="background:#059669">Funding</span>
         <span class="card-counter">2 / 9</span>
       </div>
       <div class="card-body">
         <div class="startup-name-lg">Calligo Technologies</div>
-        <div class="funding-amount-lg">$12-15M (₹100-125 Cr approx)</div>
-        <div class="funding-meta-row"><span class="meta-chip">Growth</span><span class="meta-chip">🏦 BIG Capital (US-based, expected to lead)</span></div>
+        <div class="funding-amount-lg">$12-15M (~₹100-125 Cr)</div>
+        <div class="funding-meta-row"><span class="meta-chip">Undisclosed</span><span class="meta-chip">🏦 BIG Capital (US-based, expected to lead)</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">Building energy-efficient RISC-V silicon chips for AI and supercomputing — a rare India-origin semiconductor play aiming for commercial scale and global expansion</p>
+        <p class="funding-focus">Bengaluru-based semiconductor startup building energy-efficient RISC-V chips for AI and supercomputing — first indigenous chip play attracting serious Silicon Valley capital</p>
       </div>
       <div class="card-bottom">
         <a href="https://economictimes.indiatimes.com/tech/funding/calligo-in-talks-to-raise-12-15-million-to-scale-indigenous-risc-v-chip-play/articleshow/130646433.cms" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
@@ -379,50 +182,50 @@ body {
     </section>
     <section class="card card-funding-type" data-index="2">
       <div class="card-top">
-        <span class="category-pill" style="background:#3D5A3E">Funding</span>
+        <span class="category-pill" style="background:#059669">Funding</span>
         <span class="card-counter">3 / 9</span>
       </div>
       <div class="card-body">
-        <div class="startup-name-lg">Netomi</div>
-        <div class="funding-amount-lg">$110M (₹920 Cr approx)</div>
-        <div class="funding-meta-row"><span class="meta-chip">Series C</span><span class="meta-chip">🏦 Accenture Ventures (lead)</span></div>
-        <div class="card-divider"></div>
-        <p class="funding-focus">AI-powered customer service platform leveraging large language models for enterprise clients — signals continued enterprise AI infrastructure investment despite market correction</p>
-      </div>
-      <div class="card-bottom">
-        <a href="https://economictimes.indiatimes.com/tech/funding/ai-customer-service-startup-netomi-raises-110-million/articleshow/130631740.cms" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
-      </div>
-    </section>
-    <section class="card card-funding-type" data-index="3">
-      <div class="card-top">
-        <span class="category-pill" style="background:#3D5A3E">Funding</span>
-        <span class="card-counter">4 / 9</span>
-      </div>
-      <div class="card-body">
         <div class="startup-name-lg">Ctruh</div>
-        <div class="funding-amount-lg">$2.5M (₹23 Cr)</div>
+        <div class="funding-amount-lg">$2.5M (~₹23 Cr)</div>
         <div class="funding-meta-row"><span class="meta-chip">Seed</span><span class="meta-chip">🏦 Inflection Point Ventures (co-lead)</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">Building extended reality (XR) tools for enterprise training and immersive digital experiences — betting on the convergence of AI and spatial computing for B2B use cases</p>
+        <p class="funding-focus">Building extended reality (XR) tools for enterprises — immersive tech meeting enterprise workflow automation needs</p>
       </div>
       <div class="card-bottom">
         <a href="https://inc42.com/buzz/ctruh-raises-2-5-mn-to-build-extended-reality-tools-for-enterprises/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-funding-type" data-index="4">
+    <section class="card card-funding-type" data-index="3">
       <div class="card-top">
-        <span class="category-pill" style="background:#3D5A3E">Funding</span>
-        <span class="card-counter">5 / 9</span>
+        <span class="category-pill" style="background:#059669">Funding</span>
+        <span class="card-counter">4 / 9</span>
       </div>
       <div class="card-body">
-        <div class="startup-name-lg">Kimbal</div>
-        <div class="funding-amount-lg">$22M (₹184 Cr approx)</div>
-        <div class="funding-meta-row"><span class="meta-chip">Series B</span><span class="meta-chip">🏦 GEF Capital (lead)</span></div>
+        <div class="startup-name-lg">Netomi</div>
+        <div class="funding-amount-lg">$110M</div>
+        <div class="funding-meta-row"><span class="meta-chip">Series C</span><span class="meta-chip">🏦 Accenture Ventures (lead)</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">Developing power quality, energy management, and battery storage solutions — aligns with India's energy transition and AI's massive power infrastructure needs</p>
+        <p class="funding-focus">AI-powered customer service automation leveraging LLMs for major enterprise clients — Accenture betting big on agentic AI in support workflows</p>
       </div>
       <div class="card-bottom">
-        <a href="https://yourstory.com/2026/04/kimbal-raises-22m-series-round-gef-capital" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://economictimes.indiatimes.com/tech/funding/ai-customer-service-startup-netomi-raises-110-million/articleshow/130631740.cms" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-startup-type" data-index="4">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7C3AED">New Startups</span>
+        <span class="card-counter">5 / 9</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto">
+        
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
+          <div class="startup-name-md">Portkey (Acquisition by Palo Alto Networks)</div>
+          <div class="founder-line">by Stealth / Unknown</div>
+          <p class="startup-what">AI application infrastructure providing centralized control planes for managing and securing autonomous AI agents</p>
+          <p class="startup-why">Exit validates that India-based AI infra tooling is strategic enough for $80B+ cybersecurity giants — Elevation Capital scores another infrastructure bet</p>
+          <a href="https://economictimes.indiatimes.com/tech/startups/palo-alto-networks-to-acquire-elevation-capital-backed-ai-app-infra-startup-portkey/articleshow/130668555.cms" target="_blank" rel="noopener" class="read-btn" style="display:inline-block;margin-top:0.75rem">Read more →</a>
+        </div>
       </div>
     </section>
     <section class="card card-trend-type" data-index="5">
@@ -433,16 +236,16 @@ body {
       <div class="card-body" style="overflow-y:auto">
         
         <div class="trend-item">
-          <div class="trend-title">Semiconductor infrastructure bet intensifies</div>
-          <p class="trend-detail">VCs are finally backing India's hardware layer with Calligo's $12-15M raise for indigenous RISC-V chips. This signals a strategic shift from software-only AI plays to full-stack bets on energy-efficient computing infrastructure. For founders: if you're building at the silicon or hardware acceleration layer for AI workloads, this is your moment — investors are hunting for defensible IP below the model layer.</p>
+          <div class="trend-title">AI infrastructure exits validating early bets</div>
+          <p class="trend-detail">Palo Alto's acquisition of Portkey signals that India's AI tooling layer is mature enough for strategic M&A, not just growth equity. VCs who backed infra early (like Elevation) are seeing liquidity windows open faster than consumer AI plays. For founders: building picks-and-shovels for AI agents is a credible path to exits, especially with security/governance hooks.</p>
         </div>
         <div class="trend-item">
-          <div class="trend-title">Enterprise AI tooling still commanding mega-rounds</div>
-          <p class="trend-detail">Netomi's $110M Series C shows that despite market uncertainty, enterprise-focused AI infrastructure — especially customer service automation powered by LLMs — continues to attract massive capital from strategic investors like Accenture Ventures. The message for founders: horizontal AI platforms serving multiple verticals with clear ROI metrics remain fundable at scale, but you need enterprise traction and proven unit economics.</p>
+          <div class="trend-title">Semiconductor sovereignty attracting serious capital</div>
+          <p class="trend-detail">Calligo's $12-15M round from US investors shows that India's chip design ambitions — especially energy-efficient RISC-V for AI workloads — are no longer just policy theater. Foreign VCs are willing to fund hardware, a historically tough category, if it's tied to AI compute bottlenecks. This opens a narrow but real window for deep-tech hardware startups beyond software-as-a-service.</p>
         </div>
         <div class="trend-item">
-          <div class="trend-title">Energy and compute efficiency becoming core investment thesis</div>
-          <p class="trend-detail">Both Calligo (energy-efficient chips) and Kimbal (battery storage) raises point to a emerging VC focus: AI's power consumption problem. As model training and inference costs explode, investors are backing solutions that optimize energy usage across the stack. Founders building power-aware AI systems, alternative compute architectures, or energy management for data centers have clear product-market fit ahead.</p>
+          <div class="trend-title">Enterprise AI adoption driving customer service automation bets</div>
+          <p class="trend-detail">Netomi's $110M Series C led by Accenture Ventures highlights where corporate dollars are flowing: agentic AI replacing tier-1 support workflows. Indian startups building vertical AI agents (healthcare, fintech, logistics) should note that enterprise buyers now have budget allocated — the shift from pilot to production is accelerating in 2026.</p>
         </div>
       </div>
     </section>
@@ -453,19 +256,19 @@ body {
       </div>
       <div class="card-body" style="overflow-y:auto">
         
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E0D5C4">
-          <a href="https://www.livemint.com/technology/delhi-govt-plans-to-partner-with-tech-companies-start-ups-for-ai-tools-in-various-fields-11777561509597.html" target="_blank" rel="noopener" class="policy-title-lg">Delhi Government to partner with tech companies and AI startups</a>
-          <p class="policy-body">Delhi govt is planning formal partnerships with tech companies and startups to deploy AI tools across various government functions. This could open significant B2G opportunities for AI startups focused on civic tech, urban management, and public service delivery — though execution risk remains high given India's track record on govt-startup partnerships.</p>
-          <span class="policy-source">Livemint Tech</span>
-        </div>
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E0D5C4">
-          <a href="https://www.medianama.com/2026/04/223-india-anthropic-claude-mythos-project-glasswing-access/" target="_blank" rel="noopener" class="policy-title-lg">India negotiating access to Anthropic's Mythos for cyber defense; no Indian firms in Project Glasswing yet</a>
-          <p class="policy-body">India is in talks with the US and Anthropic for access to the Mythos AI model for cybersecurity applications, but no Indian companies have been included in Project Glasswing (the US-led AI security initiative). This highlights India's continued dependence on foreign AI infrastructure for critical defense applications and limited strategic positioning in global AI security frameworks — a gap for defense-tech founders to exploit.</p>
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
+          <a href="https://www.medianama.com/2026/04/223-india-anthropic-claude-mythos-project-glasswing-access/" target="_blank" rel="noopener" class="policy-title-lg">India negotiating access to Anthropic's Mythos AI cybersecurity model</a>
+          <p class="policy-body">India is in talks with the US and Anthropic to access Claude's Mythos model for cyber defense, but no Indian firms are yet part of Project Glasswing — the US-led initiative to secure AI systems against advanced threats. This creates a compliance and strategic access gap for Indian AI startups needing cutting-edge security tooling.</p>
           <span class="policy-source">Medianama</span>
         </div>
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E0D5C4">
-          <a href="https://www.livemint.com/technology/ailed-discovery-of-long-standing-banking-vulnerabilities-a-wake-up-call-world-nielit-director-11777554062320.html" target="_blank" rel="noopener" class="policy-title-lg">Banking sector warned on AI-discovered vulnerabilities</a>
-          <p class="policy-body">NIELIT Director flagged that AI-led discovery of long-standing banking system vulnerabilities is a wake-up call for India's financial sector. This creates urgency for AI-powered security solutions tailored to legacy banking infrastructure — a massive B2B opportunity for startups building fintech security layers.</p>
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
+          <a href="https://www.livemint.com/technology/delhi-govt-plans-to-partner-with-tech-companies-start-ups-for-ai-tools-in-various-fields-11777561509597.html" target="_blank" rel="noopener" class="policy-title-lg">Delhi government planning partnerships with AI startups for public services</a>
+          <p class="policy-body">The Delhi government is actively seeking partnerships with tech companies and startups to deploy AI tools across various public service sectors. This could open procurement opportunities for AI startups in healthcare, urban governance, and citizen services — but execution risk remains high given bureaucratic timelines.</p>
+          <span class="policy-source">Livemint Tech</span>
+        </div>
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
+          <a href="https://www.livemint.com/technology/ailed-discovery-of-long-standing-banking-vulnerabilities-a-wake-up-call-world-nielit-director-11777554062320.html" target="_blank" rel="noopener" class="policy-title-lg">NIELIT warns Indian banks on AI-discovered vulnerabilities</a>
+          <p class="policy-body">NIELIT's director flagged that AI-led discovery of banking system vulnerabilities is a wake-up call for India's financial infrastructure. This signals regulatory pressure incoming for AI security audits — startups building AI-powered cybersecurity or compliance tools should position for fintech demand.</p>
           <span class="policy-source">Livemint Tech</span>
         </div>
       </div>
@@ -480,56 +283,48 @@ body {
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/information-tech/it-cuts-mid-tier-expands-ai-smart-entry-level-in-new-hiring-playbook/articleshow/130646733.cms" target="_blank" rel="noopener" class="hit-title">Indian IT majors restructure hiring for AI-native workforce</a>
-            <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">Top Indian IT firms cutting mid-level roles while hiring more fresh grads equipped with AI tools — major talent pool shift for AI startups recruiting from services companies</p>
-          </div>
-        </li>
-        <li class="hit-item">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://economictimes.indiatimes.com/tech/information-tech/mphasis-q4-net-profit-rises-14-to-rs-510-crore/articleshow/130646550.cms" target="_blank" rel="noopener" class="hit-title">Mphasis Q4 profit jumps 14% on AI contracts</a>
-            <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">Net profit rose to ₹510 Cr on back of AI-driven enterprise contracts — proof that enterprise AI deployment is driving real revenue growth, not just hype</p>
-          </div>
-        </li>
-        <li class="hit-item">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://www.livemint.com/technology/tech-news/openai-says-india-is-the-biggest-market-for-chatgpt-images-2-0-model-here-are-the-top-trends-11777533306936.html" target="_blank" rel="noopener" class="hit-title">OpenAI: India is largest market for ChatGPT Images 2.0</a>
+            <a href="https://www.livemint.com/technology/tech-news/openai-says-india-is-the-biggest-market-for-chatgpt-images-2-0-model-here-are-the-top-trends-11777533306936.html" target="_blank" rel="noopener" class="hit-title">India is largest market for ChatGPT's Images 2.0 model</a>
             <span class="hit-source">— Livemint Tech</span>
-            <p class="hit-liner">India leads global usage of ChatGPT's image generation model, driven by young users and self-expression — massive consumer AI adoption signal for generative tools</p>
+            <p class="hit-liner">OpenAI confirms India leads global adoption of its image generation model, driven by young users focused on self-expression and creativity</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/technology/ev-founders-say-pli-auto-needs-an-overhaul-leaves-startup-at-a-disadvantage/articleshow/130645733.cms" target="_blank" rel="noopener" class="hit-title">EV startups demand PLI Auto scheme overhaul</a>
-            <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">EV founders say current PLI scheme favors legacy OEMs over startups despite better tech and localization — policy friction slowing India's cleantech transition</p>
-          </div>
-        </li>
-        <li class="hit-item">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="https://yourstory.com/2026/04/meet-15-startups-in-isb-dlabs-i-heal-fourth-cohort-tackling-critical-healthcare-gaps" target="_blank" rel="noopener" class="hit-title">ISB DLabs announces 15 healthtech startups in I-HEAL Cohort 4</a>
+            <a href="https://yourstory.com/2026/04/meet-15-startups-in-isb-dlabs-i-heal-fourth-cohort-tackling-critical-healthcare-gaps" target="_blank" rel="noopener" class="hit-title">ISB DLabs' I-HEAL accelerator backs 15 healthcare startups</a>
             <span class="hit-source">— YourStory</span>
-            <p class="hit-liner">15 healthtech startups focused on diagnostics, rehabilitation, and underserved healthcare gaps join ISB's I-HEAL accelerator — signals continued investor appetite for AI-health intersection</p>
+            <p class="hit-liner">Fourth cohort focuses on diagnostics to rehabilitation — strong pipeline for AI-driven healthtech addressing India's underserved patient segments</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/startups/digital-gold-sector-takes-shine-to-govts-formal-framework-signal/articleshow/130646114.cms" target="_blank" rel="noopener" class="hit-title">Digital gold sector awaits formal regulatory framework</a>
+            <a href="https://economictimes.indiatimes.com/tech/information-tech/mphasis-q4-net-profit-rises-14-to-rs-510-crore/articleshow/130646550.cms" target="_blank" rel="noopener" class="hit-title">Mphasis Q4 profit up 14% on AI-driven contract wins</a>
             <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">Fintech founders push finance ministry for digital gold regulation as sector grows without oversight — regulatory clarity could unlock institutional capital</p>
+            <p class="hit-liner">IT services firm credits AI-powered client solutions for revenue growth — signal that enterprise AI adoption is materializing into P&L impact</p>
+          </div>
+        </li>
+        <li class="hit-item">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://economictimes.indiatimes.com/tech/information-tech/it-cuts-mid-tier-expands-ai-smart-entry-level-in-new-hiring-playbook/articleshow/130646733.cms" target="_blank" rel="noopener" class="hit-title">Indian IT firms cutting mid-tier roles, expanding AI-equipped entry-level hiring</a>
+            <span class="hit-source">— ET Tech</span>
+            <p class="hit-liner">Top IT companies betting on AI-augmented freshers over middle managers to drive productivity — structural shift in India's tech services labor model</p>
+          </div>
+        </li>
+        <li class="hit-item">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://economictimes.indiatimes.com/tech/funding/meta-raises-25-billion-in-bond-sale-after-lifting-ai-spending-plan/articleshow/130665428.cms" target="_blank" rel="noopener" class="hit-title">Meta raises $25B in bonds to fund AI infrastructure buildout</a>
+            <span class="hit-source">— ET Startups</span>
+            <p class="hit-liner">Big Tech continuing aggressive AI capex cycles — positive signal for India's cloud/GPU services and AI tooling vendors serving hyperscalers</p>
           </div>
         </li></ul>
       </div>
     </section>
     <section class="footer-card" data-index="8">
       <div class="footer-brand-lg">🇮🇳 India AI Pulse</div>
-      <div class="footer-sub">Generated Friday, May 01, 2026 · 02:41 UTC</div>
+      <div class="footer-sub">Generated Friday, May 01, 2026 · 04:51 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
