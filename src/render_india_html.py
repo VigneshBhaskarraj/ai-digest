@@ -386,6 +386,7 @@ def render_india_html(digest: Dict) -> str:
 <nav class="nav-tab-bar">
   <a class="nav-tab" href="index.html">⚡ Global</a>
   <a class="nav-tab active" href="india.html">🇮🇳 India</a>
+  <a class="nav-tab" href="tn.html">🌟 Tamil Nadu</a>
 </nav>
 
 <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>

@@ -609,9 +609,6 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
     vike_note       = digest.get("vike_note", "")
     papers          = papers or []
 
-    # Chunk papers into cards of 3 each
-    paper_chunks = [papers[i:i+3] for i in range(0, min(len(papers), 9), 3)]
-
     # Count total cards for the counter
     total_cards = (
         1                                   # header
@@ -621,7 +618,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         + (1 if arxiv_picks else 0)
         + (1 if community_pulse else 0)
         + (1 if leaders_voices else 0)      # leaders card
-        + len(paper_chunks)                 # whitepaper cards
+        + (1 if papers else 0)              # single whitepaper card
         + 1                                 # footer
     )
 
@@ -664,9 +661,9 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         )
         cards_html += f"""
     <section class="card card-surge-type" data-index="{card_index - 1}">
-      <div class="card-top" style="border-bottom:1px solid rgba(196,168,130,0.2);padding-bottom:0.75rem;margin-bottom:auto">
+      <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
         <span class="surge-label">⚡ Signal Surge — trending across {surge_count} sources</span>
-        <span class="card-counter" style="color:#9B7E6A">{card_index} / {total_cards}</span>
+        <span class="card-counter" style="color:#6366F1">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
@@ -674,8 +671,8 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         <p class="surge-why">{surge_why}</p>
         <div class="surge-sources">{surge_tags_html}</div>
       </div>
-      <div class="card-bottom" style="border-top:1px solid rgba(196,168,130,0.2)">
-        <span class="swipe-hint" style="color:#9B7E6A"><span class="swipe-arrow">↑</span> swipe up</span>
+      <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
+        <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
       </div>
     </section>"""
 
@@ -805,13 +802,12 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
       </div>
     </section>"""
 
-    # ── Whitepaper Cards ──────────────────────────────────────────────────────
-    for chunk_idx, chunk in enumerate(paper_chunks):
+    # ── Whitepaper Card (single scrollable card) ──────────────────────────────
+    if papers:
         card_index += 1
-        chunk_label = f"Whitepapers · {chunk_idx + 1} of {len(paper_chunks)}"
         papers_html = ""
-        for p_idx, p in enumerate(chunk):
-            card_id   = f"paper-{card_index}-{p_idx}"
+        for p_idx, p in enumerate(papers[:12]):  # cap at 12 papers
+            card_id   = f"paper-{p_idx}"
             src_tag   = f'<span class="paper-source-tag">{p.get("source","")}</span>'
             pub_date  = p.get("published", "")
             authors   = p.get("authors", "")
@@ -842,7 +838,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         cards_html += f"""
     <section class="card card-paper-type" data-index="{card_index - 1}">
       <div class="card-top">
-        <span class="category-pill" style="background:#0F766E">📄 {chunk_label}</span>
+        <span class="category-pill" style="background:#0F766E">📄 Whitepapers &amp; Research</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body-scroll">
@@ -899,6 +895,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
 <nav class="nav-tab-bar">
   <a class="nav-tab active" href="index.html">⚡ Global</a>
   <a class="nav-tab" href="india.html">🇮🇳 India</a>
+  <a class="nav-tab" href="tn.html">🌟 Tamil Nadu</a>
 </nav>
 
 <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
@@ -957,7 +954,8 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
     banner.classList.add('show');
   }});
 
-  document.getElementById('pwa-install-btn').addEventListener('click', async () => {{
+  banner.addEventListener('click', async (e) => {{
+    if (e.target.id === 'pwa-dismiss') return;
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const {{ outcome }} = await deferredPrompt.userChoice;

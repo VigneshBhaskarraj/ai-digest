@@ -44,6 +44,11 @@
       "name": "India AI Pulse",
       "url": "/ai-digest/india.html",
       "description": "India AI funding and startup news"
+    },
+    {
+      "name": "TN Innovation",
+      "url": "/ai-digest/tn.html",
+      "description": "Tamil Nadu innovation, policies, and startup ecosystem"
     }
   ]
 }

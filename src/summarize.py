@@ -73,7 +73,7 @@ Rules:
 - signal_surge: identify the ONE topic that appears most across independent sources (e.g. "AI agents", "GPT-5", "open source LLMs"). Count how many distinct sources mention it.
 - credibility field: "high" for lab blogs/research papers, "medium" for tech news, "community" for Reddit/HN
 - If no clear signal surge (fewer than 3 sources on any one topic), set signal_surge to null
-- leaders_voices: scan articles for things said/posted/written by notable AI figures in the last 24-48h. Include: Sam Altman, Andrej Karpathy, Yann LeCun, Geoffrey Hinton, Demis Hassabis, Dario Amodei, Jensen Huang, Ilya Sutskever, Greg Brockman, Fei-Fei Li, or any other named AI researcher/leader. Return 2-4 entries max. If no named leader statements found, return empty array — never fabricate quotes."""
+- leaders_voices: scan articles for things said/posted/written by notable AI figures in the last 24-48h. Cast a wide net — include: Sam Altman (OpenAI CEO), Andrej Karpathy (AI researcher/educator), Yann LeCun (Meta Chief AI Scientist), Geoffrey Hinton (AI pioneer), Demis Hassabis (Google DeepMind CEO), Dario Amodei (Anthropic CEO), Jensen Huang (NVIDIA CEO), Ilya Sutskever (SSI founder), Greg Brockman (OpenAI), Fei-Fei Li (Stanford/World Labs), Mark Zuckerberg (Meta CEO), Ali Ghodsi (Databricks CEO), Andrew Ng (AI Fund/DeepLearning.AI), Emad Mostaque (Stability AI founder), Satya Nadella (Microsoft CEO), Sundar Pichai (Google CEO), Yoshua Bengio (AI safety researcher), Mustafa Suleyman (Microsoft AI CEO), or ANY other named AI researcher, founder, or executive with a notable statement. Return 6-10 entries, ranked by how hot/impactful the post or statement is. If fewer than 6 named leader statements exist in the articles, return only what's actually found — never fabricate quotes."""
 
 
 def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> Dict:
@@ -108,7 +108,7 @@ Produce the structured digest JSON now."""
 
     message = client.messages.create(
         model="claude-sonnet-4-5",
-        max_tokens=4096,
+        max_tokens=6000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
     )
