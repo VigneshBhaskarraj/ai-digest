@@ -298,66 +298,6 @@ body {
   color: #2C1810;
 }
 
-/* ── Filter Bar ──────────────────────── */
-.filter-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  background: rgba(245,239,227,0.95);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid #E0D5C4;
-  padding: 0.6rem 1.25rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.filter-row {
-  display: flex;
-  gap: 0.4rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  align-items: center;
-}
-.filter-row::-webkit-scrollbar { display: none; }
-.filter-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #B09880;
-  white-space: nowrap;
-  flex-shrink: 0;
-  width: 52px;
-}
-.filter-chip {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: #7A4F35;
-  background: #EDE4D6;
-  border: 1px solid #D4C4B0;
-  border-radius: 20px;
-  padding: 4px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background 0.15s, color 0.15s;
-  user-select: none;
-}
-.filter-chip:hover { background: #D4C4B0; }
-.filter-chip.active {
-  background: #5C3D2E;
-  color: #F5EFE3;
-  border-color: #5C3D2E;
-}
-
-/* push cards up so filter bar doesn't overlap last card */
-.feed { padding-bottom: 0; }
-.card { padding-bottom: 5.5rem; }
-.footer-card { padding-bottom: 2rem; }
-
 /* ── Fixed Progress Bar ───────────────── */
 .progress-rail {
   position: fixed;
@@ -428,13 +368,13 @@ body {
     <section class="card card-header-type" data-index="0">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
         <span class="header-brand">⚡ AI Digest <a href="india.html">🇮🇳 India Pulse</a></span>
-        <span class="card-counter">1 / 10</span>
+        <span class="card-counter">1 / 11</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
-        <div class="header-date">Friday, May 01, 2026 · 02:34 UTC</div>
+        <div class="header-date">Friday, May 01, 2026 · 02:40 UTC</div>
         <div class="header-session">🌅 Morning Edition</div>
-        <h1 class="header-headline">Anthropic racing toward $900B+ valuation as OpenAI launches GPT-5.5 Cyber with restricted access, while xAI admits training Grok on OpenAI models</h1>
-        <div class="header-note"><strong>Today's signal</strong>If you're transitioning from traditional data/ML to Gen AI: ignore the academic conference drama and focus on shipping—the $5.6B Legora valuation proves vertical AI expertise trumps research credentials, and the Codex goal-seeking feature shows autonomous agents are the new baseline expectation.</div>
+        <h1 class="header-headline">Anthropic closes in on $900B valuation as Google DeepMind debuts AI co-clinician and security tools reshape the frontier AI landscape</h1>
+        <div class="header-note"><strong>Today's signal</strong>If you're transitioning from traditional data roles to Gen AI: the Anthropic MCP connectors and Goodfire's Silico tool represent where the real engineering work is moving—it's not about training bigger models, it's about controlling, interpreting, and integrating them into complex production workflows where reliability actually matters.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -444,13 +384,13 @@ body {
     <section class="card card-story-type" data-index="1">
       <div class="card-top">
         <span class="category-pill" style="background:#7A4F35">Industry News</span>
-        <span class="card-counter">2 / 10</span>
+        <span class="card-counter">2 / 11</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch</div>
-        <h2 class="card-title">Anthropic closing $900B+ valuation round within two weeks</h2>
+        <h2 class="card-title">Anthropic nears $900B+ valuation with investor deadline set for 48 hours</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Anthropic is asking for investor allocations within 48 hours, signaling one of the largest AI funding rounds in history. This valuation puts them in striking distance of OpenAI and demonstrates the market's massive bet on frontier AI labs. For practitioners, this capital means accelerated model development and potentially more aggressive API pricing competition.</p>
+        <p class="card-why">This would cement Anthropic as one of the most valuable AI companies globally, signaling massive institutional confidence in Claude's commercial traction. The rapid fundraising timeline suggests fierce competition for allocation—relevant for anyone tracking which models will have the compute budget to stay at the frontier.</p>
       </div>
       <div class="card-bottom">
         <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
@@ -459,213 +399,204 @@ body {
     <section class="card card-story-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3D2E">Model Releases</span>
-        <span class="card-counter">3 / 10</span>
+        <span class="card-counter">3 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">Google DeepMind</div>
+        <h2 class="card-title">Google DeepMind launches AI co-clinician for augmented healthcare</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">This isn't a research demo—it's a production-oriented system for clinical decision support, marking Google's serious push into regulated healthcare AI. For builders in vertical AI, this demonstrates how frontier labs are tackling compliance, liability, and real-world deployment at scale.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://deepmind.google/blog/ai-co-clinician/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="3">
+      <div class="card-top">
+        <span class="category-pill" style="background:#3B4852">Tools & Products</span>
+        <span class="card-counter">4 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">r/artificial</div>
+        <h2 class="card-title">Anthropic ships 9 creative software connectors via MCP, accidentally reveals industry strategy</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">The Model Context Protocol connectors let Claude directly control Adobe, Figma, and other creative tools—not just generate text about them. This is the first major play to turn LLMs into true creative automation agents, threatening to disrupt how professionals actually work in these tools.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://www.reddit.com/r/artificial/comments/1szoe78/anthropic_mass_shipped_9_connectors_and/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="4">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7A4F35">Industry News</span>
+        <span class="card-counter">5 / 11</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch</div>
-        <h2 class="card-title">OpenAI restricts GPT-5.5 Cyber to 'critical defenders' after criticizing Anthropic for same move</h2>
+        <h2 class="card-title">OpenAI restricts GPT-5.5 Cyber to 'critical defenders' after mocking Anthropic's Mythos limits</h2>
         <div class="card-divider"></div>
-        <p class="card-why">OpenAI's cybersecurity testing model will roll out only to vetted defenders, reversing their public stance against Anthropic's similar restrictions on Claude Mythos. The UK's AI Security Institute has evaluated GPT-5.5's cyber capabilities, suggesting these models have reached concerning offensive security capabilities. This sets precedent for how frontier labs will handle dual-use AI tools going forward.</p>
+        <p class="card-why">The hypocrisy is rich, but the pattern matters more: frontier labs are realizing that offensive security capabilities in LLMs require gatekeeping, regardless of PR posturing. UK's AI Security Institute confirmed GPT-5.5 matches Mythos in vulnerability discovery—expect more restricted access tiers for capable models.</p>
       </div>
       <div class="card-bottom">
         <a href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="3">
+    <section class="card card-story-type" data-index="5">
       <div class="card-top">
         <span class="category-pill" style="background:#7A4F35">Industry News</span>
-        <span class="card-counter">4 / 10</span>
+        <span class="card-counter">6 / 11</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch / Wired</div>
-        <h2 class="card-title">Elon Musk admits under oath that xAI trained Grok using OpenAI models</h2>
+        <div class="card-source">TechCrunch</div>
+        <h2 class="card-title">Elon Musk admits xAI trained Grok via distillation on OpenAI models</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Musk testified that xAI used model distillation from OpenAI's models, claiming it's standard industry practice. This revelation during the Musk v. Altman trial could reshape legal boundaries around model distillation and training data rights. For builders, this confirms what many suspected: frontier model outputs are being used as training data across the ecosystem, raising questions about ToS enforcement and competitive moats.</p>
+        <p class="card-why">Model distillation just became a courtroom liability. This testimony legitimizes concerns that smaller labs are training on frontier model outputs, raising questions about IP protection, licensing, and whether 'open' models trained this way can truly be called independent. Watch for new anti-distillation clauses in model terms of service.</p>
       </div>
       <div class="card-bottom">
         <a href="https://techcrunch.com/2026/04/30/elon-musk-testifies-that-xai-trained-grok-on-openai-models/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="4">
+    <section class="card card-story-type" data-index="6">
       <div class="card-top">
-        <span class="category-pill" style="background:#3B4852">Tools & Products</span>
-        <span class="card-counter">5 / 10</span>
+        <span class="category-pill" style="background:#384840">Research</span>
+        <span class="card-counter">7 / 11</span>
       </div>
       <div class="card-body">
-        <div class="card-source">Simon Willison</div>
-        <h2 class="card-title">OpenAI Codex CLI 0.128.0 ships autonomous goal-seeking loops</h2>
+        <div class="card-source">MIT Tech Review</div>
+        <h2 class="card-title">Goodfire releases Silico: debug and edit LLM internals during training</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Codex CLI now has a /goal command that implements autonomous agent loops—it will keep iterating until it evaluates that the goal is complete. This is OpenAI's version of the Ralph pattern, moving coding agents from single-shot assistance to autonomous task completion. Expect this pattern to become standard across AI coding tools.</p>
+        <p class="card-why">Mechanistic interpretability is moving from research curiosity to production tooling. Silico lets you adjust model parameters mid-training based on what features actually fire—this could fundamentally change how we do alignment and fine-tuning, moving beyond black-box loss minimization.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="5">
-      <div class="card-top">
-        <span class="category-pill" style="background:#7A4F35">Industry News</span>
-        <span class="card-counter">6 / 10</span>
-      </div>
-      <div class="card-body">
-        <div class="card-source">TechCrunch</div>
-        <h2 class="card-title">Legal AI startup Legora hits $5.6B valuation in heated battle with Harvey</h2>
-        <div class="card-divider"></div>
-        <p class="card-why">The legal AI space is seeing unprecedented venture activity with dueling ad campaigns and massive valuations. Both companies have pushed into each other's core markets, proving that vertical AI applications with domain expertise can command billion-dollar valuations. For builders, this demonstrates the enterprise appetite for specialized AI tools that go beyond generic chatbots.</p>
-      </div>
-      <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
-      </div>
-    </section>
-    <section class="card card-hits-type" data-index="6">
+    <section class="card card-hits-type" data-index="7">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
-        <span class="card-counter">7 / 10</span>
+        <span class="card-counter">8 / 11</span>
       </div>
       <div class="card-body" style="overflow-y:auto">
         <ul class="hits-list">
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t038g7/amd_inhouse_ryzen_395_box_coming_in_june/" target="_blank" rel="noopener" class="hit-title">AMD Halo Box (Ryzen 395 with 128GB) shipping in June</a>
-              <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">AMD's in-house local inference box with 128GB RAM targets the self-hosted LLM market</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener" class="hit-title">Apple surprised by AI-driven Mac demand, expects months of supply constraints</a>
-              <span class="hit-source">— TechCrunch / Wired</span>
-              <p class="hit-liner">Mac Mini, Studio, and Neo will be supply-constrained for several months as AI workloads drive unprecedented hardware demand</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.techmeme.com/260430/p62#a260430p62" target="_blank" rel="noopener" class="hit-title">Intel shares surged 114% in April, best month on record</a>
-              <span class="hit-source">— Techmeme</span>
-              <p class="hit-liner">Intel's market cap exceeded $470B as the chipmaker posted its strongest monthly performance ever</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.reddit.com/r/MachineLearning/comments/1t04vk3/seems_icml_is_rejecting_many_unanimous_positively/" target="_blank" rel="noopener" class="hit-title">ICML 2026 rejecting papers with unanimous positive ratings</a>
-              <span class="hit-source">— r/MachineLearning</span>
-              <p class="hit-liner">Conference review system under fire as 4444-rated papers get rejected, community questions A* conference integrity</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://techcrunch.com/2026/04/30/chatgpt-images-2-0-is-a-hit-in-india-but-not-a-big-winner-elsewhere-yet/" target="_blank" rel="noopener" class="hit-title">ChatGPT Images 2.0 massive hit in India, slow elsewhere</a>
+              <a href="https://techcrunch.com/2026/04/30/openai-announces-new-advanced-security-for-chatgpt-accounts-including-a-partnership-with-yubico/" target="_blank" rel="noopener" class="hit-title">OpenAI partners with Yubico for ChatGPT hardware security keys</a>
               <span class="hit-source">— TechCrunch</span>
-              <p class="hit-liner">Indian users embracing creative personal visuals at scale while other markets remain tepid</p>
+              <p class="hit-liner">Enterprise ChatGPT accounts get Yubikey support—finally, phishing-resistant auth for high-stakes deployments</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/04/30/openai-announces-new-advanced-security-for-chatgpt-accounts-including-a-partnership-with-yubico/" target="_blank" rel="noopener" class="hit-title">OpenAI launches Advanced Account Security with Yubico partnership</a>
+              <a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener" class="hit-title">Legal AI war heats up: Legora hits $5.6B valuation as Harvey competition intensifies</a>
               <span class="hit-source">— TechCrunch</span>
-              <p class="hit-liner">New opt-in protections target high-risk ChatGPT and Codex accounts vulnerable to phishing</p>
+              <p class="hit-liner">Two legal AI giants now have dueling ad campaigns—vertical AI has enough revenue to support brand marketing wars</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t07su1/followup_qwen3627b_on_1_rtx_3090_pushing_to_218k/" target="_blank" rel="noopener" class="hit-title">Qwen 3.6 27B pushing to 218K context on single RTX 3090</a>
+              <a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener" class="hit-title">Apple sold out Mac mini/Studio/Neo through next quarter due to AI demand</a>
+              <span class="hit-source">— TechCrunch</span>
+              <p class="hit-liner">Local inference hunger is real—Apple's silicon advantage is creating supply constraints</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://techcrunch.com/2026/04/30/chatgpt-images-2-0-is-a-hit-in-india-but-not-a-big-winner-elsewhere-yet/" target="_blank" rel="noopener" class="hit-title">ChatGPT Images 2.0 sees massive adoption in India but lags elsewhere</a>
+              <span class="hit-source">— TechCrunch</span>
+              <p class="hit-liner">Regional product-market fit for generative image features varies wildly by culture and use case</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t038g7/amd_inhouse_ryzen_395_box_coming_in_june/" target="_blank" rel="noopener" class="hit-title">AMD Ryzen 395 box (128GB) shipping in June, built by Lenovo</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Community achieving 218K context windows with 50-66 TPS and stable tool calls on consumer hardware</p>
+              <p class="hit-liner">AMD's all-in-one local inference box officially dated—price TBD but targets local LLM enthusiasts</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener" class="hit-title">CopyFail: severe Linux vulnerability threatens multi-tenant infrastructure</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1szwi1d/deepseek_released_thinkingwithvisualprimitives/" target="_blank" rel="noopener" class="hit-title">DeepSeek releases 'Thinking-with-Visual-Primitives' framework</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Open-source visual reasoning framework from DeepSeek, Peking U, and Tsinghua—check repo for implementation</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1szrbub/qwenscope_official_sparse_autoencoders_saes_for/" target="_blank" rel="noopener" class="hit-title">Qwen releases official Sparse Autoencoders for interpretability</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Qwen-Scope maps internal features for Qwen 3.5 (2B to 35B MoE)—interpretability tooling from model creators</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener" class="hit-title">Linux CopyFail vulnerability surfaces as most severe threat in years</a>
               <span class="hit-source">— Ars Technica</span>
-              <p class="hit-liner">Major security flaw impacts CI/CD workflows, Kubernetes containers, and shared hosting environments</p>
+              <p class="hit-liner">Multi-tenant servers, CI/CD, and Kubernetes all at risk—patch immediately if running ML infrastructure</p>
             </div>
           </li></ul>
       </div>
     </section>
-    <section class="card card-arxiv-type" data-index="7">
+    <section class="card card-arxiv-type" data-index="8">
       <div class="card-top">
         <span class="category-pill" style="background:#384840">Research Picks</span>
-        <span class="card-counter">8 / 10</span>
+        <span class="card-counter">9 / 11</span>
       </div>
       <div class="card-body" style="overflow-y:auto">
         
           <div class="arxiv-item">
-            <a href="https://www.reddit.com/r/MachineLearning/comments/1szyjpk/r_joint_embedding_variational_bayes_tmlr_26/" target="_blank" rel="noopener" class="arxiv-title">Joint Embedding Variational Bayes</a>
-            <p class="arxiv-tldr">TMLR paper adds operational variational semantics to joint-embedding architectures for non-contrastive representation learning, bridging the gap between self-supervised learning and probabilistic modeling</p>
+            <a href="https://arxiv.org/abs/2604.26091" target="_blank" rel="noopener" class="arxiv-title">Operating-Layer Controls for Onchain Language-Model Agents Under Real Capital</a>
+            <p class="arxiv-tldr">Study of 3,505 autonomous trading agents using real ETH shows how to build reliability controls when LLMs manage actual money—critical for anyone building agents that execute financial transactions</p>
+          </div>
+          <div class="arxiv-item">
+            <a href="https://arxiv.org/abs/2604.25975" target="_blank" rel="noopener" class="arxiv-title">Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective</a>
+            <p class="arxiv-tldr">Rigorous theoretical framework for KV cache eviction policies moves beyond heuristics—potential for significant memory savings in long-context generation at production scale</p>
+          </div>
+          <div class="arxiv-item">
+            <a href="https://arxiv.org/abs/2604.25921" target="_blank" rel="noopener" class="arxiv-title">One Word at a Time: Incremental Completion Decomposition Breaks LLM Safety</a>
+            <p class="arxiv-tldr">New jailbreak technique using trajectory-based decomposition defeats conversational safety—red-teaming practitioners need to test against this attack vector immediately</p>
           </div>
       </div>
     </section>
-    <section class="card card-pulse-type" data-index="8">
+    <section class="card card-pulse-type" data-index="9">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
-        <span class="card-counter">9 / 10</span>
+        <span class="card-counter">10 / 11</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"LocalLLaMA community celebrating April 2026 as potentially the best month ever for open models, with practitioners successfully running Qwen 3.6 27B at extended contexts on consumer GPUs. Meanwhile, the ML research community is in crisis mode over ICML 2026's broken review process, with widespread reports of bias, unanimous positive papers getting rejected, and allegations of organized nepotism through mobile apps. The gap between academic ML and practical local LLM deployment has never been wider."</p>
+        <p class="pulse-text">"LocalLLaMA is obsessed with hardware—AMD's Ryzen 395 box has people sharing MI50 multi-GPU setups achieving 9.7 t/s, and the community is pushing Qwen3.6-27B to 218K context on single RTX 3090s. Meanwhile, r/MachineLearning is frustrated with ICML review quality and building Pokemon agents with free LLM APIs. The mechanistic interpretability crowd is excited about Qwen's official SAEs, while creative professionals on r/artificial are processing what Anthropic's MCP connectors mean for their workflows."</p>
       </div>
     </section>
-    <section class="footer-card" data-index="9">
+    <section class="footer-card" data-index="10">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Friday, May 01, 2026 · 02:34 UTC</div>
+      <div class="footer-sub">Generated Friday, May 01, 2026 · 02:40 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
 
-<div class="filter-bar" id="filter-bar">
-  <div class="filter-row">
-    <span class="filter-label">Leaders</span>
-    <span class="filter-chip" data-filter="karpathy">Karpathy</span>
-    <span class="filter-chip" data-filter="sam altman">Sam Altman</span>
-    <span class="filter-chip" data-filter="demis">Demis</span>
-    <span class="filter-chip" data-filter="yann lecun">LeCun</span>
-    <span class="filter-chip" data-filter="ilya">Ilya</span>
-    <span class="filter-chip" data-filter="greg brockman">Brockman</span>
-  </div>
-  <div class="filter-row">
-    <span class="filter-label">Company</span>
-    <span class="filter-chip" data-filter="anthropic">Anthropic</span>
-    <span class="filter-chip" data-filter="openai">OpenAI</span>
-    <span class="filter-chip" data-filter="google">Google</span>
-    <span class="filter-chip" data-filter="meta">Meta</span>
-    <span class="filter-chip" data-filter="mistral">Mistral</span>
-    <span class="filter-chip" data-filter="huggingface">HuggingFace</span>
-    <span class="filter-chip" data-filter="nvidia">Nvidia</span>
-  </div>
-  <div class="filter-row">
-    <span class="filter-label">Topic</span>
-    <span class="filter-chip" data-filter="agent">Agents</span>
-    <span class="filter-chip" data-filter="model">Models</span>
-    <span class="filter-chip" data-filter="research">Research</span>
-    <span class="filter-chip" data-filter="vision">Vision</span>
-    <span class="filter-chip" data-filter="robotics">Robotics</span>
-    <span class="filter-chip" data-filter="open source">Open Source</span>
-    <span class="filter-chip" data-filter="safety">Safety</span>
-  </div>
-</div>
-
 <script>
-  const feed    = document.getElementById('feed');
-  const fill    = document.getElementById('progress-fill');
-  const allCards = Array.from(document.querySelectorAll('[data-index]'));
-  let visibleCards = allCards;
+  const feed  = document.getElementById('feed');
+  const fill  = document.getElementById('progress-fill');
+  const cards = document.querySelectorAll('[data-index]');
+  const total = cards.length;
 
-  function updateProgress() {
-    const idx = visibleCards.findIndex(c => {
-      const r = c.getBoundingClientRect();
-      return r.top >= -10 && r.top < window.innerHeight / 2;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        const idx = parseInt(entry.target.dataset.index, 10);
+        fill.style.height = ((idx + 1) / total * 100) + '%';
+      }
     });
-    const cur = idx >= 0 ? idx : 0;
-    fill.style.height = ((cur + 1) / visibleCards.length * 100) + '%';
-  }
+  }, { threshold: 0.5 });
 
-  feed.addEventListener('scroll', updateProgress, { passive: true });
+  cards.forEach(c => observer.observe(c));
 
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
@@ -673,47 +604,6 @@ body {
     } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
       feed.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
     }
-  });
-
-  // ── Filtering ─────────────────────────────────────────────────────────────
-  let activeFilter = null;
-
-  document.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const keyword = chip.dataset.filter;
-
-      if (activeFilter === keyword) {
-        // Deactivate filter — show all
-        activeFilter = null;
-        chip.classList.remove('active');
-        allCards.forEach(c => c.style.display = '');
-        visibleCards = allCards;
-        feed.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-
-      // Deactivate previous chip
-      document.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeFilter = keyword;
-
-      // Show/hide cards based on text content match
-      visibleCards = [];
-      allCards.forEach(c => {
-        const text = c.innerText.toLowerCase();
-        const isHeader = c.dataset.index === '0';
-        const isFooter = !c.classList.contains('card');
-        const matches = isHeader || isFooter || text.includes(keyword);
-        c.style.display = matches ? '' : 'none';
-        if (matches) visibleCards.push(c);
-      });
-
-      // Scroll to first matching story card
-      const firstStory = visibleCards.find(c => c.dataset.index !== '0');
-      if (firstStory) firstStory.scrollIntoView({ behavior: 'smooth' });
-
-      updateProgress();
-    });
   });
 </script>
 </body>
