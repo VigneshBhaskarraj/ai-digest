@@ -3,21 +3,592 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Digest — Setting Up</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono&display=swap" rel="stylesheet">
+  <title>AI Digest — Friday, May 01, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body { background:#080c14; color:#e2e8f0; font-family:'DM Mono',monospace;
-           display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-    .wrap { text-align:center; }
-    h1 { font-family:'Syne',sans-serif; font-size:2rem; color:#00d4ff; margin-bottom:1rem; }
-    p  { color:#64748b; font-size:0.875rem; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080c14;
+      --surface:   #0e1420;
+      --surface2:  #141a26;
+      --border:    #1e2a3d;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --accent:    #00d4ff;
+      --accent2:   #a78bfa;
+      --gold:      #fbbf24;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .session-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .header-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text);
+      max-width: 700px;
+    }
+
+    .headline span {
+      color: var(--accent);
+    }
+
+    /* Vike Note */
+    .vike-note {
+      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(167,139,250,0.06));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.875rem;
+      font-style: italic;
+      color: #94a3b8;
+    }
+
+    .vike-note strong {
+      font-style: normal;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Section */
+    .section-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Story Cards */
+    .story-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 0.875rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .story-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-1px);
+    }
+
+    .story-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.625rem;
+      flex-wrap: wrap;
+    }
+
+    .category-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      border: 1px solid;
+      letter-spacing: 0.03em;
+    }
+
+    .story-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .story-title a {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .story-title a:hover {
+      color: var(--accent);
+    }
+
+    .story-why {
+      font-size: 0.825rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* Quick Hits */
+    .quick-hits-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .quick-hit {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .quick-hit:hover {
+      border-color: rgba(167,139,250,0.3);
+    }
+
+    .hit-dot {
+      color: var(--accent2);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .hit-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .hit-title:hover { color: var(--accent2); }
+
+    .hit-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .hit-liner {
+      font-size: 0.775rem;
+      color: #64748b;
+      margin-top: 0.2rem;
+    }
+
+    /* arXiv */
+    .arxiv-card {
+      padding: 0.875rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+
+    .arxiv-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .arxiv-title:hover { color: var(--accent2); }
+
+    .arxiv-tldr {
+      font-size: 0.775rem;
+      color: #64748b;
+    }
+
+    /* Community Pulse */
+    .pulse-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-size: 0.875rem;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--border);
+    }
+
+    /* Refresh button */
+    .refresh-btn {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 6px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    }
+    .refresh-btn:hover {
+      background: rgba(0,212,255,0.08);
+      border-color: var(--accent);
+    }
+    .refresh-btn:active { transform: scale(0.97); }
+    .refresh-btn.spinning .btn-icon { animation: spin 0.8s linear infinite; }
+    .last-updated {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Fade in */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header        { animation: fadeUp 0.4s ease both; }
+    .vike-note     { animation: fadeUp 0.4s ease 0.1s both; }
+    .section-block { animation: fadeUp 0.4s ease 0.15s both; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>⚡ AI Digest</h1>
-    <p>First run pending. The digest will appear here after GitHub Actions runs.</p>
-    <p style="margin-top:0.5rem;color:#475569">Scheduled: 7 AM and 6 PM CST daily</p>
+<div class="container">
+
+  <header class="header">
+    <div class="header-top">
+      <span class="brand">⚡ AI Digest</span>
+      <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap">
+        <span class="session-badge">🌅 Morning Edition</span>
+        <span class="header-date">Friday, May 01, 2026 · 01:27 UTC</span>
+      </div>
+    </div>
+    <h1 class="headline">Anthropic races toward $900B valuation as OpenAI and xAI battle over model distillation practices in court</h1>
+  </header>
+
+  <div class="vike-note"><strong>📌 Today's Focus</strong>If you're transitioning from traditional ML to GenAI, pay attention to the mechanistic interpretability tooling like Goodfire's Silico—being able to debug and explain model behavior is quickly becoming a competitive advantage as enterprises demand auditability, not just accuracy.</div>
+
+  <div class="section-block">
+    <h2 class="section-title"><span class="section-icon">🔥</span> Top Stories</h2>
+    
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
+              📰 Industry News
+            </span>
+            <span class="story-source">TechCrunch</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://techcrunch.com/2026/04/30/anthropic-potential-900b-valuation-round-could-happen-within-two-weeks/" target="_blank" rel="noopener">Anthropic's $900B+ Valuation Round Could Close Within Two Weeks</a>
+          </h3>
+          <p class="story-why">Anthropic is asking investors for allocation commitments within 48 hours for a round that would value the company above $900B—a staggering leap that signals peak AI investment mania. For AI practitioners, this validates that enterprise demand for frontier models remains white-hot despite concerns about commoditization. If you're building AI products, expect even more aggressive competition from well-funded labs.</p>
+        </article>
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
+              📰 Industry News
+            </span>
+            <span class="story-source">TechCrunch</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://techcrunch.com/2026/04/30/elon-musk-testifies-that-xai-trained-grok-on-openai-models/" target="_blank" rel="noopener">Musk Admits Under Oath That xAI Trained Grok on OpenAI Models</a>
+          </h3>
+          <p class="story-why">During the Musk v. Altman trial, Musk testified that xAI used model distillation from OpenAI's models to train Grok—a practice he claims is industry-standard. This admission could reshape legal boundaries around model training and licensing. If you're fine-tuning or distilling from commercial APIs, pay close attention to TOS clauses and potential legal precedent here.</p>
+        </article>
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#00d4ff20;color:#00d4ff;border-color:#00d4ff40">
+              🧠 Model Releases
+            </span>
+            <span class="story-source">TechCrunch</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener">OpenAI Launches GPT-5.5 Cyber but Restricts Access After Criticizing Anthropic</a>
+          </h3>
+          <p class="story-why">OpenAI is releasing GPT-5.5 Cyber, a security-focused model variant, but only to 'critical cyber defenders' initially—directly mirroring the controlled rollout strategy they criticized Anthropic for using with Claude Mythos. The UK AI Security Institute evaluated it for offensive cyber capabilities. This marks a shift where security considerations now dictate model access more than pure performance, creating a new tier system for frontier capabilities.</p>
+        </article>
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#34d39920;color:#34d399;border-color:#34d39940">
+              🛠️ Tools & Products
+            </span>
+            <span class="story-source">Simon Willison</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything" target="_blank" rel="noopener">OpenAI Codex CLI 0.128.0 Adds Autonomous Goal Loop</a>
+          </h3>
+          <p class="story-why">Codex CLI now includes a /goal command that lets the agent autonomously loop until it determines task completion—essentially their take on the Ralph agentic pattern. This is a major usability leap for coding agents: instead of iterative prompting, you set a goal and walk away. If you're building dev tools or considering agentic workflows, this pattern is becoming table stakes.</p>
+        </article>
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#fb923c20;color:#fb923c;border-color:#fb923c40">
+              📰 Industry News
+            </span>
+            <span class="story-source">TechCrunch</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener">Apple Faces Mac Supply Constraints Driven by Unexpected AI Demand</a>
+          </h3>
+          <p class="story-why">Apple CEO Tim Cook admitted they underestimated AI-driven Mac demand and will be supply-constrained on Mac mini, Studio, and Neo through next quarter. This confirms that local inference and on-device AI workloads are driving real hardware purchases beyond hype. For ML engineers, this validates investment in optimizing models for Apple Silicon—the installed base is growing fast.</p>
+        </article>
+        <article class="story-card">
+          <div class="story-meta">
+            <span class="category-badge" style="background:#34d39920;color:#34d399;border-color:#34d39940">
+              🛠️ Tools & Products
+            </span>
+            <span class="story-source">MIT Technology Review</span>
+          </div>
+          <h3 class="story-title">
+            <a href="https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/" target="_blank" rel="noopener">Goodfire Releases Silico: Mechanistic Interpretability Tool for LLM Debugging</a>
+          </h3>
+          <p class="story-why">San Francisco startup Goodfire launched Silico, a tool that lets you inspect and adjust LLM parameters during training using mechanistic interpretability techniques. This moves interpretability from research curiosity to practical debugging tool—critical for anyone building safety-critical or regulated AI applications. If you're responsible for model behavior, this category of tooling is about to become essential.</p>
+        </article>
   </div>
+
+  <div class="section-block">
+    <h2 class="section-title"><span class="section-icon">⚡</span> Quick Hits</h2>
+    <div class="quick-hits-grid">
+      
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener" class="hit-title">Legal AI Startup Legora Hits $5.6B Valuation</a>
+            <span class="hit-source"> — TechCrunch</span>
+            <p class="hit-liner">Legora and Harvey are now running competing ad campaigns as the legal AI space heats up with massive funding rounds.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://techcrunch.com/2026/04/30/googles-gemini-ai-assistant-is-hitting-the-road-in-millions-of-vehicles/" target="_blank" rel="noopener" class="hit-title">Google's Gemini AI Assistant Rolling Out to Millions of Vehicles</a>
+            <span class="hit-source"> — TechCrunch</span>
+            <p class="hit-liner">Google is embedding Gemini conversational AI into automotive systems at scale, signaling the next battleground for assistant dominance.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://techcrunch.com/2026/04/30/openai-announces-new-advanced-security-for-chatgpt-accounts-including-a-partnership-with-yubico/" target="_blank" rel="noopener" class="hit-title">OpenAI Launches Advanced Account Security with Yubico Partnership</a>
+            <span class="hit-source"> — TechCrunch</span>
+            <p class="hit-liner">ChatGPT and Codex accounts can now enable hardware security key authentication for at-risk users.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://www.techmeme.com/260430/p58#a260430p58" target="_blank" rel="noopener" class="hit-title">Alphabet Stock Soars 10% Thursday, 34% in April—Best Month Since 2004</a>
+            <span class="hit-source"> — Techmeme</span>
+            <p class="hit-liner">Google's AI momentum drove its best monthly stock performance in over two decades while Meta dropped 8.5%.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://www.techmeme.com/260430/p62#a260430p62" target="_blank" rel="noopener" class="hit-title">Intel Shares Jump 114% in April, Hitting Record High</a>
+            <span class="hit-source"> — Techmeme</span>
+            <p class="hit-liner">Intel's market cap surpassed $470B in its best month ever as chipmaker sentiment rebounds dramatically.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://www.techmeme.com/260430/p57#a260430p57" target="_blank" rel="noopener" class="hit-title">Meta HR Chief Can't Rule Out Further Layoffs</a>
+            <span class="hit-source"> — Techmeme</span>
+            <p class="hit-liner">Zuckerberg told employees AI automation isn't the primary driver of cuts, but more layoffs remain possible.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener" class="hit-title">Critical Linux Security Threat 'CopyFail' Emerges</a>
+            <span class="hit-source"> — Ars Technica</span>
+            <p class="hit-liner">A severe vulnerability threatens multi-tenant servers, CI/CD workflows, and Kubernetes containers across Linux infrastructure.</p>
+          </div>
+        </div>
+        <div class="quick-hit">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t038g7/amd_inhouse_ryzen_395_box_coming_in_june/" target="_blank" rel="noopener" class="hit-title">AMD Ryzen 395 'Halo Box' with 128GB Coming in June</a>
+            <span class="hit-source"> — r/LocalLLaMA</span>
+            <p class="hit-liner">AMD's in-house local inference box with 128GB RAM targets the growing market for on-premise LLM deployment.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="section-block"><h2 class="section-title"><span class="section-icon">🔬</span> arXiv Picks</h2>
+            <div class="arxiv-card">
+              <a href="https://www.reddit.com/r/MachineLearning/comments/1szyjpk/r_joint_embedding_variational_bayes_tmlr_26/" target="_blank" rel="noopener" class="arxiv-title">Joint Embedding Variational Bayes</a>
+              <p class="arxiv-tldr">Published in TMLR, this work adds operational variational semantics to joint-embedding architectures for non-contrastive representation learning—potentially cleaner theory for self-supervised methods.</p>
+            </div></div>
+
+  <div class="section-block">
+    <h2 class="section-title"><span class="section-icon">💬</span> Community Pulse</h2>
+    <div class="pulse-box">The LocalLLaMA community is benchmarking Qwen 3.6 27B against Gemma 4 31B for coding tasks and celebrating April 2026 as potentially the best month ever for open model releases. Meanwhile, r/MachineLearning is in crisis mode over ICML 2026 reviews—multiple threads report that papers with unanimous positive scores (4444 ratings) are being rejected, with allegations of systematic bias and broken peer review. Users report pushing Qwen 3.6 to 218K context on a single RTX 3090, showing that local inference capabilities are advancing faster than expected.</div>
+  </div>
+
+  <footer class="footer">
+    <span class="footer-brand">VigneshBhaskarraj / ai-digest</span>
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <span class="last-updated" id="last-updated">Generated Friday, May 01, 2026 01:27 UTC</span>
+      <button class="refresh-btn" id="refresh-btn" onclick="triggerRefresh()">
+        <span class="btn-icon" id="btn-icon">↻</span> Refresh
+      </button>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  function triggerRefresh() {
+    const btn  = document.getElementById('refresh-btn');
+    const icon = document.getElementById('btn-icon');
+    const info = document.getElementById('last-updated');
+
+    btn.classList.add('spinning');
+    btn.disabled = true;
+    info.textContent = 'Refreshing...';
+
+    // GitHub Actions manual trigger via repository_dispatch would need a PAT.
+    // For now: hard-reload the page after a short delay to pick up any new deploy.
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 1800);
+  }
+
+  // Show how long ago the page was generated
+  (function() {
+    const generated = new Date('Friday, May 01, 2026 01:27 UTC'.replace(' UTC','') + 'Z');
+    const now       = new Date();
+    const diffMin   = Math.round((now - generated) / 60000);
+    const el        = document.getElementById('last-updated');
+    if (!isNaN(diffMin) && el) {
+      if (diffMin < 1)       el.textContent = 'Just updated';
+      else if (diffMin < 60) el.textContent = `Updated ${diffMin}m ago`;
+      else                   el.textContent = `Updated ${Math.round(diffMin/60)}h ago`;
+    }
+  })();
+</script>
+
 </body>
 </html>
