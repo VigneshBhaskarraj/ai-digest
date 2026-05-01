@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🇮🇳 India AI Pulse · Friday, May 01, 2026</title>
   <meta name="description" content="Daily digest of AI investments, startups, and VC trends in India.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="India AI Pulse">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
@@ -34,7 +39,8 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 
 .card {
   height: 100vh; scroll-snap-align: start; scroll-snap-stop: always;
-  position: relative; padding: 72px 2rem 1.5rem;
+  display: flex; flex-direction: column;
+  padding: 72px 2rem 2rem;
   border-bottom: 1px solid #E2E8F0; overflow: hidden;
 }
 
@@ -45,7 +51,7 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .card-policy-type  { background: #FFFFFF; }
 .card-hits-type    { background: #F8FAFC; }
 
-.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-shrink: 0; }
 
 .category-pill {
   font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
@@ -54,21 +60,14 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 
 .card-counter { font-family: 'DM Mono', monospace; font-size: 11px; color: #94A3B8; }
 
-.card-body {
-  display: flex; flex-direction: column;
-  overflow-y: auto; padding-bottom: 80px;
-  height: calc(100vh - 160px);
-}
+.card-body { display: flex; flex-direction: column; flex-shrink: 0; }
 
 .card-bottom {
-  position: absolute; bottom: 0; left: 0; right: 0;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 2rem;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid #E2E8F0;
+  margin-top: 1.5rem; padding-top: 1rem;
+  border-top: 1px solid #E2E8F0; flex-shrink: 0;
 }
-.card-header-type .card-bottom { background: rgba(15,23,42,0.92); border-top-color: rgba(255,255,255,0.08); }
+.card-header-type .card-bottom { border-top-color: rgba(255,255,255,0.1); }
 
 .read-btn {
   font-family: 'DM Mono', monospace; font-size: 11px; color: #6366F1;
@@ -126,6 +125,22 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .hit-source { font-size: 10px; color: #94A3B8; font-family: 'DM Mono', monospace; margin-left: 4px; }
 .hit-liner { font-size: 12px; color: #64748B; margin-top: 3px; line-height: 1.5; }
 
+/* card-body-scroll */
+.card-body-scroll { display: flex; flex-direction: column; flex: 1; overflow-y: auto; min-height: 0; }
+
+/* Leaders Voices */
+.card-leaders-type { background: #FAFAFA; }
+.leader-item { padding: 1rem 0; border-bottom: 1px solid #E2E8F0; display: flex; gap: 1rem; align-items: flex-start; }
+.leader-item:last-child { border-bottom: none; }
+.leader-avatar { width: 40px; height: 40px; border-radius: 50%; background: #EEF2FF; border: 2px solid #6366F1; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: #4338CA; flex-shrink: 0; }
+.leader-content { flex: 1; min-width: 0; }
+.leader-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #0F172A; margin-bottom: 1px; }
+.leader-role { font-family: 'DM Mono', monospace; font-size: 9px; color: #94A3B8; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.leader-insight { font-size: 13px; line-height: 1.65; color: #334155; margin-bottom: 0.3rem; }
+.leader-context { font-size: 11px; color: #94A3B8; line-height: 1.5; }
+.leader-link { font-family: 'DM Mono', monospace; font-size: 9px; color: #6366F1; text-decoration: none; margin-top: 0.35rem; display: inline-block; }
+.leader-link:hover { text-decoration: underline; }
+
 /* Progress rail */
 .progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
 .progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
@@ -152,12 +167,12 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
     <section class="card card-header-type" data-index="0">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
         <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">🇮🇳 India AI Pulse</span>
-        <span class="card-counter">1 / 9</span>
+        <span class="card-counter">1 / 11</span>
       </div>
       <div class="card-body" style="padding-bottom:80px">
-        <div class="header-date">Friday, May 01, 2026 · 04:51 UTC</div>
-        <h1 class="header-headline">Palo Alto Networks acquires Elevation Capital-backed Portkey as India's AI infrastructure startups hit the M&A radar, while Calligo eyes $12-15M for indigenous RISC-V chips</h1>
-        <div class="header-note"><strong>Today's signal</strong>If you're building AI infrastructure or tooling in India, Portkey's exit to Palo Alto proves strategic acquirers will pay for governance/security layers — stop chasing consumer apps and start building the boring middleware that enterprises actually need to operationalize AI at scale.</div>
+        <div class="header-date">Friday, May 01, 2026 · 05:14 UTC</div>
+        <h1 class="header-headline">Palo Alto Networks acquires Elevation Capital-backed Portkey as India's AI infra startups attract global M&A interest; Calligo eyes $12-15M for indigenous RISC-V chips</h1>
+        <div class="header-note"><strong>Today's signal</strong>If you're building AI infrastructure — agent orchestration, security, observability — the Portkey acquisition proves Indian startups are now strategic M&A targets for global giants; indigenous chip plays like Calligo are finally getting funded, so semiconductor founders should pitch aggressively before this window closes.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's pulse ↓</button>
@@ -167,14 +182,14 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
     <section class="card card-funding-type" data-index="1">
       <div class="card-top">
         <span class="category-pill" style="background:#059669">Funding</span>
-        <span class="card-counter">2 / 9</span>
+        <span class="card-counter">2 / 11</span>
       </div>
       <div class="card-body">
         <div class="startup-name-lg">Calligo Technologies</div>
-        <div class="funding-amount-lg">$12-15M (~₹100-125 Cr)</div>
-        <div class="funding-meta-row"><span class="meta-chip">Undisclosed</span><span class="meta-chip">🏦 BIG Capital (US-based, expected to lead)</span></div>
+        <div class="funding-amount-lg">$12-15M (₹100-125 Cr)</div>
+        <div class="funding-meta-row"><span class="meta-chip">Growth</span><span class="meta-chip">🏦 BIG Capital (US) expected to lead</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">Bengaluru-based semiconductor startup building energy-efficient RISC-V chips for AI and supercomputing — first indigenous chip play attracting serious Silicon Valley capital</p>
+        <p class="funding-focus">Bengaluru-based semiconductor startup building energy-efficient RISC-V chips for AI and supercomputing — signaling serious investor appetite for India's indigenous chip play</p>
       </div>
       <div class="card-bottom">
         <a href="https://economictimes.indiatimes.com/tech/funding/calligo-in-talks-to-raise-12-15-million-to-scale-indigenous-risc-v-chip-play/articleshow/130646433.cms" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
@@ -183,14 +198,14 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
     <section class="card card-funding-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#059669">Funding</span>
-        <span class="card-counter">3 / 9</span>
+        <span class="card-counter">3 / 11</span>
       </div>
       <div class="card-body">
         <div class="startup-name-lg">Ctruh</div>
-        <div class="funding-amount-lg">$2.5M (~₹23 Cr)</div>
+        <div class="funding-amount-lg">$2.5M (₹23 Cr)</div>
         <div class="funding-meta-row"><span class="meta-chip">Seed</span><span class="meta-chip">🏦 Inflection Point Ventures (co-lead)</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">Building extended reality (XR) tools for enterprises — immersive tech meeting enterprise workflow automation needs</p>
+        <p class="funding-focus">Building extended reality (XR) tools for enterprises — betting on immersive tech adoption in India's B2B sector</p>
       </div>
       <div class="card-bottom">
         <a href="https://inc42.com/buzz/ctruh-raises-2-5-mn-to-build-extended-reality-tools-for-enterprises/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
@@ -199,132 +214,195 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
     <section class="card card-funding-type" data-index="3">
       <div class="card-top">
         <span class="category-pill" style="background:#059669">Funding</span>
-        <span class="card-counter">4 / 9</span>
+        <span class="card-counter">4 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="startup-name-lg">Kimbal</div>
+        <div class="funding-amount-lg">$22M (₹183 Cr)</div>
+        <div class="funding-meta-row"><span class="meta-chip">Series B</span><span class="meta-chip">🏦 GEF Capital</span></div>
+        <div class="card-divider"></div>
+        <p class="funding-focus">Developing power quality, energy management, and battery storage solutions — riding the energy infrastructure wave critical for AI/data center growth</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://yourstory.com/2026/04/kimbal-raises-22m-series-round-gef-capital" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-funding-type" data-index="4">
+      <div class="card-top">
+        <span class="category-pill" style="background:#059669">Funding</span>
+        <span class="card-counter">5 / 11</span>
       </div>
       <div class="card-body">
         <div class="startup-name-lg">Netomi</div>
-        <div class="funding-amount-lg">$110M</div>
-        <div class="funding-meta-row"><span class="meta-chip">Series C</span><span class="meta-chip">🏦 Accenture Ventures (lead)</span></div>
+        <div class="funding-amount-lg">$110M (₹916 Cr)</div>
+        <div class="funding-meta-row"><span class="meta-chip">Series C</span><span class="meta-chip">🏦 Accenture Ventures</span></div>
         <div class="card-divider"></div>
-        <p class="funding-focus">AI-powered customer service automation leveraging LLMs for major enterprise clients — Accenture betting big on agentic AI in support workflows</p>
+        <p class="funding-focus">AI-powered customer service platform leveraging large language models for major enterprises — riding the enterprise AI adoption wave</p>
       </div>
       <div class="card-bottom">
         <a href="https://economictimes.indiatimes.com/tech/funding/ai-customer-service-startup-netomi-raises-110-million/articleshow/130631740.cms" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-startup-type" data-index="4">
+    <section class="card card-startup-type" data-index="5">
       <div class="card-top">
         <span class="category-pill" style="background:#7C3AED">New Startups</span>
-        <span class="card-counter">5 / 9</span>
+        <span class="card-counter">6 / 11</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         
         <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
-          <div class="startup-name-md">Portkey (Acquisition by Palo Alto Networks)</div>
-          <div class="founder-line">by Stealth / Unknown</div>
-          <p class="startup-what">AI application infrastructure providing centralized control planes for managing and securing autonomous AI agents</p>
-          <p class="startup-why">Exit validates that India-based AI infra tooling is strategic enough for $80B+ cybersecurity giants — Elevation Capital scores another infrastructure bet</p>
+          <div class="startup-name-md">Portkey (Acquired)</div>
+          <div class="founder-line">by Unknown</div>
+          <p class="startup-what">AI application infrastructure startup building centralized control planes for managing and securing AI agents</p>
+          <p class="startup-why">Elevation Capital-backed startup getting acquired by Palo Alto Networks shows India AI infra startups are now M&A targets for global cybersecurity giants — validation of technical depth</p>
           <a href="https://economictimes.indiatimes.com/tech/startups/palo-alto-networks-to-acquire-elevation-capital-backed-ai-app-infra-startup-portkey/articleshow/130668555.cms" target="_blank" rel="noopener" class="read-btn" style="display:inline-block;margin-top:0.75rem">Read more →</a>
         </div>
       </div>
     </section>
-    <section class="card card-trend-type" data-index="5">
+    <section class="card card-trend-type" data-index="6">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3D2E">VC Trends</span>
-        <span class="card-counter">6 / 9</span>
+        <span class="card-counter">7 / 11</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         
         <div class="trend-item">
-          <div class="trend-title">AI infrastructure exits validating early bets</div>
-          <p class="trend-detail">Palo Alto's acquisition of Portkey signals that India's AI tooling layer is mature enough for strategic M&A, not just growth equity. VCs who backed infra early (like Elevation) are seeing liquidity windows open faster than consumer AI plays. For founders: building picks-and-shovels for AI agents is a credible path to exits, especially with security/governance hooks.</p>
+          <div class="trend-title">Indigenous semiconductor play finally getting serious VC backing</div>
+          <p class="trend-detail">Calligo's $12-15M raise for RISC-V chips signals VCs are betting real money on India's chip ambitions beyond policy announcements. Energy-efficient compute for AI workloads is the wedge — expect more semiconductor infra deals as data center demand explodes. Founders building at the silicon layer now have proof that exits aren't 10 years away.</p>
         </div>
         <div class="trend-item">
-          <div class="trend-title">Semiconductor sovereignty attracting serious capital</div>
-          <p class="trend-detail">Calligo's $12-15M round from US investors shows that India's chip design ambitions — especially energy-efficient RISC-V for AI workloads — are no longer just policy theater. Foreign VCs are willing to fund hardware, a historically tough category, if it's tied to AI compute bottlenecks. This opens a narrow but real window for deep-tech hardware startups beyond software-as-a-service.</p>
+          <div class="trend-title">AI infrastructure startups becoming M&A targets, not just funding stories</div>
+          <p class="trend-detail">Portkey's acquisition by Palo Alto Networks is the signal: Indian AI infra startups with strong product-market fit in agent security and observability are now strategic buys for global enterprises. VCs should look for India startups solving AI governance, orchestration, and security — these are acqui-hire or bolt-on plays for Salesforce, ServiceNow, and cybersecurity giants.</p>
         </div>
         <div class="trend-item">
-          <div class="trend-title">Enterprise AI adoption driving customer service automation bets</div>
-          <p class="trend-detail">Netomi's $110M Series C led by Accenture Ventures highlights where corporate dollars are flowing: agentic AI replacing tier-1 support workflows. Indian startups building vertical AI agents (healthcare, fintech, logistics) should note that enterprise buyers now have budget allocated — the shift from pilot to production is accelerating in 2026.</p>
+          <div class="trend-title">Enterprise AI adoption driving B2B SaaS Series B/C rounds</div>
+          <p class="trend-detail">Netomi's $110M Series C led by Accenture Ventures shows enterprise AI isn't hype — it's driving real revenue. Indian startups solving enterprise workflow automation, AI-powered CX, and B2B vertical SaaS are now fundable at growth stages. If you're building AI for large enterprises, this is your funding window.</p>
         </div>
       </div>
     </section>
-    <section class="card card-policy-type" data-index="6">
+    <section class="card card-policy-type" data-index="7">
       <div class="card-top">
         <span class="category-pill" style="background:#3B4852">Policy Watch</span>
-        <span class="card-counter">7 / 9</span>
+        <span class="card-counter">8 / 11</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         
         <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
-          <a href="https://www.medianama.com/2026/04/223-india-anthropic-claude-mythos-project-glasswing-access/" target="_blank" rel="noopener" class="policy-title-lg">India negotiating access to Anthropic's Mythos AI cybersecurity model</a>
-          <p class="policy-body">India is in talks with the US and Anthropic to access Claude's Mythos model for cyber defense, but no Indian firms are yet part of Project Glasswing — the US-led initiative to secure AI systems against advanced threats. This creates a compliance and strategic access gap for Indian AI startups needing cutting-edge security tooling.</p>
+          <a href="https://www.livemint.com/technology/delhi-govt-plans-to-partner-with-tech-companies-start-ups-for-ai-tools-in-various-fields-11777561509597.html" target="_blank" rel="noopener" class="policy-title-lg">Delhi government launching AI partnerships with startups across sectors</a>
+          <p class="policy-body">Delhi govt plans to partner with tech companies and startups to deploy AI tools across multiple fields — likely education, healthcare, and governance. This creates a direct B2G channel for early-stage AI startups, but execution risk remains high given India's procurement delays.</p>
+          <span class="policy-source">Livemint Tech</span>
+        </div>
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
+          <a href="https://www.medianama.com/2026/04/223-india-anthropic-claude-mythos-project-glasswing-access/" target="_blank" rel="noopener" class="policy-title-lg">India in talks for access to Anthropic's Mythos for AI-powered cyber defense</a>
+          <p class="policy-body">India is negotiating with the US and Anthropic for access to Mythos, a specialized AI for cyber threat detection — but compliance and access issues remain unresolved. No Indian firms are yet part of Project Glasswing, highlighting India's exclusion from cutting-edge AI defense infrastructure.</p>
           <span class="policy-source">Medianama</span>
         </div>
         <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
-          <a href="https://www.livemint.com/technology/delhi-govt-plans-to-partner-with-tech-companies-start-ups-for-ai-tools-in-various-fields-11777561509597.html" target="_blank" rel="noopener" class="policy-title-lg">Delhi government planning partnerships with AI startups for public services</a>
-          <p class="policy-body">The Delhi government is actively seeking partnerships with tech companies and startups to deploy AI tools across various public service sectors. This could open procurement opportunities for AI startups in healthcare, urban governance, and citizen services — but execution risk remains high given bureaucratic timelines.</p>
-          <span class="policy-source">Livemint Tech</span>
-        </div>
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
-          <a href="https://www.livemint.com/technology/ailed-discovery-of-long-standing-banking-vulnerabilities-a-wake-up-call-world-nielit-director-11777554062320.html" target="_blank" rel="noopener" class="policy-title-lg">NIELIT warns Indian banks on AI-discovered vulnerabilities</a>
-          <p class="policy-body">NIELIT's director flagged that AI-led discovery of banking system vulnerabilities is a wake-up call for India's financial infrastructure. This signals regulatory pressure incoming for AI security audits — startups building AI-powered cybersecurity or compliance tools should position for fintech demand.</p>
+          <a href="https://www.livemint.com/technology/ailed-discovery-of-long-standing-banking-vulnerabilities-a-wake-up-call-world-nielit-director-11777554062320.html" target="_blank" rel="noopener" class="policy-title-lg">NIELIT Director warns of AI-discovered banking vulnerabilities</a>
+          <p class="policy-body">Sheetal Chopra (NIELIT, MeitY) calls AI-led discovery of banking system vulnerabilities a 'wake-up call' for India — signaling urgent need for AI-powered security infrastructure. Expect policy push for indigenous AI security tooling and audits.</p>
           <span class="policy-source">Livemint Tech</span>
         </div>
       </div>
     </section>
-    <section class="card card-hits-type" data-index="7">
+    <section class="card card-hits-type" data-index="8">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
-        <span class="card-counter">8 / 9</span>
+        <span class="card-counter">9 / 11</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         <ul class="hits-list">
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://www.livemint.com/technology/tech-news/openai-says-india-is-the-biggest-market-for-chatgpt-images-2-0-model-here-are-the-top-trends-11777533306936.html" target="_blank" rel="noopener" class="hit-title">India is largest market for ChatGPT's Images 2.0 model</a>
+            <a href="https://www.livemint.com/technology/tech-news/openai-says-india-is-the-biggest-market-for-chatgpt-images-2-0-model-here-are-the-top-trends-11777533306936.html" target="_blank" rel="noopener" class="hit-title">OpenAI: India is the largest market for ChatGPT Images 2.0</a>
             <span class="hit-source">— Livemint Tech</span>
-            <p class="hit-liner">OpenAI confirms India leads global adoption of its image generation model, driven by young users focused on self-expression and creativity</p>
+            <p class="hit-liner">Young Indian users driving global demand for AI-generated images — massive consumer AI adoption signal</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://yourstory.com/2026/04/meet-15-startups-in-isb-dlabs-i-heal-fourth-cohort-tackling-critical-healthcare-gaps" target="_blank" rel="noopener" class="hit-title">ISB DLabs' I-HEAL accelerator backs 15 healthcare startups</a>
+            <a href="https://yourstory.com/2026/04/meet-15-startups-in-isb-dlabs-i-heal-fourth-cohort-tackling-critical-healthcare-gaps" target="_blank" rel="noopener" class="hit-title">ISB DLabs launches I-HEAL fourth cohort with 15 healthcare AI startups</a>
             <span class="hit-source">— YourStory</span>
-            <p class="hit-liner">Fourth cohort focuses on diagnostics to rehabilitation — strong pipeline for AI-driven healthtech addressing India's underserved patient segments</p>
+            <p class="hit-liner">15 startups building diagnostics to rehabilitation AI solutions for overlooked healthcare gaps — watch this cohort for breakout healthtech AI plays</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/information-tech/mphasis-q4-net-profit-rises-14-to-rs-510-crore/articleshow/130646550.cms" target="_blank" rel="noopener" class="hit-title">Mphasis Q4 profit up 14% on AI-driven contract wins</a>
+            <a href="https://economictimes.indiatimes.com/tech/technology/tim-cook-says-he-is-over-the-moon-as-apple-eyes-massive-growth-in-india/articleshow/130670326.cms" target="_blank" rel="noopener" class="hit-title">Tim Cook 'over the moon' on India growth as Apple opens sixth store</a>
             <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">IT services firm credits AI-powered client solutions for revenue growth — signal that enterprise AI adoption is materializing into P&L impact</p>
+            <p class="hit-liner">Apple doubles down on India retail, signaling massive consumer tech and AI services opportunity</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/information-tech/it-cuts-mid-tier-expands-ai-smart-entry-level-in-new-hiring-playbook/articleshow/130646733.cms" target="_blank" rel="noopener" class="hit-title">Indian IT firms cutting mid-tier roles, expanding AI-equipped entry-level hiring</a>
-            <span class="hit-source">— ET Tech</span>
-            <p class="hit-liner">Top IT companies betting on AI-augmented freshers over middle managers to drive productivity — structural shift in India's tech services labor model</p>
+            <a href="https://inc42.com/buzz/amazon-indias-quick-commerce-orders-growing-25-mom-ceo-jassy/" target="_blank" rel="noopener" class="hit-title">Amazon India quick commerce orders up 25% MoM</a>
+            <span class="hit-source">— Inc42</span>
+            <p class="hit-liner">Quick commerce exploding in India — logistics AI and fulfillment tech will be critical infrastructure plays</p>
           </div>
         </li>
         <li class="hit-item">
           <span class="hit-dot">▸</span>
           <div>
-            <a href="https://economictimes.indiatimes.com/tech/funding/meta-raises-25-billion-in-bond-sale-after-lifting-ai-spending-plan/articleshow/130665428.cms" target="_blank" rel="noopener" class="hit-title">Meta raises $25B in bonds to fund AI infrastructure buildout</a>
+            <a href="https://economictimes.indiatimes.com/tech/funding/meta-raises-25-billion-in-bond-sale-after-lifting-ai-spending-plan/articleshow/130665428.cms" target="_blank" rel="noopener" class="hit-title">Meta raises $25B in bonds to fund AI infrastructure after $30B last year</a>
             <span class="hit-source">— ET Startups</span>
-            <p class="hit-liner">Big Tech continuing aggressive AI capex cycles — positive signal for India's cloud/GPU services and AI tooling vendors serving hyperscalers</p>
+            <p class="hit-liner">Big Tech AI capex arms race continues — Indian cloud/edge infrastructure startups should watch for spillover demand</p>
+          </div>
+        </li>
+        <li class="hit-item">
+          <span class="hit-dot">▸</span>
+          <div>
+            <a href="https://inc42.com/buzz/apple-antitrust-case-iphone-maker-urges-delhi-hc-to-stay-ccis-final-hearing/" target="_blank" rel="noopener" class="hit-title">Apple urges Delhi HC to stay CCI's antitrust hearing</a>
+            <span class="hit-source">— Inc42</span>
+            <p class="hit-liner">App Store regulation battle escalates — impacts how Indian AI app developers monetize and distribute</p>
           </div>
         </li></ul>
       </div>
     </section>
-    <section class="footer-card" data-index="8">
+    <section class="card card-leaders-type" data-index="9">
+      <div class="card-top">
+        <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
+        <span class="card-counter">10 / 11</span>
+      </div>
+      <div class="card-body-scroll">
+        
+        <div class="leader-item">
+          <div class="leader-avatar">SC</div>
+          <div class="leader-content">
+            <div class="leader-name">Sheetal Chopra</div>
+            <div class="leader-role">Director, NIELIT (National Institute of Electronics and Information Technology, MeitY)</div>
+            <p class="leader-insight">Called AI-led discovery of banking vulnerabilities a 'wake-up call' for India and the world, urging immediate focus on AI-powered cybersecurity infrastructure to protect critical financial systems</p>
+            <p class="leader-context">First senior MeitY official to publicly acknowledge AI as both cyber threat vector and defense tool — signals coming policy push for indigenous AI security startups</p>
+            <a href="https://www.livemint.com/technology/ailed-discovery-of-long-standing-banking-vulnerabilities-a-wake-up-call-world-nielit-director-11777554062320.html" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">TC</div>
+          <div class="leader-content">
+            <div class="leader-name">Tim Cook</div>
+            <div class="leader-role">CEO, Apple Inc.</div>
+            <p class="leader-insight">Stated he's 'over the moon' about India's growth trajectory, emphasizing the country as a critical emerging market as Apple opens its sixth store and scales consumer tech and AI services presence</p>
+            <p class="leader-context">Cook's explicit India bullishness validates the market for premium AI-powered devices and services — expect Apple to integrate more AI features tailored for Indian users</p>
+            <a href="https://economictimes.indiatimes.com/tech/technology/tim-cook-says-he-is-over-the-moon-as-apple-eyes-massive-growth-in-india/articleshow/130670326.cms" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">AJ</div>
+          <div class="leader-content">
+            <div class="leader-name">Andrew Jassy</div>
+            <div class="leader-role">CEO, Amazon</div>
+            <p class="leader-insight">Highlighted 25% month-over-month growth in Amazon India's quick commerce orders while emphasizing AWS AI growth driving 60% of Amazon's global earnings, signaling India as both cloud and commerce AI battleground</p>
+            <p class="leader-context">Rare public disclosure of India quick commerce momentum — logistics AI and fulfillment automation will be critical for sustaining this growth rate</p>
+            <a href="https://inc42.com/buzz/amazon-indias-quick-commerce-orders-growing-25-mom-ceo-jassy/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="footer-card" data-index="10">
       <div class="footer-brand-lg">🇮🇳 India AI Pulse</div>
-      <div class="footer-sub">Generated Friday, May 01, 2026 · 04:51 UTC</div>
+      <div class="footer-sub">Generated Friday, May 01, 2026 · 05:14 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
@@ -353,6 +431,10 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
       feed.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
     }
   });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/ai-digest/sw.js').catch(() => {});
+  }
 </script>
 </body>
 </html>
