@@ -1,547 +1,704 @@
 """
 render_html.py
-Builds a beautiful, shareable HTML dashboard from the structured digest JSON.
+Renders the AI Digest as a beige card-swipe dashboard.
+Full-viewport scroll-snap cards with Playfair Display headlines.
 Output: docs/index.html (served by GitHub Pages)
-Also returns the HTML string for email delivery.
 """
 
 import os
 from datetime import datetime, timezone
 from typing import Dict
 
-
-CATEGORY_ICONS = {
-    "Model Releases":   "🧠",
-    "Research":         "🔬",
-    "Tools & Products": "🛠️",
-    "Industry News":    "📰",
-    "Community":        "💬",
-}
-
 CATEGORY_COLORS = {
-    "Model Releases":   "#00d4ff",
-    "Research":         "#a78bfa",
-    "Tools & Products": "#34d399",
-    "Industry News":    "#fb923c",
-    "Community":        "#f472b6",
+    "Model Releases":   "#5C3D2E",
+    "Research":         "#384840",
+    "Tools & Products": "#3B4852",
+    "Industry News":    "#7A4F35",
+    "Community":        "#5C3A4A",
 }
+
+CSS = """
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #F5EFE3;
+  font-family: 'DM Sans', sans-serif;
+  color: #2C1810;
+}
+
+/* ── Feed ─────────────────────────────── */
+.feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.feed::-webkit-scrollbar { display: none; }
+
+/* ── Cards ────────────────────────────── */
+.card {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 2rem 1.75rem;
+  position: relative;
+  border-bottom: 1px solid #E0D5C4;
+}
+
+.card-header-type { background: #F5EFE3; justify-content: center; }
+.card-story-type  { background: #FAF7F0; }
+.card-hits-type   { background: #F5EFE3; }
+.card-arxiv-type  { background: #F0EBE0; }
+.card-pulse-type  { background: #FAF7F0; }
+
+/* ── Card Top Bar ─────────────────────── */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: auto;
+}
+
+.category-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F5EFE3;
+  border-radius: 20px;
+  padding: 4px 14px;
+}
+
+.card-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #B09880;
+}
+
+/* ── Card Body ────────────────────────── */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 0 1rem;
+}
+
+.card-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9B7E6A;
+  margin-bottom: 0.85rem;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #2C1810;
+  margin-bottom: 1.1rem;
+}
+
+.card-title em {
+  font-style: italic;
+  color: #7A4F35;
+}
+
+.card-divider {
+  width: 36px;
+  height: 2px;
+  background: #C4A882;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.card-why {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #5C4033;
+  max-width: 600px;
+}
+
+/* ── Card Bottom ──────────────────────── */
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #E0D5C4;
+}
+
+.read-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #7A4F35;
+  border: 1px solid #C4A882;
+  border-radius: 20px;
+  padding: 7px 18px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, color 0.15s;
+}
+.read-btn:hover {
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border-color: #5C3D2E;
+}
+
+.swipe-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #C4A882;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.05em;
+}
+
+.swipe-arrow {
+  animation: bounce 1.6s ease-in-out infinite;
+  display: inline-block;
+  font-size: 14px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* ── Header Card ──────────────────────── */
+.header-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9B7E6A;
+  margin-bottom: 2rem;
+}
+
+.header-brand a {
+  color: #7A4F35;
+  text-decoration: none;
+  border: 1px solid #C4A882;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-left: 8px;
+  font-size: 9px;
+}
+
+.header-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #B09880;
+  margin-bottom: 1.25rem;
+}
+
+.header-session {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #F5EFE3;
+  background: #5C3D2E;
+  border-radius: 20px;
+  padding: 4px 14px;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.header-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #2C1810;
+  margin-bottom: 1.5rem;
+}
+
+.header-note {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #5C4033;
+  border-left: 3px solid #C4A882;
+  padding-left: 1rem;
+  max-width: 540px;
+}
+
+.header-note strong {
+  color: #7A4F35;
+  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.start-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Quick Hits Card ──────────────────── */
+.hits-list { list-style: none; }
+.hit-item {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #E0D5C4;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.hit-item:last-child { border-bottom: none; }
+.hit-dot { color: #C4A882; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.hit-content {}
+.hit-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2C1810;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.hit-title:hover { color: #7A4F35; }
+.hit-source { font-size: 10px; color: #9B7E6A; font-family: 'DM Mono', monospace; margin-left: 4px; }
+.hit-liner { font-size: 12px; color: #9B7E6A; margin-top: 3px; line-height: 1.5; }
+
+/* ── arXiv Card ───────────────────────── */
+.arxiv-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #E0D5C4; }
+.arxiv-item:last-child { border-bottom: none; margin-bottom: 0; }
+.arxiv-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2C1810;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+  display: block;
+  line-height: 1.35;
+}
+.arxiv-title:hover { color: #7A4F35; }
+.arxiv-tldr { font-size: 13px; color: #5C4033; line-height: 1.65; }
+
+/* ── Pulse Card ───────────────────────── */
+.pulse-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #2C1810;
+}
+
+/* ── Filter Bar ──────────────────────── */
+.filter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(245,239,227,0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #E0D5C4;
+  padding: 0.6rem 1.25rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.filter-row {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  align-items: center;
+}
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #B09880;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 52px;
+}
+.filter-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #7A4F35;
+  background: #EDE4D6;
+  border: 1px solid #D4C4B0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.filter-chip:hover { background: #D4C4B0; }
+.filter-chip.active {
+  background: #5C3D2E;
+  color: #F5EFE3;
+  border-color: #5C3D2E;
+}
+
+/* push cards up so filter bar doesn't overlap last card */
+.feed { padding-bottom: 0; }
+.card { padding-bottom: 5.5rem; }
+.footer-card { padding-bottom: 2rem; }
+
+/* ── Fixed Progress Bar ───────────────── */
+.progress-rail {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 80px;
+  background: #E0D5C4;
+  border-radius: 3px;
+  z-index: 100;
+}
+.progress-fill {
+  width: 100%;
+  background: #5C3D2E;
+  border-radius: 3px;
+  height: 10%;
+  transition: height 0.3s ease;
+}
+
+/* ── Footer Card ──────────────────────── */
+.footer-card {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: #5C3D2E;
+}
+.footer-brand-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #F5EFE3;
+  margin-bottom: 0.75rem;
+}
+.footer-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C4A882;
+  margin-bottom: 2rem;
+}
+.footer-restart {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #F5EFE3;
+  border: 1px solid rgba(245,239,227,0.35);
+  border-radius: 20px;
+  padding: 8px 22px;
+  cursor: pointer;
+  background: transparent;
+  letter-spacing: 0.06em;
+}
+.footer-restart:hover { background: rgba(245,239,227,0.1); }
+"""
+
+
+def _pill(cat: str) -> str:
+    color = CATEGORY_COLORS.get(cat, "#7A4F35")
+    return f'<span class="category-pill" style="background:{color}">{cat}</span>'
 
 
 def render_html(digest: Dict, session_label: str = "Morning") -> str:
-    """Render the full HTML dashboard string."""
-
     now = datetime.now(timezone.utc)
-    date_str = now.strftime("%A, %B %d, %Y")
-    time_str = now.strftime("%H:%M UTC")
-
-    headline = digest.get("headline", "Your AI digest is ready.")
-    top_stories = digest.get("top_stories", [])
-    quick_hits = digest.get("quick_hits", [])
-    arxiv_picks = digest.get("arxiv_picks", [])
-    community_pulse = digest.get("community_pulse", "")
-    vike_note = digest.get("vike_note", "")
-
-    # Build top stories HTML
-    stories_html = ""
-    for story in top_stories:
-        cat = story.get("category", "Industry News")
-        icon = CATEGORY_ICONS.get(cat, "📌")
-        color = CATEGORY_COLORS.get(cat, "#94a3b8")
-        stories_html += f"""
-        <article class="story-card">
-          <div class="story-meta">
-            <span class="category-badge" style="background:{color}20;color:{color};border-color:{color}40">
-              {icon} {cat}
-            </span>
-            <span class="story-source">{story.get('source','')}</span>
-          </div>
-          <h3 class="story-title">
-            <a href="{story.get('url','#')}" target="_blank" rel="noopener">{story.get('title','')}</a>
-          </h3>
-          <p class="story-why">{story.get('why_it_matters','')}</p>
-        </article>"""
-
-    # Build quick hits HTML
-    hits_html = ""
-    for hit in quick_hits:
-        hits_html += f"""
-        <div class="quick-hit">
-          <span class="hit-dot">▸</span>
-          <div>
-            <a href="{hit.get('url','#')}" target="_blank" rel="noopener" class="hit-title">{hit.get('title','')}</a>
-            <span class="hit-source"> — {hit.get('source','')}</span>
-            <p class="hit-liner">{hit.get('one_liner','')}</p>
-          </div>
-        </div>"""
-
-    # Build arXiv HTML
-    arxiv_html = ""
-    if arxiv_picks:
-        arxiv_html = '<div class="section-block">'
-        arxiv_html += '<h2 class="section-title"><span class="section-icon">🔬</span> arXiv Picks</h2>'
-        for paper in arxiv_picks:
-            arxiv_html += f"""
-            <div class="arxiv-card">
-              <a href="{paper.get('url','#')}" target="_blank" rel="noopener" class="arxiv-title">{paper.get('title','')}</a>
-              <p class="arxiv-tldr">{paper.get('tldr','')}</p>
-            </div>"""
-        arxiv_html += "</div>"
-
+    date_str  = now.strftime("%A, %B %d, %Y")
+    time_str  = now.strftime("%H:%M UTC")
     session_emoji = "🌅" if session_label == "Morning" else "🌆"
+
+    headline       = digest.get("headline", "Your AI digest is ready.")
+    top_stories    = digest.get("top_stories", [])
+    quick_hits     = digest.get("quick_hits", [])
+    arxiv_picks    = digest.get("arxiv_picks", [])
+    community_pulse = digest.get("community_pulse", "")
+    vike_note      = digest.get("vike_note", "")
+
+    # Count total cards for the counter
+    total_cards = (
+        1                            # header
+        + len(top_stories)
+        + (1 if quick_hits else 0)
+        + (1 if arxiv_picks else 0)
+        + (1 if community_pulse else 0)
+        + 1                          # footer
+    )
+
+    cards_html = ""
+    card_index = 0
+
+    # ── Header Card ───────────────────────────────────────────────────────────
+    vike_block = ""
+    if vike_note:
+        vike_block = f'<div class="header-note"><strong>Today\'s signal</strong>{vike_note}</div>'
+
+    cards_html += f"""
+    <section class="card card-header-type" data-index="0">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
+        <span class="header-brand">⚡ AI Digest <a href="india.html">🇮🇳 India Pulse</a></span>
+        <span class="card-counter">1 / {total_cards}</span>
+      </div>
+      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
+        <div class="header-date">{date_str} · {time_str}</div>
+        <div class="header-session">{session_emoji} {session_label} Edition</div>
+        <h1 class="header-headline">{headline}</h1>
+        {vike_block}
+      </div>
+      <div class="card-bottom">
+        <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({{top:window.innerHeight,behavior:'smooth'}})">Read today's digest ↓</button>
+        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe up</span>
+      </div>
+    </section>"""
+    card_index = 1
+
+    # ── Top Story Cards ───────────────────────────────────────────────────────
+    for story in top_stories:
+        cat   = story.get("category", "Industry News")
+        pill  = _pill(cat)
+        src   = story.get("source", "")
+        title = story.get("title", "")
+        why   = story.get("why_it_matters", "")
+        url   = story.get("url", "#")
+        card_index += 1
+
+        cards_html += f"""
+    <section class="card card-story-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        {pill}
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">{src}</div>
+        <h2 class="card-title">{title}</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">{why}</p>
+      </div>
+      <div class="card-bottom">
+        <a href="{url}" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>"""
+
+    # ── Quick Hits Card ───────────────────────────────────────────────────────
+    if quick_hits:
+        card_index += 1
+        hits_items = ""
+        for hit in quick_hits:
+            hits_items += f"""
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="{hit.get('url','#')}" target="_blank" rel="noopener" class="hit-title">{hit.get('title','')}</a>
+              <span class="hit-source">— {hit.get('source','')}</span>
+              <p class="hit-liner">{hit.get('one_liner','')}</p>
+            </div>
+          </li>"""
+
+        cards_html += f"""
+    <section class="card card-hits-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto">
+        <ul class="hits-list">{hits_items}</ul>
+      </div>
+    </section>"""
+
+    # ── arXiv Card ────────────────────────────────────────────────────────────
+    if arxiv_picks:
+        card_index += 1
+        arxiv_items = ""
+        for paper in arxiv_picks:
+            arxiv_items += f"""
+          <div class="arxiv-item">
+            <a href="{paper.get('url','#')}" target="_blank" rel="noopener" class="arxiv-title">{paper.get('title','')}</a>
+            <p class="arxiv-tldr">{paper.get('tldr','')}</p>
+          </div>"""
+
+        cards_html += f"""
+    <section class="card card-arxiv-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#384840">Research Picks</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto">
+        {arxiv_items}
+      </div>
+    </section>"""
+
+    # ── Community Pulse Card ──────────────────────────────────────────────────
+    if community_pulse:
+        card_index += 1
+        cards_html += f"""
+    <section class="card card-pulse-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body">
+        <p class="pulse-text">"{community_pulse}"</p>
+      </div>
+    </section>"""
+
+    # ── Footer Card ───────────────────────────────────────────────────────────
+    cards_html += f"""
+    <section class="footer-card" data-index="{card_index}">
+      <div class="footer-brand-lg">⚡ AI Digest</div>
+      <div class="footer-sub">Generated {date_str} · {time_str}</div>
+      <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({{top:0,behavior:'smooth'}})">↑ Back to top</button>
+    </section>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Digest — {date_str}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-
-    :root {{
-      --bg:        #080c14;
-      --surface:   #0e1420;
-      --surface2:  #141a26;
-      --border:    #1e2a3d;
-      --text:      #e2e8f0;
-      --muted:     #64748b;
-      --accent:    #00d4ff;
-      --accent2:   #a78bfa;
-      --gold:      #fbbf24;
-    }}
-
-    body {{
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.6;
-    }}
-
-    /* Subtle grid background */
-    body::before {{
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }}
-
-    .container {{
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-      position: relative;
-      z-index: 1;
-    }}
-
-    /* Header */
-    .header {{
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-    }}
-
-    .header-top {{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }}
-
-    .brand {{
-      font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }}
-
-    .session-badge {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.25rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      color: var(--muted);
-      background: var(--surface);
-    }}
-
-    .header-date {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }}
-
-    .headline {{
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 800;
-      line-height: 1.25;
-      color: var(--text);
-      max-width: 700px;
-    }}
-
-    .headline span {{
-      color: var(--accent);
-    }}
-
-    /* Vike Note */
-    .vike-note {{
-      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(167,139,250,0.06));
-      border: 1px solid rgba(0,212,255,0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 2.5rem;
-      font-size: 0.875rem;
-      font-style: italic;
-      color: #94a3b8;
-    }}
-
-    .vike-note strong {{
-      font-style: normal;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.4rem;
-    }}
-
-    /* Section */
-    .section-block {{
-      margin-bottom: 2.5rem;
-    }}
-
-    .section-title {{
-      font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }}
-
-    .section-title::after {{
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }}
-
-    /* Story Cards */
-    .story-card {{
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      margin-bottom: 0.875rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }}
-
-    .story-card:hover {{
-      border-color: rgba(0,212,255,0.3);
-      transform: translateY(-1px);
-    }}
-
-    .story-meta {{
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.625rem;
-      flex-wrap: wrap;
-    }}
-
-    .category-badge {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      font-weight: 500;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-      border: 1px solid;
-      letter-spacing: 0.03em;
-    }}
-
-    .story-source {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }}
-
-    .story-title a {{
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-      line-height: 1.35;
-    }}
-
-    .story-title a:hover {{
-      color: var(--accent);
-    }}
-
-    .story-why {{
-      font-size: 0.825rem;
-      color: #94a3b8;
-      line-height: 1.6;
-    }}
-
-    /* Quick Hits */
-    .quick-hits-grid {{
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-    }}
-
-    .quick-hit {{
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.75rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }}
-
-    .quick-hit:hover {{
-      border-color: rgba(167,139,250,0.3);
-    }}
-
-    .hit-dot {{
-      color: var(--accent2);
-      font-size: 0.75rem;
-      margin-top: 0.25rem;
-      flex-shrink: 0;
-    }}
-
-    .hit-title {{
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-    }}
-
-    .hit-title:hover {{ color: var(--accent2); }}
-
-    .hit-source {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }}
-
-    .hit-liner {{
-      font-size: 0.775rem;
-      color: #64748b;
-      margin-top: 0.2rem;
-    }}
-
-    /* arXiv */
-    .arxiv-card {{
-      padding: 0.875rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent2);
-      border-radius: 8px;
-      margin-bottom: 0.75rem;
-    }}
-
-    .arxiv-title {{
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.4rem;
-    }}
-
-    .arxiv-title:hover {{ color: var(--accent2); }}
-
-    .arxiv-tldr {{
-      font-size: 0.775rem;
-      color: #64748b;
-    }}
-
-    /* Community Pulse */
-    .pulse-box {{
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      font-size: 0.875rem;
-      color: #94a3b8;
-      line-height: 1.7;
-    }}
-
-    /* Footer */
-    .footer {{
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }}
-
-    .footer-brand {{
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }}
-
-    .footer-time {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--border);
-    }}
-
-    /* Refresh button */
-    .refresh-btn {{
-      font-family: 'Syne', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid rgba(0,212,255,0.3);
-      border-radius: 6px;
-      padding: 0.4rem 1rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: background 0.2s, border-color 0.2s, transform 0.1s;
-    }}
-    .refresh-btn:hover {{
-      background: rgba(0,212,255,0.08);
-      border-color: var(--accent);
-    }}
-    .refresh-btn:active {{ transform: scale(0.97); }}
-    .refresh-btn.spinning .btn-icon {{ animation: spin 0.8s linear infinite; }}
-    .last-updated {{
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-    }}
-    @keyframes spin {{ to {{ transform: rotate(360deg); }} }}
-
-    /* Fade in */
-    @keyframes fadeUp {{
-      from {{ opacity: 0; transform: translateY(12px); }}
-      to   {{ opacity: 1; transform: translateY(0); }}
-    }}
-
-    .header        {{ animation: fadeUp 0.4s ease both; }}
-    .vike-note     {{ animation: fadeUp 0.4s ease 0.1s both; }}
-    .section-block {{ animation: fadeUp 0.4s ease 0.15s both; }}
-  </style>
+  <title>⚡ AI Digest — {session_label} Edition · {date_str}</title>
+  <meta name="description" content="Daily AI news digest — top stories, quick hits, and research picks.">
+  <style>{CSS}</style>
 </head>
 <body>
-<div class="container">
 
-  <header class="header">
-    <div class="header-top">
-      <span class="brand">⚡ AI Digest</span>
-      <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap">
-        <a href="india.html" style="font-family:'DM Mono',monospace;font-size:0.65rem;color:#ff6b35;text-decoration:none;border:1px solid rgba(255,107,53,0.3);border-radius:4px;padding:0.25rem 0.6rem;">🇮🇳 India AI Pulse</a>
-        <span class="session-badge">{session_emoji} {session_label} Edition</span>
-        <span class="header-date">{date_str} · {time_str}</span>
-      </div>
-    </div>
-    <h1 class="headline">{headline}</h1>
-  </header>
+<div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
 
-  {"" if not vike_note else f'''<div class="vike-note"><strong>📌 Today's Focus</strong>{vike_note}</div>'''}
+<div class="feed" id="feed">
+  {cards_html}
+</div>
 
-  <div class="section-block">
-    <h2 class="section-title"><span class="section-icon">🔥</span> Top Stories</h2>
-    {stories_html}
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-row">
+    <span class="filter-label">Leaders</span>
+    <span class="filter-chip" data-filter="karpathy">Karpathy</span>
+    <span class="filter-chip" data-filter="sam altman">Sam Altman</span>
+    <span class="filter-chip" data-filter="demis">Demis</span>
+    <span class="filter-chip" data-filter="yann lecun">LeCun</span>
+    <span class="filter-chip" data-filter="ilya">Ilya</span>
+    <span class="filter-chip" data-filter="greg brockman">Brockman</span>
   </div>
-
-  <div class="section-block">
-    <h2 class="section-title"><span class="section-icon">⚡</span> Quick Hits</h2>
-    <div class="quick-hits-grid">
-      {hits_html}
-    </div>
+  <div class="filter-row">
+    <span class="filter-label">Company</span>
+    <span class="filter-chip" data-filter="anthropic">Anthropic</span>
+    <span class="filter-chip" data-filter="openai">OpenAI</span>
+    <span class="filter-chip" data-filter="google">Google</span>
+    <span class="filter-chip" data-filter="meta">Meta</span>
+    <span class="filter-chip" data-filter="mistral">Mistral</span>
+    <span class="filter-chip" data-filter="huggingface">HuggingFace</span>
+    <span class="filter-chip" data-filter="nvidia">Nvidia</span>
   </div>
-
-  {arxiv_html}
-
-  {"" if not community_pulse else f'''<div class="section-block">
-    <h2 class="section-title"><span class="section-icon">💬</span> Community Pulse</h2>
-    <div class="pulse-box">{community_pulse}</div>
-  </div>'''}
-
-  <footer class="footer">
-    <span class="footer-brand">VigneshBhaskarraj / ai-digest</span>
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-      <span class="last-updated" id="last-updated">Generated {date_str} {time_str}</span>
-      <button class="refresh-btn" id="refresh-btn" onclick="triggerRefresh()">
-        <span class="btn-icon" id="btn-icon">↻</span> Refresh
-      </button>
-    </div>
-  </footer>
-
+  <div class="filter-row">
+    <span class="filter-label">Topic</span>
+    <span class="filter-chip" data-filter="agent">Agents</span>
+    <span class="filter-chip" data-filter="model">Models</span>
+    <span class="filter-chip" data-filter="research">Research</span>
+    <span class="filter-chip" data-filter="vision">Vision</span>
+    <span class="filter-chip" data-filter="robotics">Robotics</span>
+    <span class="filter-chip" data-filter="open source">Open Source</span>
+    <span class="filter-chip" data-filter="safety">Safety</span>
+  </div>
 </div>
 
 <script>
-  function triggerRefresh() {{
-    const btn  = document.getElementById('refresh-btn');
-    const icon = document.getElementById('btn-icon');
-    const info = document.getElementById('last-updated');
+  const feed    = document.getElementById('feed');
+  const fill    = document.getElementById('progress-fill');
+  const allCards = Array.from(document.querySelectorAll('[data-index]'));
+  let visibleCards = allCards;
 
-    btn.classList.add('spinning');
-    btn.disabled = true;
-    info.textContent = 'Refreshing...';
-
-    // GitHub Actions manual trigger via repository_dispatch would need a PAT.
-    // For now: hard-reload the page after a short delay to pick up any new deploy.
-    setTimeout(() => {{
-      window.location.reload(true);
-    }}, 1800);
+  function updateProgress() {{
+    const idx = visibleCards.findIndex(c => {{
+      const r = c.getBoundingClientRect();
+      return r.top >= -10 && r.top < window.innerHeight / 2;
+    }});
+    const cur = idx >= 0 ? idx : 0;
+    fill.style.height = ((cur + 1) / visibleCards.length * 100) + '%';
   }}
 
-  // Show how long ago the page was generated
-  (function() {{
-    const generated = new Date('{date_str} {time_str}'.replace(' UTC','') + 'Z');
-    const now       = new Date();
-    const diffMin   = Math.round((now - generated) / 60000);
-    const el        = document.getElementById('last-updated');
-    if (!isNaN(diffMin) && el) {{
-      if (diffMin < 1)       el.textContent = 'Just updated';
-      else if (diffMin < 60) el.textContent = `Updated ${{diffMin}}m ago`;
-      else                   el.textContent = `Updated ${{Math.round(diffMin/60)}}h ago`;
-    }}
-  }})();
-</script>
+  feed.addEventListener('scroll', updateProgress, {{ passive: true }});
 
+  document.addEventListener('keydown', e => {{
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {{
+      feed.scrollBy({{ top: window.innerHeight, behavior: 'smooth' }});
+    }} else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {{
+      feed.scrollBy({{ top: -window.innerHeight, behavior: 'smooth' }});
+    }}
+  }});
+
+  // ── Filtering ─────────────────────────────────────────────────────────────
+  let activeFilter = null;
+
+  document.querySelectorAll('.filter-chip').forEach(chip => {{
+    chip.addEventListener('click', () => {{
+      const keyword = chip.dataset.filter;
+
+      if (activeFilter === keyword) {{
+        // Deactivate filter — show all
+        activeFilter = null;
+        chip.classList.remove('active');
+        allCards.forEach(c => c.style.display = '');
+        visibleCards = allCards;
+        feed.scrollTo({{ top: 0, behavior: 'smooth' }});
+        return;
+      }}
+
+      // Deactivate previous chip
+      document.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = keyword;
+
+      // Show/hide cards based on text content match
+      visibleCards = [];
+      allCards.forEach(c => {{
+        const text = c.innerText.toLowerCase();
+        const isHeader = c.dataset.index === '0';
+        const isFooter = !c.classList.contains('card');
+        const matches = isHeader || isFooter || text.includes(keyword);
+        c.style.display = matches ? '' : 'none';
+        if (matches) visibleCards.push(c);
+      }});
+
+      // Scroll to first matching story card
+      const firstStory = visibleCards.find(c => c.dataset.index !== '0');
+      if (firstStory) firstStory.scrollIntoView({{ behavior: 'smooth' }});
+
+      updateProgress();
+    }});
+  }});
+</script>
 </body>
 </html>"""
 
@@ -549,7 +706,6 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
 
 
 def save_dashboard(html: str, output_path: str = "docs/index.html"):
-    """Write the HTML to the docs/ folder for GitHub Pages."""
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -557,25 +713,34 @@ def save_dashboard(html: str, output_path: str = "docs/index.html"):
 
 
 if __name__ == "__main__":
-    # Smoke test with dummy digest
     dummy = {
-        "headline": "Anthropic ships Claude 4 with native tool use and 200K context",
+        "headline": "Anthropic ships Claude 4 with native tool use and 200K context window",
         "top_stories": [
             {
                 "title": "Claude 4 Released with Extended Thinking Mode",
                 "source": "Anthropic Blog",
                 "url": "https://anthropic.com",
-                "why_it_matters": "Extended thinking lets Claude reason step by step over long contexts before responding. For builders, this means better agentic reliability on complex multi-step tasks.",
+                "why_it_matters": "Extended thinking lets Claude reason step-by-step. For builders this means better agentic reliability on complex multi-step tasks.",
                 "category": "Model Releases",
-            }
+            },
+            {
+                "title": "OpenAI launches GPT-5 with multimodal reasoning",
+                "source": "OpenAI Blog",
+                "url": "https://openai.com",
+                "why_it_matters": "GPT-5 adds native vision and audio reasoning in a single model call — no longer requires separate pipelines.",
+                "category": "Model Releases",
+            },
         ],
         "quick_hits": [
             {"title": "Mistral releases Le Chat Pro", "source": "Mistral AI", "url": "#", "one_liner": "New paid tier with faster inference and priority access."},
+            {"title": "Meta open-sources Llama 4", "source": "Meta AI", "url": "#", "one_liner": "70B and 405B variants available for commercial use."},
         ],
-        "arxiv_picks": [],
-        "community_pulse": "r/LocalLLaMA is buzzing about running Claude 4 variants locally via Ollama.",
-        "vike_note": "The Claude 4 tool-use improvements are directly relevant to the Ask Agent POC you're building — worth testing the new API parameters this week.",
+        "arxiv_picks": [
+            {"title": "Mixture-of-Agents Outperforms GPT-4 on Most Benchmarks", "url": "#", "tldr": "Combining outputs from 6 smaller LLMs beats a single large model at 40% lower cost."},
+        ],
+        "community_pulse": "r/LocalLLaMA is buzzing about running Claude 4 variants locally via Ollama. The quantized 70B model fits in 48GB VRAM.",
+        "vike_note": "Claude 4 tool-use improvements are directly relevant to the Ask Agent POC you're building — test the new API parameters this week.",
     }
     html = render_html(dummy, "Morning")
     save_dashboard(html, "/tmp/test_dashboard.html")
-    print(f"Test HTML written, size: {len(html)} bytes")
+    print(f"Test HTML written ({len(html):,} bytes)")
