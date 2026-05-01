@@ -38,7 +38,8 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 
 .card {
   height: 100vh; scroll-snap-align: start; scroll-snap-stop: always;
-  position: relative; padding: 72px 2rem 1.5rem;
+  display: flex; flex-direction: column;
+  padding: 72px 2rem 2rem;
   border-bottom: 1px solid #E2E8F0; overflow: hidden;
 }
 
@@ -49,7 +50,7 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .card-policy-type  { background: #FFFFFF; }
 .card-hits-type    { background: #F8FAFC; }
 
-.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-shrink: 0; }
 
 .category-pill {
   font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
@@ -58,21 +59,14 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 
 .card-counter { font-family: 'DM Mono', monospace; font-size: 11px; color: #94A3B8; }
 
-.card-body {
-  display: flex; flex-direction: column;
-  overflow-y: auto; padding-bottom: 80px;
-  height: calc(100vh - 160px);
-}
+.card-body { display: flex; flex-direction: column; flex-shrink: 0; }
 
 .card-bottom {
-  position: absolute; bottom: 0; left: 0; right: 0;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 2rem;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid #E2E8F0;
+  margin-top: 1.5rem; padding-top: 1rem;
+  border-top: 1px solid #E2E8F0; flex-shrink: 0;
 }
-.card-header-type .card-bottom { background: rgba(15,23,42,0.92); border-top-color: rgba(255,255,255,0.08); }
+.card-header-type .card-bottom { border-top-color: rgba(255,255,255,0.1); }
 
 .read-btn {
   font-family: 'DM Mono', monospace; font-size: 11px; color: #6366F1;
@@ -130,6 +124,22 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .hit-source { font-size: 10px; color: #94A3B8; font-family: 'DM Mono', monospace; margin-left: 4px; }
 .hit-liner { font-size: 12px; color: #64748B; margin-top: 3px; line-height: 1.5; }
 
+/* card-body-scroll */
+.card-body-scroll { display: flex; flex-direction: column; flex: 1; overflow-y: auto; min-height: 0; }
+
+/* Leaders Voices */
+.card-leaders-type { background: #FAFAFA; }
+.leader-item { padding: 1rem 0; border-bottom: 1px solid #E2E8F0; display: flex; gap: 1rem; align-items: flex-start; }
+.leader-item:last-child { border-bottom: none; }
+.leader-avatar { width: 40px; height: 40px; border-radius: 50%; background: #EEF2FF; border: 2px solid #6366F1; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: #4338CA; flex-shrink: 0; }
+.leader-content { flex: 1; min-width: 0; }
+.leader-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #0F172A; margin-bottom: 1px; }
+.leader-role { font-family: 'DM Mono', monospace; font-size: 9px; color: #94A3B8; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.leader-insight { font-size: 13px; line-height: 1.65; color: #334155; margin-bottom: 0.3rem; }
+.leader-context { font-size: 11px; color: #94A3B8; line-height: 1.5; }
+.leader-link { font-family: 'DM Mono', monospace; font-size: 9px; color: #6366F1; text-decoration: none; margin-top: 0.35rem; display: inline-block; }
+.leader-link:hover { text-decoration: underline; }
+
 /* Progress rail */
 .progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
 .progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
@@ -148,13 +158,14 @@ def render_india_html(digest: Dict) -> str:
     date_str = now.strftime("%A, %B %d, %Y")
     time_str = now.strftime("%H:%M UTC")
 
-    headline       = digest.get("headline", "India AI Pulse is ready.")
-    funding_rounds = digest.get("funding_rounds", [])
-    new_startups   = digest.get("new_startups", [])
-    vc_trends      = digest.get("vc_trends", [])
-    policy_watch   = digest.get("policy_watch", [])
-    quick_hits     = digest.get("quick_hits", [])
-    vike_note      = digest.get("vike_note", "")
+    headline        = digest.get("headline", "India AI Pulse is ready.")
+    funding_rounds  = digest.get("funding_rounds", [])
+    new_startups    = digest.get("new_startups", [])
+    vc_trends       = digest.get("vc_trends", [])
+    policy_watch    = digest.get("policy_watch", [])
+    quick_hits      = digest.get("quick_hits", [])
+    leaders_voices  = digest.get("leaders_voices", [])
+    vike_note       = digest.get("vike_note", "")
 
     total_cards = (
         1
@@ -163,6 +174,7 @@ def render_india_html(digest: Dict) -> str:
         + (1 if vc_trends else 0)
         + (1 if policy_watch else 0)
         + (1 if quick_hits else 0)
+        + (1 if leaders_voices else 0)
         + 1   # footer
     )
 
@@ -236,7 +248,7 @@ def render_india_html(digest: Dict) -> str:
         <span class="category-pill" style="background:#7C3AED">New Startups</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         {startups_inner}
       </div>
     </section>"""
@@ -258,7 +270,7 @@ def render_india_html(digest: Dict) -> str:
         <span class="category-pill" style="background:#5C3D2E">VC Trends</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         {trends_inner}
       </div>
     </section>"""
@@ -281,7 +293,7 @@ def render_india_html(digest: Dict) -> str:
         <span class="category-pill" style="background:#3B4852">Policy Watch</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         {policy_inner}
       </div>
     </section>"""
@@ -307,8 +319,43 @@ def render_india_html(digest: Dict) -> str:
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         <ul class="hits-list">{hits_items}</ul>
+      </div>
+    </section>"""
+
+    # ── Leaders Voices Card ───────────────────────────────────────────────────
+    if leaders_voices:
+        card_index += 1
+        leaders_html = ""
+        for lv in leaders_voices:
+            name    = lv.get("name", "")
+            role    = lv.get("role", "")
+            insight = lv.get("insight", "")
+            context = lv.get("context", "")
+            url     = lv.get("url") or ""
+            initials = "".join(w[0].upper() for w in name.split()[:2]) if name else "?"
+            link_html = f'<a href="{url}" target="_blank" rel="noopener" class="leader-link">Read more →</a>' if url else ""
+            leaders_html += f"""
+        <div class="leader-item">
+          <div class="leader-avatar">{initials}</div>
+          <div class="leader-content">
+            <div class="leader-name">{name}</div>
+            <div class="leader-role">{role}</div>
+            <p class="leader-insight">{insight}</p>
+            <p class="leader-context">{context}</p>
+            {link_html}
+          </div>
+        </div>"""
+
+        cards_html += f"""
+    <section class="card card-leaders-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body-scroll">
+        {leaders_html}
       </div>
     </section>"""
 
@@ -327,6 +374,11 @@ def render_india_html(digest: Dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🇮🇳 India AI Pulse · {date_str}</title>
   <meta name="description" content="Daily digest of AI investments, startups, and VC trends in India.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="India AI Pulse">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <style>{CSS}</style>
 </head>
 <body>
@@ -366,6 +418,10 @@ def render_india_html(digest: Dict) -> str:
       feed.scrollBy({{ top: -window.innerHeight, behavior: 'smooth' }});
     }}
   }});
+
+  if ('serviceWorker' in navigator) {{
+    navigator.serviceWorker.register('/ai-digest/sw.js').catch(() => {{}});
+  }}
 </script>
 </body>
 </html>"""

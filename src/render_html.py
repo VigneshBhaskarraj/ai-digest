@@ -78,8 +78,9 @@ body {
   height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  position: relative;
-  padding: 72px 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 72px 2rem 2rem;
   border-bottom: 1px solid #E2E8F0;
   overflow: hidden;
 }
@@ -96,6 +97,7 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
 
 .category-pill {
@@ -118,9 +120,16 @@ body {
 .card-body {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* scrollable variant for list cards */
+.card-body-scroll {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   overflow-y: auto;
-  padding-bottom: 80px;
-  height: calc(100vh - 160px);
+  min-height: 0;
 }
 
 .card-source {
@@ -138,11 +147,16 @@ body {
 
 .card-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-size: clamp(1.35rem, 4vw, 1.85rem);
   font-weight: 700;
   line-height: 1.25;
   color: #0F172A;
   margin-bottom: 1rem;
+  /* clamp to 3 lines so button never pushed off */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-divider {
@@ -151,38 +165,33 @@ body {
   background: #6366F1;
   border-radius: 2px;
   margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .card-why {
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 1.75;
   color: #475569;
+  /* clamp to 5 lines so button always visible */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* ── Card Bottom — always visible at base of card ── */
+/* ── Card Bottom — inline just after content ── */
 .card-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
   border-top: 1px solid #E2E8F0;
+  flex-shrink: 0;
 }
 
-.card-header-type .card-bottom {
-  background: rgba(15,23,42,0.92);
-  border-top-color: rgba(255,255,255,0.08);
-}
-.card-surge-type .card-bottom {
-  background: rgba(30,27,75,0.92);
-  border-top-color: rgba(165,180,252,0.15);
-}
+.card-header-type .card-bottom { border-top-color: rgba(255,255,255,0.1); }
+.card-surge-type .card-bottom  { border-top-color: rgba(165,180,252,0.2); }
 
 .read-btn {
   font-family: 'DM Mono', monospace;
@@ -445,6 +454,68 @@ body {
   padding: 2px 9px;
 }
 
+/* ── Leaders Voices Card ──────────────── */
+.card-leaders-type { background: #FAFAFA; }
+.leader-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.leader-item:last-child { border-bottom: none; }
+.leader-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EEF2FF;
+  border: 2px solid #6366F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4338CA;
+  flex-shrink: 0;
+}
+.leader-content { flex: 1; min-width: 0; }
+.leader-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 1px;
+}
+.leader-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.leader-insight {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #334155;
+  margin-bottom: 0.3rem;
+}
+.leader-context {
+  font-size: 11px;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+.leader-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #6366F1;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-top: 0.35rem;
+  display: inline-block;
+}
+.leader-link:hover { text-decoration: underline; }
+
 /* ── Progress Rail ────────────────────── */
 .progress-rail {
   position: fixed;
@@ -534,6 +605,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
     quick_hits      = digest.get("quick_hits", [])
     arxiv_picks     = digest.get("arxiv_picks", [])
     community_pulse = digest.get("community_pulse", "")
+    leaders_voices  = digest.get("leaders_voices", [])
     vike_note       = digest.get("vike_note", "")
     papers          = papers or []
 
@@ -548,6 +620,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         + (1 if quick_hits else 0)
         + (1 if arxiv_picks else 0)
         + (1 if community_pulse else 0)
+        + (1 if leaders_voices else 0)      # leaders card
         + len(paper_chunks)                 # whitepaper cards
         + 1                                 # footer
     )
@@ -566,7 +639,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">⚡ AI Digest</span>
         <span class="card-counter">1 / {total_cards}</span>
       </div>
-      <div class="card-body" style="padding-bottom:80px">
+      <div class="card-body">
         <div class="header-date">{date_str} · {time_str}</div>
         <div class="header-session">{session_emoji} {session_label} Edition</div>
         <h1 class="header-headline">{headline}</h1>
@@ -574,7 +647,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({{top:window.innerHeight,behavior:'smooth'}})">Read today's digest ↓</button>
-        <span class="swipe-hint" style="color:#475569"><span class="swipe-arrow">↑</span> swipe up</span>
+        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe</span>
       </div>
     </section>"""
     card_index = 1
@@ -656,7 +729,7 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         <ul class="hits-list">{hits_items}</ul>
       </div>
     </section>"""
@@ -675,10 +748,10 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         cards_html += f"""
     <section class="card card-arxiv-type" data-index="{card_index - 1}">
       <div class="card-top">
-        <span class="category-pill" style="background:#384840">Research Picks</span>
+        <span class="category-pill" style="background:#0F766E">Research Picks</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto">
+      <div class="card-body-scroll">
         {arxiv_items}
       </div>
     </section>"""
@@ -694,6 +767,41 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
       </div>
       <div class="card-body">
         <p class="pulse-text">"{community_pulse}"</p>
+      </div>
+    </section>"""
+
+    # ── Leaders Voices Card ───────────────────────────────────────────────────
+    if leaders_voices:
+        card_index += 1
+        leaders_html = ""
+        for lv in leaders_voices:
+            name    = lv.get("name", "")
+            role    = lv.get("role", "")
+            insight = lv.get("insight", "")
+            context = lv.get("context", "")
+            url     = lv.get("url") or ""
+            initials = "".join(w[0].upper() for w in name.split()[:2]) if name else "?"
+            link_html = f'<a href="{url}" target="_blank" rel="noopener" class="leader-link">Read more →</a>' if url else ""
+            leaders_html += f"""
+        <div class="leader-item">
+          <div class="leader-avatar">{initials}</div>
+          <div class="leader-content">
+            <div class="leader-name">{name}</div>
+            <div class="leader-role">{role}</div>
+            <p class="leader-insight">{insight}</p>
+            <p class="leader-context">{context}</p>
+            {link_html}
+          </div>
+        </div>"""
+
+        cards_html += f"""
+    <section class="card card-leaders-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body-scroll">
+        {leaders_html}
       </div>
     </section>"""
 
@@ -734,10 +842,10 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
         cards_html += f"""
     <section class="card card-paper-type" data-index="{card_index - 1}">
       <div class="card-top">
-        <span class="category-pill" style="background:#384840">📄 {chunk_label}</span>
+        <span class="category-pill" style="background:#0F766E">📄 {chunk_label}</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
-      <div class="card-body" style="overflow-y:auto;padding-top:1rem">
+      <div class="card-body-scroll">
         {papers_html}
       </div>
     </section>"""
@@ -758,12 +866,35 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
   <title>⚡ AI Digest — {session_label} Edition · {date_str}</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#5C3D2E">
+  <meta name="theme-color" content="#6366F1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <style>{CSS}</style>
+  <meta name="apple-mobile-web-app-title" content="AI Digest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>{CSS}
+/* ── PWA install banner ── */
+#pwa-banner {{
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #1E1B4B; color: #fff; border-radius: 999px;
+  padding: 10px 20px 10px 16px; display: none; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(99,102,241,0.45); z-index: 300;
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em;
+  white-space: nowrap; cursor: pointer; border: none;
+}}
+#pwa-banner.show {{ display: flex; }}
+#pwa-banner .pwa-icon {{ font-size: 16px; }}
+#pwa-banner .pwa-dismiss {{
+  margin-left: 6px; color: rgba(255,255,255,0.4); cursor: pointer;
+  font-size: 14px; line-height: 1; padding: 0 4px;
+}}
+</style>
 </head>
 <body>
+
+<button id="pwa-banner" aria-label="Install AI Digest app">
+  <span class="pwa-icon">⬇</span> Add to Home Screen
+  <span class="pwa-dismiss" id="pwa-dismiss" aria-label="Dismiss">✕</span>
+</button>
 
 <nav class="nav-tab-bar">
   <a class="nav-tab active" href="index.html">⚡ Global</a>
@@ -809,6 +940,40 @@ def render_html(digest: Dict, session_label: str = "Morning", papers: list = Non
     body.classList.toggle('open', !isOpen);
     toggle.classList.toggle('open', !isOpen);
   }}
+
+  // ── Service Worker ────────────────────────────────────────────────────────
+  if ('serviceWorker' in navigator) {{
+    navigator.serviceWorker.register('/ai-digest/sw.js')
+      .catch(() => {{}});
+  }}
+
+  // ── PWA Install Banner ────────────────────────────────────────────────────
+  let deferredPrompt = null;
+  const banner = document.getElementById('pwa-banner');
+
+  window.addEventListener('beforeinstallprompt', e => {{
+    e.preventDefault();
+    deferredPrompt = e;
+    banner.classList.add('show');
+  }});
+
+  document.getElementById('pwa-install-btn').addEventListener('click', async () => {{
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const {{ outcome }} = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    banner.classList.remove('show');
+  }});
+
+  document.getElementById('pwa-dismiss').addEventListener('click', e => {{
+    e.stopPropagation();
+    banner.classList.remove('show');
+  }});
+
+  window.addEventListener('appinstalled', () => {{
+    banner.classList.remove('show');
+    deferredPrompt = null;
+  }});
 </script>
 </body>
 </html>"""

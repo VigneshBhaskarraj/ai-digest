@@ -51,6 +51,15 @@ Return ONLY valid JSON (no markdown, no extra text) in this exact structure:
     }
   ],
   "community_pulse": "2-3 sentences summarizing what the AI community on Reddit/forums is discussing or building",
+  "leaders_voices": [
+    {
+      "name": "Leader's full name",
+      "role": "Their title / affiliation e.g. CEO OpenAI / AI Researcher",
+      "insight": "What they said, shared, or argued — paraphrased in 1-2 punchy sentences",
+      "context": "One sentence on why this is noteworthy or what sparked it",
+      "url": "source url or null"
+    }
+  ],
   "vike_note": "One sharp, opinionated sentence about what a data/AI professional transitioning to Gen AI roles should pay attention to most today"
 }
 
@@ -63,7 +72,8 @@ Rules:
 - The vike_note is personalized career advice based on what matters most in the digest
 - signal_surge: identify the ONE topic that appears most across independent sources (e.g. "AI agents", "GPT-5", "open source LLMs"). Count how many distinct sources mention it.
 - credibility field: "high" for lab blogs/research papers, "medium" for tech news, "community" for Reddit/HN
-- If no clear signal surge (fewer than 3 sources on any one topic), set signal_surge to null"""
+- If no clear signal surge (fewer than 3 sources on any one topic), set signal_surge to null
+- leaders_voices: scan articles for things said/posted/written by notable AI figures in the last 24-48h. Include: Sam Altman, Andrej Karpathy, Yann LeCun, Geoffrey Hinton, Demis Hassabis, Dario Amodei, Jensen Huang, Ilya Sutskever, Greg Brockman, Fei-Fei Li, or any other named AI researcher/leader. Return 2-4 entries max. If no named leader statements found, return empty array — never fabricate quotes."""
 
 
 def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> Dict:

@@ -63,6 +63,15 @@ Return ONLY valid JSON (no markdown, no extra text) in this exact structure:
       "one_liner": "One sentence max"
     }
   ],
+  "leaders_voices": [
+    {
+      "name": "Leader's full name",
+      "role": "Their title / affiliation",
+      "insight": "What they said, shared, or argued — paraphrased in 1-2 punchy sentences",
+      "context": "One sentence on why this is noteworthy",
+      "url": "source url or null"
+    }
+  ],
   "vike_note": "One sharp, opinionated sentence: what should an AI founder or early-stage investor in India pay attention to most from today's news?"
 }
 
@@ -75,7 +84,8 @@ Rules:
 - If a section has no relevant data, return an empty array — never fabricate
 - All monetary values: include both USD and INR equivalent if available
 - Be direct and opinionated — no filler phrases like "it remains to be seen"
-- The vike_note should be actionable advice, not a summary"""
+- The vike_note should be actionable advice, not a summary
+- leaders_voices: scan for statements, interviews, or notable posts by Indian AI leaders in the last 24-48h. Include: Sridhar Vembu (Zoho), Pramod Varma (CDPI/Aadhaar), Bhavish Aggarwal (Ola/Krutrim), Sanjeev Sanyal, Vijay Shekhar Sharma (Paytm), Navin Tewari, or any named Indian AI founder/investor/policymaker. Return 2-3 entries max. If none found in articles, return empty array — never fabricate."""
 
 
 def summarize_india_articles(articles: List[Dict]) -> Dict:
