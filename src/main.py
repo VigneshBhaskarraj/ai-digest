@@ -25,7 +25,7 @@ from render_html import render_html, save_dashboard
 
 def run(session: str = "morning"):
     session_label = "Morning" if session == "morning" else "Evening"
-    max_age = 12
+    max_age = 24
 
     print(f"\n{'='*50}")
     print(f"  AI Digest Pipeline — {session_label} Edition")

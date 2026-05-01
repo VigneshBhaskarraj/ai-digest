@@ -310,66 +310,6 @@ body {
   color: #2C1810;
 }
 
-/* ── Filter Bar ──────────────────────── */
-.filter-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 200;
-  background: rgba(245,239,227,0.95);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid #E0D5C4;
-  padding: 0.6rem 1.25rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.filter-row {
-  display: flex;
-  gap: 0.4rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  align-items: center;
-}
-.filter-row::-webkit-scrollbar { display: none; }
-.filter-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #B09880;
-  white-space: nowrap;
-  flex-shrink: 0;
-  width: 52px;
-}
-.filter-chip {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: #7A4F35;
-  background: #EDE4D6;
-  border: 1px solid #D4C4B0;
-  border-radius: 20px;
-  padding: 4px 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background 0.15s, color 0.15s;
-  user-select: none;
-}
-.filter-chip:hover { background: #D4C4B0; }
-.filter-chip.active {
-  background: #5C3D2E;
-  color: #F5EFE3;
-  border-color: #5C3D2E;
-}
-
-/* push cards up so filter bar doesn't overlap last card */
-.feed { padding-bottom: 0; }
-.card { padding-bottom: 5.5rem; }
-.footer-card { padding-bottom: 2rem; }
-
 /* ── Fixed Progress Bar ───────────────── */
 .progress-rail {
   position: fixed;
@@ -601,54 +541,22 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
   {cards_html}
 </div>
 
-<div class="filter-bar" id="filter-bar">
-  <div class="filter-row">
-    <span class="filter-label">Leaders</span>
-    <span class="filter-chip" data-filter="karpathy">Karpathy</span>
-    <span class="filter-chip" data-filter="sam altman">Sam Altman</span>
-    <span class="filter-chip" data-filter="demis">Demis</span>
-    <span class="filter-chip" data-filter="yann lecun">LeCun</span>
-    <span class="filter-chip" data-filter="ilya">Ilya</span>
-    <span class="filter-chip" data-filter="greg brockman">Brockman</span>
-  </div>
-  <div class="filter-row">
-    <span class="filter-label">Company</span>
-    <span class="filter-chip" data-filter="anthropic">Anthropic</span>
-    <span class="filter-chip" data-filter="openai">OpenAI</span>
-    <span class="filter-chip" data-filter="google">Google</span>
-    <span class="filter-chip" data-filter="meta">Meta</span>
-    <span class="filter-chip" data-filter="mistral">Mistral</span>
-    <span class="filter-chip" data-filter="huggingface">HuggingFace</span>
-    <span class="filter-chip" data-filter="nvidia">Nvidia</span>
-  </div>
-  <div class="filter-row">
-    <span class="filter-label">Topic</span>
-    <span class="filter-chip" data-filter="agent">Agents</span>
-    <span class="filter-chip" data-filter="model">Models</span>
-    <span class="filter-chip" data-filter="research">Research</span>
-    <span class="filter-chip" data-filter="vision">Vision</span>
-    <span class="filter-chip" data-filter="robotics">Robotics</span>
-    <span class="filter-chip" data-filter="open source">Open Source</span>
-    <span class="filter-chip" data-filter="safety">Safety</span>
-  </div>
-</div>
-
 <script>
-  const feed    = document.getElementById('feed');
-  const fill    = document.getElementById('progress-fill');
-  const allCards = Array.from(document.querySelectorAll('[data-index]'));
-  let visibleCards = allCards;
+  const feed  = document.getElementById('feed');
+  const fill  = document.getElementById('progress-fill');
+  const cards = document.querySelectorAll('[data-index]');
+  const total = cards.length;
 
-  function updateProgress() {{
-    const idx = visibleCards.findIndex(c => {{
-      const r = c.getBoundingClientRect();
-      return r.top >= -10 && r.top < window.innerHeight / 2;
+  const observer = new IntersectionObserver((entries) => {{
+    entries.forEach(entry => {{
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {{
+        const idx = parseInt(entry.target.dataset.index, 10);
+        fill.style.height = ((idx + 1) / total * 100) + '%';
+      }}
     }});
-    const cur = idx >= 0 ? idx : 0;
-    fill.style.height = ((cur + 1) / visibleCards.length * 100) + '%';
-  }}
+  }}, {{ threshold: 0.5 }});
 
-  feed.addEventListener('scroll', updateProgress, {{ passive: true }});
+  cards.forEach(c => observer.observe(c));
 
   document.addEventListener('keydown', e => {{
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {{
@@ -656,47 +564,6 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
     }} else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {{
       feed.scrollBy({{ top: -window.innerHeight, behavior: 'smooth' }});
     }}
-  }});
-
-  // ── Filtering ─────────────────────────────────────────────────────────────
-  let activeFilter = null;
-
-  document.querySelectorAll('.filter-chip').forEach(chip => {{
-    chip.addEventListener('click', () => {{
-      const keyword = chip.dataset.filter;
-
-      if (activeFilter === keyword) {{
-        // Deactivate filter — show all
-        activeFilter = null;
-        chip.classList.remove('active');
-        allCards.forEach(c => c.style.display = '');
-        visibleCards = allCards;
-        feed.scrollTo({{ top: 0, behavior: 'smooth' }});
-        return;
-      }}
-
-      // Deactivate previous chip
-      document.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeFilter = keyword;
-
-      // Show/hide cards based on text content match
-      visibleCards = [];
-      allCards.forEach(c => {{
-        const text = c.innerText.toLowerCase();
-        const isHeader = c.dataset.index === '0';
-        const isFooter = !c.classList.contains('card');
-        const matches = isHeader || isFooter || text.includes(keyword);
-        c.style.display = matches ? '' : 'none';
-        if (matches) visibleCards.push(c);
-      }});
-
-      // Scroll to first matching story card
-      const firstStory = visibleCards.find(c => c.dataset.index !== '0');
-      if (firstStory) firstStory.scrollIntoView({{ behavior: 'smooth' }});
-
-      updateProgress();
-    }});
   }});
 </script>
 </body>
