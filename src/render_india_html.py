@@ -105,6 +105,28 @@ def render_india_html(digest: Dict) -> str:
           </div>
         </div>"""
 
+    # Pre-compute conditional blocks to avoid backslashes inside f-string expressions
+    vike_note_html = (
+        f'<div class="vike-note"><strong>📌 Today\'s Signal</strong> {vike_note}</div>'
+        if vike_note else ""
+    )
+    new_startups_html = (
+        f'<div class="section-block"><h2 class="section-title">🚀 New Startups &amp; Incubations</h2>{startups_html}</div>'
+        if new_startups else ""
+    )
+    vc_trends_html = (
+        f'<div class="section-block"><h2 class="section-title">📈 Where VCs Are Focusing</h2>{trends_html}</div>'
+        if vc_trends else ""
+    )
+    policy_html_block = (
+        f'<div class="section-block"><h2 class="section-title">🏛️ Policy Watch</h2>{policy_html}</div>'
+        if policy_watch else ""
+    )
+    quick_hits_html_block = (
+        f'<div class="section-block"><h2 class="section-title">⚡ Quick Hits</h2>{hits_html}</div>'
+        if quick_hits else ""
+    )
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -449,32 +471,20 @@ def render_india_html(digest: Dict) -> str:
     <h1 class="headline">{headline}</h1>
   </header>
 
-  {"" if not vike_note else f'<div class="vike-note"><strong>📌 Today\'s Signal</strong>{vike_note}</div>'}
+  {vike_note_html}
 
   <div class="section-block">
     <h2 class="section-title">💰 Funding Rounds</h2>
     {funding_html}
   </div>
 
-  {"" if not new_startups else f'''<div class="section-block">
-    <h2 class="section-title">🚀 New Startups & Incubations</h2>
-    {startups_html}
-  </div>'''}
+  {new_startups_html}
 
-  {"" if not vc_trends else f'''<div class="section-block">
-    <h2 class="section-title">📈 Where VCs Are Focusing</h2>
-    {trends_html}
-  </div>'''}
+  {vc_trends_html}
 
-  {"" if not policy_watch else f'''<div class="section-block">
-    <h2 class="section-title">🏛️ Policy Watch</h2>
-    {policy_html}
-  </div>'''}
+  {policy_html_block}
 
-  {"" if not quick_hits else f'''<div class="section-block">
-    <h2 class="section-title">⚡ Quick Hits</h2>
-    {hits_html}
-  </div>'''}
+  {quick_hits_html_block}
 
   <footer class="footer">
     <span class="footer-brand">VigneshBhaskarraj / ai-digest · India AI Pulse</span>
