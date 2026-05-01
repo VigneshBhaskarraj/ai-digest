@@ -19,13 +19,20 @@ You will be given a JSON list of articles with title, summary, source, and categ
 Return ONLY valid JSON (no markdown, no extra text) in this exact structure:
 {
   "headline": "One punchy sentence summarizing the most important development today",
+  "signal_surge": {
+    "topic": "The single hottest topic appearing across 3+ independent sources today",
+    "sources_count": 4,
+    "why_surging": "2 sentences on why this topic is dominating right now and what it means",
+    "sources": ["Source1", "Source2", "Source3"]
+  },
   "top_stories": [
     {
       "title": "Story title (rewritten to be clear and direct)",
       "source": "Source name",
       "url": "original url",
       "why_it_matters": "2-3 sentences explaining the significance for AI practitioners and builders",
-      "category": "Model Releases | Research | Tools & Products | Industry News | Community"
+      "category": "Model Releases | Research | Tools & Products | Industry News | Community",
+      "credibility": "high | medium | community"
     }
   ],
   "quick_hits": [
@@ -53,7 +60,10 @@ Rules:
 - arxiv_picks: 2 to 3 most practically relevant papers only, skip pure theory
 - If there are no arXiv articles, return empty array for arxiv_picks
 - Be direct and opinionated in why_it_matters — no filler phrases
-- The vike_note is personalized career advice based on what matters most in the digest"""
+- The vike_note is personalized career advice based on what matters most in the digest
+- signal_surge: identify the ONE topic that appears most across independent sources (e.g. "AI agents", "GPT-5", "open source LLMs"). Count how many distinct sources mention it.
+- credibility field: "high" for lab blogs/research papers, "medium" for tech news, "community" for Reddit/HN
+- If no clear signal surge (fewer than 3 sources on any one topic), set signal_surge to null"""
 
 
 def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> Dict:

@@ -10,338 +10,136 @@ from datetime import datetime, timezone
 from typing import Dict
 
 CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; overflow: hidden; }
 
-body {
-  background: #F5EFE3;
-  font-family: 'DM Sans', sans-serif;
-  color: #2C1810;
+body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
+
+.nav-tab-bar {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 200; background: #6366F1; border-radius: 999px; padding: 5px 6px;
+  display: flex; gap: 2px; box-shadow: 0 4px 24px rgba(99,102,241,0.35);
 }
+.nav-tab {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em;
+  padding: 6px 18px; border-radius: 999px; border: none; cursor: pointer;
+  background: transparent; color: rgba(255,255,255,0.7); text-decoration: none;
+  transition: background 0.18s, color 0.18s; white-space: nowrap;
+}
+.nav-tab.active, .nav-tab:hover { background: #fff; color: #4338CA; }
 
 .feed {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .feed::-webkit-scrollbar { display: none; }
 
 .card {
-  height: 100vh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  display: flex;
-  flex-direction: column;
-  padding: 2.25rem 2rem 1.75rem;
-  position: relative;
-  border-bottom: 1px solid #E0D5C4;
+  height: 100vh; scroll-snap-align: start; scroll-snap-stop: always;
+  position: relative; padding: 72px 2rem 1.5rem;
+  border-bottom: 1px solid #E2E8F0; overflow: hidden;
 }
 
-.card-header-type  { background: #F5EFE3; }
-.card-funding-type { background: #FAF7F0; }
-.card-startup-type { background: #F0EBE0; }
-.card-trend-type   { background: #FAF7F0; }
-.card-policy-type  { background: #F5EFE3; }
-.card-hits-type    { background: #F0EBE0; }
+.card-header-type  { background: #0F172A; }
+.card-funding-type { background: #FFFFFF; }
+.card-startup-type { background: #F8FAFC; }
+.card-trend-type   { background: #F1F5F9; }
+.card-policy-type  { background: #FFFFFF; }
+.card-hits-type    { background: #F8FAFC; }
 
-.card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: auto;
-}
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
 
 .category-pill {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #F5EFE3;
-  border-radius: 20px;
-  padding: 4px 14px;
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #fff; border-radius: 999px; padding: 4px 14px;
 }
 
-.card-counter {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #B09880;
-}
+.card-counter { font-family: 'DM Mono', monospace; font-size: 11px; color: #94A3B8; }
 
 .card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.5rem 0 1rem;
+  display: flex; flex-direction: column;
+  overflow-y: auto; padding-bottom: 80px;
+  height: calc(100vh - 160px);
 }
 
 .card-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #E0D5C4;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid #E2E8F0;
 }
+.card-header-type .card-bottom { background: rgba(15,23,42,0.92); border-top-color: rgba(255,255,255,0.08); }
 
 .read-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #7A4F35;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 7px 18px;
-  text-decoration: none;
-  letter-spacing: 0.04em;
+  font-family: 'DM Mono', monospace; font-size: 11px; color: #6366F1;
+  border: 1.5px solid #6366F1; border-radius: 999px; padding: 8px 20px;
+  text-decoration: none; letter-spacing: 0.04em; transition: background 0.15s, color 0.15s;
 }
-.read-btn:hover { background: #5C3D2E; color: #F5EFE3; border-color: #5C3D2E; }
+.read-btn:hover { background: #6366F1; color: #fff; }
 
-.swipe-hint {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #C4A882;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.swipe-arrow { animation: bounce 1.6s ease-in-out infinite; display: inline-block; font-size: 14px; }
-@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.swipe-hint { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; display: flex; align-items: center; gap: 5px; }
+.swipe-arrow { animation: bounce 1.6s ease-in-out infinite; display: inline-block; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
-.card-divider { width: 36px; height: 2px; background: #C4A882; border-radius: 2px; margin-bottom: 1rem; }
+.card-divider { width: 36px; height: 2px; background: #6366F1; border-radius: 2px; margin-bottom: 1rem; }
 
-/* Header card */
-.header-brand {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #9B7E6A;
-}
-.header-brand a {
-  color: #7A4F35;
-  text-decoration: none;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 4px 12px;
-  margin-left: 8px;
-  font-size: 9px;
-}
-.header-date {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #B09880;
-  margin-bottom: 1.25rem;
-}
-.header-headline {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
-  font-weight: 800;
-  line-height: 1.2;
-  color: #2C1810;
-  margin-bottom: 1.5rem;
-}
-.header-note {
-  font-size: 13px;
-  line-height: 1.75;
-  color: #5C4033;
-  border-left: 3px solid #C4A882;
-  padding-left: 1rem;
-  max-width: 540px;
-}
-.header-note strong {
-  color: #7A4F35;
-  font-size: 10px;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.4rem;
-}
-.start-btn {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  background: #5C3D2E;
-  color: #F5EFE3;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+/* Header */
+.header-date { font-family: 'DM Mono', monospace; font-size: 10px; color: #64748B; margin-bottom: 1rem; letter-spacing: 0.06em; }
+.header-headline { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4.5vw, 2.3rem); font-weight: 800; line-height: 1.2; color: #F8FAFC; margin-bottom: 1.5rem; }
+.header-note { font-size: 13px; line-height: 1.75; color: #94A3B8; border-left: 3px solid #6366F1; padding-left: 1rem; max-width: 540px; }
+.header-note strong { color: #A5B4FC; font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+.start-btn { font-family: 'DM Mono', monospace; font-size: 11px; background: #6366F1; color: #fff; border: none; border-radius: 999px; padding: 10px 26px; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; }
+.start-btn:hover { background: #4F46E5; }
 
-/* Funding card */
-.startup-name-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 800;
-  color: #2C1810;
-  line-height: 1.1;
-  margin-bottom: 0.4rem;
-}
-.funding-amount-lg {
-  font-family: 'DM Mono', monospace;
-  font-size: clamp(2rem, 7vw, 3rem);
-  font-weight: 500;
-  color: #3D5A3E;
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-.funding-meta-row {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.meta-chip {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: #E8DDD0;
-  color: #5C3D2E;
-  border-radius: 20px;
-  padding: 4px 12px;
-}
-.funding-focus {
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: #5C4033;
-}
+/* Funding */
+.startup-name-lg { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; color: #0F172A; line-height: 1.1; margin-bottom: 0.4rem; }
+.funding-amount-lg { font-family: 'DM Mono', monospace; font-size: clamp(2rem, 7vw, 3rem); font-weight: 500; color: #059669; line-height: 1; margin-bottom: 0.75rem; }
+.funding-meta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.meta-chip { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 4px 12px; }
+.funding-focus { font-size: 13.5px; line-height: 1.7; color: #475569; }
 
-/* Startup card */
-.startup-name-md {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.3rem;
-}
-.founder-line {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #9B7E6A;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.startup-what { font-size: 14px; line-height: 1.7; color: #5C4033; margin-bottom: 0.6rem; }
-.startup-why {
-  font-size: 13px;
-  line-height: 1.65;
-  color: #9B7E6A;
-  border-left: 2px solid #C4A882;
-  padding-left: 0.75rem;
-  font-style: italic;
-}
+/* Startup */
+.startup-name-md { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3.5vw, 1.75rem); font-weight: 700; color: #0F172A; margin-bottom: 0.3rem; }
+.founder-line { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+.startup-what { font-size: 14px; line-height: 1.7; color: #475569; margin-bottom: 0.6rem; }
+.startup-why { font-size: 13px; line-height: 1.65; color: #64748B; border-left: 2px solid #6366F1; padding-left: 0.75rem; font-style: italic; }
 
-/* Trend card */
-.trend-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #E0D5C4; }
+/* Trends */
+.trend-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #E2E8F0; }
 .trend-item:last-child { border-bottom: none; margin-bottom: 0; }
-.trend-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.5rem;
-}
-.trend-detail { font-size: 13px; color: #5C4033; line-height: 1.7; }
+.trend-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #0F172A; margin-bottom: 0.5rem; }
+.trend-detail { font-size: 13px; color: #475569; line-height: 1.7; }
 
-/* Policy card */
-.policy-title-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
-  font-weight: 700;
-  color: #2C1810;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
-  text-decoration: none;
-  display: block;
-}
-.policy-title-lg:hover { color: #7A4F35; }
-.policy-body { font-size: 14px; line-height: 1.75; color: #5C4033; }
-.policy-source {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: #9B7E6A;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-top: 0.75rem;
-  display: block;
-}
+/* Policy */
+.policy-title-lg { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 700; color: #0F172A; margin-bottom: 0.75rem; line-height: 1.3; text-decoration: none; display: block; }
+.policy-title-lg:hover { color: #6366F1; }
+.policy-body { font-size: 14px; line-height: 1.75; color: #475569; }
+.policy-source { font-family: 'DM Mono', monospace; font-size: 10px; color: #94A3B8; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.75rem; display: block; }
 
 /* Quick hits */
 .hits-list { list-style: none; }
-.hit-item { padding: 0.85rem 0; border-bottom: 1px solid #E0D5C4; display: flex; gap: 0.75rem; align-items: flex-start; }
+.hit-item { padding: 0.85rem 0; border-bottom: 1px solid #E2E8F0; display: flex; gap: 0.75rem; align-items: flex-start; }
 .hit-item:last-child { border-bottom: none; }
-.hit-dot { color: #C4A882; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.hit-title { font-size: 13px; font-weight: 500; color: #2C1810; text-decoration: none; line-height: 1.4; }
-.hit-title:hover { color: #7A4F35; }
-.hit-source { font-size: 10px; color: #9B7E6A; font-family: 'DM Mono', monospace; margin-left: 4px; }
-.hit-liner { font-size: 12px; color: #9B7E6A; margin-top: 3px; line-height: 1.5; }
+.hit-dot { color: #6366F1; font-size: 12px; flex-shrink: 0; margin-top: 3px; }
+.hit-title { font-size: 13px; font-weight: 500; color: #0F172A; text-decoration: none; line-height: 1.4; }
+.hit-title:hover { color: #6366F1; }
+.hit-source { font-size: 10px; color: #94A3B8; font-family: 'DM Mono', monospace; margin-left: 4px; }
+.hit-liner { font-size: 12px; color: #64748B; margin-top: 3px; line-height: 1.5; }
 
 /* Progress rail */
-.progress-rail {
-  position: fixed;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 80px;
-  background: #E0D5C4;
-  border-radius: 3px;
-  z-index: 100;
-}
-.progress-fill {
-  width: 100%;
-  background: #5C3D2E;
-  border-radius: 3px;
-  height: 10%;
-  transition: height 0.3s ease;
-}
+.progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
+.progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
 
 /* Footer */
-.footer-card {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  background: #5C3D2E;
-}
-.footer-brand-lg {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #F5EFE3;
-  margin-bottom: 0.75rem;
-}
-.footer-sub {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #C4A882;
-  margin-bottom: 2rem;
-}
-.footer-restart {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: #F5EFE3;
-  border: 1px solid rgba(245,239,227,0.35);
-  border-radius: 20px;
-  padding: 8px 22px;
-  cursor: pointer;
-  background: transparent;
-}
-.footer-restart:hover { background: rgba(245,239,227,0.1); }
+.footer-card { height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: #1E1B4B; }
+.footer-brand-lg { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: #F8FAFC; margin-bottom: 0.75rem; }
+.footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A5B4FC; margin-bottom: 2rem; }
+.footer-restart { font-family: 'DM Mono', monospace; font-size: 11px; color: #F8FAFC; border: 1px solid rgba(165,180,252,0.4); border-radius: 999px; padding: 8px 24px; cursor: pointer; background: transparent; letter-spacing: 0.06em; }
+.footer-restart:hover { background: rgba(165,180,252,0.1); }
 """
 
 
@@ -378,18 +176,18 @@ def render_india_html(digest: Dict) -> str:
 
     cards_html += f"""
     <section class="card card-header-type" data-index="0">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
-        <span class="header-brand">🇮🇳 India AI Pulse <a href="index.html">⚡ Global</a></span>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">🇮🇳 India AI Pulse</span>
         <span class="card-counter">1 / {total_cards}</span>
       </div>
-      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
+      <div class="card-body" style="padding-bottom:80px">
         <div class="header-date">{date_str} · {time_str}</div>
         <h1 class="header-headline">{headline}</h1>
         {vike_block}
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({{top:window.innerHeight,behavior:'smooth'}})">Read today's pulse ↓</button>
-        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe up</span>
+        <span class="swipe-hint" style="color:#475569"><span class="swipe-arrow">↑</span> swipe up</span>
       </div>
     </section>"""
     card_index = 1
@@ -403,7 +201,7 @@ def render_india_html(digest: Dict) -> str:
         cards_html += f"""
     <section class="card card-funding-type" data-index="{card_index - 1}">
       <div class="card-top">
-        <span class="category-pill" style="background:#3D5A3E">Funding</span>
+        <span class="category-pill" style="background:#059669">Funding</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body">
@@ -424,7 +222,7 @@ def render_india_html(digest: Dict) -> str:
         startups_inner = ""
         for s in new_startups:
             startups_inner += f"""
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E0D5C4">
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
           <div class="startup-name-md">{s.get("name","")}</div>
           <div class="founder-line">by {s.get("founded_by","Unknown")}</div>
           <p class="startup-what">{s.get("what_it_does","")}</p>
@@ -435,7 +233,7 @@ def render_india_html(digest: Dict) -> str:
         cards_html += f"""
     <section class="card card-startup-type" data-index="{card_index - 1}">
       <div class="card-top">
-        <span class="category-pill" style="background:#7A4F35">New Startups</span>
+        <span class="category-pill" style="background:#7C3AED">New Startups</span>
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body" style="overflow-y:auto">
@@ -471,7 +269,7 @@ def render_india_html(digest: Dict) -> str:
         policy_inner = ""
         for p in policy_watch:
             policy_inner += f"""
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E0D5C4">
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #E2E8F0">
           <a href="{p.get('url','#')}" target="_blank" rel="noopener" class="policy-title-lg">{p.get("title","")}</a>
           <p class="policy-body">{p.get("body","")}</p>
           <span class="policy-source">{p.get("source","")}</span>
@@ -532,6 +330,11 @@ def render_india_html(digest: Dict) -> str:
   <style>{CSS}</style>
 </head>
 <body>
+
+<nav class="nav-tab-bar">
+  <a class="nav-tab" href="index.html">⚡ Global</a>
+  <a class="nav-tab active" href="india.html">🇮🇳 India</a>
+</nav>
 
 <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
 

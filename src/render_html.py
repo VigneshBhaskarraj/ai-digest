@@ -10,27 +10,57 @@ from datetime import datetime, timezone
 from typing import Dict
 
 CATEGORY_COLORS = {
-    "Model Releases":   "#5C3D2E",
-    "Research":         "#384840",
-    "Tools & Products": "#3B4852",
-    "Industry News":    "#7A4F35",
-    "Community":        "#5C3A4A",
+    "Model Releases":   "#4338CA",
+    "Research":         "#0F766E",
+    "Tools & Products": "#1D4ED8",
+    "Industry News":    "#6366F1",
+    "Community":        "#7C3AED",
 }
 
 CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
+html, body { height: 100%; overflow: hidden; }
 
 body {
-  background: #F5EFE3;
-  font-family: 'DM Sans', sans-serif;
-  color: #2C1810;
+  background: #F8FAFC;
+  font-family: 'Inter', sans-serif;
+  color: #0F172A;
+}
+
+/* ── Floating Nav Tab ─────────────────── */
+.nav-tab-bar {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: #6366F1;
+  border-radius: 999px;
+  padding: 5px 6px;
+  display: flex;
+  gap: 2px;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.35);
+}
+.nav-tab {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+.nav-tab.active, .nav-tab:hover {
+  background: #fff;
+  color: #4338CA;
 }
 
 /* ── Feed ─────────────────────────────── */
@@ -48,50 +78,49 @@ body {
   height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  display: flex;
-  flex-direction: column;
-  padding: 2.25rem 2rem 1.75rem;
   position: relative;
-  border-bottom: 1px solid #E0D5C4;
+  padding: 72px 2rem 1.5rem;
+  border-bottom: 1px solid #E2E8F0;
+  overflow: hidden;
 }
 
-.card-header-type { background: #F5EFE3; justify-content: center; }
-.card-story-type  { background: #FAF7F0; }
-.card-hits-type   { background: #F5EFE3; }
-.card-arxiv-type  { background: #F0EBE0; }
-.card-pulse-type  { background: #FAF7F0; }
+.card-header-type { background: #0F172A; }
+.card-story-type  { background: #FFFFFF; }
+.card-hits-type   { background: #F8FAFC; }
+.card-arxiv-type  { background: #F1F5F9; }
+.card-pulse-type  { background: #FFFFFF; }
 
 /* ── Card Top Bar ─────────────────────── */
 .card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: auto;
+  margin-bottom: 1.25rem;
 }
 
 .category-pill {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #F5EFE3;
-  border-radius: 20px;
+  color: #fff;
+  border-radius: 999px;
   padding: 4px 14px;
 }
 
 .card-counter {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  color: #B09880;
+  color: #94A3B8;
 }
 
 /* ── Card Body ────────────────────────── */
 .card-body {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 1.5rem 0 1rem;
+  overflow-y: auto;
+  padding-bottom: 80px;
+  height: calc(100vh - 160px);
 }
 
 .card-source {
@@ -99,112 +128,102 @@ body {
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #9B7E6A;
-  margin-bottom: 0.85rem;
+  color: #94A3B8;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .card-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.4rem, 4vw, 1.9rem);
   font-weight: 700;
-  line-height: 1.2;
-  color: #2C1810;
-  margin-bottom: 1.1rem;
-}
-
-.card-title em {
-  font-style: italic;
-  color: #7A4F35;
+  line-height: 1.25;
+  color: #0F172A;
+  margin-bottom: 1rem;
 }
 
 .card-divider {
   width: 36px;
   height: 2px;
-  background: #C4A882;
+  background: #6366F1;
   border-radius: 2px;
   margin-bottom: 1rem;
 }
 
 .card-why {
   font-size: 14px;
-  line-height: 1.75;
-  color: #5C4033;
-  max-width: 600px;
+  line-height: 1.8;
+  color: #475569;
 }
 
-/* ── Card Bottom ──────────────────────── */
+/* ── Card Bottom — always visible at base of card ── */
 .card-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #E0D5C4;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid #E2E8F0;
+}
+
+.card-header-type .card-bottom {
+  background: rgba(15,23,42,0.92);
+  border-top-color: rgba(255,255,255,0.08);
+}
+.card-surge-type .card-bottom {
+  background: rgba(30,27,75,0.92);
+  border-top-color: rgba(165,180,252,0.15);
 }
 
 .read-btn {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  color: #7A4F35;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 7px 18px;
+  color: #6366F1;
+  border: 1.5px solid #6366F1;
+  border-radius: 999px;
+  padding: 8px 20px;
   text-decoration: none;
   letter-spacing: 0.04em;
   transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
-.read-btn:hover {
-  background: #5C3D2E;
-  color: #F5EFE3;
-  border-color: #5C3D2E;
-}
+.read-btn:hover { background: #6366F1; color: #fff; }
 
 .swipe-hint {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  color: #C4A882;
+  color: #94A3B8;
   display: flex;
   align-items: center;
   gap: 5px;
-  letter-spacing: 0.05em;
 }
 
 .swipe-arrow {
   animation: bounce 1.6s ease-in-out infinite;
   display: inline-block;
-  font-size: 14px;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-5px); }
+  50%       { transform: translateY(-4px); }
 }
 
 /* ── Header Card ──────────────────────── */
-.header-brand {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #9B7E6A;
-  margin-bottom: 2rem;
-}
-
-.header-brand a {
-  color: #7A4F35;
-  text-decoration: none;
-  border: 1px solid #C4A882;
-  border-radius: 20px;
-  padding: 4px 12px;
-  margin-left: 8px;
-  font-size: 9px;
-}
-
 .header-date {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  color: #B09880;
-  margin-bottom: 1.25rem;
+  color: #64748B;
+  margin-bottom: 1rem;
+  letter-spacing: 0.06em;
 }
 
 .header-session {
@@ -212,34 +231,35 @@ body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #F5EFE3;
-  background: #5C3D2E;
-  border-radius: 20px;
+  color: #A5B4FC;
+  background: rgba(99,102,241,0.2);
+  border: 1px solid rgba(165,180,252,0.3);
+  border-radius: 999px;
   padding: 4px 14px;
   display: inline-block;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .header-headline {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
   font-weight: 800;
   line-height: 1.2;
-  color: #2C1810;
+  color: #F8FAFC;
   margin-bottom: 1.5rem;
 }
 
 .header-note {
   font-size: 13px;
   line-height: 1.75;
-  color: #5C4033;
-  border-left: 3px solid #C4A882;
+  color: #94A3B8;
+  border-left: 3px solid #6366F1;
   padding-left: 1rem;
   max-width: 540px;
 }
 
 .header-note strong {
-  color: #7A4F35;
+  color: #A5B4FC;
   font-size: 10px;
   font-family: 'DM Mono', monospace;
   letter-spacing: 0.08em;
@@ -251,80 +271,195 @@ body {
 .start-btn {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  background: #5C3D2E;
-  color: #F5EFE3;
+  background: #6366F1;
+  color: #fff;
   border: none;
-  border-radius: 20px;
-  padding: 10px 24px;
+  border-radius: 999px;
+  padding: 10px 26px;
   cursor: pointer;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: background 0.15s;
 }
+.start-btn:hover { background: #4F46E5; }
 
 /* ── Quick Hits Card ──────────────────── */
 .hits-list { list-style: none; }
 .hit-item {
   padding: 0.85rem 0;
-  border-bottom: 1px solid #E0D5C4;
+  border-bottom: 1px solid #E2E8F0;
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
 }
 .hit-item:last-child { border-bottom: none; }
-.hit-dot { color: #C4A882; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.hit-content {}
+.hit-dot { color: #6366F1; font-size: 12px; flex-shrink: 0; margin-top: 3px; }
 .hit-title {
   font-size: 13px;
   font-weight: 500;
-  color: #2C1810;
+  color: #0F172A;
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.45;
 }
-.hit-title:hover { color: #7A4F35; }
-.hit-source { font-size: 10px; color: #9B7E6A; font-family: 'DM Mono', monospace; margin-left: 4px; }
-.hit-liner { font-size: 12px; color: #9B7E6A; margin-top: 3px; line-height: 1.5; }
+.hit-title:hover { color: #6366F1; }
+.hit-source { font-size: 10px; color: #94A3B8; font-family: 'DM Mono', monospace; margin-left: 4px; }
+.hit-liner { font-size: 12px; color: #64748B; margin-top: 3px; line-height: 1.5; }
 
 /* ── arXiv Card ───────────────────────── */
-.arxiv-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #E0D5C4; }
+.arxiv-item { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #E2E8F0; }
 .arxiv-item:last-child { border-bottom: none; margin-bottom: 0; }
 .arxiv-title {
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #2C1810;
+  color: #0F172A;
   margin-bottom: 0.4rem;
   text-decoration: none;
   display: block;
   line-height: 1.35;
 }
-.arxiv-title:hover { color: #7A4F35; }
-.arxiv-tldr { font-size: 13px; color: #5C4033; line-height: 1.65; }
+.arxiv-title:hover { color: #6366F1; }
+.arxiv-tldr { font-size: 13px; color: #475569; line-height: 1.65; }
 
 /* ── Pulse Card ───────────────────────── */
 .pulse-text {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
   font-style: italic;
   font-weight: 700;
   line-height: 1.6;
-  color: #2C1810;
+  color: #0F172A;
 }
 
-/* ── Fixed Progress Bar ───────────────── */
+/* ── Signal Surge Card ────────────────── */
+.card-surge-type { background: #1E1B4B; }
+.surge-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #A5B4FC;
+  margin-bottom: 1.25rem;
+}
+.surge-topic {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 800;
+  font-style: italic;
+  color: #F8FAFC;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.surge-why {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #A5B4FC;
+  max-width: 560px;
+  margin-bottom: 1.5rem;
+}
+.surge-sources { display: flex; flex-wrap: wrap; gap: 8px; }
+.surge-source-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: #C7D2FE;
+  background: #312E81;
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+/* ── Credibility Badge ────────────────── */
+.cred-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  padding: 2px 9px;
+  vertical-align: middle;
+}
+.cred-high     { background: #DCFCE7; color: #15803D; }
+.cred-medium   { background: #FEF9C3; color: #A16207; }
+.cred-community{ background: #EEF2FF; color: #4338CA; }
+
+/* ── Whitepaper Cards ─────────────────── */
+.card-paper-type { background: #F1F5F9; }
+.paper-item {
+  margin-bottom: 0.75rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.paper-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  gap: 1rem;
+}
+.paper-header:hover { background: #F8FAFC; }
+.paper-title-wrap { flex: 1; }
+.paper-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+.paper-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #94A3B8;
+  letter-spacing: 0.04em;
+}
+.paper-toggle {
+  font-size: 16px;
+  color: #6366F1;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+.paper-toggle.open { transform: rotate(90deg); }
+.paper-body { display: none; padding: 0 1rem 1rem; border-top: 1px solid #E2E8F0; }
+.paper-body.open { display: block; }
+.paper-abstract { font-size: 12px; line-height: 1.7; color: #475569; margin-top: 0.75rem; margin-bottom: 0.75rem; }
+.paper-read-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #6366F1;
+  border: 1px solid #6366F1;
+  border-radius: 999px;
+  padding: 5px 14px;
+  text-decoration: none;
+}
+.paper-read-btn:hover { background: #6366F1; color: #fff; }
+.paper-source-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  background: #EEF2FF;
+  color: #4338CA;
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+/* ── Progress Rail ────────────────────── */
 .progress-rail {
   position: fixed;
-  right: 16px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   width: 3px;
   height: 80px;
-  background: #E0D5C4;
+  background: #E2E8F0;
   border-radius: 3px;
   z-index: 100;
 }
 .progress-fill {
   width: 100%;
-  background: #5C3D2E;
+  background: #6366F1;
   border-radius: 3px;
   height: 10%;
   transition: height 0.3s ease;
@@ -340,13 +475,13 @@ body {
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background: #5C3D2E;
+  background: #1E1B4B;
 }
 .footer-brand-lg {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   font-weight: 800;
-  color: #F5EFE3;
+  color: #F8FAFC;
   margin-bottom: 0.75rem;
 }
 .footer-sub {
@@ -354,21 +489,21 @@ body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #C4A882;
+  color: #A5B4FC;
   margin-bottom: 2rem;
 }
 .footer-restart {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  color: #F5EFE3;
-  border: 1px solid rgba(245,239,227,0.35);
-  border-radius: 20px;
-  padding: 8px 22px;
+  color: #F8FAFC;
+  border: 1px solid rgba(165,180,252,0.4);
+  border-radius: 999px;
+  padding: 8px 24px;
   cursor: pointer;
   background: transparent;
   letter-spacing: 0.06em;
 }
-.footer-restart:hover { background: rgba(245,239,227,0.1); }
+.footer-restart:hover { background: rgba(165,180,252,0.1); }
 """
 
 
@@ -377,27 +512,44 @@ def _pill(cat: str) -> str:
     return f'<span class="category-pill" style="background:{color}">{cat}</span>'
 
 
-def render_html(digest: Dict, session_label: str = "Morning") -> str:
+def _cred_badge(credibility: str) -> str:
+    mapping = {
+        "high":      ("cred-high",      "✓ Lab / Research"),
+        "medium":    ("cred-medium",    "◎ Tech Press"),
+        "community": ("cred-community", "⬡ Community"),
+    }
+    cls, label = mapping.get(credibility, ("cred-medium", "◎ Tech Press"))
+    return f'<span class="cred-badge {cls}">{label}</span>'
+
+
+def render_html(digest: Dict, session_label: str = "Morning", papers: list = None) -> str:
     now = datetime.now(timezone.utc)
     date_str  = now.strftime("%A, %B %d, %Y")
     time_str  = now.strftime("%H:%M UTC")
     session_emoji = "🌅" if session_label == "Morning" else "🌆"
 
-    headline       = digest.get("headline", "Your AI digest is ready.")
-    top_stories    = digest.get("top_stories", [])
-    quick_hits     = digest.get("quick_hits", [])
-    arxiv_picks    = digest.get("arxiv_picks", [])
+    headline        = digest.get("headline", "Your AI digest is ready.")
+    signal_surge    = digest.get("signal_surge")
+    top_stories     = digest.get("top_stories", [])
+    quick_hits      = digest.get("quick_hits", [])
+    arxiv_picks     = digest.get("arxiv_picks", [])
     community_pulse = digest.get("community_pulse", "")
-    vike_note      = digest.get("vike_note", "")
+    vike_note       = digest.get("vike_note", "")
+    papers          = papers or []
+
+    # Chunk papers into cards of 3 each
+    paper_chunks = [papers[i:i+3] for i in range(0, min(len(papers), 9), 3)]
 
     # Count total cards for the counter
     total_cards = (
-        1                            # header
+        1                                   # header
+        + (1 if signal_surge else 0)        # signal surge
         + len(top_stories)
         + (1 if quick_hits else 0)
         + (1 if arxiv_picks else 0)
         + (1 if community_pulse else 0)
-        + 1                          # footer
+        + len(paper_chunks)                 # whitepaper cards
+        + 1                                 # footer
     )
 
     cards_html = ""
@@ -410,11 +562,11 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
 
     cards_html += f"""
     <section class="card card-header-type" data-index="0">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:auto">
-        <span class="header-brand">⚡ AI Digest <a href="india.html">🇮🇳 India Pulse</a></span>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">⚡ AI Digest</span>
         <span class="card-counter">1 / {total_cards}</span>
       </div>
-      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
+      <div class="card-body" style="padding-bottom:80px">
         <div class="header-date">{date_str} · {time_str}</div>
         <div class="header-session">{session_emoji} {session_label} Edition</div>
         <h1 class="header-headline">{headline}</h1>
@@ -422,19 +574,48 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({{top:window.innerHeight,behavior:'smooth'}})">Read today's digest ↓</button>
-        <span class="swipe-hint"><span class="swipe-arrow">↑</span> swipe up</span>
+        <span class="swipe-hint" style="color:#475569"><span class="swipe-arrow">↑</span> swipe up</span>
       </div>
     </section>"""
     card_index = 1
 
+    # ── Signal Surge Card ─────────────────────────────────────────────────────
+    if signal_surge:
+        card_index += 1
+        surge_topic   = signal_surge.get("topic", "")
+        surge_why     = signal_surge.get("why_surging", "")
+        surge_count   = signal_surge.get("sources_count", 0)
+        surge_srcs    = signal_surge.get("sources", [])
+        surge_tags_html = "".join(
+            f'<span class="surge-source-tag">{s}</span>' for s in surge_srcs[:6]
+        )
+        cards_html += f"""
+    <section class="card card-surge-type" data-index="{card_index - 1}">
+      <div class="card-top" style="border-bottom:1px solid rgba(196,168,130,0.2);padding-bottom:0.75rem;margin-bottom:auto">
+        <span class="surge-label">⚡ Signal Surge — trending across {surge_count} sources</span>
+        <span class="card-counter" style="color:#9B7E6A">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
+        <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
+        <div class="surge-topic">{surge_topic}</div>
+        <p class="surge-why">{surge_why}</p>
+        <div class="surge-sources">{surge_tags_html}</div>
+      </div>
+      <div class="card-bottom" style="border-top:1px solid rgba(196,168,130,0.2)">
+        <span class="swipe-hint" style="color:#9B7E6A"><span class="swipe-arrow">↑</span> swipe up</span>
+      </div>
+    </section>"""
+
     # ── Top Story Cards ───────────────────────────────────────────────────────
     for story in top_stories:
-        cat   = story.get("category", "Industry News")
-        pill  = _pill(cat)
-        src   = story.get("source", "")
-        title = story.get("title", "")
-        why   = story.get("why_it_matters", "")
-        url   = story.get("url", "#")
+        cat         = story.get("category", "Industry News")
+        pill        = _pill(cat)
+        src         = story.get("source", "")
+        title       = story.get("title", "")
+        why         = story.get("why_it_matters", "")
+        url         = story.get("url", "#")
+        credibility = story.get("credibility", "medium")
+        badge       = _cred_badge(credibility)
         card_index += 1
 
         cards_html += f"""
@@ -444,7 +625,7 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body">
-        <div class="card-source">{src}</div>
+        <div class="card-source">{src}{badge}</div>
         <h2 class="card-title">{title}</h2>
         <div class="card-divider"></div>
         <p class="card-why">{why}</p>
@@ -516,6 +697,51 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
       </div>
     </section>"""
 
+    # ── Whitepaper Cards ──────────────────────────────────────────────────────
+    for chunk_idx, chunk in enumerate(paper_chunks):
+        card_index += 1
+        chunk_label = f"Whitepapers · {chunk_idx + 1} of {len(paper_chunks)}"
+        papers_html = ""
+        for p_idx, p in enumerate(chunk):
+            card_id   = f"paper-{card_index}-{p_idx}"
+            src_tag   = f'<span class="paper-source-tag">{p.get("source","")}</span>'
+            pub_date  = p.get("published", "")
+            authors   = p.get("authors", "")
+            meta_parts = [src_tag]
+            if pub_date and pub_date != "Unknown":
+                meta_parts.append(pub_date)
+            if authors:
+                meta_parts.append(authors)
+            meta_html = " · ".join(str(x) for x in meta_parts)
+            abstract  = p.get("abstract", "")[:500]
+            purl      = p.get("url", "#")
+            ptitle    = p.get("title", "")
+            papers_html += f"""
+        <div class="paper-item">
+          <div class="paper-header" onclick="togglePaper('{card_id}')">
+            <div class="paper-title-wrap">
+              <div class="paper-title">{ptitle}</div>
+              <div class="paper-meta">{meta_html}</div>
+            </div>
+            <span class="paper-toggle" id="toggle-{card_id}">›</span>
+          </div>
+          <div class="paper-body" id="body-{card_id}">
+            <p class="paper-abstract">{abstract}</p>
+            <a href="{purl}" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+          </div>
+        </div>"""
+
+        cards_html += f"""
+    <section class="card card-paper-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#384840">📄 {chunk_label}</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body" style="overflow-y:auto;padding-top:1rem">
+        {papers_html}
+      </div>
+    </section>"""
+
     # ── Footer Card ───────────────────────────────────────────────────────────
     cards_html += f"""
     <section class="footer-card" data-index="{card_index}">
@@ -530,10 +756,19 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>⚡ AI Digest — {session_label} Edition · {date_str}</title>
-  <meta name="description" content="Daily AI news digest — top stories, quick hits, and research picks.">
+  <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#5C3D2E">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <style>{CSS}</style>
 </head>
 <body>
+
+<nav class="nav-tab-bar">
+  <a class="nav-tab active" href="index.html">⚡ Global</a>
+  <a class="nav-tab" href="india.html">🇮🇳 India</a>
+</nav>
 
 <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
 
@@ -565,6 +800,15 @@ def render_html(digest: Dict, session_label: str = "Morning") -> str:
       feed.scrollBy({{ top: -window.innerHeight, behavior: 'smooth' }});
     }}
   }});
+
+  // ── Whitepaper expand/collapse ────────────────────────────────────────────
+  function togglePaper(id) {{
+    const body   = document.getElementById('body-' + id);
+    const toggle = document.getElementById('toggle-' + id);
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    toggle.classList.toggle('open', !isOpen);
+  }}
 </script>
 </body>
 </html>"""

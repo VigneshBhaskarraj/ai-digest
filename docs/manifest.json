@@ -1,0 +1,37 @@
+{
+  "name": "AI Digest",
+  "short_name": "AI Digest",
+  "description": "Daily AI news — top stories, whitepapers, and signal surge",
+  "start_url": "/ai-digest/",
+  "scope": "/ai-digest/",
+  "display": "standalone",
+  "background_color": "#F5EFE3",
+  "theme_color": "#5C3D2E",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Morning Digest",
+      "url": "/ai-digest/",
+      "description": "Today's AI morning digest"
+    },
+    {
+      "name": "India AI Pulse",
+      "url": "/ai-digest/india.html",
+      "description": "India AI funding and startup news"
+    }
+  ]
+}

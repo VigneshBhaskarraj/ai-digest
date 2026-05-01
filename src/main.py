@@ -19,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from fetch_news import fetch_all
+from fetch_papers import fetch_all_papers
 from summarize import summarize_articles
 from render_html import render_html, save_dashboard
 
@@ -31,7 +32,7 @@ def run(session: str = "morning"):
     print(f"  AI Digest Pipeline — {session_label} Edition")
     print(f"{'='*50}\n")
 
-    print("[1/3] Fetching news...")
+    print("[1/4] Fetching news...")
     articles = fetch_all(max_age_hours=max_age)
     print(f"      {len(articles)} articles fetched\n")
 
@@ -39,14 +40,18 @@ def run(session: str = "morning"):
         print("No articles found. Exiting.")
         sys.exit(0)
 
-    print("[2/3] Summarizing with Claude API...")
+    print("[2/4] Fetching whitepapers...")
+    papers = fetch_all_papers(max_age_hours=48)
+    print(f"      {len(papers)} papers fetched\n")
+
+    print("[3/4] Summarizing with Claude API...")
     digest = summarize_articles(articles, session_label)
     top_count   = len(digest.get("top_stories", []))
     quick_count = len(digest.get("quick_hits", []))
     print(f"      {top_count} top stories, {quick_count} quick hits\n")
 
-    print("[3/3] Rendering HTML dashboard...")
-    html = render_html(digest, session_label)
+    print("[4/4] Rendering HTML dashboard...")
+    html = render_html(digest, session_label, papers=papers)
 
     output_path = os.path.join(
         os.environ.get("GITHUB_WORKSPACE", "."),
