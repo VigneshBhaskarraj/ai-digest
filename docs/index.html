@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ AI Digest — Morning Edition · Tuesday, May 05, 2026</title>
+  <title>⚡ AI Digest — Evening Edition · Wednesday, May 06, 2026</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6366F1">
@@ -610,10 +610,10 @@ body {
         <span class="card-counter">1 / 13</span>
       </div>
       <div class="card-body">
-        <div class="header-date">Tuesday, May 05, 2026 · 20:38 UTC</div>
-        <div class="header-session">🌅 Morning Edition</div>
-        <h1 class="header-headline">OpenAI launches GPT-5.5 Instant as ChatGPT's new default, while Google counters with multi-token prediction Gemma 4 models</h1>
-        <div class="header-note"><strong>Today's signal</strong>If you're transitioning from traditional data roles to Gen AI, today's agent infrastructure funding (CopilotKit's $27M) and enterprise deployments (OpenAI+PwC) signal that agent orchestration skills—not just prompt engineering—are becoming the new baseline for AI product roles.</div>
+        <div class="header-date">Wednesday, May 06, 2026 · 02:44 UTC</div>
+        <div class="header-session">🌆 Evening Edition</div>
+        <h1 class="header-headline">OpenAI launches GPT-5.5 Instant as ChatGPT default, Google counters with Gemma 4 MTP architecture — the race to faster, cheaper inference heats up</h1>
+        <div class="header-note"><strong>Today's signal</strong>If you're transitioning from data engineering to Gen AI, today's signal is clear: inference architecture matters more than model size — Google's MTP approach and the local-vs-cloud cost debates show that deployment efficiency is the new competitive advantage, not just model capability.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -622,14 +622,14 @@ body {
     </section>
     <section class="card card-surge-type" data-index="1">
       <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
-        <span class="surge-label">⚡ Signal Surge — trending across 8 sources</span>
+        <span class="surge-label">⚡ Signal Surge — trending across 4 sources</span>
         <span class="card-counter" style="color:#6366F1">2 / 13</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
-        <div class="surge-topic">AI agents</div>
-        <p class="surge-why">Agents are dominating both research and product releases today. OpenAI partnered with PwC for finance agents, CopilotKit raised $27M for app-native agents, and at least 6 arXiv papers tackle agent workflows, tool use, and agentic reasoning. The industry is rapidly moving from chat interfaces to autonomous task execution.</p>
-        <div class="surge-sources"><span class="surge-source-tag">OpenAI Blog</span><span class="surge-source-tag">TechCrunch AI</span><span class="surge-source-tag">arXiv CS.AI</span><span class="surge-source-tag">arXiv CS.LG</span><span class="surge-source-tag">CopilotKit</span></div>
+        <div class="surge-topic">Multi-Token Prediction (MTP) architectures</div>
+        <p class="surge-why">Google just released Gemma 4 with Multi-Token Prediction (MTP), a novel architecture that predicts multiple tokens simultaneously to improve inference speed. Meanwhile, community discussions show practitioners are already testing MTP in llama.cpp and comparing dense models like Gemma 4 31B against Qwen for speed-quality tradeoffs. This architectural shift toward faster decoding without sacrificing quality is becoming a key battleground as inference costs dominate production AI economics.</p>
+        <div class="surge-sources"><span class="surge-source-tag">Google Blog</span><span class="surge-source-tag">r/LocalLLaMA</span><span class="surge-source-tag">r/MachineLearning</span></div>
       </div>
       <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
@@ -641,10 +641,10 @@ body {
         <span class="card-counter">3 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">OpenAI Blog / TechCrunch AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">OpenAI releases GPT-5.5 Instant as ChatGPT's new default model</h2>
+        <div class="card-source">OpenAI Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">OpenAI releases GPT-5.5 Instant as new ChatGPT default</h2>
         <div class="card-divider"></div>
-        <p class="card-why">This is the first GPT-5-series model to become the default ChatGPT experience. OpenAI claims reduced hallucinations in high-stakes domains like law and medicine while maintaining low latency. For practitioners, this means production systems using ChatGPT API will automatically upgrade unless pinned to older versions—test your pipelines now.</p>
+        <p class="card-why">This is OpenAI's first major model release in months, targeting reduced hallucinations in high-stakes domains (law, medicine, finance) while maintaining low latency. The 'Instant' branding signals a focus on speed over raw capability, likely a response to cost and latency complaints from enterprise users. If the hallucination claims hold up, this could shift enterprise adoption patterns away from fine-tuned domain models.</p>
       </div>
       <div class="card-bottom">
         <a href="https://openai.com/index/gpt-5-5-instant" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
@@ -656,13 +656,13 @@ body {
         <span class="card-counter">4 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">Google releases Gemma 4 with multi-token prediction architecture</h2>
+        <div class="card-source">Google Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Google launches Gemma 4 with Multi-Token Prediction architecture</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Multi-token prediction (MTP) is a departure from standard next-token prediction, potentially enabling faster inference by predicting multiple tokens in parallel. If MTP architectures prove stable, they could reshape how we design and deploy local models. Early access to 31B and 26B variants makes this immediately testable.</p>
+        <p class="card-why">MTP is a structural departure from autoregressive token-by-token generation — predicting multiple tokens in parallel speeds up inference without quality loss. Early community tests show Gemma 4 31B running faster than Qwen 27B despite being larger, suggesting this architecture could redefine speed-quality tradeoffs for local deployment. The fact that llama.cpp already has a PR for MTP support means this isn't vaporware — it's landing in production tools now.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4jq6h/gemma_4_mtp_released/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://huggingface.co/google/gemma-4-31B-it-assistant" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="4">
@@ -671,13 +671,13 @@ body {
         <span class="card-counter">5 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">OpenAI Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">OpenAI and PwC partner to deploy AI agents for CFO workflows</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">SAP acquires German AI startup Prior Labs for $1.16B, backs Nvidia's NemoClaw agents</h2>
         <div class="card-divider"></div>
-        <p class="card-why">This is enterprise agents entering a highly regulated domain where accuracy matters. Finance automation has traditionally been rule-based; if LLM agents can handle forecasting, controls, and reporting reliably, it signals readiness for other compliance-heavy verticals. Watch for case studies showing actual ROI, not just demos.</p>
+        <p class="card-why">An 18-month-old lab commanding $1.16B signals enterprise software giants are panicking over agentic AI gaps. SAP restricting customer agents to 'select few' like Nvidia's NemoClaw suggests they're betting on vendor lock-in for safe, compliant agent deployment in regulated industries. This consolidation around approved agent frameworks will shape what kinds of autonomous systems enterprises can actually deploy.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://openai.com/index/openai-pwc-finance-collaboration" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/05/sap-bets-1-16b-on-18-month-old-german-ai-lab-and-says-yes-to-nemoclaw/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="5">
@@ -687,12 +687,12 @@ body {
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">CopilotKit raises $27M Series A for app-native AI agents</h2>
+        <h2 class="card-title">Apple's iOS 27 to offer multi-model AI selector for users</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Infrastructure for embedding agents directly into applications is getting serious funding. CopilotKit's approach—making agents that live inside your app rather than separate chat windows—could become the standard pattern. If you're building products, this tooling layer might be where you spend less time reinventing agent orchestration.</p>
+        <p class="card-why">Apple letting users choose third-party AI models system-wide is a massive strategic shift from their walled-garden approach. This could turn iOS into the default inference platform where users switch between OpenAI, Anthropic, Google models per task. For AI builders, optimizing for 'Apple Intelligence routing' becomes as important as App Store optimization — whoever wins the default slot for specific tasks captures billions in usage.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/05/copilotkit-raises-27m-to-help-devs-deploy-app-native-ai-agents/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/05/apple-plans-to-make-ios-27-a-choose-your-own-adventure-of-ai-models/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="6">
@@ -701,13 +701,13 @@ body {
         <span class="card-counter">7 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">ElevenLabs hits $500M ARR, adds BlackRock and celebrity investors</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Pennsylvania sues Character.AI for chatbot impersonating a licensed psychiatrist</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Voice AI is becoming infrastructure-grade. ElevenLabs moving from consumer novelty to enterprise scale ($500M ARR) with institutional backing suggests voice interfaces will be as common as text APIs in the next 12 months. If you're not considering voice as a primary interface modality, you're behind.</p>
+        <p class="card-why">This is the first major state lawsuit targeting an AI company for a chatbot falsely claiming professional credentials and fabricating license numbers. It sets a precedent for holding AI companies liable when models misrepresent authority in regulated professions. Expect this to accelerate regulation around disclosure requirements and credential verification for any AI system operating in healthcare, legal, or financial advisory contexts.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/05/elevenlabs-lists-blackrock-jamie-foxx-and-eva-longoria-as-new-investors/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/05/pennsylvania-sues-character-ai-after-a-chatbot-allegedly-posed-as-a-doctor/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-hits-type" data-index="7">
@@ -720,65 +720,65 @@ body {
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://openai.com/index/new-ways-to-buy-chatgpt-ads" target="_blank" rel="noopener" class="hit-title">OpenAI launches self-serve ChatGPT Ads Manager with CPC bidding</a>
-              <span class="hit-source">— OpenAI Blog</span>
-              <p class="hit-liner">ChatGPT is becoming an ad platform—expect the app ecosystem to shift toward monetization models similar to social networks.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://techcrunch.com/2026/05/05/etsy-launches-its-app-within-chatgpt-as-it-continues-its-ai-push/" target="_blank" rel="noopener" class="hit-title">Etsy launches native shopping app inside ChatGPT</a>
+              <a href="https://techcrunch.com/2026/05/05/etsy-launches-its-app-within-chatgpt-as-it-continues-its-ai-push/" target="_blank" rel="noopener" class="hit-title">Etsy launches conversational shopping app inside ChatGPT</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">ChatGPT as a platform play continues—commerce apps are now going native inside the chat interface.</p>
+              <p class="hit-liner">E-commerce platforms are racing to embed native apps in ChatGPT as discovery shifts from search to conversation</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/05/05/pennsylvania-sues-character-ai-after-a-chatbot-allegedly-posed-as-a-doctor/" target="_blank" rel="noopener" class="hit-title">Pennsylvania sues Character.AI for chatbot impersonating a doctor</a>
+              <a href="https://techcrunch.com/2026/05/05/paypal-says-its-becoming-a-technology-company-again-that-means-ai/" target="_blank" rel="noopener" class="hit-title">PayPal pivots to 'technology company' via AI-led automation, cutting jobs for $1.5B savings</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">First major state lawsuit targeting a chatbot company for credentialing fraud—expect regulatory crackdowns to accelerate.</p>
+              <p class="hit-liner">Legacy fintech using AI automation as cover for workforce reduction while pitching transformation narrative</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/05/05/meta-will-use-ai-to-analyze-height-and-bone-structure-to-identify-if-users-are-underage/" target="_blank" rel="noopener" class="hit-title">Meta deploys AI to detect underage users via height and bone structure analysis</a>
+              <a href="https://techcrunch.com/2026/05/05/altara-secures-7m-to-bridge-the-data-gap-thats-slowing-down-physical-sciences/" target="_blank" rel="noopener" class="hit-title">Altara raises $7M to unify R&D data silos in physical sciences with AI</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Computer vision for age verification is moving from concept to deployment—privacy concerns will follow.</p>
+              <p class="hit-liner">Vertical AI for lab data unification — bet that materials science and pharma R&D is next big AI domain</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/05/05/paypal-says-its-becoming-a-technology-company-again-that-means-ai/" target="_blank" rel="noopener" class="hit-title">PayPal announces AI-driven turnaround, $1.5B in savings from automation</a>
+              <a href="https://techcrunch.com/2026/05/05/asml-ceo-christophe-fouquet-no-one-is-coming-for-us/" target="_blank" rel="noopener" class="hit-title">ASML CEO: 'No one is coming for us' on chip lithography monopoly</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Legacy fintech is restructuring around AI—job cuts + automation = the new playbook for tech transformation.</p>
+              <p class="hit-liner">The company supplying machines that make AI chips possible is confident their moat is unassailable</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4hwup/heretic_13_released_reproducible_models/" target="_blank" rel="noopener" class="hit-title">Heretic 1.3 released: improved censorship removal for local LLMs</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4hwup/heretic_13_released_reproducible_models/" target="_blank" rel="noopener" class="hit-title">Heretic 1.3 released: reproducible uncensoring for open LLMs with integrated benchmarks</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Leading tool for uncensoring models gets reproducible workflows and lower VRAM usage—local LLM community keeps pushing boundaries.</p>
+              <p class="hit-liner">Open-source tool for removing alignment guardrails from models gains reproducibility and lower VRAM usage</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4nkez/dense_model_shootoff_gemma_4_31b_vs_qwen365_27b/" target="_blank" rel="noopener" class="hit-title">Community tests show Gemma 4 31B trades benchmark scores for real-world reasoning</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4tj11/us_and_tech_firms_strike_deal_to_review_ai_models/" target="_blank" rel="noopener" class="hit-title">US and tech firms agree to pre-release national security review for AI models</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Independent testing reveals Qwen models are 'benchmaxxed' while Gemma 4 performs better on practical tasks—benchmarks ≠ usability.</p>
+              <p class="hit-liner">Voluntary government review before public model releases likely becomes mandatory compliance requirement soon</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/artificial/comments/1t4m85o/meta_hit_with_massive_lawsuitpublishers_say_ai/" target="_blank" rel="noopener" class="hit-title">Meta faces massive lawsuit over alleged training on stolen books</a>
-              <span class="hit-source">— r/artificial</span>
-              <p class="hit-liner">Publishers are escalating legal action over training data—this will shape licensing costs and model access for years.</p>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1t4rst5/i_know_this_isnt_technically_an_llm_but_omnivoice/" target="_blank" rel="noopener" class="hit-title">OmniVoice delivers one-shot voice cloning with minimal setup</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Community excitement over accessible voice synthesis tool shows demand for easy-to-use multimodal components</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://arstechnica.com/security/2026/05/widely-used-daemon-tools-disk-app-backdoored-in-monthlong-supply-chain-attack/" target="_blank" rel="noopener" class="hit-title">Daemon Tools backdoored in month-long supply chain attack</a>
+              <span class="hit-source">— Ars Technica</span>
+              <p class="hit-liner">Software supply chain attacks hitting popular dev tools — check your dependencies and build pipelines</p>
             </div>
           </li></ul>
       </div>
@@ -791,16 +791,16 @@ body {
       <div class="card-body-scroll">
         
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.00334" target="_blank" rel="noopener" class="arxiv-title">AgentFloor: How Far Up the Tool Use Ladder Can Small Open-Weight Models Go?</a>
-            <p class="arxiv-tldr">Tests whether smaller open models can handle routine agentic tool-calling tasks that don't need frontier reasoning—practical routing question for production systems trying to reduce costs.</p>
+            <a href="https://arxiv.org/abs/2605.00842" target="_blank" rel="noopener" class="arxiv-title">Understanding Emergent Misalignment via Feature Superposition Geometry</a>
+            <p class="arxiv-tldr">Explains why fine-tuning on narrow tasks can induce harmful behaviors through geometric analysis of feature representations — critical for anyone building domain-specific fine-tunes</p>
           </div>
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.00136" target="_blank" rel="noopener" class="arxiv-title">Are Tools All We Need? Unveiling the Tool-Use Tax in LLM Agents</a>
-            <p class="arxiv-tldr">Demonstrates that tool-augmented agents can actually perform worse when semantic distractors are present—important counterpoint to the 'just add tools' hype in agent design.</p>
+            <a href="https://arxiv.org/abs/2605.00846" target="_blank" rel="noopener" class="arxiv-title">ClinicBot: Guideline-Grounded Clinical Chatbot with Prioritized Evidence RAG</a>
+            <p class="arxiv-tldr">RAG system explicitly grounded in medical guidelines with verifiable citations addresses the hallucination problem in high-stakes clinical applications</p>
           </div>
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.00994" target="_blank" rel="noopener" class="arxiv-title">Model Organisms Are Leaky: Perplexity Differencing Often Reveals Finetuning Objectives</a>
-            <p class="arxiv-tldr">Shows you can reverse-engineer what a model was finetuned on by comparing perplexity scores—serious implications for model security and IP protection in commercial deployments.</p>
+            <a href="https://arxiv.org/abs/2605.00994" target="_blank" rel="noopener" class="arxiv-title">Model Organisms Are Leaky: Perplexity Differencing Reveals Finetuning Objectives</a>
+            <p class="arxiv-tldr">Shows you can reverse-engineer what a model was fine-tuned on by comparing perplexity differences — huge implications for model security and IP protection</p>
           </div>
       </div>
     </section>
@@ -810,7 +810,7 @@ body {
         <span class="card-counter">10 / 13</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"LocalLLaMA is deep into practical model comparisons, with users finding that benchmark-topping models like Qwen often underperform newer releases like Gemma 4 on real coding and reasoning tasks. The community is also actively improving tooling—Heretic 1.3 and merged Qwen3.6 chat templates show grassroots efforts to make local models more capable and less censored. On r/MachineLearning, practitioners are reporting production cost surprises as AI features scale, with token usage exploding beyond prototype estimates."</p>
+        <p class="pulse-text">"The LocalLLaMA community is obsessively measuring local vs cloud costs after DeepSeek V4's pricing made frontier models look overpriced. One user tracked 200M tokens in 5 days running Hermes agent workflows on Qwen-397b, calculating massive savings vs API calls. Meanwhile, practitioners are speed-testing Gemma 4 31B against Qwen 27B with surprising results — slower models sometimes outperform in real tasks despite worse benchmarks. The 'benchmaxxing' critique is gaining traction as builders realize marketing numbers don't predict production performance."</p>
       </div>
     </section>
     <section class="card card-leaders-type" data-index="10">
@@ -821,13 +821,13 @@ body {
       <div class="card-body-scroll">
         
         <div class="leader-item">
-          <div class="leader-avatar">SA</div>
+          <div class="leader-avatar">GB</div>
           <div class="leader-content">
-            <div class="leader-name">Sam Altman</div>
-            <div class="leader-role">CEO, OpenAI</div>
-            <p class="leader-insight">Positioned GPT-5.5 Instant as a hallucination-reduction breakthrough targeting high-stakes professional domains—medicine, law, finance—where accuracy matters more than creativity. The default model switch signals OpenAI's confidence in reliability improvements.</p>
-            <p class="leader-context">Launch accompanying the GPT-5.5 Instant release and PwC enterprise partnership announcement</p>
-            <a href="https://openai.com/index/gpt-5-5-instant" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+            <div class="leader-name">Greg Brockman</div>
+            <div class="leader-role">President, OpenAI</div>
+            <p class="leader-insight">Testified in court about a 2017 confrontation with Elon Musk where he 'actually thought he was going to hit me' — revealed Musk later tried to remove multiple board members during the early OpenAI power struggles.</p>
+            <p class="leader-context">Testimony came during ongoing legal dispute between Musk and OpenAI over the company's shift from nonprofit to for-profit structure</p>
+            <a href="https://www.wired.com/story/greg-brockman-testifies-elon-musk-fight-trial/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
           </div>
         </div>
         <div class="leader-item">
@@ -835,19 +835,9 @@ body {
           <div class="leader-content">
             <div class="leader-name">Christophe Fouquet</div>
             <div class="leader-role">CEO, ASML</div>
-            <p class="leader-insight">Stated 'no one is coming for us' on ASML's EUV lithography monopoly, reinforcing the company's position as the sole gatekeeper for advanced chip manufacturing. His confidence reflects the decades-long moat ASML has built in semiconductor equipment.</p>
-            <p class="leader-context">Interview at the Milken Institute Global Conference discussing competitive threats and AI chip demand</p>
+            <p class="leader-insight">Asserted that ASML's monopoly on extreme ultraviolet lithography machines is unassailable — 'no one is coming for us' — citing the complexity and capital requirements as insurmountable moats.</p>
+            <p class="leader-context">Spoke at Milken Institute conference as chip supply chain becomes increasingly critical for AI infrastructure scaling</p>
             <a href="https://techcrunch.com/2026/05/05/asml-ceo-christophe-fouquet-no-one-is-coming-for-us/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
-          </div>
-        </div>
-        <div class="leader-item">
-          <div class="leader-avatar">YS</div>
-          <div class="leader-content">
-            <div class="leader-name">Yousaf Shah</div>
-            <div class="leader-role">Granite Team, IBM</div>
-            <p class="leader-insight">Detailed the training methodology behind Granite 4.1's Apache 2.0 licensed models, emphasizing transparency in the building process. IBM is betting that open licensing and clear provenance will differentiate them in the enterprise market.</p>
-            <p class="leader-context">Release of Granite 4.1 family (3B, 8B, 30B models) with detailed technical documentation</p>
-            <a href="https://simonwillison.net/2026/May/4/granite-41-3b-svg-pelican-gallery/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
           </div>
         </div>
       </div>
@@ -862,164 +852,164 @@ body {
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-0')">
             <div class="paper-title-wrap">
-              <div class="paper-title">A Hybrid Approach for Closing the Sim2real Appearance Gap in Game Engine Synthetic Datasets</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Stefanos Pasios</div>
+              <div class="paper-title">A Benchmark for Interactive World Models with a Unified Action Generation Framework</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-05 · Jianjie Fang, Yingshan Lei, Qin Wan et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-0">›</span>
           </div>
           <div class="paper-body" id="body-paper-0">
-            <p class="paper-abstract">Video game engines have been an important source for generating large volumes of visual synthetic datasets for training and evaluating computer vision algorithms that are to be deployed in the real world. While the visual fidelity of modern game engines has been significantly improved with technologies such as ray-tracing, a notable sim2real appearance gap between the synthetic and the real-world images still remains, which limits the utilization of synthetic datasets in real-world applications.</p>
-            <a href="https://arxiv.org/abs/2605.02291" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Achieving Artificial General Intelligence (AGI) requires agents that learn and interact adaptively, with interactive world models providing scalable environments for perception, reasoning, and action. Yet current research still lacks large-scale datasets and unified benchmarks to evaluate their physical interaction capabilities. To address this, we propose iWorld-Bench, a comprehensive benchmark for training and testing world models on interaction-related abilities such as distance perception an</p>
+            <a href="https://arxiv.org/abs/2605.03941" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-1')">
             <div class="paper-title-wrap">
-              <div class="paper-title">MolmoAct2: Action Reasoning Models for Real-world Deployment</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Haoquan Fang, Jiafei Duan, Donovan Clay et al.</div>
+              <div class="paper-title">Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-05 · Zirui Tang, Xuanhe Zhou, Yumou Liu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-1">›</span>
           </div>
           <div class="paper-body" id="body-paper-1">
-            <p class="paper-abstract">Vision-Language-Action (VLA) models aim to provide a single generalist controller for robots, but today's systems fall short on the criteria that matter for real-world deployment. Frontier models are closed, open-weight alternatives are tied to expensive hardware, reasoning-augmented policies pay prohibitive latency for their grounding, and fine-tuned success rates remain below the threshold for dependable use. We present MolmoAct2, a fully open action reasoning model built for practical deploym</p>
-            <a href="https://arxiv.org/abs/2605.02881" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Workspace learning requires AI agents to identify, reason over, exploit, and update explicit and implicit dependencies among heterogeneous files in a worker's workspace, enabling them to complete both routine and advanced tasks effectively. Despite its importance, existing relevant benchmarks largely evaluate agents on pre-specified or synthesized files with limited real-world dependencies, leaving workspace-level evaluation underexplored. To this end, we introduce Workspace-Bench, a benchmark f</p>
+            <a href="https://arxiv.org/abs/2605.03596" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-2')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Generative Modeling with Orbit-Space Particle Flow Matching</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Sinan Wang, Jinjin He, Shenyifan Lu et al.</div>
+              <div class="paper-title">OpenSeeker-v2: Pushing the Limits of Search Agents with Informative and High-Difficulty Trajectories</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-05 · Yuwen Du, Rui Ye, Shuo Tang et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-2">›</span>
           </div>
           <div class="paper-body" id="body-paper-2">
-            <p class="paper-abstract">We present Orbit-Space Geometric Probability Paths (OGPP), a particle-native flow-matching framework for generative modeling of particle systems. OGPP is motivated by two insights: (i) particles are defined up to permutation symmetries, so anonymous indexing inflates per-index target variance and yields curved, hard-to-learn flows; and (ii) particles live in physical space, so the flow terminal velocity has physical meaning and can encode geometric attributes, e.g., surface normals. OGPP instant</p>
-            <a href="https://arxiv.org/abs/2605.02222" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Deep search capabilities have become an indispensable competency for frontier Large Language Model (LLM) agents, yet their development remains dominated by industrial giants. The typical industry recipe involves a highly resource-intensive pipeline spanning pre-training, continual pre-training (CPT), supervised fine-tuning (SFT), and reinforcement learning (RL). In this report, we show that when fueled with informative and high-difficulty trajectories, a simple SFT approach could be surprisingly</p>
+            <a href="https://arxiv.org/abs/2605.04036" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-3')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Linear-Time Global Visual Modeling without Explicit Attention</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-03 · Ruize He, Dongchen Han, Gao Huang</div>
+              <div class="paper-title">SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-05 · Joseph Breda, Fadi Yousif, Beszel Hawkins et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-3">›</span>
           </div>
           <div class="paper-body" id="body-paper-3">
-            <p class="paper-abstract">Existing research largely attributes the global sequence modeling capability of Transformers to the explicit computation of attention weights, a process that inherently incurs quadratic computational complexity. In this work, we offer a novel perspective: we demonstrate that attention can be mathematically reframed as a Multi-Layer Perceptron (MLP) equipped with dynamically predicted parameters. Through this lens, we explain attention's global modeling power not as explicit token-wise aggregatio</p>
-            <a href="https://arxiv.org/abs/2605.01711" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Language models excel at diagnostic assessments on currated medical case-studies and vignettes, performing on par with, or better than, clinical professionals. However, existing studies focus on complex scenarios with rich context making it difficult to draw conclusions about how these systems perform for patients reporting symptoms in everyday life. We deployed SymptomAI, a set of conversational AI agents for end-to-end patient interviewing and differential diagnosis (DDx), via the Fitbit app i</p>
+            <a href="https://arxiv.org/abs/2605.04012" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-4')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Counting as a minimal probe of language model reliability</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-03 · Tianxiang Dai, Jonathan Fan</div>
+              <div class="paper-title">HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Jianing Wang, Linsen Guo, Zhengyu Chen et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-4">›</span>
           </div>
           <div class="paper-body" id="body-paper-4">
-            <p class="paper-abstract">Large language models perform strongly on benchmarks in mathematical reasoning, coding and document analysis, suggesting a broad ability to follow instructions. However, it remains unclear whether such success reflects general logical competence, repeated application of learned procedures, or pattern matching that mimics rule execution. We investigate this question by introducing Stable Counting Capacity, an assay in which models count repeated symbols until failure. The assay removes knowledge </p>
-            <a href="https://arxiv.org/abs/2605.02028" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Recent advances in agentic harness with orchestration frameworks that coordinate multiple agents with memory, skills, and tool use have achieved remarkable success in complex reasoning tasks. However, the underlying mechanism that truly drives performance remains obscured behind intricate system designs. In this paper, we propose HeavySkill, a perspective that views heavy thinking not only as a minimal execution unit in orchestration harness but also as an inner skill internalized within the mod</p>
+            <a href="https://arxiv.org/abs/2605.02396" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-5')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Motion-Aware Caching for Efficient Autoregressive Video Generation</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-03 · Jing Xu, Yuexiao Ma, Songwei Liu et al.</div>
+              <div class="paper-title">SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Rui Xu, Wenyue Chen, Jiepeng Wang et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-5">›</span>
           </div>
           <div class="paper-body" id="body-paper-5">
-            <p class="paper-abstract">Autoregressive video generation paradigms offer theoretical promise for long video synthesis, yet their practical deployment is hindered by the computational burden of sequential iterative denoising. While cache reuse strategies can accelerate generation by skipping redundant denoising steps, existing methods rely on coarse-grained chunk-level skipping that fails to capture fine-grained pixel dynamics. This oversight is critical: pixels with high motion require more denoising steps to prevent er</p>
-            <a href="https://arxiv.org/abs/2605.01725" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Gaussian Splatting demonstrates impressive results in multi-view reconstruction based on Gaussian explicit representations. However, the current Gaussian primitives only have a single view-dependent color and an opacity to represent the appearance and geometry of the scene, resulting in a non-compact representation. In this paper, we introduce a new method called SVGS (Spatially Varying Gaussian Splatting) that utilizes spatially varying colors and opacity in a single Gaussian primitive to impro</p>
+            <a href="https://arxiv.org/abs/2411.18966" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-6')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Hallucinations Undermine Trust; Metacognition is a Way Forward</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-02 · Gal Yona, Mor Geva, Yossi Matias</div>
+              <div class="paper-title">A Hybrid Approach for Closing the Sim2real Appearance Gap in Game Engine Synthetic Datasets</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-04 · Stefanos Pasios</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-6">›</span>
           </div>
           <div class="paper-body" id="body-paper-6">
-            <p class="paper-abstract">Despite significant strides in factual reliability, errors -- often termed hallucinations -- remain a major concern for generative AI, especially as LLMs are increasingly expected to be helpful in more complex or nuanced setups. Yet even in the simplest setting -- factoid question-answering with clear ground truth-frontier models without external tools continue to hallucinate. We argue that most factuality gains in this domain have come from expanding the model's knowledge boundary (encoding mor</p>
-            <a href="https://arxiv.org/abs/2605.01428" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Video game engines have been an important source for generating large volumes of visual synthetic datasets for training and evaluating computer vision algorithms that are to be deployed in the real world. While the visual fidelity of modern game engines has been significantly improved with technologies such as ray-tracing, a notable sim2real appearance gap between the synthetic and the real-world images still remains, which limits the utilization of synthetic datasets in real-world applications.</p>
+            <a href="https://arxiv.org/abs/2605.02291" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-7')">
             <div class="paper-title-wrap">
-              <div class="paper-title">BlenderRAG: High-Fidelity 3D Object Generation via Retrieval-Augmented Code Synthesis</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-01 · Massimo Rondelli, Francesco Pivi, Maurizio Gabbrielli</div>
+              <div class="paper-title">Linear-Time Global Visual Modeling without Explicit Attention</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-03 · Ruize He, Dongchen Han, Gao Huang</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-7">›</span>
           </div>
           <div class="paper-body" id="body-paper-7">
-            <p class="paper-abstract">Automatic generation of executable Blender code from natural language remains challenging, with state-of-the-art LLMs producing frequent syntactic errors and geometrically inconsistent objects. We present BlenderRAG, a retrieval-augmented generation system that operates on a curated multimodal dataset of 500 expert-validated examples (text, code, image) across 50 object categories. By retrieving semantically similar examples during generation, BlenderRAG improves compilation success rates from 4</p>
-            <a href="https://arxiv.org/abs/2605.00632" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Existing research largely attributes the global sequence modeling capability of Transformers to the explicit computation of attention weights, a process that inherently incurs quadratic computational complexity. In this work, we offer a novel perspective: we demonstrate that attention can be mathematically reframed as a Multi-Layer Perceptron (MLP) equipped with dynamically predicted parameters. Through this lens, we explain attention's global modeling power not as explicit token-wise aggregatio</p>
+            <a href="https://arxiv.org/abs/2605.01711" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-8')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Persistent Visual Memory: Sustaining Perception for Deep Generation in LVLMs</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-01 · Siyuan Huang, Xiaoye Qu, Yafu Li et al.</div>
+              <div class="paper-title">Counting as a minimal probe of language model reliability</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-03 · Tianxiang Dai, Jonathan Fan</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-8">›</span>
           </div>
           <div class="paper-body" id="body-paper-8">
-            <p class="paper-abstract">While autoregressive Large Vision-Language Models (LVLMs) demonstrate remarkable proficiency in multimodal tasks, they face a "Visual Signal Dilution" phenomenon, where the accumulation of textual history expands the attention partition function, causing visual attention to decay inversely with generated sequence length. To counteract this, we propose Persistent Visual Memory (PVM), a lightweight learnable module designed to ensure sustained, on-demand visual perception. Integrated as a parallel</p>
-            <a href="https://arxiv.org/abs/2605.00814" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Large language models perform strongly on benchmarks in mathematical reasoning, coding and document analysis, suggesting a broad ability to follow instructions. However, it remains unclear whether such success reflects general logical competence, repeated application of learned procedures, or pattern matching that mimics rule execution. We investigate this question by introducing Stable Counting Capacity, an assay in which models count repeated symbols until failure. The assay removes knowledge </p>
+            <a href="https://arxiv.org/abs/2605.02028" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-9')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Hierarchical Abstract Tree for Cross-Document Retrieval-Augmented Generation</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-01 · Ziwen Zhao, Menglin Yang</div>
+              <div class="paper-title">Agentic AI Systems Should Be Designed as Marginal Token Allocators</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-02 · Siqi Zhu</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-9">›</span>
           </div>
           <div class="paper-body" id="body-paper-9">
-            <p class="paper-abstract">Retrieval-augmented generation (RAG) enhances large language models with external knowledge, and tree-based RAG organizes documents into hierarchical indexes to support queries at multiple granularities. However, existing Tree-RAG methods designed for single-document retrieval face critical challenges in scaling to cross-document multi-hop questions: (1) poor distribution adaptability, where k-means clustering introduces noise due to rigid distribution assumptions; (2) structural isolation, as t</p>
-            <a href="https://arxiv.org/abs/2605.00529" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">This position paper argues that agentic AI systems should be designed and evaluated as marginal token allocation economies rather than as text generators priced by the unit. We follow a single request -- a developer asking a coding agent to fix a failing test -- through four economic layers that today are designed in isolation: a router that decides which model answers, an agent that decides whether to plan, act, verify, or defer, a serving stack that decides how to produce each token, and a tra</p>
+            <a href="https://arxiv.org/abs/2605.01214" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-10')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Code World Model Preparedness Report</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-01 · Daniel Song, Peter Ney, Cristina Menghini et al.</div>
+              <div class="paper-title">Healthcare AI GYM for Medical Agents</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-05-01 · Minbyul Jeong</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-10">›</span>
           </div>
           <div class="paper-body" id="body-paper-10">
-            <p class="paper-abstract">This report documents the preparedness assessment of Code World Model (CWM), a model for code generation and reasoning about code from Meta. We conducted pre-release testing across domains identified in our Frontier AI Framework as potentially presenting catastrophic risks, and also evaluated the model's misaligned propensities. Our assessment found that CWM does not pose additional frontier risks beyond those present in the current AI ecosystem. We therefore release it as an open-weight model.</p>
-            <a href="https://arxiv.org/abs/2605.00932" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Clinical reasoning demands multi-step interactions -- gathering patient history, ordering tests, interpreting results, and making safe treatment decisions -- yet a unified training environment provides the breadth of clinical domains and specialized tools to train generalizable medical AI agents through reinforcement learning remains elusive. We present a comprehensive empirical study of multi-turn agentic RL for medical AI, built on , a gymnasium-compatible environment spanning 10 clinical doma</p>
+            <a href="https://arxiv.org/abs/2605.02943" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-11')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Assessing Pancreatic Ductal Adenocarcinoma Vascular Invasion: the PDACVI Benchmark</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-04-30 · M. Riera-Marín, O. K. Sikha, J. Rodríguez-Comas et al.</div>
+              <div class="paper-title">WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-04-30 · Jinchao Li, Yunxin Li, Chenrui Zhao et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-11">›</span>
           </div>
           <div class="paper-body" id="body-paper-11">
-            <p class="paper-abstract">Surgical resection remains the only potentially curative treatment for pancreatic ductal adenocarcinoma (PDAC), and eligibility depends on accurate assessment of vascular invasion (VI), i.e., tumor extension into adjacent critical vessels. Despite its importance for preoperative staging and surgical planning, computational VI assessment remains underexplored. Two major challenges are the lack of public datasets and the diagnostic ambiguity at the tumor-vessel interface, which leads to substantia</p>
-            <a href="https://arxiv.org/abs/2604.27582" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">While GUI agents have shown impressive capabilities in common computer-use tasks such as OSWorld, current benchmarks mainly focus on isolated and single-application tasks. This overlooks a critical real-world requirement of coordinating across multiple applications to accomplish complex profession-specific workflows. To bridge this gap, we present a computer-use benchmark in cross-application workflows, named WindowsWorld, designed to systematically assess GUI Agents on complex multi-step tasks </p>
+            <a href="https://arxiv.org/abs/2604.27776" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
       </div>
     </section>
     <section class="footer-card" data-index="12">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Tuesday, May 05, 2026 · 20:38 UTC</div>
+      <div class="footer-sub">Generated Wednesday, May 06, 2026 · 02:44 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
