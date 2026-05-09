@@ -9,6 +9,8 @@ import json
 import anthropic
 from typing import List, Dict
 
+from extract_signals import extract_and_format
+
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 SYSTEM_PROMPT = """You are an expert AI industry analyst. Your job is to read a list of raw news articles
@@ -76,10 +78,12 @@ Rules:
 - leaders_voices: scan articles for things said/posted/written by notable AI figures in the last 24-48h. Cast a wide net — include: Sam Altman (OpenAI CEO), Andrej Karpathy (AI researcher/educator), Yann LeCun (Meta Chief AI Scientist), Geoffrey Hinton (AI pioneer), Demis Hassabis (Google DeepMind CEO), Dario Amodei (Anthropic CEO), Jensen Huang (NVIDIA CEO), Ilya Sutskever (SSI founder), Greg Brockman (OpenAI), Fei-Fei Li (Stanford/World Labs), Mark Zuckerberg (Meta CEO), Ali Ghodsi (Databricks CEO), Andrew Ng (AI Fund/DeepLearning.AI), Emad Mostaque (Stability AI founder), Satya Nadella (Microsoft CEO), Sundar Pichai (Google CEO), Yoshua Bengio (AI safety researcher), Mustafa Suleyman (Microsoft AI CEO), or ANY other named AI researcher, founder, or executive with a notable statement. Return 6-10 entries, ranked by how hot/impactful the post or statement is. If fewer than 6 named leader statements exist in the articles, return only what's actually found — never fabricate quotes."""
 
 
-def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> Dict:
+def summarize_articles(articles: List[Dict], session_label: str = "Morning",
+                       memory_context: str = "") -> Dict:
     """
     Send articles to Claude and get back a structured digest dict.
     session_label: 'Morning' or 'Evening'
+    memory_context: optional string from memory.get_recent_context() injected before articles
     """
     if not ANTHROPIC_API_KEY:
         raise ValueError("ANTHROPIC_API_KEY not set")
@@ -97,17 +101,23 @@ def summarize_articles(articles: List[Dict], session_label: str = "Morning") -> 
             "category": a["category"],
         })
 
+    memory_block = f"\n{memory_context}\n" if memory_context else ""
+
+    # Run cheap extraction pass before calling Claude
+    signal_graph = extract_and_format(articles, pipeline="global")
+    signal_block = f"\n{signal_graph}\n" if signal_graph else ""
+
     user_message = f"""Here are the latest AI/ML news articles for the {session_label} digest.
 Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')}
 Session: {session_label}
-
+{memory_block}{signal_block}
 Articles JSON:
 {json.dumps(payload, indent=2)}
 
 Produce the structured digest JSON now."""
 
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=6000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],

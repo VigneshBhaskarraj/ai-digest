@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from fetch_india_news import fetch_all_india
 from summarize_india import summarize_india_articles
 from render_india_html import render_india_html, save_india_dashboard
+from memory import store_run, get_recent_context
 
 
 def run():
@@ -26,20 +27,27 @@ def run():
     print(f"  India AI Pulse Pipeline")
     print(f"{'='*50}\n")
 
-    print("[1/3] Fetching India AI news...")
+    print("[1/4] Fetching India AI news...")
     articles = fetch_all_india(max_age_hours=24)
     print(f"      {len(articles)} articles fetched\n")
 
     if not articles:
         print("No India AI articles found. Saving empty digest.")
 
-    print("[2/3] Summarizing with Claude API...")
-    digest = summarize_india_articles(articles)
+    print("[2/4] Loading memory context (last 14 days)...")
+    memory_context = get_recent_context(days=14, pipeline="india")
+    if memory_context:
+        print(f"      Memory context loaded ({len(memory_context)} chars)\n")
+    else:
+        print(f"      No prior history yet (first run)\n")
+
+    print("[3/4] Summarizing with Claude API...")
+    digest = summarize_india_articles(articles, memory_context=memory_context)
     funding_count = len(digest.get("funding_rounds", []))
     startup_count = len(digest.get("new_startups", []))
     print(f"      {funding_count} funding rounds, {startup_count} new startups\n")
 
-    print("[3/3] Rendering India HTML dashboard...")
+    print("[4/4] Rendering India HTML dashboard & storing memory...")
     html = render_india_html(digest)
 
     output_path = os.path.join(
@@ -48,7 +56,10 @@ def run():
         "india.html"
     )
     save_india_dashboard(html, output_path)
-    print(f"      Saved → {output_path}\n")
+    print(f"      Saved → {output_path}")
+
+    run_id = store_run(digest, pipeline="india")
+    print(f"      Memory run #{run_id} stored\n")
 
     print("India pipeline complete.")
     print(f"Dashboard: https://vigneshbhaskarraj.github.io/ai-digest/india.html\n")

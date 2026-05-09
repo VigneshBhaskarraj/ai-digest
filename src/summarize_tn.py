@@ -9,6 +9,8 @@ import os
 import json
 import anthropic
 from typing import List, Dict
+
+from extract_signals import extract_and_format
 from tn_ecosystem_data import get_startups_summary_for_prompt
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -146,8 +148,11 @@ Rules:
 If articles are sparse: synthesize what IS available honestly. Use known ecosystem facts to contextualize (IIT Madras Pravartak program, StartupTN's active schemes, Chennai's GCC base) but clearly distinguish what comes from articles vs. general knowledge. When citing general knowledge, note it as ecosystem context."""
 
 
-def summarize_tn_articles(articles: List[Dict]) -> Dict:
-    """Send TN articles to Claude and get back a structured digest dict."""
+def summarize_tn_articles(articles: List[Dict], memory_context: str = "") -> Dict:
+    """
+    Send TN articles to Claude and get back a structured digest dict.
+    memory_context: optional string from memory.get_recent_context() injected before articles
+    """
     if not ANTHROPIC_API_KEY:
         raise ValueError("ANTHROPIC_API_KEY not set")
 
@@ -168,11 +173,16 @@ def summarize_tn_articles(articles: List[Dict]) -> Dict:
         return _empty_digest()
 
     ecosystem_context = get_startups_summary_for_prompt()
+    memory_block = f"\n{memory_context}\n" if memory_context else ""
+
+    # Run cheap extraction pass before calling Claude
+    signal_graph = extract_and_format(articles, pipeline="tn")
+    signal_block = f"\n{signal_graph}\n" if signal_graph else ""
 
     user_message = f"""Here are the Tamil Nadu innovation and technology news articles from the past 7 days.
 Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')} (IST: +5:30 ahead of UTC)
 Articles cover: {len(payload)} items from the past 7 days.
-
+{memory_block}{signal_block}
 --- TN ECOSYSTEM BACKGROUND (use as context, never fabricate beyond this) ---
 {ecosystem_context}
 --- END BACKGROUND ---
@@ -190,7 +200,7 @@ Focus on:
 - Notable quotes or actions from TN government officials, IITM faculty, startup founders"""
 
     message = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=6000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],

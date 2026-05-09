@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from fetch_tn_news import fetch_all_tn
 from summarize_tn import summarize_tn_articles
 from render_tn_html import render_tn_html, save_tn_dashboard
+from memory import store_run, get_recent_context
 
 
 def run():
@@ -26,19 +27,26 @@ def run():
     print(f"  TN Innovation Digest Pipeline")
     print(f"{'='*50}\n")
 
-    print("[1/3] Fetching Tamil Nadu innovation news...")
+    print("[1/4] Fetching Tamil Nadu innovation news...")
     # Use 72-hour window since TN-specific coverage is sparser than global
     articles = fetch_all_tn(max_age_hours=72)
     print(f"      {len(articles)} articles fetched\n")
 
-    print("[2/3] Summarizing with Claude API...")
-    digest = summarize_tn_articles(articles)
+    print("[2/4] Loading memory context (last 14 days)...")
+    memory_context = get_recent_context(days=14, pipeline="tn")
+    if memory_context:
+        print(f"      Memory context loaded ({len(memory_context)} chars)\n")
+    else:
+        print(f"      No prior history yet (first run)\n")
+
+    print("[3/4] Summarizing with Claude API...")
+    digest = summarize_tn_articles(articles, memory_context=memory_context)
     policy_count  = len(digest.get("policy_incentives", []))
     startup_count = len(digest.get("startup_spotlight", []))
     sector_count  = len(digest.get("sector_opportunities", []))
     print(f"      {policy_count} policy items, {startup_count} startups, {sector_count} sector opportunities\n")
 
-    print("[3/3] Rendering TN Innovation HTML dashboard...")
+    print("[4/4] Rendering TN Innovation HTML dashboard & storing memory...")
     html = render_tn_html(digest)
 
     output_path = os.path.join(
@@ -47,7 +55,10 @@ def run():
         "tn.html"
     )
     save_tn_dashboard(html, output_path)
-    print(f"      Saved → {output_path}\n")
+    print(f"      Saved → {output_path}")
+
+    run_id = store_run(digest, pipeline="tn")
+    print(f"      Memory run #{run_id} stored\n")
 
     print("TN Innovation pipeline complete.")
     print(f"Dashboard: https://vigneshbhaskarraj.github.io/ai-digest/tn.html\n")

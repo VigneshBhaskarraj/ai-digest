@@ -22,3 +22,6 @@ Thumbs.db
 
 # Test outputs
 /tmp/
+
+# Temporal memory store — local SQLite DB, never commit
+data/

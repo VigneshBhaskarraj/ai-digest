@@ -9,6 +9,8 @@ import json
 import anthropic
 from typing import List, Dict
 
+from extract_signals import extract_and_format
+
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
 SYSTEM_PROMPT = """You are an expert analyst covering India's AI startup and venture capital ecosystem.
@@ -88,8 +90,11 @@ Rules:
 - leaders_voices: scan for statements, interviews, or notable posts by Indian AI leaders in the last 24-48h. Include: Sridhar Vembu (Zoho), Pramod Varma (CDPI/Aadhaar), Bhavish Aggarwal (Ola/Krutrim), Sanjeev Sanyal, Vijay Shekhar Sharma (Paytm), Navin Tewari, or any named Indian AI founder/investor/policymaker. Return 2-3 entries max. If none found in articles, return empty array — never fabricate."""
 
 
-def summarize_india_articles(articles: List[Dict]) -> Dict:
-    """Send India articles to Claude and get back a structured digest dict."""
+def summarize_india_articles(articles: List[Dict], memory_context: str = "") -> Dict:
+    """
+    Send India articles to Claude and get back a structured digest dict.
+    memory_context: optional string from memory.get_recent_context() injected before articles
+    """
     if not ANTHROPIC_API_KEY:
         raise ValueError("ANTHROPIC_API_KEY not set")
 
@@ -108,9 +113,15 @@ def summarize_india_articles(articles: List[Dict]) -> Dict:
     if not payload:
         return _empty_digest()
 
+    memory_block = f"\n{memory_context}\n" if memory_context else ""
+
+    # Run cheap extraction pass before calling Claude
+    signal_graph = extract_and_format(articles, pipeline="india")
+    signal_block = f"\n{signal_graph}\n" if signal_graph else ""
+
     user_message = f"""Here are today's India AI investment and startup news articles.
 Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')} (IST: +5:30 ahead of UTC)
-
+{memory_block}{signal_block}
 Articles JSON:
 {json.dumps(payload, indent=2)}
 
@@ -118,8 +129,8 @@ Produce the structured India AI Digest JSON now. Focus on: funding rounds, new A
 VC investment trends, government policy, and notable quick hits from India's AI ecosystem."""
 
     message = client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=4096,
+        model="claude-sonnet-4-6",
+        max_tokens=6000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
     )

@@ -54,21 +54,24 @@ jobs:
 
       - name: Run AI Digest pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          NEWSAPI_KEY:        ${{ secrets.NEWSAPI_KEY }}
-          GITHUB_WORKSPACE:   ${{ github.workspace }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY:  ${{ secrets.OPENROUTER_API_KEY }}
+          NEWSAPI_KEY:         ${{ secrets.NEWSAPI_KEY }}
+          GITHUB_WORKSPACE:    ${{ github.workspace }}
         run: python src/main.py --session ${{ steps.session.outputs.label }}
 
       - name: Run India AI Pulse pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GITHUB_WORKSPACE:   ${{ github.workspace }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY:  ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_WORKSPACE:    ${{ github.workspace }}
         run: python src/india_main.py
 
       - name: Run Tamil Nadu Innovation pipeline
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GITHUB_WORKSPACE:   ${{ github.workspace }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY:  ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_WORKSPACE:    ${{ github.workspace }}
         run: python src/tn_main.py
 
       - name: Commit and push updated dashboard
