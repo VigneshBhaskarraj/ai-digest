@@ -11,6 +11,7 @@ Output: docs/tn.html (GitHub Pages)
 import os
 from datetime import datetime, timezone
 from typing import Dict
+from tn_ecosystem_data import get_startups_by_cluster
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Shared CSS — identical palette to India + Global pages
@@ -230,6 +231,36 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .leader-link { font-family: 'DM Mono', monospace; font-size: 9px; color: #6366F1; text-decoration: none; margin-top: 0.35rem; display: inline-block; }
 .leader-link:hover { text-decoration: underline; }
 
+/* ── Startup Pulse (news-driven funded startups) ──────────────────────────── */
+.card-pulse-startups-type { background: #FFFFFF; }
+.funded-item { padding: 0.9rem 0; border-bottom: 1px solid #E2E8F0; }
+.funded-item:last-child { border-bottom: none; }
+.funded-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 0.35rem; }
+.funded-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #0F172A; line-height: 1.2; }
+.funded-badges { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; flex-shrink: 0; }
+.funded-what { font-size: 12px; line-height: 1.6; color: #475569; margin-bottom: 0.3rem; }
+.funded-news { font-size: 11px; line-height: 1.55; color: #0F172A; font-weight: 500; border-left: 2px solid #059669; padding-left: 0.5rem; margin-bottom: 0.3rem; }
+.funding-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #F0FDF4; color: #15803D; border-radius: 999px; padding: 2px 9px; font-weight: 500; }
+.stage-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 2px 9px; }
+.incubator-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #FFF7ED; color: #C2410C; border-radius: 999px; padding: 2px 9px; }
+
+/* ── Startup Ecosystem Directory ───────────────────────────────────────────── */
+.card-ecosystem-type { background: #F8FAFC; }
+.eco-cluster { margin-bottom: 1.25rem; }
+.eco-cluster:last-child { margin-bottom: 0; }
+.eco-cluster-title {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6366F1; margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem; border-bottom: 1px solid #E2E8F0;
+}
+.eco-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 0.55rem 0; border-bottom: 1px solid #F1F5F9; }
+.eco-item:last-child { border-bottom: none; }
+.eco-name { font-size: 13px; font-weight: 600; color: #0F172A; line-height: 1.3; }
+.eco-location { font-family: 'DM Mono', monospace; font-size: 9px; color: #94A3B8; }
+.eco-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }
+.eco-stage { font-family: 'DM Mono', monospace; font-size: 9px; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 2px 8px; }
+.eco-funding { font-family: 'DM Mono', monospace; font-size: 9px; color: #15803D; font-weight: 500; }
+
 /* ── Progress Rail ─────────────────────────────────────────────────────────── */
 .progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
 .progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
@@ -252,6 +283,7 @@ def render_tn_html(digest: Dict) -> str:
     signal_of_week      = digest.get("signal_of_the_week")
     policy_incentives   = digest.get("policy_incentives", [])
     startup_spotlight   = digest.get("startup_spotlight", [])
+    funded_startups     = digest.get("funded_startups", [])
     research_innovation = digest.get("research_innovation", [])
     club_radar          = digest.get("club_radar", [])
     district_pulse      = digest.get("district_pulse", [])
@@ -260,15 +292,20 @@ def render_tn_html(digest: Dict) -> str:
     leaders_voices      = digest.get("leaders_voices", [])
     vike_note           = digest.get("vike_note", "")
 
+    # Static ecosystem data — always show
+    ecosystem_clusters  = get_startups_by_cluster()
+
     total_cards = (
         1
         + (1 if signal_of_week else 0)
         + (1 if policy_incentives else 0)
         + (1 if startup_spotlight else 0)
+        + (1 if funded_startups else 0)         # news-driven funded startups
         + (1 if research_innovation else 0)
         + (1 if club_radar else 0)
         + (1 if district_pulse else 0)
         + (1 if sector_opps else 0)
+        + (1 if ecosystem_clusters else 0)      # always shown (static directory)
         + (1 if quick_hits else 0)
         + (1 if leaders_voices else 0)
         + 1   # footer
@@ -387,6 +424,47 @@ def render_tn_html(digest: Dict) -> str:
       <div class="card-body-scroll">{items_html}</div>
     </section>"""
 
+    # ── Funded & Incubated Startups Card (news-driven) ────────────────────────
+    if funded_startups:
+        card_index += 1
+        items_html = ""
+        for s in funded_startups:
+            url      = s.get("url", "#")
+            link     = f'<a href="{url}" target="_blank" rel="noopener" class="read-btn-sm">Read →</a>' if url and url != "#" else ""
+            inc      = s.get("incubator")
+            inc_tag  = f'<span class="incubator-tag">{inc}</span>' if inc else ""
+            news     = s.get("recent_news", "")
+            news_block = f'<p class="funded-news">📌 {news}</p>' if news else ""
+            items_html += f"""
+        <div class="funded-item">
+          <div class="funded-header">
+            <div>
+              <div class="funded-name">{s.get('name','')}</div>
+              <div class="eco-location">{s.get('location','')}</div>
+            </div>
+            <div class="funded-badges">
+              <span class="stage-tag">{s.get('stage','')}</span>
+              <span class="funding-tag">{s.get('funding','')}</span>
+              {inc_tag}
+            </div>
+          </div>
+          <p class="funded-what">{s.get('what_it_does','')}</p>
+          {news_block}
+          <div class="item-meta">
+            <span class="sector-badge">{s.get('sector','')}</span>
+            {link}
+          </div>
+        </div>"""
+
+        cards_html += f"""
+    <section class="card card-pulse-startups-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#059669">💰 Startup Pulse</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div class="card-body-scroll">{items_html}</div>
+    </section>"""
+
     # ── Research & Innovation Card ─────────────────────────────────────────────
     if research_innovation:
         card_index += 1
@@ -484,6 +562,46 @@ def render_tn_html(digest: Dict) -> str:
         <span class="card-counter">{card_index} / {total_cards}</span>
       </div>
       <div class="card-body-scroll">{items_html}</div>
+    </section>"""
+
+    # ── TN Startup Ecosystem Directory (static curated) ───────────────────────
+    if ecosystem_clusters:
+        card_index += 1
+        clusters_html = ""
+        for cluster_name, startups in ecosystem_clusters.items():
+            items_html = ""
+            for s in startups:
+                inc_tag = f'<span class="incubator-tag" style="font-size:8px">{s["incubator"]}</span>' if s.get("incubator") else ""
+                url = s.get("url") or ""
+                name_el = f'<a href="{url}" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">{s["name"]}</a>' if url else s["name"]
+                items_html += f"""
+          <div class="eco-item">
+            <div>
+              <div class="eco-name">{name_el}</div>
+              <div class="eco-location">{s['location']} {inc_tag}</div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">{s['stage']}</span>
+              <span class="eco-funding">{s['funding']}</span>
+            </div>
+          </div>"""
+
+            clusters_html += f"""
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">{cluster_name}</div>
+          {items_html}
+        </div>"""
+
+        cards_html += f"""
+    <section class="card card-ecosystem-type" data-index="{card_index - 1}">
+      <div class="card-top">
+        <span class="category-pill" style="background:#1D4ED8">🗺 TN Startup Ecosystem</span>
+        <span class="card-counter">{card_index} / {total_cards}</span>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#94A3B8;margin-bottom:0.75rem;flex-shrink:0">
+        {sum(len(v) for v in ecosystem_clusters.values())} notable startups · curated from StartupTN, IITM Pravartak, Inc42, Tracxn
+      </div>
+      <div class="card-body-scroll">{clusters_html}</div>
     </section>"""
 
     # ── Quick Hits Card ────────────────────────────────────────────────────────

@@ -225,6 +225,36 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
 .leader-link { font-family: 'DM Mono', monospace; font-size: 9px; color: #6366F1; text-decoration: none; margin-top: 0.35rem; display: inline-block; }
 .leader-link:hover { text-decoration: underline; }
 
+/* ── Startup Pulse (news-driven funded startups) ──────────────────────────── */
+.card-pulse-startups-type { background: #FFFFFF; }
+.funded-item { padding: 0.9rem 0; border-bottom: 1px solid #E2E8F0; }
+.funded-item:last-child { border-bottom: none; }
+.funded-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 0.35rem; }
+.funded-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #0F172A; line-height: 1.2; }
+.funded-badges { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; flex-shrink: 0; }
+.funded-what { font-size: 12px; line-height: 1.6; color: #475569; margin-bottom: 0.3rem; }
+.funded-news { font-size: 11px; line-height: 1.55; color: #0F172A; font-weight: 500; border-left: 2px solid #059669; padding-left: 0.5rem; margin-bottom: 0.3rem; }
+.funding-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #F0FDF4; color: #15803D; border-radius: 999px; padding: 2px 9px; font-weight: 500; }
+.stage-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 2px 9px; }
+.incubator-tag { font-family: 'DM Mono', monospace; font-size: 9px; background: #FFF7ED; color: #C2410C; border-radius: 999px; padding: 2px 9px; }
+
+/* ── Startup Ecosystem Directory ───────────────────────────────────────────── */
+.card-ecosystem-type { background: #F8FAFC; }
+.eco-cluster { margin-bottom: 1.25rem; }
+.eco-cluster:last-child { margin-bottom: 0; }
+.eco-cluster-title {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6366F1; margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem; border-bottom: 1px solid #E2E8F0;
+}
+.eco-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 0.55rem 0; border-bottom: 1px solid #F1F5F9; }
+.eco-item:last-child { border-bottom: none; }
+.eco-name { font-size: 13px; font-weight: 600; color: #0F172A; line-height: 1.3; }
+.eco-location { font-family: 'DM Mono', monospace; font-size: 9px; color: #94A3B8; }
+.eco-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }
+.eco-stage { font-family: 'DM Mono', monospace; font-size: 9px; background: #EEF2FF; color: #4338CA; border-radius: 999px; padding: 2px 8px; }
+.eco-funding { font-family: 'DM Mono', monospace; font-size: 9px; color: #15803D; font-weight: 500; }
+
 /* ── Progress Rail ─────────────────────────────────────────────────────────── */
 .progress-rail { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); width: 3px; height: 80px; background: #E2E8F0; border-radius: 3px; z-index: 100; }
 .progress-fill { width: 100%; background: #6366F1; border-radius: 3px; height: 10%; transition: height 0.3s ease; }
@@ -255,10 +285,17 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
         <span class="card-counter">1 / 7</span>
       </div>
       <div class="card-body">
+<<<<<<< Updated upstream
         <div class="header-date">Saturday, May 09, 2026 · 02:46 UTC · 7-day digest</div>
         <div class="header-session">🌟 Tamil Nadu Innovation</div>
         <h1 class="header-headline">IIT Madras opens Silicon Valley center as Tamil Nadu awaits policy direction under incoming TVK government led by actor-turned-CM Vijay</h1>
         <div class="header-note"><strong>This week's signal</strong>IIT Madras just handed Chennai deeptech founders a Silicon Valley bridge while TN政策 enters flux — if you're hardware/semiconductor/AI, stop waiting for local capital clarity and start your US market entry playbook now through the IITM channel before everyone else does.</div>
+=======
+        <div class="header-date">Saturday, May 09, 2026 · 05:53 UTC · 7-day digest</div>
+        <div class="header-session">🌟 Tamil Nadu Innovation</div>
+        <h1 class="header-headline">Tamil Nadu Innovation Digest — building the 7-day signal picture.</h1>
+        <div class="header-note"><strong>This week's signal</strong>The highest-leverage move for a TN-based AI founder this week: apply to IITM Pravartak's open cohort — the IIT Madras brand attached to your company opens enterprise doors that cold outreach never will.</div>
+>>>>>>> Stashed changes
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Explore TN ↓</button>
@@ -279,6 +316,7 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
       </div>
     </section>
+<<<<<<< Updated upstream
     <section class="card card-research-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#0F766E">🔬 Research &amp; Innovation</span>
@@ -293,6 +331,55 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
           <div class="item-title">IIT Madras establishes first US presence with Silicon Valley center for deeptech commercialization</div>
           <p class="item-body">IIT Madras has opened its inaugural US-based center in Silicon Valley focused on serving as a launchpad for Indian startups through deeptech research and commercialization. This marks IITM's strategic move to bridge its research pipeline directly to Silicon Valley capital, mentorship networks, and customer discovery — critical for hardware, semiconductor, and AI startups originating from Chennai that need US market validation and growth capital.</p>
           <a href="https://yourstory.com/2026/05/iit-madras-sets-up-first-us-centre-in-silicon-valley" target="_blank" rel="noopener" class="read-btn-sm">Read →</a>
+=======
+    <section class="card card-startup-type" data-index="2">
+      <div class="card-top">
+        <span class="category-pill" style="background:#7C3AED">🚀 Startup Spotlight</span>
+        <span class="card-counter">3 / 9</span>
+      </div>
+      <div class="card-body-scroll">
+        <div class="item-block">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:0.4rem">
+            <div class="startup-name-lg">Pi-Lens</div>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0">
+              <span class="sector-badge">AI</span>
+              <span class="location-badge">Chennai</span>
+            </div>
+          </div>
+          <p class="startup-what">CV for manufacturing.</p>
+          <p class="startup-why">IITM Pravartak incubate.</p>
+          <div class="item-meta" style="margin-top:0.6rem">
+            <span class="impact-badge impact-medium">Seed</span>
+            <span class="source-tag">💰 ₹5Cr</span>
+            
+          </div>
+        </div></div>
+    </section>
+    <section class="card card-pulse-startups-type" data-index="3">
+      <div class="card-top">
+        <span class="category-pill" style="background:#059669">💰 Startup Pulse</span>
+        <span class="card-counter">4 / 9</span>
+      </div>
+      <div class="card-body-scroll">
+        <div class="funded-item">
+          <div class="funded-header">
+            <div>
+              <div class="funded-name">Agnikul Cosmos</div>
+              <div class="eco-location">Chennai</div>
+            </div>
+            <div class="funded-badges">
+              <span class="stage-tag">Series B</span>
+              <span class="funding-tag">₹138Cr</span>
+              <span class="incubator-tag">IITM Incubation Cell</span>
+            </div>
+          </div>
+          <p class="funded-what">Building Agnibaan launch vehicle.</p>
+          <p class="funded-news">📌 Hot-fire test of Agnilet engine completed.</p>
+          <div class="item-meta">
+            <span class="sector-badge">SpaceTech</span>
+            <a href="https://agnikul.in" target="_blank" rel="noopener" class="read-btn-sm">Read →</a>
+          </div>
+>>>>>>> Stashed changes
         </div></div>
     </section>
     <section class="card card-district-type" data-index="3">
@@ -333,6 +420,7 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
       </div>
       <div class="card-body-scroll">
         <div class="sector-item">
+<<<<<<< Updated upstream
           <div class="sector-name">Deeptech / Semiconductor / Hardware <span class="sector-signal">IITM Silicon Valley center operational for Indian startup market entry</span><span class="sector-signal">Zero local funding news this week — deeptech founders should look West, not just Bengaluru</span></div>
           <p class="sector-body">IIT Madras Silicon Valley center is purpose-built for deeptech commercialization, giving Chennai-origin semiconductor, robotics, and hardware startups a direct pathway to Silicon Valley investors and customers. This is critical because deeptech requires patient capital and US defense/enterprise buyers that Indian VCs rarely provide. Founders at IITM Pravartak or Research Park should immediately explore how to plug into this channel before it becomes competitive.</p>
         </div>
@@ -381,10 +469,371 @@ body { background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; }
             </div>
           </li></ul>
       </div>
+=======
+          <div class="sector-name">Agricultural AI <span class="sector-signal">TNAU digitization budget</span><span class="sector-signal">62L farmer base</span></div>
+          <p class="sector-body">Tamil Nadu's 62 lakh farmer base and the state's TNAU digitization program create one of India's largest captive AgriTech markets. Three active programs fund pilot deployments at district level.</p>
+        </div></div>
+    </section>
+    <section class="card card-ecosystem-type" data-index="7">
+      <div class="card-top">
+        <span class="category-pill" style="background:#1D4ED8">🗺 TN Startup Ecosystem</span>
+        <span class="card-counter">8 / 9</span>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:#94A3B8;margin-bottom:0.75rem;flex-shrink:0">
+        31 notable startups · curated from StartupTN, IITM Pravartak, Inc42, Tracxn
+      </div>
+      <div class="card-body-scroll">
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">AI & SaaS</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://uniphore.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Uniphore</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series E</span>
+              <span class="eco-funding">$610M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://zoho.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Zoho Corporation</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Bootstrap</span>
+              <span class="eco-funding">Bootstrapped ($1B+ revenue)</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://freshworks.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Freshworks</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Listed</span>
+              <span class="eco-funding">NASDAQ: FRSH</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://vue.ai" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Mad Street Den / Vue.ai</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$30M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://facilio.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Facilio</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$40M</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://kovai.co" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Kovai.co</a></div>
+              <div class="eco-location">Coimbatore </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Bootstrap</span>
+              <span class="eco-funding">Bootstrapped ($10M+ ARR)</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://kissflow.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Kissflow</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Bootstrap</span>
+              <span class="eco-funding">Bootstrapped ($20M+ ARR)</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name">Pi-Lens</div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IITM Pravartak</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Seed</span>
+              <span class="eco-funding">₹5Cr seed</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://zluri.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Zluri</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$20M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://pixis.ai" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Pixis</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series C</span>
+              <span class="eco-funding">$100M</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://staqu.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Staqu Technologies</a></div>
+              <div class="eco-location">Pan-India / Chennai ops </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$6M</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">SpaceTech & Defense</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://agnikul.in" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Agnikul Cosmos</a></div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IITM Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">₹138Cr+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://galaxeye.space" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">GalaxEye Space</a></div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IITM Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$10M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://tonboimaging.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Tonbo Imaging</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$30M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://garudaaerospace.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Garuda Aerospace</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">₹100Cr+</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">HealthTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://niramai.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Niramai</a></div>
+              <div class="eco-location">Chennai (IIT Madras roots) <span class="incubator-tag" style="font-size:8px">IITM Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$16M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://skanray.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Skanray Technologies</a></div>
+              <div class="eco-location">Mysuru/Chennai <span class="incubator-tag" style="font-size:8px">IITM Pravartak</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">₹150Cr+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://sigtuple.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Sigtuple</a></div>
+              <div class="eco-location">Bengaluru/Chennai operations </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$19M</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://inito.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Inito</a></div>
+              <div class="eco-location">Bengaluru/Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$6.5M</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">AgriTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://cropin.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Cropin</a></div>
+              <div class="eco-location">Bengaluru (IITM roots / TN operations) </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series C</span>
+              <span class="eco-funding">$105M</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://stellapps.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Stellapps</a></div>
+              <div class="eco-location">Bengaluru/Tamil Nadu operations </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$26M</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">EV & CleanTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://olaelectric.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Ola Electric</a></div>
+              <div class="eco-location">Krishnagiri, Tamil Nadu </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Listed</span>
+              <span class="eco-funding">NSE/BSE listed</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://ultraviolette.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Ultraviolette Automotive</a></div>
+              <div class="eco-location">Bengaluru/Hosur TN factory </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$35M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://magentamobility.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Magenta Mobility</a></div>
+              <div class="eco-location">Pan-India / Chennai ops </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$25M</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">FinTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://chargebee.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Chargebee</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Unicorn</span>
+              <span class="eco-funding">$700M+ (valued $3.5B)</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://kaleidofin.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Kaleidofin</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$25M+</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://matrimony.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Matrimony.com</a></div>
+              <div class="eco-location">Chennai </div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Listed</span>
+              <span class="eco-funding">BSE/NSE: MATRIMONY</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">EdTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://guvi.in" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">GUVI (IIT Madras / HCL)</a></div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IIT Madras Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Acquired</span>
+              <span class="eco-funding">Acquired by HCL / IIT Madras</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://iamneo.ai" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">iamneo (Examly)</a></div>
+              <div class="eco-location">Coimbatore <span class="incubator-tag" style="font-size:8px">PSG-STEP</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$5M+</span>
+            </div>
+          </div>
+        </div>
+        <div class="eco-cluster">
+          <div class="eco-cluster-title">Robotics & DeepTech</div>
+          
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://atimotors.com" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Ati Motors</a></div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IITM Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series A</span>
+              <span class="eco-funding">$12M</span>
+            </div>
+          </div>
+          <div class="eco-item">
+            <div>
+              <div class="eco-name"><a href="https://entropik.io" target="_blank" rel="noopener" style="color:#0F172A;text-decoration:none">Entropik Tech</a></div>
+              <div class="eco-location">Chennai <span class="incubator-tag" style="font-size:8px">IITM Incubation Cell</span></div>
+            </div>
+            <div class="eco-right">
+              <span class="eco-stage">Series B</span>
+              <span class="eco-funding">$25M</span>
+            </div>
+          </div>
+        </div></div>
+>>>>>>> Stashed changes
     </section>
     <section class="footer-card" data-index="6">
       <div class="footer-brand-lg">🌟 TN Innovation</div>
+<<<<<<< Updated upstream
       <div class="footer-sub">7-day digest · Saturday, May 09, 2026 · 02:46 UTC</div>
+=======
+      <div class="footer-sub">7-day digest · Saturday, May 09, 2026 · 05:53 UTC</div>
+>>>>>>> Stashed changes
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>

@@ -9,6 +9,7 @@ import os
 import json
 import anthropic
 from typing import List, Dict
+from tn_ecosystem_data import get_startups_summary_for_prompt
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
@@ -108,6 +109,20 @@ Return ONLY valid JSON (no markdown, no extra text) in this exact structure:
     }
   ],
 
+  "funded_startups": [
+    {
+      "name": "Startup name",
+      "sector": "Sector",
+      "location": "City in TN",
+      "stage": "Incubated | Seed | Series A | Series B | Series C+ | Unicorn | Listed | Bootstrap",
+      "funding": "Amount or status",
+      "incubator": "Incubator name if applicable, else null",
+      "what_it_does": "One sentence",
+      "recent_news": "One sentence: what happened with this startup in the past 7 days (funding round, product launch, partnership, hire) — only fill if article evidence exists",
+      "url": "startup website or article url"
+    }
+  ],
+
   "vike_note": "One sharp, opinionated sentence: what should a founder, investor, or innovation professional in Tamil Nadu act on most from this week's digest?"
 }
 
@@ -124,6 +139,8 @@ Rules:
 - If an article mentions both funding AND a new startup, include in startup_spotlight AND quick_hits
 - If a section has no data, return empty array — NEVER fabricate
 - vike_note: actionable, TN-specific advice
+- funded_startups: include ALL TN startups mentioned in the articles this week that have received funding, been newly incubated, launched a product, or had any notable development. ALSO include any startup from the background ecosystem list below that is mentioned in the articles. List 5-15 startups max. If you have no article evidence for a startup, do not include it here (it will appear in the static ecosystem card instead).
+- For funded_startups.recent_news: ONLY fill this if you have direct article evidence. Do not fabricate.
 - This is a 7-day digest window — synthesize patterns across the week, not just today's news
 
 If articles are sparse: synthesize what IS available honestly. Use known ecosystem facts to contextualize (IIT Madras Pravartak program, StartupTN's active schemes, Chennai's GCC base) but clearly distinguish what comes from articles vs. general knowledge. When citing general knowledge, note it as ecosystem context."""
@@ -150,9 +167,15 @@ def summarize_tn_articles(articles: List[Dict]) -> Dict:
     if not payload:
         return _empty_digest()
 
+    ecosystem_context = get_startups_summary_for_prompt()
+
     user_message = f"""Here are the Tamil Nadu innovation and technology news articles from the past 7 days.
 Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')} (IST: +5:30 ahead of UTC)
 Articles cover: {len(payload)} items from the past 7 days.
+
+--- TN ECOSYSTEM BACKGROUND (use as context, never fabricate beyond this) ---
+{ecosystem_context}
+--- END BACKGROUND ---
 
 Articles JSON:
 {json.dumps(payload, indent=2)}
