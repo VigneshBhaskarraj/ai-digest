@@ -118,7 +118,7 @@ def extract_signals(articles: List[Dict], pipeline: str = "global") -> Optional[
     # Format articles as compact text (cheaper than JSON for extraction)
     # Use fewer tokens per article since extraction models are token-sensitive
     lines = []
-    for i, a in enumerate(articles[:50], 1):  # cap at 50 for extraction
+    for i, a in enumerate(articles[:35], 1):  # cap matches summarize cap
         title   = a.get("title", "")[:120]
         summary = a.get("summary", "")[:200]
         source  = a.get("source", "unknown")

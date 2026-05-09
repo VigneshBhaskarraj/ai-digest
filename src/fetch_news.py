@@ -34,6 +34,10 @@ RSS_FEEDS = {
     "Meta AI":                      "https://ai.meta.com/blog/feed/",
     "xAI":                          "https://x.ai/blog/rss.xml",
     "Cohere Blog":                  "https://cohere.com/blog/rss",
+    "NVIDIA Blog":                  "https://blogs.nvidia.com/feed/",
+    "Microsoft AI Blog":            "https://blogs.microsoft.com/ai/feed/",
+    "Databricks Blog":              "https://www.databricks.com/blog/feed",
+    "Groq Blog":                    "https://groq.com/blog/feed/",
 
     # Tech News — AI-specific feeds where available
     "TechCrunch AI":                "https://techcrunch.com/category/artificial-intelligence/feed/",
@@ -50,6 +54,8 @@ RSS_FEEDS = {
     "Simon Willison":               "https://simonwillison.net/atom/everything/",
     "Last Week in AI":              "https://lastweekin.ai/feed",
     "The Batch (DeepLearning.AI)":  "https://www.deeplearning.ai/the-batch/feed/",
+    "The Gradient":                 "https://thegradient.pub/rss/",
+    "AI Snake Oil":                 "https://aisnakeoil.substack.com/feed",
 
     # Research
     "arXiv CS.AI":                  "https://rss.arxiv.org/rss/cs.AI",
@@ -81,6 +87,7 @@ DEFAULT_CAP = 8
 NEEDS_AI_FILTER = {
     "Ars Technica", "MIT Tech Review", "Simon Willison",
     "Hacker News (AI)", "r/artificial",
+    "NVIDIA Blog", "Microsoft AI Blog", "Databricks Blog",
 }
 
 AI_KEYWORDS = [
@@ -96,7 +103,9 @@ AI_KEYWORDS = [
 HIGH_SIGNAL_SOURCES = {
     "Anthropic Blog", "OpenAI Blog", "Google DeepMind",
     "HuggingFace Blog", "Mistral AI", "Meta AI", "xAI",
-    "Import AI", "The Batch (DeepLearning.AI)", "TechCrunch AI",
+    "NVIDIA Blog", "Microsoft AI Blog", "Groq Blog",
+    "Import AI", "The Batch (DeepLearning.AI)", "The Gradient",
+    "TechCrunch AI",
 }
 
 

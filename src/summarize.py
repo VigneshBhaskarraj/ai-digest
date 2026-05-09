@@ -92,10 +92,10 @@ def summarize_articles(articles: List[Dict], session_label: str = "Morning",
 
     # Trim articles to keep token usage reasonable
     payload = []
-    for a in articles[:60]:  # cap at 60 articles per run
+    for a in articles[:35]:  # cap at 35 — best signal, ~40% fewer input tokens
         payload.append({
             "title":    a["title"],
-            "summary":  a["summary"][:300],
+            "summary":  a["summary"][:150],  # trimmed 300→150 for cost
             "source":   a["source"],
             "url":      a["url"],
             "category": a["category"],

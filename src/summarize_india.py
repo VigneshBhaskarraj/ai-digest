@@ -101,10 +101,10 @@ def summarize_india_articles(articles: List[Dict], memory_context: str = "") -> 
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
     payload = []
-    for a in articles[:60]:
+    for a in articles[:35]:  # cap at 35 — best signal, ~40% fewer input tokens
         payload.append({
             "title":    a["title"],
-            "summary":  a["summary"][:400],
+            "summary":  a["summary"][:150],  # trimmed 400→150 for cost
             "source":   a["source"],
             "url":      a["url"],
             "category": a["category"],

@@ -61,6 +61,7 @@ jobs:
         run: python src/main.py --session ${{ steps.session.outputs.label }}
 
       - name: Run India AI Pulse pipeline
+        if: steps.session.outputs.label == 'morning'
         env:
           ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
           OPENROUTER_API_KEY:  ${{ secrets.OPENROUTER_API_KEY }}
@@ -68,6 +69,7 @@ jobs:
         run: python src/india_main.py
 
       - name: Run Tamil Nadu Innovation pipeline
+        if: steps.session.outputs.label == 'morning'
         env:
           ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
           OPENROUTER_API_KEY:  ${{ secrets.OPENROUTER_API_KEY }}

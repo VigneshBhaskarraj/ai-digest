@@ -159,10 +159,10 @@ def summarize_tn_articles(articles: List[Dict], memory_context: str = "") -> Dic
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
     payload = []
-    for a in articles[:70]:
+    for a in articles[:35]:  # cap at 35 — best signal, ~50% fewer input tokens
         payload.append({
             "title":     a["title"],
-            "summary":   a["summary"][:500],
+            "summary":   a["summary"][:150],  # trimmed 500→150 for cost
             "source":    a["source"],
             "url":       a["url"],
             "category":  a["category"],

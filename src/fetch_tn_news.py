@@ -26,6 +26,13 @@ TN_DEDICATED_SOURCES = {
     "New Indian Express TN":    "https://www.newindianexpress.com/states/tamil-nadu/rssfeed/?id=168",
     "Dinamani Business":        "https://www.dinamani.com/business/rss",
     "Chennai Online":           "https://www.chennaionline.com/rss",
+    # TN Ecosystem — primary institutional sources (added)
+    "StartupTN":                "https://startuptn.in/feed/",
+    "IITM Pravartak":           "https://pravartak.org.in/feed/",
+    "TiE Chennai":              "https://www.tiechennai.org/feed/",
+    "TIDCO":                    "https://www.tidco.com/feed/",
+    "CII Southern Region":      "https://www.cii.in/rss.aspx",
+    "Coimbatore Smart City":    "https://www.smartcitycoimbatore.com/feed/",
 }
 
 NATIONAL_SOURCES = {
@@ -42,6 +49,7 @@ NATIONAL_SOURCES = {
     "TechCrunch India":         "https://techcrunch.com/tag/india/feed/",
     "NASSCOM":                  "https://nasscom.in/feed",
     "Business Standard Tech":   "https://www.business-standard.com/rss/technology-108.rss",
+    "The Ken":                  "https://the-ken.com/feed/",
 }
 
 INSTITUTION_SOURCES = {
@@ -49,6 +57,7 @@ INSTITUTION_SOURCES = {
     "PIB Chennai":              "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
     "DST India":                "https://dst.gov.in/rss.xml",
     "Startup India Blog":       "https://www.startupindia.gov.in/content/sih/en/news.html",
+    "IndiaAI Mission":          "https://indiaai.gov.in/feed",
 }
 
 # ─────────────────────────────────────────────────────────────────────────────

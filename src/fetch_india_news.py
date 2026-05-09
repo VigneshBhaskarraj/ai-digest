@@ -24,6 +24,8 @@ RSS_FEEDS = {
     "TechCircle":               "https://techcircle.vccircle.com/feed",
     "FactorDaily":              "https://factordaily.com/feed/",
     "Livemint Tech":            "https://www.livemint.com/rss/technology",
+    "The Ken":                  "https://the-ken.com/feed/",
+    "Tracxn Blog":              "https://tracxn.com/blog/feed/",
 
     # Global sources with India coverage
     "TechCrunch India":         "https://techcrunch.com/tag/india/feed/",
@@ -33,10 +35,16 @@ RSS_FEEDS = {
     "3one4 Capital":            "https://3one4.capital/feed/",
     "Stellaris VP":             "https://stellarisvp.com/blog/feed/",
     "Accel Noteworthy":         "https://www.accel.com/noteworthy/feed",
+    "Peak XV (Sequoia India)":  "https://www.peakxv.com/feed/",
+    "Lightspeed India":         "https://lsvp.com/feed/",
+
+    # AI Labs (India-origin)
+    "Sarvam AI Blog":           "https://www.sarvam.ai/blog/rss",
 
     # Government & Policy
     "NASSCOM":                  "https://nasscom.in/feed",
     "MeitY (PIB)":              "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3",
+    "IndiaAI Mission":          "https://indiaai.gov.in/feed",
 }
 
 # Keywords to filter for AI/ML relevance
