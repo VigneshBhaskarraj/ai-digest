@@ -1,773 +1,1022 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Digest Lite — Friday, May 15 2026</title>
-  <meta name="description" content="A curated 15-minute AI briefing — Global and India signals, with real-world implications."/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>&#x26A1; AI Digest Lite &middot; May 15, 2026</title>
+  <meta name="description" content="AI business briefing for leaders &mdash; one card at a time. Swipe up, tap to flip.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x26A1;</text></svg>">
   <style>
-    /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg:        #F0F4FF;
-      --surface:   #FFFFFF;
-      --border:    #E2E8F0;
-      --accent:    #6366F1;
-      --accent2:   #0EA5E9;
-      --text:      #0F172A;
-      --muted:     #64748B;
-      --light:     #94A3B8;
-      --high:      #EF4444;
-      --med:       #F59E0B;
-      --low:       #94A3B8;
-      --flip-dur:  0.55s;
+      --hdr:    56px;
+      --accent: #818CF8;
+      --acc2:   #6366F1;
     }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #080D1A;
       font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      padding-bottom: 48px;
+      color: #F1F5F9;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ── Header ── */
-    .site-header {
-      background: #0F172A;
-      padding: 20px 24px 18px;
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--hdr);
+      background: rgba(8,13,26,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+    .logo {
+      font-size: 14px; font-weight: 800;
+      color: #F1F5F9; letter-spacing: -.2px;
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--accent); }
+
+    .tabs {
+      display: flex; gap: 6px;
+      flex: 1; justify-content: center;
+    }
+    .tab-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 5px 16px;
+      color: rgba(255,255,255,0.4);
+      font-size: 12px; font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab-btn.active {
+      background: var(--acc2);
+      border-color: var(--acc2);
+      color: #fff;
+    }
+    .hdr-time {
+      font-size: 9px; color: rgba(255,255,255,0.22);
+      text-align: right; line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    /* ── Deck ── */
+    .deck {
+      position: fixed;
+      top: var(--hdr); left: 0; right: 0; bottom: 0;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .deck::-webkit-scrollbar { display: none; }
+    .deck.hidden { visibility: hidden; pointer-events: none; }
+
+    /* ── Card wrapper — full viewport height ── */
+    .card-wrap {
+      height: calc(100dvh - var(--hdr));
+      height: calc(100vh  - var(--hdr));
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+    }
+
+    /* ── Intro screen ── */
+    .intro-wrap { align-items: center; justify-content: center; }
+    .intro-card {
       text-align: center;
-      position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+      padding: 40px 28px;
+      max-width: 500px;
     }
-    .site-header h1 {
-      font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.3px;
+    .intro-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .08em; text-transform: uppercase;
+      margin-bottom: 18px;
     }
-    .site-header h1 span { color: #818CF8; }
-    .header-sub {
-      font-size: 12px; color: #94A3B8; margin-top: 4px;
-      display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;
+    .intro-headline {
+      font-size: clamp(18px, 3.8vw, 26px);
+      font-weight: 800; line-height: 1.4;
+      color: #F1F5F9; margin-bottom: 28px;
     }
-    .header-badge {
-      background: #1E293B; border: 1px solid #334155;
-      border-radius: 20px; padding: 2px 10px;
-      font-size: 11px; font-weight: 600; color: #A5B4FC;
-    }
-
-    /* ── Columns layout ── */
-    .columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .column {
-      padding: 20px 16px;
-      border-right: 1px solid var(--border);
-    }
-    .column:last-child { border-right: none; }
-
-    /* Column header */
-    .col-header {
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-    }
-    .col-title {
-      font-size: 16px; font-weight: 800; color: var(--text);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .col-count {
-      font-size: 11px; background: var(--accent); color: white;
-      border-radius: 10px; padding: 1px 8px; font-weight: 700;
-    }
-    .col-headline {
-      font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.5;
-      font-style: italic;
+    .intro-hint {
+      font-size: 11px; color: rgba(255,255,255,0.22);
     }
 
     /* ── Flip card ── */
     .flip-card {
-      perspective: 1200px;
-      margin-bottom: 12px;
+      width: 100%; height: 100%;
+      perspective: 1400px;
       cursor: pointer;
-      border-radius: 12px;
+      -webkit-tap-highlight-color: transparent;
     }
     .flip-inner {
+      width: 100%; height: 100%;
       position: relative;
-      width: 100%;
-      transition: transform var(--flip-dur) cubic-bezier(.4,0,.2,1);
       transform-style: preserve-3d;
+      transition: transform .52s cubic-bezier(.4,0,.2,1);
     }
-    .flip-card.flipped .flip-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-front,
-    .flip-back {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-    .flip-back {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      transform: rotateY(180deg);
-      min-height: 100%;
-      border-color: #C7D2FE;
-      background: #FAFAFF;
-    }
-    /* Make flip-card height match the taller side */
-    .flip-card { min-height: 0; }
-    .flip-inner { min-height: inherit; }
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
 
-    /* Card meta row */
-    .card-meta {
-      display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;
+    /* ── Front ── */
+    .flip-front {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      display: flex; flex-direction: column;
+      padding: 28px 24px 20px;
+      background: linear-gradient(155deg, #0F172A 0%, #1A2035 65%, #0F172A 100%);
+      overflow: hidden;
+    }
+    .meta-row {
+      display: flex; align-items: center;
+      gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
     }
     .cat-pill {
-      font-size: 10px; font-weight: 600; color: var(--muted);
-      background: #F1F5F9; border-radius: 6px; padding: 2px 7px;
+      font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,0.38);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; padding: 3px 9px;
+      letter-spacing: .03em;
     }
     .impact-badge {
-      font-size: 9.5px; font-weight: 800; border-radius: 6px; padding: 2px 7px;
-      letter-spacing: .04em;
+      font-size: 9px; font-weight: 900;
+      border-radius: 5px; padding: 3px 8px;
+      letter-spacing: .06em;
     }
-    .impact-high { background: #FEE2E2; color: #991B1B; }
-    .impact-med  { background: #FEF3C7; color: #92400E; }
-    .impact-low  { background: #F1F5F9; color: #64748B; }
-
-    /* Card text */
+    .i-high { background: rgba(248,113,113,.14); color: #F87171; border: 1px solid rgba(248,113,113,.22); }
+    .i-med  { background: rgba(251,191,36,.12);  color: #FBBF24; border: 1px solid rgba(251,191,36,.2);   }
+    .i-low  { background: rgba(148,163,184,.09); color: #94A3B8; border: 1px solid rgba(148,163,184,.16); }
+    .card-date {
+      margin-left: auto;
+      font-size: 10px; color: rgba(255,255,255,.24); font-weight: 500;
+    }
     .card-title {
-      font-size: 13.5px; font-weight: 700; color: var(--text);
-      line-height: 1.4; margin-bottom: 7px;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      font-size: clamp(21px, 4.5vw, 30px);
+      font-weight: 800; line-height: 1.27;
+      color: #F8FAFC; letter-spacing: -.4px;
+      margin-bottom: 16px;
+      flex: 1; overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 5; -webkit-box-orient: vertical;
     }
     .card-summary {
-      font-size: 12px; color: #374151; line-height: 1.6;
-      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+      font-size: 14px; line-height: 1.72;
+      color: rgba(255,255,255,.55);
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 3; -webkit-box-orient: vertical;
     }
-    .card-footer {
-      margin-top: 10px;
-      display: flex; justify-content: space-between; align-items: center;
+    .card-foot { margin-top: auto; padding-top: 18px; }
+    .foot-row {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 11px;
     }
-    .card-source { font-size: 10.5px; color: var(--light); font-weight: 600; }
-    .flip-hint   { font-size: 10px; color: var(--accent); font-weight: 600; }
+    .card-source {
+      font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,.26);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .card-counter { font-size: 10px; color: rgba(255,255,255,.16); }
+    .tap-hint {
+      text-align: center; font-size: 11px;
+      color: var(--accent); font-weight: 600;
+      margin-bottom: 7px; opacity: .85;
+    }
+    .swipe-hint {
+      text-align: center; font-size: 10px;
+      color: rgba(255,255,255,.16);
+    }
 
-    /* Back side */
-    .back-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 10px;
+    /* ── Back ── */
+    .flip-back {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      transform: rotateY(180deg);
+      display: flex; flex-direction: column;
+      padding: 28px 24px 20px;
+      background: linear-gradient(155deg, #1A1040 0%, #0E0928 65%, #170E3E 100%);
+      overflow: hidden;
     }
-    .back-label  { font-size: 11px; font-weight: 800; color: var(--accent); }
-    .flip-hint-back { font-size: 10px; color: var(--light); }
+    .back-hdr {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 18px; flex-shrink: 0;
+    }
+    .back-label {
+      font-size: 12px; font-weight: 800;
+      color: var(--accent); letter-spacing: .02em;
+    }
+    .back-sub { font-size: 10px; color: rgba(255,255,255,.2); }
     .impl-text {
-      font-size: 12.5px; color: #1E293B; line-height: 1.7;
+      font-size: clamp(14px, 2.3vw, 16px);
+      line-height: 1.78; color: rgba(255,255,255,.82);
+      flex: 1; overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 11; -webkit-box-orient: vertical;
+    }
+    .back-foot {
+      margin-top: auto; padding-top: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.06);
     }
     .read-link {
-      font-size: 11px; font-weight: 700; color: var(--accent);
-      text-decoration: none;
+      font-size: 12px; font-weight: 700;
+      color: var(--accent); text-decoration: none; padding: 6px 0;
     }
     .read-link:hover { text-decoration: underline; }
+    .back-counter { font-size: 10px; color: rgba(255,255,255,.16); }
 
-    /* ── Mobile ── */
-    @media (max-width: 767px) {
-      .columns { grid-template-columns: 1fr; }
-      .column { border-right: none; border-bottom: 2px solid var(--border); }
-      .column:last-child { border-bottom: none; }
-      .site-header h1 { font-size: 18px; }
+    /* ── Desktop: constrain width ── */
+    @media (min-width: 768px) {
+      .card-wrap { justify-content: center; }
+      .flip-card { max-width: 580px; }
+      .intro-wrap { justify-content: center; }
     }
 
-    /* ── Footer ── */
-    .site-footer {
-      text-align: center; font-size: 11px; color: var(--light);
-      padding: 24px 16px 0; border-top: 1px solid var(--border);
-      max-width: 1400px; margin: 20px auto 0;
+    /* ── Notch / safe-area ── */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .card-foot, .back-foot {
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      }
     }
-    .site-footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <h1>⚡ AI Digest <span>Lite</span></h1>
-    <div class="header-sub">
-      <span>Friday, May 15 2026 · Updated 04:57 UTC</span>
-      <span class="header-badge">15-min read</span>
-      <span class="header-badge">🌍 Global + 🇮🇳 India</span>
-      <span class="header-badge">Tap cards to see implications</span>
+  <header>
+    <div class="logo">&#x26A1; AI <span>Lite</span></div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('global',this)">&#x1F30D; Global <small style="opacity:.55">(9)</small></button>
+      <button class="tab-btn"        onclick="switchTab('india',this)" >&#x1F1EE;&#x1F1F3; India <small style="opacity:.55">(8)</small></button>
     </div>
+    <div class="hdr-time">May 15, 2026<br>05:21 UTC</div>
   </header>
 
-  <!-- Two-column layout -->
-  <div class="columns">
-
-    <!-- Global column -->
-    <div class="column">
-      <div class="col-header">
-        <div class="col-title">
-          🌍 Global AI
-          <span class="col-count">8</span>
-        </div>
-        <div class="col-headline">AI models are getting faster and cheaper — the infrastructure race is accelerating.</div>
-      </div>
-      
-    <div class="flip-card" id="card-g-0" onclick="flip('g-0')">
+  <div class="deck" id="deck-global">
+  <div class="card-wrap intro-wrap">
+    <div class="intro-card">
+      <div class="intro-label">&#x1F30D; Global AI &middot; May 15, 2026</div>
+      <p class="intro-headline">Agentic AI shifts from demo to deployment as enterprises move from pilots to production workflows.</p>
+      <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-0" onclick="flip('g-0')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-meta">
+          <div class="meta-row">
             <span class="cat-pill">🧠 Model Release</span>
-            <span class="impact-badge impact-high">HIGH</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 15, 2026</span>
           </div>
-          <h3 class="card-title">OpenAI expands GPT-4o with real-time voice and vision capabilities</h3>
-          <p class="card-summary">OpenAI rolled out multimodal upgrades to GPT-4o, enabling real-time voice conversations and live video understanding. The update ships to Plus and API users first.</p>
-          <div class="card-footer">
-            <span class="card-source">OpenAI Blog</span>
-            <span class="flip-hint">Tap for implications →</span>
+
+          <h2 class="card-title">OpenAI Releases o3 with Native Tool Use and 60% Cost Reduction</h2>
+          <p class="card-summary">OpenAI launched o3, its most capable reasoning model to date, with integrated tool-use APIs and a 60% price drop vs o1. Enterprise tier customers get priority access starting this week.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">The Verge</span>
+              <span class="card-counter">1 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
           </div>
         </div>
 
         <!-- BACK -->
         <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Real-time voice-plus-vision opens a new category of hands-free applications — think warehouse workers getting live AI assistance through a headset, or surgeons getting instrument identification during procedures. Any product currently using separate voice and vision APIs can now consolidate to one call, cutting latency and cost significantly.</p>
-          <div class="card-footer">
-            <a href="https://openai.com/blog" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
+          <p class="impl-text">For IT services firms running AI-assisted code review or document processing, this cuts per-task inference costs roughly in half overnight. Companies like Accenture and Capgemini that built pricing models around o1 API costs need to reprice contracts immediately or absorb margin. The capability jump in reasoning means tasks that previously required human review — legal clause analysis, financial reconciliation — can now run autonomously end-to-end. Build-vs-buy calculus shifts: custom fine-tunes are harder to justify when the base model closes the gap. 90-day action: run a cost audit on every o1-based workflow and model the savings of migrating to o3.</p>
+          <div class="back-foot">
+            <a href="https://theverge.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">1 / 9</span>
           </div>
         </div>
 
       </div>
     </div>
-
-    <div class="flip-card" id="card-g-1" onclick="flip('g-1')">
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-1" onclick="flip('g-1')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-meta">
+          <div class="meta-row">
+            <span class="cat-pill">🔬 Research</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 14, 2026</span>
+          </div>
+
+          <h2 class="card-title">Google DeepMind's AlphaFold 4 Tackles Drug-Protein Binding Predictions</h2>
+          <p class="card-summary">DeepMind released AlphaFold 4 with drug-protein binding prediction accuracy that matches wet-lab results in 73% of test cases. The model is available via Google Cloud Life Sciences API.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Nature</span>
+              <span class="card-counter">2 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">Pharma R&amp;D budgets are about to be restructured: early-stage screening that cost $2M–$5M in wet-lab time can now run in silico for under $50K, compressing drug discovery timelines from years to months. Contract research organisations (CROs) face existential pressure on their screening business lines. Indian pharma companies like Sun Pharma and Dr Reddy's, which compete on generics speed-to-market, gain a structural advantage if they integrate this now. VC firms with biotech portfolios should immediately assess which portfolio companies are exposed vs positioned. 90-day action: life-science leaders should pilot AlphaFold 4 on 2–3 active discovery programs and quantify the cycle-time delta.</p>
+          <div class="back-foot">
+            <a href="https://nature.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">2 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-2" onclick="flip('g-2')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">💰 Funding</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 13, 2026</span>
+          </div>
+
+          <h2 class="card-title">Anthropic Raises $3B Series F at $45B Valuation Led by Google</h2>
+          <p class="card-summary">Anthropic closed a $3 billion Series F funding round at a $45 billion post-money valuation, with Google leading alongside existing investors. The capital will accelerate compute scaling and enterprise go-to-market.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Bloomberg</span>
+              <span class="card-counter">3 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This solidifies a three-way race — OpenAI, Google DeepMind, Anthropic — with enough capital to sustain years of frontier model investment. For enterprise procurement teams, Anthropic's financial stability removes counterparty risk concerns that previously slowed deals. Microsoft's OpenAI exclusivity advantage erodes as more cloud providers integrate Claude. Indian IT majors building AI practice revenue should dual-track Claude and GPT-4 integrations to hedge vendor lock-in. The $45B valuation sets a benchmark that will pull Series B/C AI companies' expectations higher. 90-day action: if your AI strategy depends on a single model provider, initiate a dual-vendor evaluation immediately.</p>
+          <div class="back-foot">
+            <a href="https://bloomberg.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">3 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-3" onclick="flip('g-3')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">📋 Policy</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 12, 2026</span>
+          </div>
+
+          <h2 class="card-title">EU AI Act Enforcement Begins: High-Risk System Audits Mandatory from June</h2>
+          <p class="card-summary">The European Union's AI Act enters enforcement phase, requiring companies operating high-risk AI systems in the EU to complete conformity assessments by June 1. Non-compliance carries fines up to 3% of global annual turnover.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Reuters</span>
+              <span class="card-counter">4 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">Any company with EU customers using AI in hiring, credit scoring, healthcare triage, or critical infrastructure now has a six-week compliance window. Legal and compliance budgets will spike — AI auditing firms are already reporting 3–4x demand surge. Indian IT services companies running EU-facing AI implementations for their clients bear joint liability exposure if their systems are non-compliant. The audit requirement will slow AI deployment in EU-regulated sectors for 12–18 months, creating a window for compliant-by-design competitors. 90-day action: map every AI system touching EU users against the high-risk categories and assign a compliance owner this week.</p>
+          <div class="back-foot">
+            <a href="https://reuters.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">4 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-4" onclick="flip('g-4')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🚀 Product</span>
+            <span class="impact-badge i-med">MEDIUM</span>
+            <span class='card-date'>May 14, 2026</span>
+          </div>
+
+          <h2 class="card-title">Microsoft Copilot Studio Now Supports Multi-Agent Orchestration</h2>
+          <p class="card-summary">Microsoft expanded Copilot Studio to support multi-agent workflows, allowing enterprises to chain specialised AI agents across data sources, APIs, and business processes without writing code.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Microsoft Blog</span>
+              <span class="card-counter">5 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This brings enterprise AI automation within reach of operations and finance teams who previously depended on IT. Workflow automation vendors like UiPath and ServiceNow face direct competitive pressure in their core enterprise accounts. For TCS and Infosys, this is both a threat (clients self-serve more) and an opportunity (integration and customisation work expands). The no-code framing means line-of-business buyers, not IT, will drive adoption decisions going forward. Expect Microsoft enterprise account managers to push hard on upselling Copilot Studio in the next 90 days. 90-day action: pilot Copilot Studio on one finance or HR workflow and benchmark it against your current automation stack before Microsoft sales pushes a premium tier.</p>
+          <div class="back-foot">
+            <a href="https://microsoft.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">5 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-5" onclick="flip('g-5')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
             <span class="cat-pill">🔓 Open Source</span>
-            <span class="impact-badge impact-high">HIGH</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 11, 2026</span>
           </div>
-          <h3 class="card-title">Meta open-sources Llama 4 Scout — matches GPT-4o on key benchmarks</h3>
-          <p class="card-summary">Meta released Llama 4 Scout (17B parameters) under a commercial open licence. Independent benchmarks place it on par with GPT-4o at a fraction of the hosting cost.</p>
-          <div class="card-footer">
-            <span class="card-source">Meta AI</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
 
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Any company paying for API access now has a self-hostable alternative at comparable quality. This is especially significant for regulated industries — banking, healthcare, legal — where data cannot leave the premises. Expect an acceleration of on-premise AI deployments in 2025.</p>
-          <div class="card-footer">
-            <a href="https://ai.meta.com/blog" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
+          <h2 class="card-title">Meta's Llama 4 Scout Tops Open-Source Leaderboards on Coding Tasks</h2>
+          <p class="card-summary">Meta released Llama 4 Scout, an open-weight model that outperforms GPT-4o on HumanEval coding benchmarks and is available for commercial use under Meta's community licence.</p>
 
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-g-2" onclick="flip('g-2')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🧠 Model Release</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">Google DeepMind releases Gemini 2.5 Flash with 1M token context</h3>
-          <p class="card-summary">Gemini 2.5 Flash now supports a 1-million token context window at low cost. Google is targeting document-heavy enterprise workflows.</p>
-          <div class="card-footer">
-            <span class="card-source">Google DeepMind</span>
-            <span class="flip-hint">Tap for implications →</span>
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Meta AI Blog</span>
+              <span class="card-counter">6 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
           </div>
         </div>
 
         <!-- BACK -->
         <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">A 1M token window means entire codebases, legal contracts, or research archives can be processed in a single prompt. Law firms and financial analysts working with large document sets will see the biggest immediate gains — summarising a 500-page merger agreement in one shot is now practical.</p>
-          <div class="card-footer">
-            <a href="https://deepmind.google/blog" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
+          <p class="impl-text">The open-source coding model gap with closed frontier models has essentially closed for most enterprise use cases. Companies running proprietary code-assist tools built on GPT-4 now face a make-vs-buy moment: Llama 4 Scout can be self-hosted, eliminating per-token costs and data privacy concerns. Indian software product companies and IT firms with large developer workforces should model the TCO — at scale, self-hosting can save 60–70% vs API pricing. The Meta community licence restrictions on commercial derivatives matter: legal should review before production deployment. 90-day action: spin up a Llama 4 Scout evaluation environment and run it against your top 10 internal coding workflows.</p>
+          <div class="back-foot">
+            <a href="https://ai.meta.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">6 / 9</span>
           </div>
         </div>
 
       </div>
     </div>
-
-    <div class="flip-card" id="card-g-3" onclick="flip('g-3')">
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-6" onclick="flip('g-6')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-meta">
+          <div class="meta-row">
             <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge impact-high">HIGH</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 13, 2026</span>
           </div>
-          <h3 class="card-title">NVIDIA announces Blackwell Ultra GPU with 3x inference throughput</h3>
-          <p class="card-summary">NVIDIA unveiled Blackwell Ultra, its next-generation data centre GPU, claiming 3x higher inference throughput over H100. Shipments begin Q3 2025.</p>
-          <div class="card-footer">
-            <span class="card-source">NVIDIA Blog</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
 
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Higher throughput per chip directly reduces the per-token cost for every cloud AI provider. If passed on to customers, this could trigger another round of API price cuts across the industry within 12 months. Companies building inference-heavy products (transcription, real-time translation) should factor this into 2026 cost models.</p>
-          <div class="card-footer">
-            <a href="https://blogs.nvidia.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
+          <h2 class="card-title">Salesforce Agentforce 2.0 Hits 1 Million Autonomous Actions Per Day</h2>
+          <p class="card-summary">Salesforce announced that Agentforce 2.0 is now processing over 1 million autonomous customer actions daily across its enterprise client base. The milestone marks commercial AI agent deployment at scale.</p>
 
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-g-4" onclick="flip('g-4')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🔬 Research</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
-          </div>
-          <h3 class="card-title">Anthropic publishes model welfare research — sparks industry debate</h3>
-          <p class="card-summary">Anthropic released a paper exploring whether AI models could have morally relevant experiences. The paper stops short of claims but outlines a research agenda.</p>
-          <div class="card-footer">
-            <span class="card-source">Anthropic Blog</span>
-            <span class="flip-hint">Tap for implications →</span>
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Salesforce</span>
+              <span class="card-counter">7 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
           </div>
         </div>
 
         <!-- BACK -->
         <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">This is less a technical paper and more a signal about where AI regulation conversations are heading. Investors in AI companies should watch for welfare-related compliance requirements emerging in the EU AI Act follow-on regulations. It may also affect how AI products are marketed — positioning around model &quot;wellbeing&quot; could become a differentiator.</p>
-          <div class="card-footer">
-            <a href="https://anthropic.com/blog" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
+          <p class="impl-text">This is the first credible proof point that AI agents can operate at enterprise scale in production — not just pilots. CRM-dependent businesses should treat this as a signal that autonomous customer service is no longer speculative. Sales teams at companies with large inside-sales operations will shrink; customer success roles will shift toward exception-handling rather than routine follow-up. Salesforce's ecosystem of 150,000+ partners faces a transformation: workflow configuration replaces custom development as the primary value-add. Indian BPO firms running Salesforce-based customer service operations for global clients should model the agent displacement scenario now. 90-day action: identify the top 5 repetitive Salesforce workflows in your business and cost-model an Agentforce replacement.</p>
+          <div class="back-foot">
+            <a href="https://salesforce.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">7 / 9</span>
           </div>
         </div>
 
       </div>
     </div>
-
-    <div class="flip-card" id="card-g-5" onclick="flip('g-5')">
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-7" onclick="flip('g-7')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🧠 Model Release</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
-          </div>
-          <h3 class="card-title">Mistral releases Codestral 2 — beats GPT-4o on coding benchmarks</h3>
-          <p class="card-summary">Mistral launched Codestral 2, a code-specialised model that outperforms GPT-4o on HumanEval and SWE-bench. It is available via API and for self-hosting.</p>
-          <div class="card-footer">
-            <span class="card-source">Mistral AI</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Developer tooling built on OpenAI for code assistance (copilots, PR reviewers, automated test generators) now has a credible and cheaper alternative. Engineering teams at mid-size companies that have been paying GPT-4 API rates for coding agents should run a cost comparison this week.</p>
-          <div class="card-footer">
-            <a href="https://mistral.ai" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-g-6" onclick="flip('g-6')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">📋 Policy</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">EU AI Act enforcement clock starts — high-risk system providers scramble</h3>
-          <p class="card-summary">The EU AI Act entered its first enforcement phase, requiring high-risk AI system providers to begin conformity assessments. Non-compliance fines can reach 3% of global revenue.</p>
-          <div class="card-footer">
-            <span class="card-source">Wired AI</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Any company selling AI into the EU market in HR, credit scoring, biometrics, or critical infrastructure must now have a compliance plan in place. This creates a wave of demand for AI auditing and governance tooling — a sector that barely existed two years ago. Consultancies with AI risk practices will see significant inbounds.</p>
-          <div class="card-footer">
-            <a href="https://wired.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-g-7" onclick="flip('g-7')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🚀 Product</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
-          </div>
-          <h3 class="card-title">Perplexity launches Perplexity for Enterprise with SOC 2 compliance</h3>
-          <p class="card-summary">Perplexity launched an enterprise tier with SOC 2 Type II compliance, SSO, and private deployment options. It is positioned as an AI search alternative to Microsoft Copilot.</p>
-          <div class="card-footer">
-            <span class="card-source">VentureBeat AI</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">This directly challenges Microsoft Copilot in the enterprise search space. Procurement teams at mid-market companies now have a second option for AI-powered internal search that does not require a Microsoft 365 commitment. IT buyers should evaluate Perplexity against Copilot on cost per seat before next renewal cycle.</p>
-          <div class="card-footer">
-            <a href="https://venturebeat.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    </div>
-
-    <!-- India column -->
-    <div class="column">
-      <div class="col-header">
-        <div class="col-title">
-          🇮🇳 India AI
-          <span class="col-count">8</span>
-        </div>
-        <div class="col-headline">India AI funding and policy moves signal a maturing ecosystem.</div>
-      </div>
-      
-    <div class="flip-card" id="card-i-0" onclick="flip('i-0')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">💰 Funding</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">Sarvam AI raises $41M Series B led by Peak XV Partners</h3>
-          <p class="card-summary">Sarvam AI, building LLMs across 22 Indian languages, closed a $41M Series B. The round values the company at approximately $200M.</p>
-          <div class="card-footer">
-            <span class="card-source">Inc42</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">This is the largest round for a pure-play India-language AI company. It signals that VCs now believe vernacular models can command enterprise contracts — not just consumer apps. Expect Sarvam to target BFSI and healthcare verticals where regional-language communication is legally required or operationally critical.</p>
-          <div class="card-footer">
-            <a href="https://inc42.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-1" onclick="flip('i-1')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">📋 Policy</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">IndiaAI Mission allocates ₹2,000 Cr for sovereign AI compute infrastructure</h3>
-          <p class="card-summary">The IndiaAI Mission announced ₹2,000 Cr in funding to build domestic GPU compute capacity. The infrastructure will be accessible to startups and researchers at subsidised rates.</p>
-          <div class="card-footer">
-            <span class="card-source">ET Tech</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Subsidised GPU access removes the single biggest cost barrier for Indian AI startups — training and fine-tuning large models. Expect a wave of sector-specific model development targeting agriculture, judiciary, and healthcare where Indian-language data is abundant but compute has been prohibitive.</p>
-          <div class="card-footer">
-            <a href="https://economictimes.indiatimes.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-2" onclick="flip('i-2')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🚀 Product</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">Zoho launches AI-native CRM suite — targets mid-market displacement of Salesforce</h3>
-          <p class="card-summary">Zoho released a rebuilt CRM with native AI features across every module. Pricing undercuts Salesforce Einstein by approximately 60%.</p>
-          <div class="card-footer">
-            <span class="card-source">YourStory</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Indian mid-market companies that have resisted Salesforce on cost grounds now have a credible AI-native alternative from a homegrown player. For SaaS founders, this is a case study in how to use AI features as a wedge against category leaders — watch Zoho's enterprise ARR growth over the next two quarters.</p>
-          <div class="card-footer">
-            <a href="https://yourstory.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-3" onclick="flip('i-3')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🚀 Product</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">Krutrim launches multilingual voice API — targets call centre automation</h3>
-          <p class="card-summary">Bhavish Aggarwal's Krutrim released a voice API supporting 12 Indian languages with sub-200ms latency. Early customers include HDFC and Jio.</p>
-          <div class="card-footer">
-            <span class="card-source">Medianama</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">India has over 600M vernacular-language phone users — the majority of whom cannot be served by English-only voice AI. Sub-200ms latency makes this viable for live customer service, not just IVR. BPO companies serving domestic clients should model the cost impact of replacing human agents on tier-1 query types.</p>
-          <div class="card-footer">
-            <a href="https://medianama.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-4" onclick="flip('i-4')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🔬 Research</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
-          </div>
-          <h3 class="card-title">IIT Madras Pravartak incubates 6 deep-tech startups in Q1 2025</h3>
-          <p class="card-summary">IITM Pravartak announced 6 new incubation cohort companies spanning robotics, medical imaging, and agritech AI. Combined seed funding exceeds ₹12 Cr.</p>
-          <div class="card-footer">
-            <span class="card-source">The Hindu Business</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">IITM Pravartak has become one of the strongest pipelines for deep-tech IP in South India. Investors tracking seed-stage opportunities should monitor this cohort — Pravartak spinoffs have a track record of attracting Series A within 18 months. The agritech and medical imaging picks are particularly interesting given India's scale in both sectors.</p>
-          <div class="card-footer">
-            <a href="https://thehindubusinessline.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-5" onclick="flip('i-5')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
+          <div class="meta-row">
             <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
+            <span class="impact-badge i-med">MEDIUM</span>
+            <span class='card-date'>May 12, 2026</span>
           </div>
-          <h3 class="card-title">NASSCOM reports 35% YoY growth in India AI services exports</h3>
-          <p class="card-summary">NASSCOM's annual tech report shows Indian AI services exports grew 35% YoY, reaching $8.4B. The US remains the dominant buyer at 62% of revenue.</p>
-          <div class="card-footer">
-            <span class="card-source">NASSCOM</span>
-            <span class="flip-hint">Tap for implications →</span>
+
+          <h2 class="card-title">Nvidia Blackwell B300 Ultra Ships to Hyperscalers, 40% Faster Than B200</h2>
+          <p class="card-summary">Nvidia began shipping the Blackwell B300 Ultra GPUs to major cloud providers, with benchmarks showing 40% throughput improvement over B200 at comparable power draw.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">AnandTech</span>
+              <span class="card-counter">8 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
           </div>
         </div>
 
         <!-- BACK -->
         <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">This growth is being driven by AI implementation and consulting work, not just development outsourcing — a meaningful shift. Indian IT firms that have invested in AI practices (Infosys Topaz, TCS AI Cloud, Wipro Enterprise AI) are capturing most of the upside. Mid-tier IT firms without a credible AI story face increasing client attrition.</p>
-          <div class="card-footer">
-            <a href="https://nasscom.in" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
+          <p class="impl-text">Cloud inference pricing will drop another 25–35% within 6 months as hyperscalers pass through hardware gains. AI startups burning cash on GPU compute should renegotiate long-term contracts now before providers update pricing tiers. Enterprises that bought reserved compute capacity at B200 pricing should check contract flexibility — the delta will be significant. On the hardware supply side, Nvidia's continued dominance means AMD and Intel's AI chip ambitions face another 12–18 month runway delay. Indian datacentre operators (NxtGen, CtrlS, Yotta) importing compute should track B300 Ultra availability timelines. 90-day action: if you have significant inference spend, request B300 Ultra migration timelines from your cloud provider and model the cost impact.</p>
+          <div class="back-foot">
+            <a href="https://anandtech.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">8 / 9</span>
           </div>
         </div>
 
       </div>
     </div>
-
-    <div class="flip-card" id="card-i-6" onclick="flip('i-6')">
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-8" onclick="flip('g-8')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">🚀 Product</span>
-            <span class="impact-badge impact-med">MEDIUM</span>
+          <div class="meta-row">
+            <span class="cat-pill">🔬 Research</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 10, 2026</span>
           </div>
-          <h3 class="card-title">Meesho deploys in-house LLM for seller support — cuts cost 70%</h3>
-          <p class="card-summary">Meesho built and deployed a fine-tuned LLM for its 15M seller base, replacing third-party APIs. The model handles 80% of seller queries without human escalation.</p>
-          <div class="card-footer">
-            <span class="card-source">Inc42</span>
-            <span class="flip-hint">Tap for implications →</span>
+
+          <h2 class="card-title">Stanford HAI Report: 35% of Knowledge-Worker Tasks Automatable by 2027</h2>
+          <p class="card-summary">Stanford's Human-Centred AI Institute released its annual AI Index, projecting 35% of knowledge-worker tasks at Fortune 500 companies to be fully automatable by 2027 based on current model trajectories.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Stanford HAI</span>
+              <span class="card-counter">9 / 9</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            
           </div>
         </div>
 
         <!-- BACK -->
         <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Meesho's approach — fine-tune a smaller model on your own domain data rather than pay for GPT-4 — is a blueprint every Indian e-commerce company with scale can follow. The 70% cost reduction on support is significant, but the more important number is 80% containment rate. Any company with high-volume, repetitive customer interactions should be running this experiment.</p>
-          <div class="card-footer">
-            <a href="https://inc42.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="flip-card" id="card-i-7" onclick="flip('i-7')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-meta">
-            <span class="cat-pill">💰 Funding</span>
-            <span class="impact-badge impact-high">HIGH</span>
-          </div>
-          <h3 class="card-title">Accel India leads $12M seed in Bhashini-based fintech startup Vaani</h3>
-          <p class="card-summary">Accel India invested $12M seed in Vaani, which uses the government Bhashini speech API to power vernacular loan applications. The startup targets tier-2 and tier-3 city borrowers.</p>
-          <div class="card-footer">
-            <span class="card-source">VCCircle</span>
-            <span class="flip-hint">Tap for implications →</span>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-header">
-            <span class="back-label">⚡ Real-world implications</span>
-            <span class="flip-hint-back">← tap to flip back</span>
-          </div>
-          <p class="impl-text">Vaani is essentially building a voice-first KYC and lending flow for users who cannot read. This is a massive underserved segment — 200M+ potential borrowers in India who have been excluded by text-based fintech UX. Watch for similar Bhashini-based fintech plays; the government API is free and production-ready, removing the biggest technical barrier.</p>
-          <div class="card-footer">
-            <a href="https://vccircle.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"
-               class="read-link">Read full story ↗</a>
+          <p class="impl-text">This is the authoritative research signal that boards and CHROs have been waiting for to justify workforce restructuring decisions. Companies that delay AI workforce strategy are building a cost disadvantage that compounds quarterly. For Indian IT majors with 300,000+ headcount, the implications on pyramid models, bench utilisation, and billing rates are structural. Investors should weight companies with high knowledge-worker ratios and no visible AI automation strategy as higher-risk. The 2027 timeline is tight enough to start hiring AI trainers and automation specialists now before the market tightens. 90-day action: commission a task-level automation audit for your top 3 highest-headcount business units.</p>
+          <div class="back-foot">
+            <a href="https://hai.stanford.edu" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">9 / 9</span>
           </div>
         </div>
 
       </div>
     </div>
-    </div>
-
+  </div>
   </div>
 
-  <footer class="site-footer">
-    <p>AI Digest Lite · Curated by Claude · <a href="index.html">Full Global Digest</a> · <a href="india.html">India Pulse</a> · <a href="tn.html">TN Innovation</a></p>
-    <p style="margin-top:4px">Updated daily at 7AM CST · Powered by Anthropic Claude</p>
-  </footer>
+  <div class="deck hidden" id="deck-india">
+  <div class="card-wrap intro-wrap">
+    <div class="intro-card">
+      <div class="intro-label">&#x1F1EE;&#x1F1F3; India AI &middot; May 15, 2026</div>
+      <p class="intro-headline">India doubles down on AI infrastructure with sovereign compute push and homegrown model funding.</p>
+      <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-0" onclick="flip('i-0')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">📋 Policy</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 15, 2026</span>
+          </div>
+
+          <h2 class="card-title">IndiaAI Mission Announces ₹2,000 Cr Sovereign Compute Fund for Domestic Startups</h2>
+          <p class="card-summary">The Government of India announced a ₹2,000 crore compute access fund under the IndiaAI Mission, providing subsidised GPU access to Indian AI startups at 40–60% below market rate. Applications open June 1.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Ministry of Electronics and IT</span>
+              <span class="card-counter">1 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This directly cuts the single biggest cost barrier for Indian AI startups building foundation models or large-scale inference products. Startups that previously couldn't compete on compute with US peers now have a 6–18 month window to close the gap before the subsidy scheme scales down. For founders choosing between US and India incorporation, this tilts the calculus toward keeping R&amp;D onshore. Large IT firms like TCS and Wipro are unlikely to qualify — this is genuinely targeted at startups under 5 years old. The political signal is also important: sovereign AI capability is a stated national priority, which means follow-on regulatory support and procurement preferences are likely. 90-day action: if you're an Indian AI startup, register on the IndiaAI portal immediately — compute allocation will be first-come.</p>
+          <div class="back-foot">
+            <a href="https://indiaai.gov.in" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">1 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-1" onclick="flip('i-1')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🚀 Product</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 14, 2026</span>
+          </div>
+
+          <h2 class="card-title">Sarvam AI's Voice Model Hits 96% Accuracy Across 12 Indian Languages</h2>
+          <p class="card-summary">Bengaluru-based Sarvam AI announced its multilingual voice model achieved 96% word-error-rate accuracy across Hindi, Tamil, Telugu, Kannada, and 8 other Indian languages. The model is available via API.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">YourStory</span>
+              <span class="card-counter">2 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">India's 600 million non-English internet users represent the largest underserved AI market globally, and Sarvam's accuracy threshold crosses the commercial viability line for voice-first AI products. Banks, insurance companies, and government service delivery platforms can now deploy voice agents for vernacular customer interactions — a segment currently served by expensive human call centres. For BFSI leaders, this opens a cost reduction pathway on rural last-mile customer service that wasn't viable 12 months ago. Startups building vertical AI products in agritech, healthcare, or fintech targeting Tier 2/3 markets should evaluate Sarvam's API before building proprietary voice stacks. 90-day action: identify your top 2 customer touchpoints in non-English markets and run a Sarvam API pilot.</p>
+          <div class="back-foot">
+            <a href="https://yourstory.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">2 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-2" onclick="flip('i-2')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🏭 Industry</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 13, 2026</span>
+          </div>
+
+          <h2 class="card-title">TCS Signs ₹1,800 Cr AI Transformation Deal with European Bank</h2>
+          <p class="card-summary">Tata Consultancy Services announced a five-year, ₹1,800 crore contract with a European financial institution to deploy AI across risk management, compliance monitoring, and customer analytics workflows.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Economic Times</span>
+              <span class="card-counter">3 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This confirms that large IT services firms are successfully packaging AI as a transformation service rather than point-solution consulting — the deal structure (5-year managed service) is critical. Infosys, Wipro, and HCL will face margin pressure to match TCS's AI-embedded pricing in competitive bids going forward. For mid-tier IT firms without comparable AI delivery capability, this deal signals a narrowing window to build or partner before the market stratifies. The compliance and risk management focus is significant: it's a regulated domain where Indian IT's governance track record adds credibility over pure-play AI vendors. Investors in Indian IT stocks should weight AI services revenue mix as a leading quality indicator. 90-day action: if you're competing with TCS in BFSI, accelerate your AI in risk/compliance go-to-market before this deal becomes a case study they use against you.</p>
+          <div class="back-foot">
+            <a href="https://economictimes.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">3 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-3" onclick="flip('i-3')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🔬 Research</span>
+            <span class="impact-badge i-med">MEDIUM</span>
+            <span class='card-date'>May 12, 2026</span>
+          </div>
+
+          <h2 class="card-title">IIT Madras Pravartak Launches 10th Cohort with 42 AI and DeepTech Startups</h2>
+          <p class="card-summary">IITM Pravartak Technologies Foundation opened its 10th incubation cohort with 42 startups across AI, semiconductor design, and advanced materials. Cohort companies receive ₹25L seed grants and IIT Madras lab access.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">The Hindu</span>
+              <span class="card-counter">4 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">IITM Pravartak now has 450+ startups in its portfolio, making it India's most prolific deeptech pipeline and the single best signal for where Indian frontier tech is heading in 3–5 years. For corporate innovation and M&amp;A teams at companies like Bosch, Siemens, or HCL, this cohort is a low-cost scouting opportunity — many Pravartak spinoffs become acquisition targets post-Series A. Semiconductor design startups in the cohort are particularly strategically significant given India's PLI scheme for chip design. VCs focused on deeptech should build a relationship with Pravartak's deal flow before Demo Day, not after. 90-day action: schedule a Pravartak cohort review session — the access window before competitive interest spikes is now.</p>
+          <div class="back-foot">
+            <a href="https://thehindu.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">4 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-4" onclick="flip('i-4')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🏭 Industry</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 11, 2026</span>
+          </div>
+
+          <h2 class="card-title">Meesho Deploys In-House AI for Full Catalogue Management, Cuts Ops Cost 40%</h2>
+          <p class="card-summary">Meesho announced its proprietary AI system now handles 100% of product catalogue tagging, description generation, and pricing optimisation across 140 million SKUs, reducing operational cost by 40%.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Inc42</span>
+              <span class="card-counter">5 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This is the most compelling Indian e-commerce AI ROI case study to date: 40% operational cost reduction at 140M SKU scale is a number every operations leader needs to benchmark against. For Meesho competitors (Flipkart, Snapdeal, Amazon India), this narrows the cost-to-serve gap and forces an immediate response. B2B SaaS startups selling catalogue management or pricing optimisation to Indian e-commerce need to reposition or their wedge disappears. The broader signal: AI-native cost structures in Indian consumer internet are now proven, which will compress the runway for businesses with legacy ops-heavy models. 90-day action: if you have a product catalogue over 10K SKUs and haven't evaluated AI-driven catalogue ops, quantify the gap this week.</p>
+          <div class="back-foot">
+            <a href="https://inc42.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">5 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-5" onclick="flip('i-5')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🏭 Industry</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 10, 2026</span>
+          </div>
+
+          <h2 class="card-title">NASSCOM Forecasts India AI Services Export Revenue to Hit $50B by 2030</h2>
+          <p class="card-summary">NASSCOM's annual tech sector outlook projects India's AI-specific services export revenue will reach $50 billion by 2030, up from an estimated $8 billion today, driven by GCC expansion and AI transformation deals.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">NASSCOM</span>
+              <span class="card-counter">6 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This is the market sizing signal that will shape capital allocation and hiring decisions across the Indian IT industry for the next 4 years. The $50B target implies 25%+ CAGR, which is achievable only if India rapidly upskills its developer base in AI — creating massive demand for AI training, certification, and reskilling businesses. For EdTech platforms like upGrad and Simplilearn, this is a five-year revenue visibility signal. Global companies expanding GCCs in India (JPMorgan, Goldman, Walmart) should accelerate AI capability centre buildout before talent competition intensifies. The forecast also implies India's share of global AI services grows from ~12% to ~20%. 90-day action: if you're a CHRO at an IT company, publish your AI reskilling target for 2026 before NASSCOM makes it a procurement credential.</p>
+          <div class="back-foot">
+            <a href="https://nasscom.in" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">6 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-6" onclick="flip('i-6')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">🚀 Product</span>
+            <span class="impact-badge i-high">HIGH</span>
+            <span class='card-date'>May 13, 2026</span>
+          </div>
+
+          <h2 class="card-title">PhonePe Launches AI-Powered Fraud Detection Blocking ₹500Cr Monthly</h2>
+          <p class="card-summary">PhonePe deployed a real-time AI fraud detection system that it claims is blocking ₹500 crore in fraudulent transactions monthly, with false-positive rates below 0.1%.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">Mint</span>
+              <span class="card-counter">7 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">This is the benchmark that every Indian payments and lending platform now has to match — regulators will start asking BFSI companies what their equivalent fraud block rate is. For banks and NBFCs still using rule-based fraud systems, the gap is now publicly quantified and will draw RBI attention. FinTech startups in the fraud detection space face a credibility challenge: PhonePe built this in-house, which signals that tier-1 payments companies will internalise rather than vendor-out this capability. The 0.1% false-positive rate is the key metric — at PhonePe's transaction volume, even 0.5% would mean millions of legitimate transactions blocked. 90-day action: BFSI risk heads should benchmark their current fraud block rates against PhonePe's figures and present the gap analysis to the board.</p>
+          <div class="back-foot">
+            <a href="https://livemint.com" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">7 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-7" onclick="flip('i-7')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="meta-row">
+            <span class="cat-pill">📋 Policy</span>
+            <span class="impact-badge i-med">MEDIUM</span>
+            <span class='card-date'>May 11, 2026</span>
+          </div>
+
+          <h2 class="card-title">Startup India AI Accelerator Selects 25 Startups for 12-Week Cohort</h2>
+          <p class="card-summary">DPIIT's Startup India AI Accelerator announced 25 selected startups for its 12-week programme, offering mentorship, government pilot opportunities, and direct access to ministry procurement officers.</p>
+
+          <div class="card-foot">
+            <div class="foot-row">
+              <span class="card-source">DPIIT</span>
+              <span class="card-counter">8 / 8</span>
+            </div>
+            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
+            
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <p class="impl-text">Government procurement is the most reliable early revenue for B2G AI startups in India — this cohort fast-tracks that access in a way that takes most startups 2–3 years to navigate independently. For founders outside the cohort, the selection list signals which problem domains the government is actively buying: health data analytics, agricultural monitoring, and grievance redressal AI dominated this round. Corporate innovation teams at Tata, Mahindra, or L&amp;T should monitor Startup India cohorts as an early signal of government technology priorities. 90-day action: if you're an AI startup targeting government or public-sector revenue, check if any DPIIT accelerator cohort aligns with your next application cycle.</p>
+          <div class="back-foot">
+            <a href="https://startupindia.gov.in" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">8 / 8</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
 
   <script>
     function flip(id) {
-      const card = document.getElementById('card-' + id);
-      card.classList.toggle('flipped');
+      var c = document.getElementById('fc-' + id);
+      if (c) c.classList.toggle('flipped');
+    }
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var g = document.getElementById('deck-global');
+      var i = document.getElementById('deck-india');
+      if (tab === 'global') {
+        g.classList.remove('hidden'); i.classList.add('hidden');
+        g.scrollTo({top:0,behavior:'instant'});
+      } else {
+        i.classList.remove('hidden'); g.classList.add('hidden');
+        i.scrollTo({top:0,behavior:'instant'});
+      }
     }
   </script>
 

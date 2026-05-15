@@ -1,10 +1,9 @@
 """
 summarize_lite.py
 Produces the AI Digest Lite — a curated 15-minute briefing covering Global + India
-AI news in a flip-card format. Each card has:
-  - Front: punchy title + 2-sentence summary
-  - Back:  real-world implication (what does this mean for businesses, jobs,
-           consumers, investors, specific industries)
+AI news in a full-screen swipe-card format. Each card has:
+  - Front: punchy title + 2-sentence summary + date
+  - Back:  business implications targeting CTOs, CFOs, founders, enterprise leaders
 
 Both sections are produced in a single Claude call to minimise API cost.
 """
@@ -17,44 +16,48 @@ from typing import List, Dict
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
-SYSTEM_PROMPT = """You are a senior technology analyst writing for a busy professional audience.
-Your job is to curate today's most important AI news into a tight 15-minute briefing — split across Global and India sections.
+SYSTEM_PROMPT = """You are a senior technology strategist briefing C-suite executives and founders on AI developments.
+Your audience: CTOs and heads of engineering at companies like TCS, Infosys, Wipro, Accenture; CFOs evaluating AI spend;
+Series A–C founders deciding where to build; VPs of strategy at Fortune 500s; venture partners deciding what to fund.
 
-For each story you MUST produce three things:
-1. A punchy, specific title (not generic — name the company/model/person)
-2. A 2-sentence summary for the card front — what happened, stated plainly
-3. A real-world implication for the card back — 3-4 sentences explaining concrete impact:
-   - Which industry or profession is most affected?
-   - What does this enable or disrupt?
-   - Any economic, investment, or consumer angle?
-   - For India stories: what does this mean specifically for the Indian market or ecosystem?
+For each story you MUST produce:
+1. A punchy, specific title — name the company, model, or person (never generic)
+2. A 2-sentence summary — what happened, plainly stated
+3. Business implications — 4-5 sharp sentences targeting this executive audience:
+   - Which business lines, revenue streams, or cost structures are directly affected?
+   - What competitive threat or market opportunity does this open in the next 6–18 months?
+   - What is the talent, vendor, or build-vs-buy implication?
+   - Is there an investment signal — sector heating up, valuations shifting, M&A likely?
+   - End with ONE concrete action: what should a smart leader do in the next 90 days?
+   For India stories: frame in the context of Indian IT services exports, domestic enterprise adoption, government policy, and MNC vs. local player dynamics.
+4. A date — the article's publication date formatted as "Month DD, YYYY" (e.g., "May 14, 2026"). Use the published field if available, else use today's date.
 
 Implication rules:
-- Be concrete. "This could increase voice-to-text processing speeds by 3x in call centres" beats "This has implications for NLP"
-- Name affected industries, roles, or companies when relevant
-- Avoid hedge words like "might possibly perhaps"
-- Think like an investor or founder reading at 7am — what do they DO with this information?
+- Specificity beats hedging. "This halves the cost of document-processing workflows, threatening ₹800Cr/year in BPO contracts" beats "this could impact BPO."
+- Name affected sectors, roles, or named companies when relevant.
+- Zero hedge words: no "might", "possibly", "could perhaps". Write like it already happened or will happen.
+- The 90-day action should be concrete — start an eval, brief the board, pause a vendor contract, hire a specialist.
 
 Selection rules:
 - Pick 8 to 10 stories per section (Global and India separately)
-- Prefer stories with clear real-world consequences over incremental model benchmarks
-- Skip press releases with no concrete development
-- If a story is minor, skip it — quality over completeness
-- impact: "high" = affects millions of people or billions in market; "medium" = affects a significant sector; "low" = niche but interesting
+- Prefer stories with clear business consequences over model benchmarks or incremental updates
+- Skip PR fluff with no concrete development, funding announcements without product context, or conference recaps
+- impact: "high" = affects billions in market cap or millions of workers; "medium" = materially shifts a significant sector; "low" = niche but strategically interesting
 
 Return ONLY valid JSON, no markdown, no explanation:
 {
-  "global_headline": "One sharp sentence capturing the overall global AI mood today",
-  "india_headline": "One sharp sentence capturing the overall India AI mood today",
+  "global_headline": "One sharp sentence capturing the dominant global AI business theme today",
+  "india_headline": "One sharp sentence capturing the dominant India AI business theme today",
   "global": [
     {
       "title": "Specific punchy title naming who/what",
       "summary": "Sentence one. Sentence two.",
-      "implication": "3-4 sentences of concrete real-world impact.",
+      "implication": "4-5 sentences of concrete business impact ending with a 90-day action.",
       "source": "Source name",
       "url": "article url",
-      "category": "Model Release | Funding | Policy | Research | Product | Industry | Open Source",
-      "impact": "high | medium | low"
+      "category": "Model Release | Funding | Policy | Research | Product | Industry | Open Source | Workforce",
+      "impact": "high | medium | low",
+      "date": "Month DD, YYYY"
     }
   ],
   "india": [
@@ -65,7 +68,8 @@ Return ONLY valid JSON, no markdown, no explanation:
       "source": "...",
       "url": "...",
       "category": "...",
-      "impact": "high | medium | low"
+      "impact": "high | medium | low",
+      "date": "Month DD, YYYY"
     }
   ]
 }"""
@@ -82,16 +86,17 @@ def summarize_lite(global_articles: List[Dict], india_articles: List[Dict],
 
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-    # Trim and format articles — keep it tight
+    # Trim and format articles — include published date for card display
     def prep(articles, cap=30):
         out = []
         for a in articles[:cap]:
             out.append({
-                "title":    a["title"],
-                "summary":  a.get("summary", "")[:120],
-                "source":   a["source"],
-                "url":      a["url"],
-                "category": a.get("category", ""),
+                "title":     a["title"],
+                "summary":   a.get("summary", "")[:150],
+                "source":    a["source"],
+                "url":       a["url"],
+                "category":  a.get("category", ""),
+                "published": a.get("published", ""),
             })
         return out
 
@@ -103,7 +108,7 @@ def summarize_lite(global_articles: List[Dict], india_articles: List[Dict],
 
     user_message = f"""Today is {today}.
 {memory_block}
-Produce AI Digest Lite — a curated 15-minute briefing with 8-10 cards per section.
+Produce AI Digest Lite — 8-10 high-signal cards per section for C-suite and founder readers.
 
 === GLOBAL AI NEWS ({len(global_payload)} articles) ===
 {json.dumps(global_payload, indent=2)}
@@ -111,7 +116,7 @@ Produce AI Digest Lite — a curated 15-minute briefing with 8-10 cards per sect
 === INDIA AI NEWS ({len(india_payload)} articles) ===
 {json.dumps(india_payload, indent=2)}
 
-Return the structured Lite digest JSON now. Focus on stories where the real-world implication is genuinely interesting and actionable."""
+Return the structured Lite digest JSON. Prioritise stories with clear business impact. Make implications actionable for executives who read this at 7am and need to know what to do next."""
 
     message = client.messages.create(
         model="claude-sonnet-4-6",
