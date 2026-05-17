@@ -9,13 +9,9 @@ import os
 import json
 import anthropic
 from typing import List, Dict
-from tn_ecosystem_data import get_startups_summary_for_prompt
-<<<<<<< Updated upstream
 
 from extract_signals import extract_and_format
 from tn_ecosystem_data import get_startups_summary_for_prompt
-=======
->>>>>>> Stashed changes
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
@@ -166,7 +162,7 @@ def summarize_tn_articles(articles: List[Dict], memory_context: str = "") -> Dic
     for a in articles[:35]:  # cap at 35 — best signal, ~50% fewer input tokens
         payload.append({
             "title":     a["title"],
-            "summary":   a["summary"][:150],  # trimmed 500→150 for cost
+            "summary":   a["summary"][:150],
             "source":    a["source"],
             "url":       a["url"],
             "category":  a["category"],
@@ -177,23 +173,16 @@ def summarize_tn_articles(articles: List[Dict], memory_context: str = "") -> Dic
         return _empty_digest()
 
     ecosystem_context = get_startups_summary_for_prompt()
-<<<<<<< Updated upstream
     memory_block = f"\n{memory_context}\n" if memory_context else ""
 
     # Run cheap extraction pass before calling Claude
     signal_graph = extract_and_format(articles, pipeline="tn")
     signal_block = f"\n{signal_graph}\n" if signal_graph else ""
-=======
->>>>>>> Stashed changes
 
     user_message = f"""Here are the Tamil Nadu innovation and technology news articles from the past 7 days.
 Today's date: {__import__('datetime').datetime.utcnow().strftime('%B %d, %Y')} (IST: +5:30 ahead of UTC)
 Articles cover: {len(payload)} items from the past 7 days.
 {memory_block}{signal_block}
---- TN ECOSYSTEM BACKGROUND (use as context, never fabricate beyond this) ---
-{ecosystem_context}
---- END BACKGROUND ---
-
 --- TN ECOSYSTEM BACKGROUND (use as context, never fabricate beyond this) ---
 {ecosystem_context}
 --- END BACKGROUND ---
