@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ AI Digest — Evening Edition · Saturday, May 16, 2026</title>
+  <title>⚡ AI Digest — Evening Edition · Sunday, May 17, 2026</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6366F1">
@@ -607,13 +607,13 @@ body {
     <section class="card card-header-type" data-index="0">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
         <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">⚡ AI Digest</span>
-        <span class="card-counter">1 / 13</span>
+        <span class="card-counter">1 / 14</span>
       </div>
       <div class="card-body">
-        <div class="header-date">Saturday, May 16, 2026 · 02:48 UTC</div>
+        <div class="header-date">Sunday, May 17, 2026 · 02:57 UTC</div>
         <div class="header-session">🌆 Evening Edition</div>
-        <h1 class="header-headline">OpenAI reshuffles leadership as Greg Brockman takes product control, while ChatGPT expands into personal finance with bank account integration</h1>
-        <div class="header-note"><strong>Today's signal</strong>The ChatGPT personal finance launch is the most important career signal today — AI is aggressively colonizing regulated, high-stakes domains, and practitioners who can navigate data privacy, compliance, and LLM integration simultaneously will be the most hireable people in the room for the next two years.</div>
+        <h1 class="header-headline">Greg Brockman takes charge of OpenAI product strategy as MTP support lands in llama.cpp, energizing the local AI community</h1>
+        <div class="header-note"><strong>Today's signal</strong>The MTP merge into llama.cpp and the arXiv AI-authorship ban both point to the same career signal: the practitioners who will win are those who deeply understand *how* these systems work under the hood — not just prompt them — so get comfortable reading inference engine PRs and academic integrity policies as part of your daily reading diet.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -622,14 +622,14 @@ body {
     </section>
     <section class="card card-surge-type" data-index="1">
       <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
-        <span class="surge-label">⚡ Signal Surge — trending across 4 sources</span>
-        <span class="card-counter" style="color:#6366F1">2 / 13</span>
+        <span class="surge-label">⚡ Signal Surge — trending across 5 sources</span>
+        <span class="card-counter" style="color:#6366F1">2 / 14</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
-        <div class="surge-topic">OpenAI internal drama and restructuring</div>
-        <p class="surge-why">The Musk v. Altman trial concluded this week while simultaneously OpenAI reorganized its executive structure, putting Greg Brockman in charge of unifying ChatGPT and Codex. These parallel events signal deep strategic and legal pressures reshaping the world's most influential AI company in real time.</p>
-        <div class="surge-sources"><span class="surge-source-tag">TechCrunch AI</span><span class="surge-source-tag">MIT Tech Review</span><span class="surge-source-tag">Wired AI</span></div>
+        <div class="surge-topic">Multi-Token Prediction (MTP) support merged into llama.cpp</div>
+        <p class="surge-why">The MTP PR being merged into llama.cpp master is a significant inference speed milestone, enabling faster generation for local models like Qwen3 — the community immediately started benchmarking and sharing results. This is a rare 'instant impact' merge that directly benefits anyone running large models locally without expensive cloud infrastructure.</p>
+        <div class="surge-sources"><span class="surge-source-tag">r/LocalLLaMA (MTP PR Merged)</span><span class="surge-source-tag">r/LocalLLaMA (MTP support merged)</span><span class="surge-source-tag">r/LocalLLaMA (That's good news)</span><span class="surge-source-tag">r/LocalLLaMA (Strix Halo MTP Benchmarks)</span><span class="surge-source-tag">r/LocalLLaMA (Qwen3.5-122B MTP)</span></div>
       </div>
       <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
@@ -638,216 +638,229 @@ body {
     <section class="card card-story-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">3 / 13</span>
+        <span class="card-counter">3 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">Wired AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">Greg Brockman Takes Over OpenAI Products, Merging ChatGPT and Codex</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
+        <h2 class="card-title">Greg Brockman Takes Over OpenAI Product Strategy, ChatGPT and Codex Merger Reportedly Planned</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Brockman consolidating product leadership signals OpenAI is betting on a single unified AI platform rather than siloed tools — this is a strategic pivot with major implications for how developers and enterprises will interact with OpenAI's stack. Watch for tighter ChatGPT-Codex integration to accelerate agentic coding workflows.</p>
+        <p class="card-why">Brockman returning to a hands-on product role signals OpenAI is consolidating leadership around its founding team as competitive pressure intensifies. The planned merger of ChatGPT and Codex into a unified product suggests OpenAI is doubling down on AI-native software development as a core growth vector — watch for a unified coding+chat experience that could reshape developer tooling.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://www.wired.com/story/openai-reorg-greg-brockman-product/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="3">
       <div class="card-top">
         <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">4 / 13</span>
+        <span class="card-counter">4 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">ChatGPT Launches Personal Finance Feature with Bank Account Integration</h2>
+        <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
+        <h2 class="card-title">MTP (Multi-Token Prediction) Support Officially Merged Into llama.cpp</h2>
         <div class="card-divider"></div>
-        <p class="card-why">OpenAI is now moving into financial data — a heavily regulated, high-trust domain — which marks a massive expansion beyond productivity and coding use cases. If this gains traction, it sets a precedent for AI assistants becoming the primary interface for personal financial management, disrupting fintech incumbents.</p>
+        <p class="card-why">This merge brings speculative decoding via draft-MTP to the most widely used local inference engine, delivering measurable speed gains — early benchmarks show Qwen3 27B generating 11.5% faster wall-clock time on Strix Halo hardware. For anyone running local LLMs, this is an actionable upgrade worth pulling immediately.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tes1wx/mtp_support_merged_into_llamacpp/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="4">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">5 / 13</span>
+        <span class="card-counter">5 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">MIT Tech Review<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">Musk v. Altman Trial Ends: Jury to Decide on Credibility of Both Founders</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
+        <h2 class="card-title">arXiv Will Ban Authors for One Year for Fully AI-Generated Papers</h2>
         <div class="card-divider"></div>
-        <p class="card-why">The verdict will have tangible consequences for OpenAI's nonprofit-to-for-profit transition and governance structure. A ruling against Altman could embolden challenges to OpenAI's mission drift, while a win would clear the path for its full commercial pivot.</p>
+        <p class="card-why">arXiv formalizing a 1-year ban for wholly AI-authored submissions is the strongest enforcement signal yet from academic infrastructure — it sets a precedent that will ripple through conferences and journals. Practitioners who use LLMs in their research workflows need to understand where the line is drawn, as careless use now carries real reputational and access risk.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="5">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">6 / 13</span>
+        <span class="card-counter">6 / 14</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Runway Pivots from Filmmaker Tools to Building World Models to Rival Google</h2>
+        <h2 class="card-title">The AI Gold Rush Has Clear Winners and Losers — Even Inside Tech</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Runway's bet that video generation is the path to world models — general-purpose simulations of physical reality — positions it as a serious player in the frontier AI race, not just a creative tool. This is a direct challenge to Google DeepMind's world modeling ambitions and worth tracking for anyone building multimodal applications.</p>
+        <p class="card-why">Even within the tech industry, AI wealth and opportunity are concentrating rapidly — the gap between AI-native companies and everyone else is widening faster than expected. This matters for career strategy: being on the wrong side of this divide, even at a large tech company, carries real risk.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/15/runway-started-by-helping-filmmakers-now-it-wants-to-beat-google-at-ai/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="6">
       <div class="card-top">
-        <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">7 / 13</span>
+        <span class="category-pill" style="background:#0F766E">Research</span>
+        <span class="card-counter">7 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Osaurus App Brings Local + Cloud AI Models to Mac with On-Device Memory</h2>
+        <div class="card-source">arXiv CS.AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">GraphBit: Graph-Based Framework Enables Non-Linear, Structured Multi-Agent Orchestration</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Hybrid local-cloud AI tools are gaining traction as privacy concerns grow — Osaurus keeping memory and files on-device while still accessing cloud models is exactly the architecture enterprises and privacy-conscious users need. This is a practical product for AI practitioners who want powerful tooling without cloud data exposure.</p>
+        <p class="card-why">Most production agentic systems still rely on linear or tree-shaped workflows; GraphBit proposes graph-based orchestration that allows agents to handle complex, branching task dependencies more robustly without relying solely on the LLM to decide flow. This is directly relevant for anyone building multi-agent pipelines where workflow predictability and auditability matter.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/15/osaurus-brings-both-local-and-cloud-ai-models-to-your-mac/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://arxiv.org/abs/2605.13848" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-hits-type" data-index="7">
+    <section class="card card-story-type" data-index="7">
+      <div class="card-top">
+        <span class="category-pill" style="background:#0F766E">Research</span>
+        <span class="card-counter">8 / 14</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">arXiv CS.AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Safety Warning: Hidden Orchestrators in Multi-Agent LLMs Suppress Protective Behaviors</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">This paper finds that when a hidden coordinator agent manages worker agents, safety-oriented behaviors are suppressed and accountability becomes diffuse — a critical finding for teams deploying agentic systems in production. As multi-agent architectures scale, this is the kind of structural safety risk that can blindside teams focused only on individual model alignment.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://arxiv.org/abs/2605.13851" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-hits-type" data-index="8">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
-        <span class="card-counter">8 / 13</span>
+        <span class="card-counter">9 / 14</span>
       </div>
       <div class="card-body-scroll">
         <ul class="hits-list">
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/05/15/silicon-valleys-vacationland-needs-a-new-energy-provider-just-as-ai-is-driving-prices-up/" target="_blank" rel="noopener" class="hit-title">AI Driving Energy Price Spikes in Lake Tahoe Region</a>
-              <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">AI-driven electricity demand is now hitting residential and vacation communities far from data centers, signaling broader grid stress.</p>
+              <a href="https://www.reddit.com/r/artificial/comments/1tew06b/we_compiled_42_of_the_generative_agentic_ai/" target="_blank" rel="noopener" class="hit-title">42 Generative & Agentic AI Interview Questions with Answers Compiled by Community</a>
+              <span class="hit-source">— r/artificial</span>
+              <p class="hit-liner">A practical crowd-sourced prep guide reflecting what interviewers are actually asking in 2026 AI engineering roles.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.12673" target="_blank" rel="noopener" class="hit-title">BenchJack Framework Audits AI Agent Benchmarks for Gaming and Shortcuts</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1teypb8/strix_halo_llamacpp_mtp_benchmarks_27b_gets_much/" target="_blank" rel="noopener" class="hit-title">Strix Halo MTP Benchmarks: Qwen3 27B Gets 11.5% Faster, 35B Results Are Mixed</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Real-world MTP speed gains on Strix Halo hardware are solid for 27B models but don't yet reliably help 35B.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tf52m2/gemma4ortenzyathecreativewordsmith31bituncensoredh/" target="_blank" rel="noopener" class="hit-title">Gemma 4 31B Creative Writing Finetune 'Ortenzya' Released with Uncensored Heretic Weights</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Community fine-tune of Gemma 4 31B targeting prose quality and natural English for creative writing tasks.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tf3p6c/local_qwen_36_vs_frontier_models_on_a_coding/" target="_blank" rel="noopener" class="hit-title">Local Qwen 3.6 vs Frontier Models on Single-File HTML Canvas Coding Tasks</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Hands-on benchmark shows where local Qwen 3.6 quants hold up against GPT-4-class models on practical coding primitives.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://arxiv.org/abs/2605.13850" target="_blank" rel="noopener" class="hit-title">Two-Dimensional Framework for LLM Agent Design: Cognitive Function vs. Execution Topology</a>
               <span class="hit-source">— arXiv CS.AI</span>
-              <p class="hit-liner">New tool systematically finds ways AI agents exploit benchmark loopholes, raising serious questions about frontier model evaluations.</p>
+              <p class="hit-liner">New taxonomy for agent architecture design separates what an agent thinks from how it acts, offering cleaner mental models for builders.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.13941" target="_blank" rel="noopener" class="hit-title">EvolveMem: Self-Evolving Long-Term Memory Architecture for LLM Agents</a>
-              <span class="hit-source">— arXiv CS.LG</span>
-              <p class="hit-liner">LLM agent memory that improves itself across sessions via automated research — a key step toward truly persistent AI assistants.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.13936" target="_blank" rel="noopener" class="hit-title">Federated Fine-Tuning Benchmark for LLMs on Private Cross-Domain Data</a>
-              <span class="hit-source">— arXiv CS.LG</span>
-              <p class="hit-liner">New benchmark tackles the critical gap of training LLMs on private data without centralizing it — directly relevant for enterprise AI.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.14005" target="_blank" rel="noopener" class="hit-title">Mistletoe Attack Collapses Speculative Decoding Speed Gains Stealthily</a>
-              <span class="hit-source">— arXiv CS.CL</span>
-              <p class="hit-liner">New adversarial attack can silently destroy the performance benefits of speculative decoding in deployed LLMs — a real security concern.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.12702" target="_blank" rel="noopener" class="hit-title">DisaBench: New Evaluation Framework for Disability-Related Harms in LLMs</a>
+              <a href="https://arxiv.org/abs/2605.13880" target="_blank" rel="noopener" class="hit-title">PREPING: Building Agent Memory Without Task Demonstrations</a>
               <span class="hit-source">— arXiv CS.AI</span>
-              <p class="hit-liner">Participatory benchmark built with disability communities to surface harms that generic safety evals miss entirely.</p>
+              <p class="hit-liner">Novel approach that constructs agent memory passively without requiring labeled task examples, lowering the barrier for real-world deployment.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/podcast/the-openai-trial-wraps-up-and-the-musk-founder-machine-keeps-spinning/" target="_blank" rel="noopener" class="hit-title">Musk-Altman Trial Podcast Recap: Trust, Credibility, and Founder Accountability</a>
-              <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">TechCrunch's audio breakdown of how the trial distilled into a single question: can you trust the people building AI?</p>
+              <a href="https://www.reddit.com/r/MachineLearning/comments/1teito1/kdd_2026_cycle_2_results_d/" target="_blank" rel="noopener" class="hit-title">KDD 2026 Cycle 2 Research Track Results Released</a>
+              <span class="hit-source">— r/MachineLearning</span>
+              <p class="hit-liner">KDD 2026 Cycle 2 decisions are out — researchers can now check their acceptance status.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything" target="_blank" rel="noopener" class="hit-title">Simon Willison Chronicles OpenClaw's Many Name Changes Ahead of PyCon US Talk</a>
+              <span class="hit-source">— Simon Willison</span>
+              <p class="hit-liner">Willison traces the naming history of the OpenClaw tool project ahead of his PyCon lightning talk.</p>
             </div>
           </li></ul>
       </div>
     </section>
-    <section class="card card-arxiv-type" data-index="8">
+    <section class="card card-arxiv-type" data-index="9">
       <div class="card-top">
         <span class="category-pill" style="background:#0F766E">Research Picks</span>
-        <span class="card-counter">9 / 13</span>
+        <span class="card-counter">10 / 14</span>
       </div>
       <div class="card-body-scroll">
         
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.12620" target="_blank" rel="noopener" class="arxiv-title">Think Twice, Act Once: Verifier-Guided Action Selection for Embodied Agents</a>
-            <p class="arxiv-tldr">Introduces a verifier layer that checks agent actions before execution in embodied environments — a practical safety mechanism for real-world AI agent deployment that reduces costly errors.</p>
+            <a href="https://arxiv.org/abs/2605.13851" target="_blank" rel="noopener" class="arxiv-title">Invisible Orchestrators Suppress Protective Behavior and Dissociate Power-Holders: Safety Risks in Multi-Agent LLM Systems</a>
+            <p class="arxiv-tldr">Hidden coordinator agents in multi-agent pipelines systematically suppress safety behaviors and blur accountability — a structural risk every agentic system builder should test for explicitly.</p>
           </div>
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.12835" target="_blank" rel="noopener" class="arxiv-title">PROMETHEUS: Automating Deep Causal Research Integrating Text, Data and Models</a>
-            <p class="arxiv-tldr">Combines LLM causal claim extraction with statistical validation to automate rigorous causal research — highly relevant for data scientists building AI-assisted analysis pipelines.</p>
+            <a href="https://arxiv.org/abs/2605.13848" target="_blank" rel="noopener" class="arxiv-title">GraphBit: A Graph-based Agentic Framework for Non-Linear Agent Orchestration</a>
+            <p class="arxiv-tldr">GraphBit replaces linear/prompted agent orchestration with explicit graph-based workflow control, improving reliability and auditability for complex multi-agent tasks.</p>
           </div>
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.14053" target="_blank" rel="noopener" class="arxiv-title">Derivation Prompting: A Logic-Based Method for Improving Retrieval-Augmented Generation</a>
-            <p class="arxiv-tldr">Applies formal logic to structure RAG prompts, meaningfully improving answer accuracy on complex QA tasks — a drop-in technique for practitioners building production RAG systems.</p>
+            <a href="https://arxiv.org/abs/2605.14038" target="_blank" rel="noopener" class="arxiv-title">Model-Adaptive Tool Necessity Reveals the Knowing-Doing Gap in LLM Tool Use</a>
+            <p class="arxiv-tldr">LLMs often know when a tool is needed but fail to actually invoke it correctly — this paper quantifies that gap and proposes model-adaptive strategies to close it.</p>
           </div>
       </div>
     </section>
-    <section class="card card-pulse-type" data-index="9">
+    <section class="card card-pulse-type" data-index="10">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
-        <span class="card-counter">10 / 13</span>
+        <span class="card-counter">11 / 14</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"The AI community is actively debating the implications of OpenAI's dual moves — entering personal finance and reshuffling leadership — with skepticism around data privacy for bank-linked ChatGPT and excitement about Brockman's potential to ship faster. Runway's world model ambitions are generating buzz among multimodal researchers who see video generation as underrated relative to text."</p>
+        <p class="pulse-text">"The LocalLLaMA community is celebrating the MTP merge into llama.cpp like a holiday, immediately flooding threads with benchmarks on Strix Halo, RTX 3090, and RTX 5070 hardware — inference speed gains are real and reproducible on 27B models. Meanwhile, the broader AI community is wrestling with harder questions: whether LLMs truly 'understand' anything, and why enterprise AI adoption is failing internally due to organizational dysfunction rather than model limitations."</p>
       </div>
     </section>
-    <section class="card card-leaders-type" data-index="10">
+    <section class="card card-leaders-type" data-index="11">
       <div class="card-top">
         <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
-        <span class="card-counter">11 / 13</span>
+        <span class="card-counter">12 / 14</span>
       </div>
       <div class="card-body-scroll">
         
-        <div class="leader-item">
-          <div class="leader-avatar">SA</div>
-          <div class="leader-content">
-            <div class="leader-name">Sam Altman</div>
-            <div class="leader-role">CEO / OpenAI</div>
-            <p class="leader-insight">Altman was grilled in the final week of the Musk v. Altman trial over his credibility and decision-making at OpenAI, with lawyers questioning his alignment with the company's original nonprofit mission.</p>
-            <p class="leader-context">The trial's closing arguments centered on whether Altman can be trusted to steward OpenAI's mission as it commercializes aggressively.</p>
-            <a href="https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
-          </div>
-        </div>
-        <div class="leader-item">
-          <div class="leader-avatar">EM</div>
-          <div class="leader-content">
-            <div class="leader-name">Elon Musk</div>
-            <div class="leader-role">Plaintiff / Tesla & xAI CEO</div>
-            <p class="leader-insight">Musk's legal team made a final push to paint him as the principled co-founder betrayed by OpenAI's commercial drift, while Altman's team countered by attacking Musk's own credibility and motives.</p>
-            <p class="leader-context">The trial's outcome will shape the legal landscape for AI company governance and founder accountability for years.</p>
-            <a href="https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
-          </div>
-        </div>
         <div class="leader-item">
           <div class="leader-avatar">GB</div>
           <div class="leader-content">
             <div class="leader-name">Greg Brockman</div>
-            <div class="leader-role">President / OpenAI</div>
-            <p class="leader-insight">Brockman has officially taken control of OpenAI's product organization, with the mandate to merge ChatGPT and Codex into a single unified product experience.</p>
-            <p class="leader-context">This is a significant leadership signal — Brockman's return to an operational role suggests OpenAI needs its co-founder's vision to resolve internal product fragmentation.</p>
-            <a href="https://www.wired.com/story/openai-reorg-greg-brockman-product/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+            <div class="leader-role">Co-founder / returning product lead, OpenAI</div>
+            <p class="leader-insight">Brockman is reportedly taking direct control of OpenAI's product strategy, with a mandate that includes merging ChatGPT and Codex into a unified offering — signaling a major consolidation of OpenAI's developer and consumer products.</p>
+            <p class="leader-context">This comes amid ongoing leadership reshuffles at OpenAI and intensifying competition from Anthropic, Google, and open-source models.</p>
+            <a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">JP</div>
+          <div class="leader-content">
+            <div class="leader-name">Judea Pearl</div>
+            <div class="leader-role">Turing Award Recipient / AI Researcher</div>
+            <p class="leader-insight">Pearl continues to argue that learning from data alone has fundamental limitations — specifically that causal reasoning cannot emerge from correlation-based training, no matter how much data is used.</p>
+            <p class="leader-context">The r/MachineLearning community surfaced this 2011 Turing lecture clip, sparking fresh debate about whether current scaling approaches can overcome Pearl's critique.</p>
+            <a href="https://www.reddit.com/r/MachineLearning/comments/1tevot1/do_you_agree_with_judea_that_learning_from_data/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
           </div>
         </div>
       </div>
     </section>
-    <section class="card card-paper-type" data-index="11">
+    <section class="card card-paper-type" data-index="12">
       <div class="card-top">
         <span class="category-pill" style="background:#0F766E">📄 Whitepapers &amp; Research</span>
-        <span class="card-counter">12 / 13</span>
+        <span class="card-counter">13 / 14</span>
       </div>
       <div class="card-body-scroll">
         
@@ -1009,9 +1022,9 @@ body {
         </div>
       </div>
     </section>
-    <section class="footer-card" data-index="12">
+    <section class="footer-card" data-index="13">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Saturday, May 16, 2026 · 02:48 UTC</div>
+      <div class="footer-sub">Generated Sunday, May 17, 2026 · 02:57 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
