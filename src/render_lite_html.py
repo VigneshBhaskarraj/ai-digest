@@ -40,23 +40,11 @@ def _cat_icon(cat: str) -> str:
     if "workforce" in cat: return "👥"
     return "📡"
 
-def _img_keywords(category: str) -> str:
-    cat = category.lower()
-    if "model"     in cat: return "artificial,intelligence,neural,network"
-    if "funding"   in cat: return "investment,venture,capital,finance"
-    if "policy"    in cat: return "policy,government,regulation,law"
-    if "research"  in cat: return "research,science,laboratory,academic"
-    if "product"   in cat: return "product,technology,innovation,startup"
-    if "open"      in cat: return "open,source,software,community"
-    if "industry"  in cat: return "industry,technology,business,corporate"
-    if "workforce" in cat: return "workforce,people,team,work"
-    return "technology,digital,innovation"
-
 def _esc(s: str) -> str:
     return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-def _card(story: dict, idx: int, total: int, section: str, img_seed: int) -> str:
+def _card(story: dict, idx: int, total: int, section: str) -> str:
     cid        = f"{section}-{idx}"
     title      = _esc(story.get("title", ""))
     summary    = _esc(story.get("summary", ""))
@@ -67,16 +55,24 @@ def _card(story: dict, idx: int, total: int, section: str, img_seed: int) -> str
     category   = story.get("category", "News")
     impact     = story.get("impact", "medium")
     date       = _esc(story.get("date", ""))
+    img_url    = _esc(story.get("image", "").strip())
     icon       = _cat_icon(category)
     imp_cls    = _impact_cls(impact)
     imp_lbl    = impact.upper()
     counter    = f"{idx + 1} / {total}"
     is_last    = (idx == total - 1)
-    keywords   = _img_keywords(category)
-    img_url    = f"https://loremflickr.com/800/200/{keywords}?random={img_seed}"
 
     swipe_hint = "" if is_last else "<p class='swipe-hint'>&#x2191; swipe up for next</p>"
     date_html  = f"<span class='card-date'>{date}</span>" if date else ""
+
+    img_block = ""
+    if img_url:
+        img_block = f"""          <div class="card-img-wrap">
+            <img src="{img_url}" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>"""
+
+    content_cls = "card-content" if img_url else "card-content no-img"
 
     econ_block = ""
     if econ_impl:
@@ -91,11 +87,8 @@ def _card(story: dict, idx: int, total: int, section: str, img_seed: int) -> str
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-img-wrap">
-            <img src="{img_url}" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-            <div class="img-overlay"></div>
-          </div>
-          <div class="card-content">
+{img_block}
+          <div class="{content_cls}">
             <div class="meta-row">
               <span class="cat-pill">{icon} {_esc(category)}</span>
               <span class="impact-badge {imp_cls}">{imp_lbl}</span>
@@ -152,10 +145,10 @@ def render_lite_html(digest: Dict) -> str:
     i_count        = len(india_stories)
 
     global_cards = "\n".join(
-        _card(s, i, g_count, "g", i + 1) for i, s in enumerate(global_stories)
+        _card(s, i, g_count, "g") for i, s in enumerate(global_stories)
     )
     india_cards = "\n".join(
-        _card(s, i, i_count, "i", g_count + i + 1) for i, s in enumerate(india_stories)
+        _card(s, i, i_count, "i") for i, s in enumerate(india_stories)
     )
 
     g_intro = f"""  <div class="card-wrap intro-wrap">
@@ -367,6 +360,7 @@ def render_lite_html(digest: Dict) -> str:
       display: flex; flex-direction: column; flex: 1;
       padding: 16px 22px 14px; overflow: hidden;
     }}
+    .card-content.no-img {{ padding-top: 26px; }}
 
     .meta-row {{
       display: flex; align-items: center;
