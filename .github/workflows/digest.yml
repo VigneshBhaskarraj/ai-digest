@@ -90,5 +90,5 @@ jobs:
           git config --global user.email "actions@github.com"
           git add docs/index.html docs/india.html docs/tn.html docs/lite.html docs/manifest.json docs/sw.js docs/icon-192.png docs/icon-512.png
           git diff --staged --quiet || git commit -m "📊 AI Digest + 🇮🇳 India + 🌟 TN + ⚡ Lite update — $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git fetch origin
+          git push --force-with-lease origin HEAD:main
