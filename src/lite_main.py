@@ -15,6 +15,8 @@ Scheduled: daily at 7AM CST (13:00 UTC) — morning slot, GitHub Actions.
 
 import sys
 import os
+import re
+import requests
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -24,6 +26,43 @@ from fetch_india_news import fetch_all_india
 from summarize_lite   import summarize_lite, _empty_digest
 from render_lite_html import render_lite_html, save_lite_dashboard
 from memory           import store_run, get_recent_context
+
+# Sources where OG images are generic/unhelpful — skip fetching
+_SKIP_OG_DOMAINS = ("reddit.com", "arxiv.org", "paperswithcode.com",
+                    "hnrss.org", "news.ycombinator.com")
+
+def fetch_og_image(url: str) -> str:
+    """Return the og:image (or twitter:image) URL from an article page, or ''."""
+    if not url or any(d in url for d in _SKIP_OG_DOMAINS):
+        return ""
+    try:
+        r = requests.get(
+            url, timeout=5, stream=True,
+            headers={"User-Agent": "ai-digest-bot/1.0 (github.com/VigneshBhaskarraj/ai-digest)"},
+            allow_redirects=True,
+        )
+        # Read only the first 40 KB — enough to cover <head>
+        chunk = b""
+        for c in r.iter_content(chunk_size=4096):
+            chunk += c
+            if len(chunk) >= 40960:
+                break
+        html = chunk.decode("utf-8", errors="ignore")
+        for pattern in (
+            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']',
+            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']twitter:image["\']',
+        ):
+            m = re.search(pattern, html, re.IGNORECASE)
+            if m:
+                img = m.group(1).strip()
+                # Skip data URIs and obviously generic images
+                if img and not img.startswith("data:"):
+                    return img
+    except Exception:
+        pass
+    return ""
 
 
 def run():
@@ -56,6 +95,17 @@ def run():
         g_count = len(digest.get("global", []))
         i_count = len(digest.get("india",  []))
         print(f"      {g_count} global cards, {i_count} India cards\n")
+
+        # Enrich each story with its article's OG image
+        print("      Fetching OG images for cards...")
+        for section in ("global", "india"):
+            for story in digest.get(section, []):
+                story["image"] = fetch_og_image(story.get("url", ""))
+        fetched = sum(
+            1 for s in (digest.get("global", []) + digest.get("india", []))
+            if s.get("image")
+        )
+        print(f"      {fetched}/{g_count + i_count} cards have images\n")
 
     # ── 4. Render & save ──────────────────────────────────────────────────────
     print("[4/4] Rendering Lite dashboard & storing memory...")
