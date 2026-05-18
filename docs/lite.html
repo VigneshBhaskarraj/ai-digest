@@ -268,20 +268,25 @@
     .back-label { font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: .02em; }
     .back-sub   { font-size: 10px; color: var(--back-sub); }
 
+    /* scrollable back body */
+    .back-body {
+      flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 6px;
+    }
+    .back-body::-webkit-scrollbar { display: none; }
+
     /* strategic implications */
-    .impl-section { flex: 1; overflow: hidden; margin-bottom: 10px; }
+    .impl-section { margin-bottom: 10px; }
     .impl-text {
       font-size: clamp(13px, 2.1vw, 15px);
       line-height: 1.72; color: var(--impl);
-      overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 6; -webkit-box-orient: vertical;
     }
 
     /* economics & business section */
     .econ-section {
       background: var(--econ-bg); border: 1px solid var(--econ-border);
       border-radius: 10px; padding: 11px 13px;
-      flex-shrink: 0; margin-bottom: 10px;
+      margin-bottom: 10px;
     }
     .econ-hdr {
       font-size: 10px; font-weight: 800; color: var(--econ-lbl);
@@ -290,8 +295,6 @@
     .econ-text {
       font-size: clamp(12px, 1.9vw, 13px);
       line-height: 1.62; color: var(--impl);
-      overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     }
 
     .back-foot {
@@ -373,12 +376,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">A merged ChatGPT-Codex product directly threatens standalone coding assistants — GitHub Copilot, Cursor, and Replit face a bundling squeeze as OpenAI locks developer workflows into one subscription. For IT services firms like Infosys and Wipro, whose developer productivity tools are built around Copilot, this creates renegotiation leverage OpenAI did not previously have. Enterprise software vendors with AI coding add-ons (JetBrains, Atlassian) face margin compression as the reference product becomes free or bundled into ChatGPT Enterprise.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Bundling ChatGPT with Codex targets a $30B/yr coding assistant market, threatening GitHub Copilot's ~$1B ARR. Enterprise vendors face 15–25% margin compression within 18 months as the reference product becomes free or bundled at no incremental cost.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -417,12 +422,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">Any enterprise that deployed DeepSeek in production is exposed to client data liability today. Customer conversations, proprietary prompts, and embedded business logic are accessible to third parties — a breach that triggers GDPR Article 33 notification requirements. Valuations of AI security startups (Prompt Security, Lakera, Protect AI) will spike on this news as boards demand audit tools. CISOs must immediately suspend customer-facing DeepSeek deployments and commission a penetration test on all third-party LLM integrations.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">GDPR exposure reaches up to 4% of global annual revenue per affected breach. AI security audits and LLM pen-testing represent a $2–3B immediate market opportunity; AI security startup valuations spike as boards mandate audit tools.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://www.reddit.com/r/MachineLearning/comments/1tfmuov/deepseek_exposed_users_can_access_each_others/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -461,12 +468,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">This bifurcation validates the infrastructure-over-application thesis: NVIDIA, hyperscalers, and top-tier model labs are capturing the majority of margin while vertical AI SaaS companies face commoditization. For Series A-C founders building on foundation models, differentiation based solely on prompt engineering or fine-tuning is not defensible. IT services firms at Accenture, TCS, and Infosys are in the 'have-nots' category unless they secure proprietary data moats or model IP.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Infrastructure providers capture 60–70% of AI economic value while application-layer companies operate at sub-10% margins. Series A–C AI SaaS valuations are compressing 30–40% as investors reprice business model sustainability.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -505,12 +514,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">This policy will cascade to peer-reviewed journals, conference proceedings, and corporate R&amp;D publication standards — companies using AI-generated research to bolster patent filings or regulatory submissions face new authenticity liability. For pharma, biotech, and enterprise AI research teams, this demands immediate policy documentation of human contribution ratios. The ban validates the emerging market for AI-content detection and research provenance tools — Turnitin and iThenticate will see enterprise contract acceleration.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">AI content detection market accelerates from $1.4B to $4B by 2027 as research integrity enforcement goes mainstream. Legal liability for AI-generated IP filings creates new insurance and indemnification product demand worth $500M+ annually.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -549,12 +560,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">For CFOs at Fortune 500s, these IPOs create a forced strategic decision: anchor customer relationships with these platforms now for favorable pre-IPO pricing, or pay public-market premium rates post-listing. Institutional investors who missed the private rounds face a classic late-cycle risk — trillion-dollar public valuations on companies still burning billions demands a defensible path to profitability. The IPO wave will suck liquidity from Series B and C rounds for 6-12 months post-listing, compressing valuations for application-layer AI startups.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Trillion-dollar valuations imply P/S ratios of 50–100x, historically preceding 40–60% post-listing compression. Enterprise API licensing costs rise 20–40% post-IPO as private discount agreements expire and public-market dynamics reset vendor leverage.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -593,12 +606,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">Enterprises that selected DeepSeek V4 for large-codebase migration or legacy modernization must revalidate their architectural decisions — the effective working context is materially lower than marketed. This creates an immediate opening for competitors like Gemini 1.5 Pro and Claude 3.7, whose context claims have more robust third-party validation. For TCS, Infosys, and Wipro delivery teams, a context failure in production is a client escalation and SLA liability event.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Enterprises face $500K–$2M in renegotiation and migration costs per failed large-codebase deployment. Gemini 2.5 and Claude 3.7 are pricing in a 3–6 month sales window to capture defecting enterprise accounts at scale.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfhl0q/deepseek_v4s_1m_context_window_the_breaking_point/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -637,12 +652,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">AI-generated fraudulent content is actively deceiving consumers in health, finance, and legal domains at a scale that manual moderation cannot match. For Amazon, Google, and platform operators, the regulatory exposure is existential — the FTC and EU Digital Services Act enforcement are watching. For enterprises deploying AI-generated content in marketing or customer service, the liability risk of hallucinated claims reaching customers is now validated and actionable in court.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">DSA and FTC regulatory penalties could reach $1–5B for non-compliant platform operators. AI content watermarking and attribution tools move from optional to procurement requirement — a $500M+ compliance market emerging within 12 months.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfeo3k/elias_thorne_is_what_eight_different_llms_name_a/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -680,12 +697,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">The cost case for paying OpenAI or Anthropic API rates for coding-specific workloads collapses when a locally-run open model delivers equivalent output — directly threatening the $2-5B/year enterprise API revenue these companies project. For IT services firms, the build-vs-buy equation now favors self-hosted Qwen 3.6 for code generation, saving 60-80% on inference costs at scale. GitHub Copilot and similar API-dependent products face direct defection from technically sophisticated engineering teams.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Self-hosting Qwen 3.6 cuts inference costs 60–80% vs API services, eliminating $2–5B/yr in projected coding API revenue for OpenAI and Anthropic. NVIDIA edge inference (Jetson, NIM) sees 40–60% demand spike as enterprises shift to self-managed deployments.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tf3p6c/local_qwen_36_vs_frontier_models_on_a_coding/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -737,12 +756,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">Indian banking infrastructure — particularly the UPI stack, NBFC lending platforms, and neo-bank API layers — was built for speed of deployment, not adversarial AI, making it structurally more exposed to autonomous exploitation. The RBI's cybersecurity framework requires incident reporting within 6 hours; an autonomous AI attack compresses the detection-to-breach window below that threshold, creating immediate compliance exposure. MNC security vendors (Palo Alto, CrowdStrike) will move to lock up Indian BFSI contracts before domestic players build equivalent AI-threat capabilities.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Indian BFSI sector faces mandatory ₹3,000–5,000 Cr in AI-native security upgrades within the next RBI regulatory cycle. AI security practices at TCS, HCL, and Wipro can capture ₹800–1,200 Cr in incremental revenue within 12 months.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://inc42.com/features/the-mythos-stress-test-can-indian-fintechs-banks-fend-off-ai-native-cyber-threats/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -781,12 +802,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">ICAI's curriculum overhaul signals that AI-driven automation of audit, tax compliance, and financial reporting is the present baseline expectation for entry-level CAs. For Big Four firms and mid-tier CA firms, this accelerates the shift from headcount-based billing to outcome-based pricing, threatening ₹12,000+ Cr in annual audit and compliance revenue. Indian accounting software vendors (Zoho Books, Tally, ClearTax) gain a structural tailwind as AI-native platforms become the required toolkit rather than a differentiator.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">Big Four audit revenue (₹12,000+ Cr) faces 20–30% margin compression as AI-capable CAs automate traditional billable tasks. F&amp;A outsourcing contracts will be renegotiated 15–25% lower within 3 years as the labor arbitrage rationale weakens.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/icai-to-embed-ai-data-analytics-in-ca-curriculum/articleshow/131152978.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -825,12 +848,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">Partner departures at India's largest VC fund create a reallocation event for LP capital that will flow into newly formed funds with sharper AI-specific theses — founders in enterprise AI, defense tech, and climate AI should expect new check writers within 12 months. The bifurcation of Peak XV signals that large multi-stage platforms are losing ground to focused sector funds. MNC strategic investors (Google Ventures, Microsoft M12) will exploit the transition period to lead rounds that established Indian funds would have anchored.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">LP capital reallocation creates ₹5,000–8,000 Cr in new India-focused AI fund formation within 12 months. MNC strategic investors will exploit the transition to anchor AI rounds at more favorable governance and valuation terms.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://inc42.com/features/a-new-era-for-indian-vc-funds/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -869,12 +894,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">TCS, Infosys, and Wipro derive 30-45% of revenue from US technology clients whose AI platform commitments are now concentrated in pre-IPO OpenAI and Anthropic — post-IPO repricing of enterprise licenses will squeeze Indian IT delivery margins. Indian mutual funds and SEBI-regulated institutional investors face regulatory hurdles accessing these IPOs at launch. The IPO valuations will set a public market benchmark that compresses Indian AI startup exit expectations.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">TCS, Infosys, and Wipro face 10–20% increases in Azure OpenAI and Vertex AI licensing costs post-IPO. Indian institutional investors face structural exclusion from anchor allocations — $2–3B in missed upside unless GIFT City structures are activated.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -912,12 +939,14 @@
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
+          <div class="back-body" onclick="event.stopPropagation()">
           <div class="impl-section">
             <p class="impl-text">Shadowfax's AI-driven margin expansion directly pressures Delhivery, Xpressbees, and Ecom Express to accelerate their own AI route optimization investments or face margin compression as clients migrate to smarter platforms. The ₹80,000 Cr Indian logistics market is entering an AI consolidation phase where data network effects from delivery history give incumbents a structural moat that new entrants cannot replicate. Reliance Retail and Meesho will use this competitive dynamic to extract lower rates while demanding AI-powered SLA guarantees.</p>
           </div>
           <div class="econ-section">
             <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
             <p class="econ-text">India's ₹80,000 Cr logistics market enters AI consolidation creating 8–12% margin differentials between AI-native and legacy operators. Delhivery and Xpressbees each face ₹500–1,000 Cr in accelerated capital deployment to match Shadowfax's AI investment pace.</p>
+          </div>
           </div>
           <div class="back-foot">
             <a href="https://inc42.com/buzz/shadowfaxs-inflection-point-and-the-next-frontier/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>

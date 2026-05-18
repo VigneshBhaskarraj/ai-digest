@@ -113,10 +113,12 @@ def _card(story: dict, idx: int, total: int, section: str) -> str:
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <div class="impl-section">
-            <p class="impl-text">{impl}</p>
-          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">{impl}</p>
+            </div>
 {econ_block}
+          </div>
           <div class="back-foot">
             <a href="{url}" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
@@ -433,20 +435,25 @@ def render_lite_html(digest: Dict) -> str:
     .back-label {{ font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: .02em; }}
     .back-sub   {{ font-size: 10px; color: var(--back-sub); }}
 
+    /* scrollable back body */
+    .back-body {{
+      flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 6px;
+    }}
+    .back-body::-webkit-scrollbar {{ display: none; }}
+
     /* strategic implications */
-    .impl-section {{ flex: 1; overflow: hidden; margin-bottom: 10px; }}
+    .impl-section {{ margin-bottom: 10px; }}
     .impl-text {{
       font-size: clamp(13px, 2.1vw, 15px);
       line-height: 1.72; color: var(--impl);
-      overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 6; -webkit-box-orient: vertical;
     }}
 
     /* economics & business section */
     .econ-section {{
       background: var(--econ-bg); border: 1px solid var(--econ-border);
       border-radius: 10px; padding: 11px 13px;
-      flex-shrink: 0; margin-bottom: 10px;
+      margin-bottom: 10px;
     }}
     .econ-hdr {{
       font-size: 10px; font-weight: 800; color: var(--econ-lbl);
@@ -455,8 +462,6 @@ def render_lite_html(digest: Dict) -> str:
     .econ-text {{
       font-size: clamp(12px, 1.9vw, 13px);
       line-height: 1.62; color: var(--impl);
-      overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     }}
 
     .back-foot {{
