@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,118 +13,160 @@
       --hdr:    56px;
       --accent: #818CF8;
       --acc2:   #6366F1;
+      /* dark mode defaults */
+      --bg:           #080D1A;
+      --text:         #F1F5F9;
+      --title:        #F8FAFC;
+      --hdr-bg:       rgba(8,13,26,0.96);
+      --hdr-border:   rgba(255,255,255,0.07);
+      --tab-bg:       rgba(255,255,255,0.05);
+      --tab-border:   rgba(255,255,255,0.1);
+      --tab-text:     rgba(255,255,255,0.4);
+      --front-bg:     linear-gradient(155deg,#0F172A 0%,#1A2035 65%,#0F172A 100%);
+      --back-bg:      linear-gradient(155deg,#1A1040 0%,#0E0928 65%,#170E3E 100%);
+      --pill-bg:      rgba(255,255,255,0.05);
+      --pill-border:  rgba(255,255,255,0.08);
+      --pill-text:    rgba(255,255,255,0.38);
+      --summary:      rgba(255,255,255,.55);
+      --source:       rgba(255,255,255,.26);
+      --counter:      rgba(255,255,255,.16);
+      --time-text:    rgba(255,255,255,0.22);
+      --swipe:        rgba(255,255,255,.16);
+      --inner-border: rgba(255,255,255,.08);
+      --back-border:  rgba(255,255,255,.06);
+      --back-sub:     rgba(255,255,255,.2);
+      --impl:         rgba(255,255,255,.82);
+      --econ-bg:      rgba(255,255,255,.04);
+      --econ-border:  rgba(255,255,255,.12);
+      --econ-lbl:     rgba(129,140,248,.85);
+      --intro-hint:   rgba(255,255,255,0.22);
+      --date-text:    rgba(255,255,255,.24);
+      --toggle-bg:    rgba(255,255,255,.08);
+      --toggle-border: rgba(255,255,255,.14);
+      --img-overlay:  linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%);
+    }
+
+    html[data-theme="light"] {
+      --bg:           #F0F4FF;
+      --text:         #1E293B;
+      --title:        #0F172A;
+      --hdr-bg:       rgba(240,244,255,0.97);
+      --hdr-border:   rgba(0,0,0,0.09);
+      --tab-bg:       rgba(0,0,0,0.05);
+      --tab-border:   rgba(0,0,0,0.1);
+      --tab-text:     rgba(0,0,0,0.45);
+      --front-bg:     linear-gradient(155deg,#FFFFFF 0%,#EEF2FF 65%,#FFFFFF 100%);
+      --back-bg:      linear-gradient(155deg,#EDE9FE 0%,#DDD6FE 65%,#EDE9FE 100%);
+      --pill-bg:      rgba(0,0,0,0.05);
+      --pill-border:  rgba(0,0,0,0.1);
+      --pill-text:    rgba(0,0,0,0.5);
+      --summary:      rgba(15,23,42,.65);
+      --source:       rgba(15,23,42,.45);
+      --counter:      rgba(15,23,42,.3);
+      --time-text:    rgba(0,0,0,0.38);
+      --swipe:        rgba(0,0,0,.28);
+      --inner-border: rgba(0,0,0,.1);
+      --back-border:  rgba(0,0,0,.08);
+      --back-sub:     rgba(0,0,0,.32);
+      --impl:         rgba(15,23,42,.88);
+      --econ-bg:      rgba(99,102,241,.07);
+      --econ-border:  rgba(99,102,241,.22);
+      --econ-lbl:     rgba(79,70,229,.85);
+      --intro-hint:   rgba(0,0,0,.38);
+      --date-text:    rgba(0,0,0,.35);
+      --toggle-bg:    rgba(0,0,0,.06);
+      --toggle-border: rgba(0,0,0,.13);
+      --img-overlay:  linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(240,244,255,0.45) 100%);
     }
 
     html, body {
-      height: 100%;
-      overflow: hidden;
-      background: #080D1A;
+      height: 100%; overflow: hidden;
+      background: var(--bg);
       font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-      color: #F1F5F9;
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
+      transition: background .3s, color .3s;
     }
 
     /* ── Header ── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       height: var(--hdr);
-      background: rgba(8,13,26,0.96);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: var(--hdr-bg);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--hdr-border);
       z-index: 200;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 12px;
+      display: flex; align-items: center;
+      padding: 0 10px; gap: 8px;
     }
     .logo {
       font-size: 14px; font-weight: 800;
-      color: #F1F5F9; letter-spacing: -.2px;
-      flex-shrink: 0;
+      color: var(--text); letter-spacing: -.2px; flex-shrink: 0;
     }
     .logo span { color: var(--accent); }
-
-    .tabs {
-      display: flex; gap: 6px;
-      flex: 1; justify-content: center;
-    }
+    .tabs { display: flex; gap: 6px; flex: 1; justify-content: center; }
     .tab-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 5px 16px;
-      color: rgba(255,255,255,0.4);
-      font-size: 12px; font-weight: 700;
-      cursor: pointer;
+      background: var(--tab-bg);
+      border: 1px solid var(--tab-border);
+      border-radius: 20px; padding: 5px 13px;
+      color: var(--tab-text);
+      font-size: 12px; font-weight: 700; cursor: pointer;
       transition: background .2s, color .2s, border-color .2s;
       -webkit-tap-highlight-color: transparent;
     }
-    .tab-btn.active {
-      background: var(--acc2);
-      border-color: var(--acc2);
-      color: #fff;
-    }
+    .tab-btn.active { background: var(--acc2); border-color: var(--acc2); color: #fff; }
     .hdr-time {
-      font-size: 9px; color: rgba(255,255,255,0.22);
-      text-align: right; line-height: 1.5;
-      flex-shrink: 0;
+      font-size: 9px; color: var(--time-text);
+      text-align: right; line-height: 1.5; flex-shrink: 0;
+    }
+    .theme-toggle {
+      background: var(--toggle-bg);
+      border: 1px solid var(--toggle-border);
+      border-radius: 50%; width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 15px; flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .2s;
     }
 
     /* ── Deck ── */
     .deck {
-      position: fixed;
-      top: var(--hdr); left: 0; right: 0; bottom: 0;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      position: fixed; top: var(--hdr); left: 0; right: 0; bottom: 0;
+      overflow-y: scroll; scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
     }
     .deck::-webkit-scrollbar { display: none; }
     .deck.hidden { visibility: hidden; pointer-events: none; }
 
-    /* ── Card wrapper — full viewport height ── */
+    /* ── Card wrapper ── */
     .card-wrap {
       height: calc(100dvh - var(--hdr));
       height: calc(100vh  - var(--hdr));
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
+      scroll-snap-align: start; scroll-snap-stop: always;
       display: flex;
     }
 
     /* ── Intro screen ── */
     .intro-wrap { align-items: center; justify-content: center; }
-    .intro-card {
-      text-align: center;
-      padding: 40px 28px;
-      max-width: 500px;
-    }
+    .intro-card { text-align: center; padding: 40px 28px; max-width: 500px; }
     .intro-label {
-      font-size: 11px; font-weight: 700;
-      color: var(--accent);
-      letter-spacing: .08em; text-transform: uppercase;
-      margin-bottom: 18px;
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px;
     }
     .intro-headline {
-      font-size: clamp(18px, 3.8vw, 26px);
-      font-weight: 800; line-height: 1.4;
-      color: #F1F5F9; margin-bottom: 28px;
+      font-size: clamp(18px, 3.8vw, 26px); font-weight: 800; line-height: 1.4;
+      color: var(--title); margin-bottom: 28px;
     }
-    .intro-hint {
-      font-size: 11px; color: rgba(255,255,255,0.22);
-    }
+    .intro-hint { font-size: 11px; color: var(--intro-hint); }
 
     /* ── Flip card ── */
     .flip-card {
       width: 100%; height: 100%;
-      perspective: 1400px;
-      cursor: pointer;
+      perspective: 1400px; cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
     .flip-inner {
-      width: 100%; height: 100%;
-      position: relative;
+      width: 100%; height: 100%; position: relative;
       transform-style: preserve-3d;
       transition: transform .52s cubic-bezier(.4,0,.2,1);
     }
@@ -135,69 +177,77 @@
       position: absolute; width: 100%; height: 100%;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       display: flex; flex-direction: column;
-      padding: 28px 24px 20px;
-      background: linear-gradient(155deg, #0F172A 0%, #1A2035 65%, #0F172A 100%);
-      overflow: hidden;
+      background: var(--front-bg); overflow: hidden;
     }
+
+    /* ── Card image ── */
+    .card-img-wrap {
+      position: relative; width: 100%; height: 150px;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-overlay {
+      position: absolute; inset: 0;
+      background: var(--img-overlay);
+    }
+
+    .card-content {
+      display: flex; flex-direction: column; flex: 1;
+      padding: 16px 22px 14px; overflow: hidden;
+    }
+
     .meta-row {
       display: flex; align-items: center;
-      gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+      gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
     }
     .cat-pill {
       font-size: 10px; font-weight: 700;
-      color: rgba(255,255,255,0.38);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px; padding: 3px 9px;
-      letter-spacing: .03em;
+      color: var(--pill-text); background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 6px; padding: 3px 9px; letter-spacing: .03em;
     }
     .impact-badge {
       font-size: 9px; font-weight: 900;
-      border-radius: 5px; padding: 3px 8px;
-      letter-spacing: .06em;
+      border-radius: 5px; padding: 3px 8px; letter-spacing: .06em;
     }
     .i-high { background: rgba(248,113,113,.14); color: #F87171; border: 1px solid rgba(248,113,113,.22); }
     .i-med  { background: rgba(251,191,36,.12);  color: #FBBF24; border: 1px solid rgba(251,191,36,.2);   }
     .i-low  { background: rgba(148,163,184,.09); color: #94A3B8; border: 1px solid rgba(148,163,184,.16); }
-    .card-date {
-      margin-left: auto;
-      font-size: 10px; color: rgba(255,255,255,.24); font-weight: 500;
-    }
+    html[data-theme="light"] .i-high { background: rgba(220,38,38,.1);   color: #DC2626; border-color: rgba(220,38,38,.2);  }
+    html[data-theme="light"] .i-med  { background: rgba(180,83,9,.09);   color: #B45309; border-color: rgba(180,83,9,.18);  }
+    html[data-theme="light"] .i-low  { background: rgba(71,85,105,.08);  color: #475569; border-color: rgba(71,85,105,.15); }
+
+    .card-date { margin-left: auto; font-size: 10px; color: var(--date-text); font-weight: 500; }
+
     .card-title {
-      font-size: clamp(21px, 4.5vw, 30px);
-      font-weight: 800; line-height: 1.27;
-      color: #F8FAFC; letter-spacing: -.4px;
-      margin-bottom: 16px;
-      flex: 1; overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+      font-size: clamp(19px, 4.2vw, 27px);
+      font-weight: 800; line-height: 1.27; color: var(--title);
+      letter-spacing: -.4px; margin-bottom: 10px;
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 4; -webkit-box-orient: vertical;
     }
     .card-summary {
-      font-size: 14px; line-height: 1.72;
-      color: rgba(255,255,255,.55);
+      font-size: 13px; line-height: 1.68; color: var(--summary);
       overflow: hidden; display: -webkit-box;
-      -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      flex: 1;
     }
-    .card-foot { margin-top: auto; padding-top: 18px; }
+    .card-foot { margin-top: auto; padding-top: 12px; }
     .foot-row {
       display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 11px;
+      align-items: center; margin-bottom: 9px;
     }
     .card-source {
-      font-size: 10px; font-weight: 700;
-      color: rgba(255,255,255,.26);
+      font-size: 10px; font-weight: 700; color: var(--source);
       text-transform: uppercase; letter-spacing: .06em;
     }
-    .card-counter { font-size: 10px; color: rgba(255,255,255,.16); }
+    .card-counter { font-size: 10px; color: var(--counter); }
     .tap-hint {
       text-align: center; font-size: 11px;
       color: var(--accent); font-weight: 600;
-      margin-bottom: 7px; opacity: .85;
+      margin-bottom: 6px; opacity: .85;
     }
-    .swipe-hint {
-      text-align: center; font-size: 10px;
-      color: rgba(255,255,255,.16);
-    }
+    .swipe-hint { text-align: center; font-size: 10px; color: var(--swipe); }
 
     /* ── Back ── */
     .flip-back {
@@ -205,46 +255,62 @@
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       transform: rotateY(180deg);
       display: flex; flex-direction: column;
-      padding: 28px 24px 20px;
-      background: linear-gradient(155deg, #1A1040 0%, #0E0928 65%, #170E3E 100%);
-      overflow: hidden;
+      padding: 20px 22px 16px;
+      background: var(--back-bg); overflow: hidden;
     }
     .back-hdr {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      margin-bottom: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 11px;
+      border-bottom: 1px solid var(--inner-border);
+      margin-bottom: 12px; flex-shrink: 0;
     }
-    .back-label {
-      font-size: 12px; font-weight: 800;
-      color: var(--accent); letter-spacing: .02em;
-    }
-    .back-sub { font-size: 10px; color: rgba(255,255,255,.2); }
+    .back-label { font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: .02em; }
+    .back-sub   { font-size: 10px; color: var(--back-sub); }
+
+    /* strategic implications */
+    .impl-section { flex: 1; overflow: hidden; margin-bottom: 10px; }
     .impl-text {
-      font-size: clamp(14px, 2.3vw, 16px);
-      line-height: 1.78; color: rgba(255,255,255,.82);
-      flex: 1; overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 11; -webkit-box-orient: vertical;
+      font-size: clamp(13px, 2.1vw, 15px);
+      line-height: 1.72; color: var(--impl);
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 6; -webkit-box-orient: vertical;
     }
+
+    /* economics & business section */
+    .econ-section {
+      background: var(--econ-bg); border: 1px solid var(--econ-border);
+      border-radius: 10px; padding: 11px 13px;
+      flex-shrink: 0; margin-bottom: 10px;
+    }
+    .econ-hdr {
+      font-size: 10px; font-weight: 800; color: var(--econ-lbl);
+      letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .econ-text {
+      font-size: clamp(12px, 1.9vw, 13px);
+      line-height: 1.62; color: var(--impl);
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+    }
+
     .back-foot {
-      margin-top: auto; padding-top: 16px;
+      padding-top: 12px; flex-shrink: 0;
       display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(255,255,255,.06);
+      border-top: 1px solid var(--back-border);
     }
     .read-link {
       font-size: 12px; font-weight: 700;
       color: var(--accent); text-decoration: none; padding: 6px 0;
     }
     .read-link:hover { text-decoration: underline; }
-    .back-counter { font-size: 10px; color: rgba(255,255,255,.16); }
+    .back-counter { font-size: 10px; color: var(--counter); }
 
     /* ── Desktop: constrain width ── */
     @media (min-width: 768px) {
       .card-wrap { justify-content: center; }
       .flip-card { max-width: 580px; }
       .intro-wrap { justify-content: center; }
+      .card-img-wrap { height: 180px; }
     }
 
     /* ── Notch / safe-area ── */
@@ -264,9 +330,12 @@
       <button class="tab-btn"        onclick="switchTab('india',this)" >&#x1F1EE;&#x1F1F3; India <small style="opacity:.55">(5)</small></button>
     </div>
     <div class="hdr-time">May 17, 2026<br>15:02 UTC</div>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle light/dark mode">&#x2600;&#xFE0F;</button>
   </header>
 
+  <!-- ══════════════ GLOBAL DECK ══════════════ -->
   <div class="deck" id="deck-global">
+
   <div class="card-wrap intro-wrap">
     <div class="intro-card">
       <div class="intro-label">&#x1F30D; Global AI &middot; May 17, 2026</div>
@@ -274,345 +343,395 @@
       <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
     </div>
   </div>
+
+  <!-- g-0 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-0" onclick="flip('g-0')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 16, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/artificial,intelligence,technology?random=1" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">Greg Brockman Takes OpenAI Product Helm as ChatGPT-Codex Merger Signals Platform Consolidation</h2>
-          <p class="card-summary">OpenAI co-founder Greg Brockman has assumed control of product strategy at OpenAI amid internal restructuring. The company is reportedly planning to merge ChatGPT and its coding product Codex into a single unified platform.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">TechCrunch AI</span>
-              <span class="card-counter">1 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 16, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">Greg Brockman Takes OpenAI Product Helm as ChatGPT-Codex Merger Signals Platform Consolidation</h2>
+            <p class="card-summary">OpenAI co-founder Greg Brockman has assumed control of product strategy. The company is planning to merge ChatGPT and Codex into a single unified platform.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">1 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">A merged ChatGPT-Codex product directly threatens standalone coding assistants — GitHub Copilot, Cursor, and Replit face a bundling squeeze as OpenAI locks developer workflows into one subscription. For IT services firms like Infosys and Wipro, whose developer productivity tools and Microsoft partnership agreements are built around Copilot, this creates renegotiation leverage OpenAI did not previously have. Enterprise software vendors with AI coding add-ons (JetBrains, Atlassian) face margin compression as the reference product becomes free or bundled into ChatGPT Enterprise. This is a clear M&amp;A signal: expect OpenAI to acquire or clone any developer tooling that sits between it and the enterprise contract. In the next 90 days, CTOs at IT services firms must audit which developer tools in their stack are exposed to OpenAI bundling and begin contingency vendor conversations.</p>
+          <div class="impl-section">
+            <p class="impl-text">A merged ChatGPT-Codex product directly threatens standalone coding assistants — GitHub Copilot, Cursor, and Replit face a bundling squeeze as OpenAI locks developer workflows into one subscription. For IT services firms like Infosys and Wipro, whose developer productivity tools are built around Copilot, this creates renegotiation leverage OpenAI did not previously have. Enterprise software vendors with AI coding add-ons (JetBrains, Atlassian) face margin compression as the reference product becomes free or bundled into ChatGPT Enterprise.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Bundling ChatGPT with Codex targets a $30B/yr coding assistant market, threatening GitHub Copilot's ~$1B ARR. Enterprise vendors face 15–25% margin compression within 18 months as the reference product becomes free or bundled at no incremental cost.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">1 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-1 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-1" onclick="flip('g-1')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/cybersecurity,privacy,data?random=2" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">DeepSeek Privacy Flaw Exposes Cross-User Conversations via Single Character Input</h2>
-          <p class="card-summary">A critical security vulnerability in DeepSeek allows users to access other users' conversations by entering a specific character in the input field. The flaw is confirmed by a published security report and represents a fundamental session isolation failure.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">r/MachineLearning</span>
-              <span class="card-counter">2 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">DeepSeek Privacy Flaw Exposes Cross-User Conversations via Single Character Input</h2>
+            <p class="card-summary">A critical security vulnerability in DeepSeek allows users to access other users' conversations by entering a specific character — a fundamental session isolation failure.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">r/MachineLearning</span>
+                <span class="card-counter">2 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Any enterprise that deployed DeepSeek in production — including the dozens of Indian IT firms and MNCs that rushed self-hosted or API-based DeepSeek integrations in Q1 2026 — is exposed to client data liability today. This is not a theoretical risk: customer conversations, proprietary prompts, and embedded business logic are accessible to third parties, a breach that triggers GDPR Article 33 notification requirements in Europe and equivalent obligations in regulated sectors. The incident reinforces that open-weight models require mandatory security audits before enterprise deployment — a capability gap that creates immediate revenue opportunity for security firms like CrowdStrike, Palo Alto, and Indian IT security practices at HCL and Tech Mahindra. Valuations of AI security startups (Prompt Security, Lakera, Protect AI) will spike on this news as boards demand audit tools. In the next 90 days, CISOs must immediately suspend any customer-facing DeepSeek deployments and commission a penetration test on all third-party LLM integrations.</p>
+          <div class="impl-section">
+            <p class="impl-text">Any enterprise that deployed DeepSeek in production is exposed to client data liability today. Customer conversations, proprietary prompts, and embedded business logic are accessible to third parties — a breach that triggers GDPR Article 33 notification requirements. Valuations of AI security startups (Prompt Security, Lakera, Protect AI) will spike on this news as boards demand audit tools. CISOs must immediately suspend customer-facing DeepSeek deployments and commission a penetration test on all third-party LLM integrations.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">GDPR exposure reaches up to 4% of global annual revenue per affected breach. AI security audits and LLM pen-testing represent a $2–3B immediate market opportunity; AI security startup valuations spike as boards mandate audit tools.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/MachineLearning/comments/1tfmuov/deepseek_exposed_users_can_access_each_others/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://www.reddit.com/r/MachineLearning/comments/1tfmuov/deepseek_exposed_users_can_access_each_others/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">2 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-2 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-2" onclick="flip('g-2')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 16, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/investment,market,technology?random=3" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">AI Value Concentration: TechCrunch Quantifies the 'Haves vs Have-Nots' Divide in the AI Boom</h2>
-          <p class="card-summary">A TechCrunch analysis documents a widening bifurcation in AI value capture, where returns are concentrating heavily among a small number of infrastructure and model providers while application-layer startups and enterprise adopters struggle with thin margins. The piece reflects deteriorating sentiment even within the tech industry about the sustainability of current AI investment patterns.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">TechCrunch AI</span>
-              <span class="card-counter">3 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 16, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">AI Value Concentration: TechCrunch Quantifies the 'Haves vs Have-Nots' Divide in the AI Boom</h2>
+            <p class="card-summary">A widening bifurcation: returns concentrate among infrastructure and model providers while application-layer startups and enterprise adopters struggle with thin margins.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">3 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">This bifurcation directly validates the infrastructure-over-application investment thesis: NVIDIA, hyperscalers, and top-tier model labs are capturing the majority of margin while vertical AI SaaS companies face commoditization from above and competition from below. For Series A-C founders building on top of foundation models, this is a structural warning — differentiation based solely on prompt engineering or fine-tuning is not defensible, and investors are beginning to price this in with compressed multiples on application-layer AI companies. IT services firms at Accenture, TCS, and Infosys, whose AI revenue is predominantly implementation and consulting, are in the 'have-nots' category unless they secure proprietary data moats or model IP. Venture partners should reweight portfolios toward AI infrastructure, tooling, and data — not another vertical copilot. In the next 90 days, CFOs evaluating AI spend should demand a margin attribution analysis showing which AI investments generate proprietary value versus which fund hyperscaler gross profit.</p>
+          <div class="impl-section">
+            <p class="impl-text">This bifurcation validates the infrastructure-over-application thesis: NVIDIA, hyperscalers, and top-tier model labs are capturing the majority of margin while vertical AI SaaS companies face commoditization. For Series A-C founders building on foundation models, differentiation based solely on prompt engineering or fine-tuning is not defensible. IT services firms at Accenture, TCS, and Infosys are in the 'have-nots' category unless they secure proprietary data moats or model IP.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Infrastructure providers capture 60–70% of AI economic value while application-layer companies operate at sub-10% margins. Series A–C AI SaaS valuations are compressing 30–40% as investors reprice business model sustainability.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">3 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-3 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-3" onclick="flip('g-3')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">📋 Policy</span>
-            <span class="impact-badge i-med">MEDIUM</span>
-            <span class='card-date'>May 16, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/research,science,academic?random=4" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">ArXiv Bans Authors One Year for Full AI-Generated Papers, Setting Research Integrity Standard</h2>
-          <p class="card-summary">ArXiv is implementing a one-year author ban for papers where AI has done all substantive work, escalating its crackdown on LLM misuse in scientific publishing. This is the most aggressive enforcement action taken by a major research repository to date.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">TechCrunch AI</span>
-              <span class="card-counter">4 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">📋 Policy</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class="card-date">May 16, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">ArXiv Bans Authors One Year for Full AI-Generated Papers, Setting Research Integrity Standard</h2>
+            <p class="card-summary">ArXiv is implementing a one-year author ban for papers where AI has done all substantive work — the most aggressive enforcement action taken by a major research repository to date.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">4 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">This policy sets a precedent that will cascade to peer-reviewed journals, conference proceedings, and ultimately corporate R&amp;D publication standards — companies using AI-generated research to bolster patent filings, regulatory submissions, or academic partnerships face new authenticity liability. For pharma, biotech, and enterprise AI research teams at companies like Wipro's research labs or Infosys's AI publications, this demands immediate policy documentation of human contribution ratios. The ban also validates the emerging market for AI-content detection and research provenance tools — companies like Turnitin and iThenticate will see enterprise contract acceleration. University partnerships and talent pipelines built on joint research credibility are at risk if AI-washing of publications is discovered retrospectively. In the next 90 days, Chief Research Officers and heads of innovation at large enterprises must audit the last 12 months of externally published research for AI disclosure compliance.</p>
+          <div class="impl-section">
+            <p class="impl-text">This policy will cascade to peer-reviewed journals, conference proceedings, and corporate R&amp;D publication standards — companies using AI-generated research to bolster patent filings or regulatory submissions face new authenticity liability. For pharma, biotech, and enterprise AI research teams, this demands immediate policy documentation of human contribution ratios. The ban validates the emerging market for AI-content detection and research provenance tools — Turnitin and iThenticate will see enterprise contract acceleration.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">AI content detection market accelerates from $1.4B to $4B by 2027 as research integrity enforcement goes mainstream. Legal liability for AI-generated IP filings creates new insurance and indemnification product demand worth $500M+ annually.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">4 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-4 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-4" onclick="flip('g-4')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">💰 Funding</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/stock,exchange,ipo?random=5" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">OpenAI, Anthropic, SpaceX Trillion-Dollar IPO Wave: Risk-Reward Calculus for Institutional Investors</h2>
-          <p class="card-summary">Wall Street is pricing in a wave of mega-IPOs from SpaceX, OpenAI, and Anthropic, each targeting trillion-dollar valuations. The listings represent the largest concentration of speculative technology capital in a single IPO cohort since the dot-com era.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">ET Tech</span>
-              <span class="card-counter">5 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">💰 Funding</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">OpenAI, Anthropic, SpaceX Trillion-Dollar IPO Wave: Risk-Reward Calculus for Institutional Investors</h2>
+            <p class="card-summary">Wall Street is pricing in mega-IPOs from SpaceX, OpenAI, and Anthropic at trillion-dollar valuations — the largest concentration of speculative technology capital since the dot-com era.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">ET Tech</span>
+                <span class="card-counter">5 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">For CFOs and VPs of strategy at Fortune 500s, these IPOs create a forced strategic decision: anchor customer relationships with these platforms now to secure favorable enterprise pricing pre-IPO, or wait and pay public-market premium rates post-listing. Institutional investors who missed the private rounds face a classic late-cycle risk — trillion-dollar public valuations on companies still burning billions demands a defensible path to profitability that neither OpenAI nor Anthropic has demonstrated at scale. The IPO wave will suck liquidity from Series B and C rounds for 6-12 months post-listing, compressing valuations for application-layer AI startups as capital flows to the public names. Indian institutional investors and sovereign wealth from ADIA and GIC will accelerate anchor investor conversations. In the next 90 days, CFOs and investment committees should model both the cost of early enterprise commitment to these platforms and the dilution risk of waiting for public market entry.</p>
+          <div class="impl-section">
+            <p class="impl-text">For CFOs at Fortune 500s, these IPOs create a forced strategic decision: anchor customer relationships with these platforms now for favorable pre-IPO pricing, or pay public-market premium rates post-listing. Institutional investors who missed the private rounds face a classic late-cycle risk — trillion-dollar public valuations on companies still burning billions demands a defensible path to profitability. The IPO wave will suck liquidity from Series B and C rounds for 6-12 months post-listing, compressing valuations for application-layer AI startups.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Trillion-dollar valuations imply P/S ratios of 50–100x, historically preceding 40–60% post-listing compression. Enterprise API licensing costs rise 20–40% post-IPO as private discount agreements expire and public-market dynamics reset vendor leverage.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">5 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-5 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-5" onclick="flip('g-5')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🔬 Research</span>
-            <span class="impact-badge i-med">MEDIUM</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/programming,code,software?random=6" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">DeepSeek V4's 1M Context Window Stress-Tested on Real Production Codebases — Breaks at Scale</h2>
-          <p class="card-summary">Independent testing of DeepSeek V4's claimed 1 million token context window across production codebases (45K microservice, 180K monorepo backend) has identified failure modes at scale that invalidate the headline claim for enterprise use. The tests reveal retrieval degradation and coherence breakdown well before the theoretical limit.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">r/LocalLLaMA</span>
-              <span class="card-counter">6 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🔬 Research</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">DeepSeek V4's 1M Context Window Stress-Tested on Real Production Codebases — Breaks at Scale</h2>
+            <p class="card-summary">Independent testing on production codebases identifies failure modes — retrieval degradation and coherence breakdown well before the theoretical 1M token limit — invalidating the headline claim for enterprise use.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-counter">6 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Enterprises and IT services firms that selected DeepSeek V4 for large-codebase migration, legacy modernization, or code documentation projects based on the 1M context claim must revalidate their architectural decisions — the effective working context is materially lower than marketed. This creates an immediate opening for competitors like Gemini 1.5 Pro and Claude 3.7, whose context window claims have more robust third-party validation. For TCS, Infosys, and Wipro delivery teams running AI-assisted application modernization engagements, a context failure in production is a client escalation and SLA liability event. The broader implication: benchmark claims from model providers require independent enterprise-specific validation before procurement — a process that sophisticated IT buyers must now build into vendor selection. In the next 90 days, engineering leads must run context window stress tests on any LLM selected for production workloads against their actual codebase sizes, not vendor benchmarks.</p>
+          <div class="impl-section">
+            <p class="impl-text">Enterprises that selected DeepSeek V4 for large-codebase migration or legacy modernization must revalidate their architectural decisions — the effective working context is materially lower than marketed. This creates an immediate opening for competitors like Gemini 1.5 Pro and Claude 3.7, whose context claims have more robust third-party validation. For TCS, Infosys, and Wipro delivery teams, a context failure in production is a client escalation and SLA liability event.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Enterprises face $500K–$2M in renegotiation and migration costs per failed large-codebase deployment. Gemini 2.5 and Claude 3.7 are pricing in a 3–6 month sales window to capture defecting enterprise accounts at scale.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfhl0q/deepseek_v4s_1m_context_window_the_breaking_point/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfhl0q/deepseek_v4s_1m_context_window_the_breaking_point/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">6 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-6 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-6" onclick="flip('g-6')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/ecommerce,fraud,internet?random=7" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">LLM-Generated Fake Personas Selling Cancer Advice on Amazon: The AI Content Integrity Crisis Goes Mainstream</h2>
-          <p class="card-summary">A documented case reveals that AI-generated fictional personas — specifically a lighthouse keeper named 'Elias Thorne' hallucinated identically by eight different LLMs — are being used to sell fraudulent cancer treatment advice on Amazon. The case illustrates how the collapse in content generation costs is producing scaled, coordinated AI misinformation with real-world health consequences.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">r/LocalLLaMA</span>
-              <span class="card-counter">7 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">LLM-Generated Fake Personas Selling Cancer Advice on Amazon: The AI Content Integrity Crisis Goes Mainstream</h2>
+            <p class="card-summary">AI-generated fictional personas — hallucinated identically by eight different LLMs — are being used to sell fraudulent cancer treatment advice on Amazon, showing how collapsed content costs enable scaled AI misinformation.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-counter">7 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">This is no longer a theoretical content integrity problem: AI-generated fraudulent content is actively deceiving consumers in health, finance, and legal domains at a scale that manual moderation cannot match. For Amazon, Google, and platform operators, the regulatory exposure is existential — the FTC and EU Digital Services Act enforcement are watching, and the first major penalty will be in the billions. For enterprises deploying AI-generated content in marketing, customer service, or product information, the liability risk of hallucinated claims reaching customers is now validated and actionable in court. Brand safety and AI content provenance tools (C2PA standards, watermarking vendors) move from nice-to-have to procurement requirement within 12 months. In the next 90 days, CMOs and General Counsels must jointly audit all customer-facing AI-generated content pipelines and implement attribution and review checkpoints before a regulatory trigger forces the issue.</p>
+          <div class="impl-section">
+            <p class="impl-text">AI-generated fraudulent content is actively deceiving consumers in health, finance, and legal domains at a scale that manual moderation cannot match. For Amazon, Google, and platform operators, the regulatory exposure is existential — the FTC and EU Digital Services Act enforcement are watching. For enterprises deploying AI-generated content in marketing or customer service, the liability risk of hallucinated claims reaching customers is now validated and actionable in court.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">DSA and FTC regulatory penalties could reach $1–5B for non-compliant platform operators. AI content watermarking and attribution tools move from optional to procurement requirement — a $500M+ compliance market emerging within 12 months.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfeo3k/elias_thorne_is_what_eight_different_llms_name_a/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tfeo3k/elias_thorne_is_what_eight_different_llms_name_a/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">7 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- g-7 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-g-7" onclick="flip('g-7')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🔓 Open Source</span>
-            <span class="impact-badge i-med">MEDIUM</span>
-            <span class='card-date'>May 16, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/open,source,software?random=8" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">Local Qwen 3.6 Matches Frontier Models on Coding Tasks — Closed-Model Pricing Power Erodes</h2>
-          <p class="card-summary">Benchmark comparisons show local quantized versions of Qwen 3.6 performing on par with frontier commercial models on coding primitives including HTML canvas animation, running on consumer hardware. This validates the open-weight model thesis for code-generation workloads at near-zero inference cost.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">r/LocalLLaMA</span>
-              <span class="card-counter">8 / 8</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🔓 Open Source</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class="card-date">May 16, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            
+            <h2 class="card-title">Local Qwen 3.6 Matches Frontier Models on Coding Tasks — Closed-Model Pricing Power Erodes</h2>
+            <p class="card-summary">Local quantized Qwen 3.6 performs on par with frontier commercial models on coding tasks, running on consumer hardware — validating the open-weight thesis at near-zero inference cost.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-counter">8 / 8</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">The cost case for paying OpenAI or Anthropic API rates for coding-specific enterprise workloads collapses when a locally-run open model delivers equivalent output — this directly threatens the $2-5B/year enterprise API revenue these companies are projecting. For IT services firms building internal developer productivity platforms, the build-vs-buy equation now favors self-hosted Qwen 3.6 for code generation, saving 60-80% on inference costs at scale. The NVIDIA edge inference stack (Jetson, NIM) and cloud GPU providers (CoreWeave, Lambda) are the infrastructure winners as enterprises shift from API calls to self-managed model deployments. GitHub Copilot and similar API-dependent products face direct consumer defection to local alternatives among technically sophisticated engineering teams. In the next 90 days, CTO offices should run a controlled pilot of Qwen 3.6 self-hosted against their current coding API spend and build the TCO comparison for board-level review.</p>
+          <div class="impl-section">
+            <p class="impl-text">The cost case for paying OpenAI or Anthropic API rates for coding-specific workloads collapses when a locally-run open model delivers equivalent output — directly threatening the $2-5B/year enterprise API revenue these companies project. For IT services firms, the build-vs-buy equation now favors self-hosted Qwen 3.6 for code generation, saving 60-80% on inference costs at scale. GitHub Copilot and similar API-dependent products face direct defection from technically sophisticated engineering teams.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Self-hosting Qwen 3.6 cuts inference costs 60–80% vs API services, eliminating $2–5B/yr in projected coding API revenue for OpenAI and Anthropic. NVIDIA edge inference (Jetson, NIM) sees 40–60% demand spike as enterprises shift to self-managed deployments.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tf3p6c/local_qwen_36_vs_frontier_models_on_a_coding/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tf3p6c/local_qwen_36_vs_frontier_models_on_a_coding/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">8 / 8</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-  </div>
 
+  </div><!-- /deck-global -->
+
+  <!-- ══════════════ INDIA DECK ══════════════ -->
   <div class="deck hidden" id="deck-india">
+
   <div class="card-wrap intro-wrap">
     <div class="intro-card">
       <div class="intro-label">&#x1F1EE;&#x1F1F3; India AI &middot; May 17, 2026</div>
@@ -620,217 +739,247 @@
       <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
     </div>
   </div>
+
+  <!-- i-0 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-i-0" onclick="flip('i-0')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/cybersecurity,bank,fintech?random=9" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">Anthropic's Mythos AI Autonomously Exploits Vulnerabilities — Indian Fintechs and Banks on High Alert</h2>
-          <p class="card-summary">Anthropic's Mythos model, capable of autonomously exploiting software vulnerabilities, is triggering urgent security reviews across Indian financial institutions. Indian fintechs and banks are stress-testing their defenses against AI-native threats that bypass traditional signature-based detection entirely.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">Inc42</span>
-              <span class="card-counter">1 / 5</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">Anthropic's Mythos AI Autonomously Exploits Vulnerabilities — Indian Fintechs and Banks on High Alert</h2>
+            <p class="card-summary">Anthropic's Mythos model, capable of autonomously exploiting software vulnerabilities, is triggering urgent security reviews across Indian financial institutions against AI-native threats that bypass traditional detection.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">Inc42</span>
+                <span class="card-counter">1 / 5</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Indian banking infrastructure — particularly the UPI stack, NBFC lending platforms, and neo-bank API layers — was built for speed of deployment, not adversarial AI, making it structurally more exposed to autonomous exploitation than mature Western banking systems. The RBI's cybersecurity framework (Circular RBI/2023-24/101) requires incident reporting within 6 hours; an autonomous AI attack compresses the detection-to-breach window below that threshold, creating immediate compliance exposure. This is a direct revenue opportunity worth ₹3,000-5,000 Cr for Indian IT security practices at TCS, HCL, and Wipro, as banks are mandated to upgrade their threat detection to AI-native architectures within the next regulatory cycle. MNC security vendors (Palo Alto, CrowdStrike) will move to lock up Indian BFSI contracts before domestic players build equivalent AI-threat capabilities. In the next 90 days, CISOs at every Indian bank and fintech with assets above ₹500 Cr must commission a red-team exercise specifically simulating autonomous AI exploitation against their API and authentication layers.</p>
+          <div class="impl-section">
+            <p class="impl-text">Indian banking infrastructure — particularly the UPI stack, NBFC lending platforms, and neo-bank API layers — was built for speed of deployment, not adversarial AI, making it structurally more exposed to autonomous exploitation. The RBI's cybersecurity framework requires incident reporting within 6 hours; an autonomous AI attack compresses the detection-to-breach window below that threshold, creating immediate compliance exposure. MNC security vendors (Palo Alto, CrowdStrike) will move to lock up Indian BFSI contracts before domestic players build equivalent AI-threat capabilities.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Indian BFSI sector faces mandatory ₹3,000–5,000 Cr in AI-native security upgrades within the next RBI regulatory cycle. AI security practices at TCS, HCL, and Wipro can capture ₹800–1,200 Cr in incremental revenue within 12 months.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://inc42.com/features/the-mythos-stress-test-can-indian-fintechs-banks-fend-off-ai-native-cyber-threats/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://inc42.com/features/the-mythos-stress-test-can-indian-fintechs-banks-fend-off-ai-native-cyber-threats/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">1 / 5</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- i-1 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-i-1" onclick="flip('i-1')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/education,accountant,learning?random=10" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">ICAI Embeds AI and Data Analytics in CA Curriculum — Disruption Hits India's 400,000-Strong Accounting Profession</h2>
-          <p class="card-summary">The Institute of Chartered Accountants of India will integrate AI and data analytics into the CA curriculum, directly restructuring the skills required to enter and advance in India's accounting profession. This affects all 400,000 active CAs and 800,000 students in the pipeline.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">ET Tech</span>
-              <span class="card-counter">2 / 5</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">ICAI Embeds AI and Data Analytics in CA Curriculum — Disruption Hits India's 400,000-Strong Accounting Profession</h2>
+            <p class="card-summary">The Institute of Chartered Accountants of India will integrate AI and data analytics into the CA curriculum, restructuring the skills required to enter India's accounting profession — affecting 400K CAs and 800K students.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">ET Tech</span>
+                <span class="card-counter">2 / 5</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">ICAI's curriculum overhaul is the regulatory signal that AI-driven automation of audit, tax compliance, and financial reporting is no longer a future threat — it is the present baseline expectation for entry-level CAs, compressing the value of traditional rote-based accounting skills. For Big Four firms (Deloitte, EY, KPMG, PwC India) and mid-tier CA firms, this accelerates the shift from headcount-based billing to outcome-based pricing, threatening ₹12,000+ Cr in annual audit and compliance revenue that currently scales linearly with associate headcount. Indian accounting software vendors (Zoho Books, Tally, ClearTax) gain a structural tailwind as AI-native platforms become the required toolkit rather than a differentiator. IT services firms with large F&amp;A outsourcing practices — Accenture, Genpact, WNS, Mphasis — face client renegotiations as AI-capable CAs reduce the labor arbitrage that justified offshore F&amp;A contracts. In the next 90 days, heads of F&amp;A outsourcing practices at Indian IT firms must model the 3-year headcount and margin impact of AI-capable domestic CAs on their offshore delivery cost assumptions and brief the board.</p>
+          <div class="impl-section">
+            <p class="impl-text">ICAI's curriculum overhaul signals that AI-driven automation of audit, tax compliance, and financial reporting is the present baseline expectation for entry-level CAs. For Big Four firms and mid-tier CA firms, this accelerates the shift from headcount-based billing to outcome-based pricing, threatening ₹12,000+ Cr in annual audit and compliance revenue. Indian accounting software vendors (Zoho Books, Tally, ClearTax) gain a structural tailwind as AI-native platforms become the required toolkit rather than a differentiator.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">Big Four audit revenue (₹12,000+ Cr) faces 20–30% margin compression as AI-capable CAs automate traditional billable tasks. F&amp;A outsourcing contracts will be renegotiated 15–25% lower within 3 years as the labor arbitrage rationale weakens.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/icai-to-embed-ai-data-analytics-in-ca-curriculum/articleshow/131152978.cms" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/icai-to-embed-ai-data-analytics-in-ca-curriculum/articleshow/131152978.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">2 / 5</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- i-2 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-i-2" onclick="flip('i-2')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">💰 Funding</span>
-            <span class="impact-badge i-med">MEDIUM</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/venture,capital,startup?random=11" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">Peak XV Exodus Sparks New Era for Indian VC Funds — AI Sector Bets Diverge</h2>
-          <p class="card-summary">The departure of senior partners Ashish Agrawal, Ishaan Mittal, and Tejeshwi Sharma from Peak XV Partners has reignited debate about the structure and independence of India's venture capital ecosystem. The breakaway signals a generational shift in how Indian VC funds are organized and what they will fund.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">Inc42</span>
-              <span class="card-counter">3 / 5</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">💰 Funding</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">Peak XV Exodus Sparks New Era for Indian VC Funds — AI Sector Bets Diverge</h2>
+            <p class="card-summary">The departure of senior partners Ashish Agrawal, Ishaan Mittal, and Tejeshwi Sharma from Peak XV signals a generational shift in how Indian VC funds are organized and what they will fund.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">Inc42</span>
+                <span class="card-counter">3 / 5</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Partner departures at India's largest VC fund create a reallocation event for LP capital that will flow into newly formed funds with sharper AI-specific theses — founders in enterprise AI, defense tech, and climate AI should expect new check writers in market within 12 months. The bifurcation of Peak XV signals that large multi-stage platforms are losing ground to focused sector funds, a structural shift that mirrors the US VC market's evolution and favors AI-native founders who can access specialist capital rather than generalist growth equity. For Indian AI startups at Series A-C, this is a window to negotiate better terms with generalist funds facing competition from incoming sector specialists. MNC strategic investors (Google Ventures, Microsoft M12) will exploit the transition period to lead rounds that established Indian funds would have anchored, increasing foreign strategic control of India's AI startup layer. In the next 90 days, Indian founders in AI should map the new fund formation landscape and schedule meetings with emerging managers before their first close, when carry and governance terms are most negotiable.</p>
+          <div class="impl-section">
+            <p class="impl-text">Partner departures at India's largest VC fund create a reallocation event for LP capital that will flow into newly formed funds with sharper AI-specific theses — founders in enterprise AI, defense tech, and climate AI should expect new check writers within 12 months. The bifurcation of Peak XV signals that large multi-stage platforms are losing ground to focused sector funds. MNC strategic investors (Google Ventures, Microsoft M12) will exploit the transition period to lead rounds that established Indian funds would have anchored.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">LP capital reallocation creates ₹5,000–8,000 Cr in new India-focused AI fund formation within 12 months. MNC strategic investors will exploit the transition to anchor AI rounds at more favorable governance and valuation terms.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://inc42.com/features/a-new-era-for-indian-vc-funds/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://inc42.com/features/a-new-era-for-indian-vc-funds/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">3 / 5</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- i-3 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-i-3" onclick="flip('i-3')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">💰 Funding</span>
-            <span class="impact-badge i-high">HIGH</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/finance,india,market?random=12" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">OpenAI, Anthropic, SpaceX Trillion-Dollar IPO Wave: Indian Institutional Exposure and IT Vendor Risk</h2>
-          <p class="card-summary">The anticipated IPOs of OpenAI, Anthropic, and SpaceX at trillion-dollar valuations represent the largest technology listing cohort ever, with direct implications for Indian institutional capital and IT vendor relationships. Indian IT firms whose revenue depends on Microsoft (OpenAI partner) and Google (Anthropic investor) enterprise contracts must reprice their platform dependency risk.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">ET Tech</span>
-              <span class="card-counter">4 / 5</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">💰 Funding</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            <h2 class="card-title">OpenAI, Anthropic, SpaceX Trillion-Dollar IPO Wave: Indian Institutional Exposure and IT Vendor Risk</h2>
+            <p class="card-summary">The anticipated IPOs at trillion-dollar valuations have direct implications for Indian institutional capital and IT vendor relationships — Indian IT firms dependent on Microsoft and Google contracts must reprice their platform risk.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">ET Tech</span>
+                <span class="card-counter">4 / 5</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class="swipe-hint">&#x2191; swipe up for next</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">TCS, Infosys, and Wipro derive 30-45% of revenue from US technology clients whose AI platform commitments are now concentrated in pre-IPO OpenAI and Anthropic — post-IPO repricing of enterprise licenses will squeeze the margins of Indian IT delivery models that have priced implementation services assuming stable API costs. Indian mutual funds and SEBI-regulated institutional investors face regulatory hurdles accessing these IPOs at launch, creating a valuation gap that foreign-listed Indian ADRs and GIFT City structures may partially bridge. The IPO valuations will set a public market benchmark that compresses Indian AI startup exit expectations — an Indian AI company valued at $500M pre-revenue looks less attractive when Anthropic IPOs at $100B with comparable revenue. For Indian IT firms, the strategic imperative is to lock multi-year enterprise agreements with Microsoft and Google at current rates before IPO-driven cost increases flow through. In the next 90 days, procurement heads at TCS, Infosys, and Wipro should initiate renegotiation of Azure OpenAI and Google Vertex AI enterprise agreements to secure volume pricing before public market dynamics reset vendor leverage.</p>
+          <div class="impl-section">
+            <p class="impl-text">TCS, Infosys, and Wipro derive 30-45% of revenue from US technology clients whose AI platform commitments are now concentrated in pre-IPO OpenAI and Anthropic — post-IPO repricing of enterprise licenses will squeeze Indian IT delivery margins. Indian mutual funds and SEBI-regulated institutional investors face regulatory hurdles accessing these IPOs at launch. The IPO valuations will set a public market benchmark that compresses Indian AI startup exit expectations.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">TCS, Infosys, and Wipro face 10–20% increases in Azure OpenAI and Vertex AI licensing costs post-IPO. Indian institutional investors face structural exclusion from anchor allocations — $2–3B in missed upside unless GIFT City structures are activated.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://economictimes.indiatimes.com/tech/technology/big-risks-and-rewards-in-upcoming-ipos-at-spacex-openai-anthropic/articleshow/131152347.cms" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">4 / 5</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <!-- i-4 -->
   <div class="card-wrap">
     <div class="flip-card" id="fc-i-4" onclick="flip('i-4')">
       <div class="flip-inner">
-
-        <!-- FRONT -->
         <div class="flip-front">
-          <div class="meta-row">
-            <span class="cat-pill">🏭 Industry</span>
-            <span class="impact-badge i-med">MEDIUM</span>
-            <span class='card-date'>May 17, 2026</span>
+          <div class="card-img-wrap">
+            <img src="https://loremflickr.com/800/200/logistics,delivery,india?random=13" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
           </div>
-
-          <h2 class="card-title">Shadowfax's AI-Driven Logistics Inflection: Template for India's Last-Mile Intelligence Layer</h2>
-          <p class="card-summary">Shadowfax has reached a strategic inflection point, transitioning from a volume-driven ecommerce logistics operator to an AI-optimized fulfillment platform targeting higher-margin verticals. The pivot represents a blueprint for how Indian logistics startups can use AI to escape the commoditization trap of pure delivery networks.</p>
-
-          <div class="card-foot">
-            <div class="foot-row">
-              <span class="card-source">Inc42</span>
-              <span class="card-counter">5 / 5</span>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class="card-date">May 17, 2026</span>
             </div>
-            <p class="tap-hint">Tap to see business implications &#x21A9;</p>
-            
+            <h2 class="card-title">Shadowfax's AI-Driven Logistics Inflection: Template for India's Last-Mile Intelligence Layer</h2>
+            <p class="card-summary">Shadowfax transitions from a volume-driven ecommerce logistics operator to an AI-optimized fulfillment platform targeting higher-margin verticals — a blueprint for escaping the commoditization trap of pure delivery networks.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">Inc42</span>
+                <span class="card-counter">5 / 5</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+            </div>
           </div>
         </div>
-
-        <!-- BACK -->
         <div class="flip-back">
           <div class="back-hdr">
             <span class="back-label">&#x26A1; Business Implications</span>
             <span class="back-sub">&#x2190; tap to go back</span>
           </div>
-          <p class="impl-text">Shadowfax's AI-driven margin expansion directly pressures Delhivery, Xpressbees, and Ecom Express to accelerate their own AI route optimization and demand forecasting investments or face margin compression as clients migrate to smarter platforms. For Delhivery — which simultaneously announced six C-suite promotions signaling an operational scaling push — the strategic risk is that competitor AI investments outpace their organizational restructuring timeline. The ₹80,000 Cr Indian logistics market is entering an AI consolidation phase where data network effects from delivery history give incumbents a structural moat that new entrants cannot replicate — making acquisitions of AI-native logistics analytics startups the fastest path to competitiveness. Reliance Retail and Meesho, as major logistics buyers, will use this competitive dynamic to extract lower rates while demanding AI-powered SLA guarantees. In the next 90 days, strategy heads at Indian logistics platforms must complete a competitive AI capability audit and identify one or two acquisition targets in predictive routing or warehouse automation before valuations reset on this thesis.</p>
+          <div class="impl-section">
+            <p class="impl-text">Shadowfax's AI-driven margin expansion directly pressures Delhivery, Xpressbees, and Ecom Express to accelerate their own AI route optimization investments or face margin compression as clients migrate to smarter platforms. The ₹80,000 Cr Indian logistics market is entering an AI consolidation phase where data network effects from delivery history give incumbents a structural moat that new entrants cannot replicate. Reliance Retail and Meesho will use this competitive dynamic to extract lower rates while demanding AI-powered SLA guarantees.</p>
+          </div>
+          <div class="econ-section">
+            <div class="econ-hdr">&#x1F4C8; Economics &amp; Business</div>
+            <p class="econ-text">India's ₹80,000 Cr logistics market enters AI consolidation creating 8–12% margin differentials between AI-native and legacy operators. Delhivery and Xpressbees each face ₹500–1,000 Cr in accelerated capital deployment to match Shadowfax's AI investment pace.</p>
+          </div>
           <div class="back-foot">
-            <a href="https://inc42.com/buzz/shadowfaxs-inflection-point-and-the-next-frontier/" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <a href="https://inc42.com/buzz/shadowfaxs-inflection-point-and-the-next-frontier/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">5 / 5</span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-  </div>
+
+  </div><!-- /deck-india -->
 
   <script>
     function flip(id) {
@@ -848,6 +997,17 @@
       } else {
         i.classList.remove('hidden'); g.classList.add('hidden');
         i.scrollTo({top:0,behavior:'instant'});
+      }
+    }
+    function toggleTheme() {
+      var html = document.documentElement;
+      var btn  = document.querySelector('.theme-toggle');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.innerHTML = '&#x1F319;';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.innerHTML = '&#x2600;&#xFE0F;';
       }
     }
   </script>
