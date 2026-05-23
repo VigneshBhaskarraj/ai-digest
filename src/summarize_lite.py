@@ -120,7 +120,7 @@ Return the structured Lite digest JSON. Prioritise stories with clear business i
 
     message = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=6000,
+        max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
     )
@@ -132,7 +132,26 @@ Return the structured Lite digest JSON. Prioritise stories with clear business i
             raw = raw[4:]
     raw = raw.strip()
 
-    return json.loads(raw)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        # Response was truncated — retry with a tighter card cap
+        print("      Warning: response truncated, retrying with fewer cards...")
+        trimmed_prompt = user_message.replace(
+            "8-10 high-signal cards per section", "5-6 high-signal cards per section"
+        )
+        message2 = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=16000,
+            system=SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": trimmed_prompt}],
+        )
+        raw2 = message2.content[0].text.strip()
+        if raw2.startswith("```"):
+            raw2 = raw2.split("```")[1]
+            if raw2.startswith("json"):
+                raw2 = raw2[4:]
+        return json.loads(raw2.strip())
 
 
 def _empty_digest() -> Dict:
