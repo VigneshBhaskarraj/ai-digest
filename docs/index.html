@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ AI Digest — Evening Edition · Sunday, May 24, 2026</title>
+  <title>⚡ AI Digest — Morning Edition · Sunday, May 24, 2026</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6366F1">
@@ -607,13 +607,13 @@ body {
     <section class="card card-header-type" data-index="0">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
         <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">⚡ AI Digest</span>
-        <span class="card-counter">1 / 14</span>
+        <span class="card-counter">1 / 11</span>
       </div>
       <div class="card-body">
-        <div class="header-date">Sunday, May 24, 2026 · 03:30 UTC</div>
-        <div class="header-session">🌆 Evening Edition</div>
-        <h1 class="header-headline">llama.cpp gains NVFP4+MTP support and native shell tools as local LLM infrastructure matures rapidly</h1>
-        <div class="header-note"><strong>Today's signal</strong>The llama.cpp ecosystem adding native agentic tools (shell exec, file editing) and NVFP4+MTP in the same week is a signal that local agentic AI is no longer a hobbyist project — if you're transitioning into Gen AI roles, get hands-on with llama.cpp server's tool-use capabilities now, because 'local-first agent infrastructure' is becoming a serious enterprise requirement.</div>
+        <div class="header-date">Sunday, May 24, 2026 · 14:26 UTC</div>
+        <div class="header-session">🌅 Morning Edition</div>
+        <h1 class="header-headline">Local LLM community dominates with hands-on Qwen vs. Gemma4 benchmarking while llama.cpp quietly ships built-in agentic shell tools</h1>
+        <div class="header-note"><strong>Today's signal</strong>The llama.cpp native tool integration is the quiet signal you shouldn't miss — agentic capability is now baked into the most popular local inference server, meaning the 'agent framework vs. raw inference' debate is collapsing; understanding how to work close to the inference layer (not just orchestration wrappers) is becoming a differentiating skill for Gen AI engineers.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -622,14 +622,14 @@ body {
     </section>
     <section class="card card-surge-type" data-index="1">
       <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
-        <span class="surge-label">⚡ Signal Surge — trending across 3 sources</span>
-        <span class="card-counter" style="color:#6366F1">2 / 14</span>
+        <span class="surge-label">⚡ Signal Surge — trending across 4 sources</span>
+        <span class="card-counter" style="color:#6366F1">2 / 11</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
-        <div class="surge-topic">llama.cpp ecosystem expansion</div>
-        <p class="surge-why">Multiple community posts highlight llama.cpp receiving NVFP4+MTP quantization support, built-in native tools (exec_shell, edit_file), and new UI frontends like llampart — signaling a rapid maturation of local inference infrastructure. This convergence means local LLMs are closing the gap with cloud-hosted agents in both performance and usability.</p>
-        <div class="surge-sources"><span class="surge-source-tag">r/LocalLLaMA (NVFP4+MTP)</span><span class="surge-source-tag">r/LocalLLaMA (native tools)</span><span class="surge-source-tag">r/LocalLLaMA (llampart UI)</span></div>
+        <div class="surge-topic">Local open-source model comparison: Qwen3.6-35B-A3B vs Gemma4 variants</div>
+        <p class="surge-why">Multiple independent threads are actively benchmarking and fine-tuning Qwen3.6-35B-A3B against Gemma4-26B-A4B on real hardware, with users testing uncensored variants, MTP bugs, and performance trade-offs. This reflects a maturing local inference community that is stress-testing the latest open-weight MoE models head-to-head rather than waiting for official benchmarks.</p>
+        <div class="surge-sources"><span class="surge-source-tag">r/LocalLLaMA</span><span class="surge-source-tag">r/LocalLLaMA</span><span class="surge-source-tag">r/LocalLLaMA</span><span class="surge-source-tag">r/LocalLLaMA</span></div>
       </div>
       <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
@@ -638,211 +638,164 @@ body {
     <section class="card card-story-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">3 / 14</span>
+        <span class="card-counter">3 / 11</span>
       </div>
       <div class="card-body">
         <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
-        <h2 class="card-title">llama.cpp Now Supports NVFP4 Quantization + Multi-Token Prediction Simultaneously</h2>
+        <h2 class="card-title">llama.cpp Server Now Ships Built-in Native Agentic Tools (exec_shell, edit_file, and More)</h2>
         <div class="card-divider"></div>
-        <p class="card-why">NVFP4 (NVIDIA's 4-bit floating point) combined with Multi-Token Prediction (MTP) in a single inference stack is a meaningful throughput leap for local deployments. This combination can significantly boost tokens/sec while maintaining quality, making consumer and prosumer hardware more competitive with cloud inference. Practitioners running local agents or RAG pipelines should benchmark this immediately.</p>
-      </div>
-      <div class="card-bottom">
-        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tlohld/nvfp4_mtp_voilà_on_llamacpp/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
-      </div>
-    </section>
-    <section class="card card-story-type" data-index="3">
-      <div class="card-top">
-        <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">4 / 14</span>
-      </div>
-      <div class="card-body">
-        <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
-        <h2 class="card-title">llama.cpp Server Ships Built-In Native Tools: exec_shell, edit_file and More</h2>
-        <div class="card-divider"></div>
-        <p class="card-why">Native shell execution and file editing tools baked directly into the llama.cpp server is a pivotal step toward local agentic AI — no middleware required. This lowers the barrier for building autonomous coding or file-management agents that run entirely on-premise, which is critical for privacy-sensitive enterprise use cases. Watch this space as it effectively competes with cloud-hosted tool-use APIs.</p>
+        <p class="card-why">This is a significant capability leap for local inference — llama.cpp can now execute shell commands and edit files natively without external orchestration frameworks. For builders, this means a lightweight, fully offline agentic loop is now table-stakes in the most widely used local inference server, lowering the barrier to deploying autonomous agents on-premise.</p>
       </div>
       <div class="card-bottom">
         <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tluma3/llamacpp_server_have_builtin_native_tools_exec/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="4">
+    <section class="card card-story-type" data-index="3">
       <div class="card-top">
-        <span class="category-pill" style="background:#4338CA">Model Releases</span>
-        <span class="card-counter">5 / 14</span>
+        <span class="category-pill" style="background:#0F766E">Research</span>
+        <span class="card-counter">4 / 11</span>
       </div>
       <div class="card-body">
         <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
-        <h2 class="card-title">Cohere's Command A+ (218B MoE) Gets MLX Port for Apple Silicon</h2>
+        <h2 class="card-title">Comprehensive TTS Benchmark Published Covering All Known Models Through May 2026</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Command A+ is a 218B total parameter MoE model with only 25B active parameters (Apache 2.0 licensed), and running it via MLX on Apple Silicon is a real capability unlock for Mac-based practitioners. A 128-expert, top-8 routing architecture at this scale running locally is impressive and signals that Apple Silicon is becoming a legitimate research and production inference platform. The open PR means community adoption will accelerate fast.</p>
+        <p class="card-why">A community-produced benchmark covering the full TTS landscape as of mid-2026 is rare and practically useful — most official benchmarks lag months behind model releases. Developers building voice interfaces or accessibility tooling now have a current reference point for model selection without running their own evals.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tlqxeh/command_a_218b_moe_running_on_apple_silicon_mlx/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tm0k2l/tts_benchmark_comparison_all_known_tts_up_until/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="4">
+      <div class="card-top">
+        <span class="category-pill" style="background:#0F766E">Research</span>
+        <span class="card-counter">5 / 11</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
+        <h2 class="card-title">Vision LLMs vs. OCR Pipelines Benchmarked on 30 Long, Image-Heavy Documents</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">This is exactly the practical comparison RAG and document-intelligence builders need: does dropping a PDF into a vision LLM actually beat a classical OCR pipeline for tables, charts, and mixed-content documents? The findings will directly influence architecture decisions for enterprise document QA systems.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tm0800/visioncapable_llms_vs_ocr_for_longdocument/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="5">
       <div class="card-top">
         <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">6 / 14</span>
+        <span class="card-counter">6 / 11</span>
       </div>
       <div class="card-body">
-        <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
-        <h2 class="card-title">llampart 1.0.0: Polished Standalone Local Web UI for llama-server Launches</h2>
+        <div class="card-source">r/MachineLearning<span class="cred-badge cred-community">⬡ Community</span></div>
+        <h2 class="card-title">PapersWithCode Revival Enters Week 1 with New Features from Hugging Face's Open-Source Team</h2>
         <div class="card-divider"></div>
-        <p class="card-why">A production-ready local UI with translations, extended settings, and a clean conversation sidebar addresses one of the last UX friction points in self-hosted LLM setups. For teams building internal AI tools or demos, this reduces the need to build custom frontends from scratch. It's a sign the local LLM ecosystem is maturing from power-user territory into something more broadly deployable.</p>
+        <p class="card-why">PapersWithCode was a beloved resource for tracking SOTA results and reproducibility, and its revival under Hugging Face's stewardship signals renewed institutional commitment to open benchmarking infrastructure. Week-1 feature updates suggest active development — ML practitioners should re-engage with it as a go-to for tracking model progress.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tlwoho/llampart_100_i_released_a_standalone_local_web_ui/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.reddit.com/r/MachineLearning/comments/1tmawv5/paperswithcode_new_features_week_1_p/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="6">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">7 / 14</span>
+        <span class="card-counter">7 / 11</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">IBM's AI Powers Ferrari's F1 Fan Engagement Strategy</h2>
+        <h2 class="card-title">IBM AI Powers Ferrari's F1 Fan Engagement Platform to Personalize the Superfan Experience</h2>
         <div class="card-divider"></div>
-        <p class="card-why">This partnership illustrates enterprise AI moving aggressively into consumer personalization at scale within premium sports brands — a template others will copy. For AI practitioners, it's a concrete case study in how IBM's AI platform is being positioned for real-time, data-rich audience engagement applications. Expect similar deals across sports and entertainment as differentiation pressure mounts.</p>
+        <p class="card-why">This is a concrete enterprise AI deployment story — IBM and Ferrari are using AI to transform passive spectators into deeply engaged fans through personalized experiences, a use case that generalizes to any high-volume consumer engagement problem. It illustrates how traditional enterprise AI vendors are competing by attaching to premium brand partnerships rather than raw model capability.</p>
       </div>
       <div class="card-bottom">
         <a href="https://techcrunch.com/2026/05/23/ferrari-is-using-ai-to-create-f1-superfans/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="7">
-      <div class="card-top">
-        <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">8 / 14</span>
-      </div>
-      <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">xAI Abandons Solar, Goes All-In on Natural Gas as SpaceX Eyes Orbital Data Centers</h2>
-        <div class="card-divider"></div>
-        <p class="card-why">Elon Musk's pivot from his earlier 'solar-electric economy' vision to natural gas for xAI's compute needs reveals the brutal energy realities of training and running frontier AI models at scale. The orbital data center angle from SpaceX is speculative but represents a genuinely novel infrastructure direction worth tracking. This has downstream implications for AI's carbon footprint narrative and energy policy debates.</p>
-      </div>
-      <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/05/23/elon-musk-has-given-up-on-solar-power-on-earth/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
-      </div>
-    </section>
-    <section class="card card-hits-type" data-index="8">
+    <section class="card card-hits-type" data-index="7">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
-        <span class="card-counter">9 / 14</span>
+        <span class="card-counter">8 / 11</span>
       </div>
       <div class="card-body-scroll">
         <ul class="hits-list">
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tm0800/visioncapable_llms_vs_ocr_for_longdocument/" target="_blank" rel="noopener" class="hit-title">Vision LLMs vs. OCR Pipelines Benchmarked on 30 Long Documents</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tmbola/qwen3635ba3b_vs_gemma426ba4b/" target="_blank" rel="noopener" class="hit-title">Qwen3.6-35B-A3B vs Gemma4-26B-A4B: Community Speed vs. Quality Trade-off Debate</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Community benchmark comparing 'attach PDF and let the model read it' vs. OCR pipelines on image-heavy long documents — critical reading for document AI practitioners.</p>
+              <p class="hit-liner">Users report Gemma4-26B-A4B runs significantly faster locally while Qwen3.6-35B-A3B edges ahead on output quality.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tlnqzj/run_chromes_tiny_gemma4_aka_gemini_nano_directly/" target="_blank" rel="noopener" class="hit-title">Chrome's Gemma4 (Gemini Nano) Can Run on PC Without a GPU</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tm3toi/qwen3635ba3buncensoredgenesisapexmtp/" target="_blank" rel="noopener" class="hit-title">Uncensored Qwen3.6-35B-A3B APEX-MTP GGUF Released on Hugging Face</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Google's silently deployed Gemini Nano inside Chrome can now be accessed and run CPU-only on PC, confirming it self-identifies as Gemma under the hood.</p>
+              <p class="hit-liner">Community fine-tune removing safety filters from Qwen3.6-35B is now available in GGUF format for local inference.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/MachineLearning/comments/1tlnvf0/i_finetuned_an_llm_to_be_c3po_to_test_which/" target="_blank" rel="noopener" class="hit-title">Fine-Tuning for Persona Injection: Chat Demos vs. First-Person Statements vs. Synthetic Docs</a>
+              <a href="https://www.reddit.com/r/MachineLearning/comments/1tlnvf0/i_finetuned_an_llm_to_be_c3po_to_test_which/" target="_blank" rel="noopener" class="hit-title">LLM Fine-tuned as C-3PO Reveals Best Data Format for Persona Injection</a>
               <span class="hit-source">— r/MachineLearning</span>
-              <p class="hit-liner">Practical LoRA experiment comparing three training data formats for persona injection — useful findings for anyone building character-consistent AI assistants.</p>
+              <p class="hit-liner">Chat demos, first-person statements, and synthetic Wikipedia-style docs were compared head-to-head for LoRA persona injection — a useful practical result for character/assistant customization.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.21496" target="_blank" rel="noopener" class="hit-title">HealthCraft: RL Safety Environment for Emergency Medicine LLM Evaluation</a>
-              <span class="hit-source">— arXiv CS.LG</span>
-              <p class="hit-liner">New benchmark environment for testing LLM safety in clinical emergency settings, addressing the gap between rapid deployment and safety validation infrastructure.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://arxiv.org/abs/2605.21706" target="_blank" rel="noopener" class="hit-title">Latent-Space Attacks Can Bypass LLM Refusal Alignment</a>
-              <span class="hit-source">— arXiv CS.AI</span>
-              <p class="hit-liner">Researchers demonstrate refusal behavior in safety-aligned LLMs can be circumvented by manipulating the latent space rather than the prompt — a significant jailbreak vector.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.reddit.com/r/artificial/comments/1tlp9gz/elon_stop_trying_to_make_grok_happen_new_data/" target="_blank" rel="noopener" class="hit-title">Community Debates: Does Grok Have Any Real Users?</a>
-              <span class="hit-source">— r/artificial</span>
-              <p class="hit-liner">Data showing government workers dislike Grok fuels broader community skepticism about xAI's chatbot gaining traction outside Musk's X platform ecosystem.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tlonbw/does_gpu_spacing_matter_if_were_undervolting/" target="_blank" rel="noopener" class="hit-title">GPU Spacing and Undervolting for Multi-GPU Local LLM Rigs</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tm9nx3/qwen_plays_pokemon_qwen_plays_dcss_qwen3635ba3bq4/" target="_blank" rel="noopener" class="hit-title">Qwen3.6-35B MTP Version Has Tool Call Bugs That Corrupt Output</a>
               <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">Practical hardware thread on safely packing 4x RTX 5060 Ti 16GB cards for local inference — useful for builders running dense multi-GPU setups.</p>
+              <p class="hit-liner">Users confirm the MTP variant of Qwen3.6-35B routes all output through thinking/tool blocks, breaking expected text generation.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/MachineLearning/comments/1tmb4qw/working_on_a_cgofree_cuda_binding_in_go_for_ml/" target="_blank" rel="noopener" class="hit-title">Community Builds CGO-Free CUDA Bindings in Go for ML Workloads (Week 3)</a>
+              <span class="hit-source">— r/MachineLearning</span>
+              <p class="hit-liner">A developer is building native Go CUDA Driver API bindings inspired by Rust's ecosystem, aiming to bring ML acceleration to Go without CGO overhead.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/artificial/comments/1tlp9gz/elon_stop_trying_to_make_grok_happen_new_data/" target="_blank" rel="noopener" class="hit-title">Grok Adoption Among Government Workers Reportedly Very Low</a>
+              <span class="hit-source">— r/artificial</span>
+              <p class="hit-liner">New data suggests government employees are resisting mandated Grok usage, adding pressure on xAI's enterprise push.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.wired.com/story/these-robots-are-making-meals-for-a-nonprofit-in-san-franciscos-tenderloin/" target="_blank" rel="noopener" class="hit-title">SF Nonprofit Uses Robots for Meal Prep in the Tenderloin to Offset Volunteer Shortages</a>
+              <span class="hit-source">— Wired AI</span>
+              <p class="hit-liner">Robotic meal preparation is being deployed for social good in San Francisco, demonstrating AI/robotics filling labor gaps in the nonprofit sector.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1tljrtk/gpt_55_secret_sauce_is_just_having_the_thinking/" target="_blank" rel="noopener" class="hit-title">GPT-5.5 Alleged Trace Leak Suggests 'Caveman Mode' Simplified Thinking Chain</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">A user claims to have extracted GPT-5.5's reasoning trace, suggesting its 'secret sauce' is a stripped-down, primitive thinking style rather than sophisticated chain-of-thought.</p>
             </div>
           </li></ul>
       </div>
     </section>
-    <section class="card card-arxiv-type" data-index="9">
-      <div class="card-top">
-        <span class="category-pill" style="background:#0F766E">Research Picks</span>
-        <span class="card-counter">10 / 14</span>
-      </div>
-      <div class="card-body-scroll">
-        
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.21602" target="_blank" rel="noopener" class="arxiv-title">Benchmarking and Improving Monitors for Out-Of-Distribution Alignment Failure in LLMs</a>
-            <p class="arxiv-tldr">Proposes a benchmark for evaluating safety monitors that detect alignment failures in OOD scenarios — directly relevant for teams deploying LLMs in production where input distribution shifts are inevitable.</p>
-          </div>
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.21630" target="_blank" rel="noopener" class="arxiv-title">MindLoom: Composing Thought Modes for Frontier-Level Reasoning Data Synthesis</a>
-            <p class="arxiv-tldr">Introduces a framework for systematically synthesizing high-quality reasoning training data by composing different 'thought modes,' addressing a key bottleneck in training stronger reasoning models.</p>
-          </div>
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2605.21740" target="_blank" rel="noopener" class="arxiv-title">SMDD-Bench: Can LLMs Solve Real-World Small Molecule Drug Design Tasks?</a>
-            <p class="arxiv-tldr">Rigorous benchmark testing LLM agents on actual drug design tasks — provides a reality check on where AI-for-science agents genuinely stand versus the hype.</p>
-          </div>
-      </div>
-    </section>
-    <section class="card card-pulse-type" data-index="10">
+    <section class="card card-pulse-type" data-index="8">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
-        <span class="card-counter">11 / 14</span>
+        <span class="card-counter">9 / 11</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"The r/LocalLLaMA community is buzzing with excitement over llama.cpp's rapid feature velocity — NVFP4+MTP and native tool support dropped nearly simultaneously, and builders are treating it as a major inflection point for local agentic workflows. There's also growing practical interest in multi-GPU rig optimization and running frontier-class MoE models on Apple Silicon. On r/artificial, sentiment around Grok remains skeptical while broader discussions about who to trust on AI futures reflect public uncertainty about competing expert narratives."</p>
+        <p class="pulse-text">"The LocalLLaMA community is deep in hands-on local inference work this weekend — benchmarking Qwen3.6-35B vs Gemma4, stress-testing MTP tool-call bugs, debating GPU thermal management for multi-card rigs, and getting excited about llama.cpp's new native agentic tool support. On r/MachineLearning, practical experimentation dominates: fine-tuning data format comparisons, handwritten text detection walkthroughs, and training pipeline bottleneck debugging."</p>
       </div>
     </section>
-    <section class="card card-leaders-type" data-index="11">
-      <div class="card-top">
-        <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
-        <span class="card-counter">12 / 14</span>
-      </div>
-      <div class="card-body-scroll">
-        
-        <div class="leader-item">
-          <div class="leader-avatar">EM</div>
-          <div class="leader-content">
-            <div class="leader-name">Elon Musk</div>
-            <div class="leader-role">CEO xAI / CEO SpaceX / CEO Tesla</div>
-            <p class="leader-insight">Musk has effectively abandoned his long-championed 'solar-electric economy' vision for AI compute, with xAI now running on natural gas while SpaceX explores orbital data centers — a stark reversal from his earlier sustainability messaging.</p>
-            <p class="leader-context">TechCrunch investigation into xAI's energy infrastructure choices reveals a fundamental contradiction with Musk's previous public positions on clean energy.</p>
-            <a href="https://techcrunch.com/2026/05/23/elon-musk-has-given-up-on-solar-power-on-earth/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="card card-paper-type" data-index="12">
+    <section class="card card-paper-type" data-index="9">
       <div class="card-top">
         <span class="category-pill" style="background:#0F766E">📄 Whitepapers &amp; Research</span>
-        <span class="card-counter">13 / 14</span>
+        <span class="card-counter">10 / 11</span>
       </div>
       <div class="card-body-scroll">
         
@@ -1004,9 +957,9 @@ body {
         </div>
       </div>
     </section>
-    <section class="footer-card" data-index="13">
+    <section class="footer-card" data-index="10">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Sunday, May 24, 2026 · 03:30 UTC</div>
+      <div class="footer-sub">Generated Sunday, May 24, 2026 · 14:26 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
