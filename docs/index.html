@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ AI Digest — Morning Edition · Wednesday, June 10, 2026</title>
+  <title>⚡ AI Digest — Evening Edition · Thursday, June 11, 2026</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6366F1">
@@ -610,10 +610,10 @@ body {
         <span class="card-counter">1 / 14</span>
       </div>
       <div class="card-body">
-        <div class="header-date">Wednesday, June 10, 2026 · 16:36 UTC</div>
-        <div class="header-session">🌅 Morning Edition</div>
-        <h1 class="header-headline">Anthropic's Fable model sparks researcher backlash over guardrails that silently restrict LLM work, while AI agent infrastructure funding heats up with $31M across two startups</h1>
-        <div class="header-note"><strong>Today's signal</strong>The Anthropic Fable guardrail controversy is the most important story to internalize today — if you're transitioning into Gen AI roles, understanding how model providers constrain professional use cases (sometimes silently) is a critical competency: your job will increasingly involve evaluating *which* model is safe to depend on for a given use case, not just which one scores best on benchmarks.</div>
+        <div class="header-date">Thursday, June 11, 2026 · 03:52 UTC</div>
+        <div class="header-session">🌆 Evening Edition</div>
+        <h1 class="header-headline">DiffusionGemma promises 4x faster text generation while Anthropic's Fable model triggers backlash for over-restricting security researchers</h1>
+        <div class="header-note"><strong>Today's signal</strong>The convergence of DiffusionGemma's architecture shift, Anthropic's silent guardrails controversy, and two arXiv papers proving less context beats more is your signal: the next 12 months in Gen AI engineering will be won by practitioners who understand inference optimization and context engineering deeply — not just prompt crafting.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -622,14 +622,14 @@ body {
     </section>
     <section class="card card-surge-type" data-index="1">
       <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
-        <span class="surge-label">⚡ Signal Surge — trending across 5 sources</span>
+        <span class="surge-label">⚡ Signal Surge — trending across 3 sources</span>
         <span class="card-counter" style="color:#6366F1">2 / 14</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
-        <div class="surge-topic">AI agent memory and context management</div>
-        <p class="surge-why">Multiple research papers, a $24M funding round for Jedify, and TechCrunch coverage all converge on the problem of giving agents reliable, accurate memory — suggesting the industry has hit a wall where naive memory implementations actively hurt performance. This is the next major engineering frontier for production AI agents.</p>
-        <div class="surge-sources"><span class="surge-source-tag">arXiv CS.CL</span><span class="surge-source-tag">arXiv CS.AI</span><span class="surge-source-tag">TechCrunch AI</span><span class="surge-source-tag">TechCrunch AI (memory research)</span><span class="surge-source-tag">arXiv CS.AI (deployment memorization)</span></div>
+        <div class="surge-topic">DiffusionGemma — Google DeepMind's fast text generation model</div>
+        <p class="surge-why">Google DeepMind's DiffusionGemma dropped today with a claimed 4x speed improvement over standard transformers, and NVIDIA has already optimized it for local RTX deployment — a rare same-day hardware partnership. Simon Willison independently tested and documented it, signaling broad practitioner interest in diffusion-based LLM alternatives.</p>
+        <div class="surge-sources"><span class="surge-source-tag">Google DeepMind</span><span class="surge-source-tag">NVIDIA Blog</span><span class="surge-source-tag">Simon Willison</span></div>
       </div>
       <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
@@ -637,32 +637,32 @@ body {
     </section>
     <section class="card card-story-type" data-index="2">
       <div class="card-top">
-        <span class="category-pill" style="background:#6366F1">Industry News</span>
+        <span class="category-pill" style="background:#4338CA">Model Releases</span>
         <span class="card-counter">3 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Anthropic's New 'Fable' Model Silently Restricts LLM Research Work, Angering Cybersecurity Community</h2>
+        <div class="card-source">Google DeepMind<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Google DeepMind Releases DiffusionGemma: 4x Faster Text Generation via Diffusion Architecture</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Fable apparently has engineered guardrails that kneecap legitimate cybersecurity and LLM research use cases — not just jailbreaks. The 'silent' throttling aspect is particularly alarming: researchers may not know they're getting degraded outputs, making it a reliability and trust problem, not just a policy disagreement. This sets a concerning precedent for frontier labs unilaterally deciding which professional use cases are permissible.</p>
+        <p class="card-why">Diffusion-based text generation is a fundamental architectural departure from autoregressive transformers, and a 4x speed claim from DeepMind is serious. NVIDIA's same-day optimization for local RTX hardware means this isn't just a research demo — it's aimed at real deployment, potentially reshaping latency assumptions for LLM inference at the edge.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="3">
       <div class="card-top">
-        <span class="category-pill" style="background:#4338CA">Model Releases</span>
+        <span class="category-pill" style="background:#6366F1">Industry News</span>
         <span class="card-counter">4 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">NVIDIA Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">Google DeepMind Releases DiffusionGemma — A Fast, Locally-Runnable Text Generation Model Optimized by NVIDIA</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
+        <h2 class="card-title">Anthropic's Fable Model Silently Restricts LLM Research Work, Sparking Researcher Backlash</h2>
         <div class="card-divider"></div>
-        <p class="card-why">DiffusionGemma represents a new architectural direction — diffusion-based text generation instead of autoregressive decoding — which could meaningfully change local inference speed. NVIDIA's RTX optimization means this is immediately accessible to developers without cloud costs. If diffusion-based LLMs prove competitive in quality, it could reshape the local AI landscape.</p>
+        <p class="card-why">Fable reportedly includes hidden guardrails that throttle legitimate cybersecurity and AI research workflows — not just red-teaming, but fundamental LLM research tasks. The 'silent' nature of the restrictions is the most alarming part: practitioners can't distinguish a model limitation from a policy block, which breaks reproducibility and trust for enterprise and research users.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-local-gemma-diffusion/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="4">
@@ -672,12 +672,12 @@ body {
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Jedify Raises $24M to Give AI Agents Business Context at Scale</h2>
+        <h2 class="card-title">xAI Sued for Firing Engineer Who Raised Grok Safety Concerns Before SpaceX IPO</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Snowflake Ventures participating alongside traditional VCs signals this is being positioned as data infrastructure, not just another AI wrapper. The core problem — agents failing because they lack proprietary business context — is the number one deployment blocker for enterprise AI. This is a space worth watching closely as it matures.</p>
+        <p class="card-why">This lawsuit alleges xAI retaliated against a safety whistleblower days before a high-profile SpaceX IPO, raising serious questions about the company's safety culture at a critical growth moment. It adds to growing scrutiny of whether AI labs treat safety concerns as compliance theater versus genuine engineering priorities.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/10/jedify-raises-24m-to-help-companies-arm-ai-agents-with-context-on-their-business/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="5">
@@ -686,43 +686,43 @@ body {
         <span class="card-counter">6 / 14</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Decart Launches Oasis 3: A Real-Time World Model That Simulates Hours of Photorealistic Driving</h2>
-        <div class="card-divider"></div>
-        <p class="card-why">Generating hours of photorealistic, physically plausible driving data in real time is a step-change for autonomous vehicle training pipelines — it could dramatically reduce the cost and time of real-world data collection. The 'caveats' mentioned suggest it's not fully physics-accurate yet, but the trajectory matters more than current limitations for the AV industry.</p>
-      </div>
-      <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/10/decarts-new-world-model-can-simulate-hours-of-photorealistic-driving-with-some-caveats/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
-      </div>
-    </section>
-    <section class="card card-story-type" data-index="6">
-      <div class="card-top">
-        <span class="category-pill" style="background:#4338CA">Model Releases</span>
-        <span class="card-counter">7 / 14</span>
-      </div>
-      <div class="card-body">
         <div class="card-source">r/LocalLLaMA<span class="cred-badge cred-community">⬡ Community</span></div>
         <h2 class="card-title">Cohere Releases North Mini Code: First Open-Source Agentic Coding Model at 30B Parameters</h2>
         <div class="card-divider"></div>
-        <p class="card-why">Cohere entering the open-source coding model space with a 30B/3B-active MoE-style model is a direct challenge to Qwen-Coder and DeepSeek-Coder on the efficiency leaderboard. A 33.4 on the Artificial Analysis Coding Index is competitive for its size class. For teams that need a self-hostable coding agent, this is immediately worth evaluating.</p>
+        <p class="card-why">With only 3B active parameters via a mixture-of-experts design and a 33.4 score on the Artificial Analysis Coding Index, North Mini Code is a credible open-source challenger for on-device agentic coding tasks. This matters for teams wanting capable coding agents without cloud lock-in or API costs.</p>
       </div>
       <div class="card-bottom">
         <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u1za0m/cohere_released_north_mini_code_its_first/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
-    <section class="card card-story-type" data-index="7">
+    <section class="card card-story-type" data-index="6">
       <div class="card-top">
-        <span class="category-pill" style="background:#0F766E">Research</span>
-        <span class="card-counter">8 / 14</span>
+        <span class="category-pill" style="background:#6366F1">Industry News</span>
+        <span class="card-counter">7 / 14</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">AI Memory Tools Can Make Models Worse — New Research Warns of Sycophancy Risk</h2>
+        <h2 class="card-title">Amazon Borrows $17.5B from Banks to Fund Ongoing AI Infrastructure Buildout</h2>
         <div class="card-divider"></div>
-        <p class="card-why">This is a critical finding for anyone building production agents: bolting memory onto models isn't a free lunch. The research shows memory systems can degrade accuracy and reinforce sycophantic behavior — telling users what they want to hear based on past preferences rather than what's correct. Engineers building agent pipelines need to treat memory as a risk vector, not just a feature.</p>
+        <p class="card-why">Amazon taking on $17.5B in bank debt on top of a recent bond sale signals that AI infrastructure spending is not slowing — it's accelerating into leveraged territory. This level of capital deployment locks in AWS's compute dominance for years and raises the competitive bar for any cloud rival trying to match capacity.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/10/how-memory-tools-can-make-ai-models-worse/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/06/10/fresh-off-bond-sale-amazon-borrows-17-5-billion-from-banks-as-ai-spending-continues/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+      </div>
+    </section>
+    <section class="card card-story-type" data-index="7">
+      <div class="card-top">
+        <span class="category-pill" style="background:#6366F1">Industry News</span>
+        <span class="card-counter">8 / 14</span>
+      </div>
+      <div class="card-body">
+        <div class="card-source">OpenAI Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">OpenAI Exposes PRC-Linked Influence Operations Targeting U.S. AI Policy Debates</h2>
+        <div class="card-divider"></div>
+        <p class="card-why">OpenAI's threat intelligence team documented state-linked campaigns using AI to shape narratives around U.S. data centers, tariffs, and AI regulation — a direct demonstration that AI is now both the tool and the target of geopolitical influence operations. AI practitioners building policy-adjacent products should take note of the threat surface.</p>
+      </div>
+      <div class="card-bottom">
+        <a href="https://openai.com/index/prc-linked-influence-operations-ai-debates" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-hits-type" data-index="8">
@@ -735,25 +735,33 @@ body {
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://blogs.nvidia.com/blog/nvidia-confidential-computing-apple-private-cloud-compute/" target="_blank" rel="noopener" class="hit-title">NVIDIA Confidential Computing Now Powers Apple's Private Cloud Compute</a>
+              <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-local-gemma-diffusion/" target="_blank" rel="noopener" class="hit-title">NVIDIA Optimizes DiffusionGemma for Local RTX Deployment</a>
               <span class="hit-source">— NVIDIA Blog</span>
-              <p class="hit-liner">Apple is expanding PCC beyond its own silicon by leveraging NVIDIA's confidential computing GPUs for secure inference — a big trust signal for enterprise privacy requirements.</p>
+              <p class="hit-liner">NVIDIA's same-day optimization means DiffusionGemma can run locally on RTX hardware, making fast diffusion-based text gen accessible without cloud APIs.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/06/10/meta-signs-first-ai-data-center-deal-in-india-with-reliance/" target="_blank" rel="noopener" class="hit-title">Meta Signs 168MW AI Data Center Deal with Reliance in India</a>
-              <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Meta's first India data center deal signals serious compute expansion in Asia to support its global AI ambitions.</p>
+              <a href="https://openai.com/index/using-codex-to-simulate-black-holes" target="_blank" rel="noopener" class="hit-title">OpenAI Codex Used to Simulate Black Holes by Astrophysicist</a>
+              <span class="hit-source">— OpenAI Blog</span>
+              <p class="hit-liner">Astrophysicist Chi-kwan Chan is using Codex to build black hole simulation code, a compelling proof-of-concept for AI-assisted scientific computing.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/06/10/datadog-veterans-launch-ai-coding-startup-niteshift-on-a-bet-against-big-ai-lock-in/" target="_blank" rel="noopener" class="hit-title">Niteshift Raises $7M Seed to Build AI Coding Agents Without Big AI Lock-In</a>
+              <a href="https://openai.com/index/openai-on-oracle-cloud" target="_blank" rel="noopener" class="hit-title">OpenAI Models and Codex Now Accessible via Oracle Cloud Commitments</a>
+              <span class="hit-source">— OpenAI Blog</span>
+              <p class="hit-liner">Enterprise teams with Oracle Cloud contracts can now deploy OpenAI and Codex models without separate billing, lowering procurement friction.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://techcrunch.com/2026/06/10/ai-pilled-firms-spend-7500-per-employee-each-month-on-ai/" target="_blank" rel="noopener" class="hit-title">AI-Obsessed Companies Spending $7,500 Per Employee Per Month on AI Tools</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Datadog veterans are betting enterprises will pay for coding agent infrastructure they control, not SaaS tools beholden to OpenAI or Anthropic pricing.</p>
+              <p class="hit-liner">The Ramp AI Index finds the most aggressive AI adopters are burning $7,500/employee/month — not yet exceeding engineer salaries, but closing the gap fast.</p>
             </div>
           </li>
           <li class="hit-item">
@@ -761,31 +769,31 @@ body {
             <div class="hit-content">
               <a href="https://techcrunch.com/2026/06/10/warner-music-acquires-ai-attribution-startup-sureel-ai/" target="_blank" rel="noopener" class="hit-title">Warner Music Acquires Sureel AI to Track Artist Work in AI Training and Generated Content</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">A major label buying an AI attribution startup is a clear signal that music industry IP enforcement around AI training data is about to get serious.</p>
+              <p class="hit-liner">WMG's acquisition of Sureel AI is a direct move to build attribution infrastructure before regulation forces it.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://techcrunch.com/2026/06/10/the-three-hard-tech-moonshots-fueling-spacexs-unbelievable-ipo/" target="_blank" rel="noopener" class="hit-title">SpaceX IPO Is Largely a Bet on Space-Based AI Data Centers</a>
+              <a href="https://techcrunch.com/2026/06/10/how-memory-tools-can-make-ai-models-worse/" target="_blank" rel="noopener" class="hit-title">New Research: AI Memory Tools Can Degrade Performance and Increase Sycophancy</a>
               <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Most of SpaceX's IPO valuation is effectively a call option on ambitious space-based data center infrastructure for AI workloads.</p>
+              <p class="hit-liner">Counterintuitively, giving LLMs long-term memory systems can make them worse — reinforcing user preferences over accuracy.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://www.reddit.com/r/MachineLearning/comments/1u1wq0a/introducing_papers_without_code_p/" target="_blank" rel="noopener" class="hit-title">HuggingFace's Niels Rogge Relaunches PapersWithCode as 'Papers Without Code'</a>
+              <a href="https://techcrunch.com/2026/06/10/datadog-veterans-launch-ai-coding-startup-niteshift-on-a-bet-against-big-ai-lock-in/" target="_blank" rel="noopener" class="hit-title">Niteshift Raises $7M Seed to Build Anti-Lock-In AI Coding Agent Platform</a>
+              <span class="hit-source">— TechCrunch AI</span>
+              <p class="hit-liner">Datadog veterans are betting enterprise buyers will pay for AI coding agents that keep them off closed-ecosystem rails.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/MachineLearning/comments/1u2hjye/pyrecall_open_source_tool_for_detecting/" target="_blank" rel="noopener" class="hit-title">Pyrecall: Open-Source Tool for Detecting Catastrophic Forgetting During LLM Fine-Tuning</a>
               <span class="hit-source">— r/MachineLearning</span>
-              <p class="hit-liner">A searchable SOTA tracker for papers that haven't released code yet — useful for spotting research gaps before implementations land.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://openai.com/index/lseg" target="_blank" rel="noopener" class="hit-title">LSEG Deploys OpenAI at Scale: 4,000 Employees, Faster Release Cycles</a>
-              <span class="hit-source">— OpenAI Blog</span>
-              <p class="hit-liner">LSEG's OpenAI case study is a template for large financial institutions on how enterprise-scale LLM deployment actually looks in practice.</p>
+              <p class="hit-liner">A community-built tool that snapshots skill scores during fine-tuning to flag when a model is forgetting prior capabilities — a gap no major framework has filled.</p>
             </div>
           </li></ul>
       </div>
@@ -798,16 +806,16 @@ body {
       <div class="card-body-scroll">
         
           <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2606.09900" target="_blank" rel="noopener" class="arxiv-title">Less Context, More Accuracy: A Bi-Temporal Memory Engine for LLM Agents</a>
-            <p class="arxiv-tldr">Proposes a bi-temporal memory architecture where lean, retrieved context beats full history for long-running agents — directly relevant to anyone building multi-session agent systems and corroborates the TechCrunch memory-degradation findings.</p>
+            <a href="https://arxiv.org/abs/2606.09900" target="_blank" rel="noopener" class="arxiv-title">Less Context, More Accuracy: A Bi-Temporal Memory Engine for LLM Agents Where a Lean Retrieved Context Beats the Full History</a>
+            <p class="arxiv-tldr">Proposes a bi-temporal memory retrieval engine that deliberately constrains context length for LLM agents, showing that selective memory retrieval outperforms dumping full conversation history — directly relevant to anyone building production agentic systems.</p>
           </div>
           <div class="arxiv-item">
             <a href="https://arxiv.org/abs/2606.10209" target="_blank" rel="noopener" class="arxiv-title">Less Context, Better Agents: Efficient Context Engineering for Long-Horizon Tool-Using LLM Agents</a>
-            <p class="arxiv-tldr">Shows that smarter context pruning for enterprise tool-using agents outperforms stuffing everything in the context window — practical guidance for reducing cost and improving reliability in production agentic workflows.</p>
+            <p class="arxiv-tldr">Demonstrates that trimming context aggressively in enterprise tool-using agents improves task success on long-horizon workflows, providing concrete context engineering strategies for builders.</p>
           </div>
           <div class="arxiv-item">
             <a href="https://arxiv.org/abs/2606.10062" target="_blank" rel="noopener" class="arxiv-title">Deployment-Time Memorization in Foundation-Model Agents</a>
-            <p class="arxiv-tldr">Examines the security and reliability risks of long-lived agents that accumulate user memory across sessions — a must-read for anyone building persistent AI agents with memory in production.</p>
+            <p class="arxiv-tldr">Investigates how long-lived foundation-model agents accumulate user-specific memories at deployment time and the privacy and behavioral drift risks this creates — a must-read for teams shipping persistent AI agents.</p>
           </div>
       </div>
     </section>
@@ -817,7 +825,7 @@ body {
         <span class="card-counter">11 / 14</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"Reddit's r/LocalLLaMA and r/MachineLearning are buzzing on two fronts: Anthropic's Fable restrictions are generating significant backlash, with researchers arguing the model silently degrades outputs for legitimate LLM work — seen as a trust-breaking move. Separately, Cohere's North Mini Code release is getting positive traction as a viable open-source alternative for local coding agents, with the open-source-vs-monopoly debate running hot in parallel threads."</p>
+        <p class="pulse-text">"The r/MachineLearning and r/LocalLLaMA communities are buzzing about Anthropic's Fable model, with researchers frustrated by undisclosed guardrails that silently block legitimate AI and security research. Separately, DiffusionGemma is generating excitement as an architectural alternative to autoregressive models, and Cohere's open-source North Mini Code is getting traction among those building local agentic coding tools without cloud dependency."</p>
       </div>
     </section>
     <section class="card card-leaders-type" data-index="11">
@@ -828,13 +836,13 @@ body {
       <div class="card-body-scroll">
         
         <div class="leader-item">
-          <div class="leader-avatar">NR</div>
+          <div class="leader-avatar">SW</div>
           <div class="leader-content">
-            <div class="leader-name">Niels Rogge</div>
-            <div class="leader-role">Open-Source Engineer / Hugging Face</div>
-            <p class="leader-insight">Rogge relaunched PapersWithCode as 'Papers Without Code' — a resource specifically for finding SOTA research that hasn't released implementations yet, filling a real gap in the ML tooling ecosystem.</p>
-            <p class="leader-context">The relaunch addresses a community frustration that many high-impact papers never release code, making it hard to track what's actually reproducible.</p>
-            <a href="https://www.reddit.com/r/MachineLearning/comments/1u1wq0a/introducing_papers_without_code_p/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+            <div class="leader-name">Simon Willison</div>
+            <div class="leader-role">Independent AI researcher / Creator of Datasette</div>
+            <p class="leader-insight">Willison tested DiffusionGemma hands-on shortly after release, noting a recorded preview running at 857 tokens per second — positioning it as a meaningful speed breakthrough worth watching closely.</p>
+            <p class="leader-context">His rapid independent evaluation carries weight in the practitioner community as a reliable early signal on whether lab benchmarks translate to real-world performance.</p>
+            <a href="https://simonwillison.net/2026/Jun/10/diffusiongemma/#atom-everything" target="_blank" rel="noopener" class="leader-link">Read more →</a>
           </div>
         </div>
       </div>
@@ -849,164 +857,164 @@ body {
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-0')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Decentralized Multi-Agent Systems with Shared Context</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Yuzhen Mao, Azalia Mirhoseini</div>
+              <div class="paper-title">Toward Generalist Autonomous Research via Hypothesis-Tree Refinement</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Jiajie Jin, Yuyang Hu, Kai Qiu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-0">›</span>
           </div>
           <div class="paper-body" id="body-paper-0">
-            <p class="paper-abstract">Multi-agent systems (MAS) can scale large language model reasoning at test time by decomposing complex problems into parallel subtasks. However, most existing MAS rely on centralized orchestration, where a main agent assigns work, collects outputs, and merges results. As the number of subtasks grows, this controller becomes a communication and integration bottleneck. We propose Decentralized Language Models (DeLM), a MAS framework that decentralizes coordination through parallel agents, a shared</p>
-            <a href="https://arxiv.org/abs/2606.10662" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Scientific progress depends on a repeated loop of exploration, experimentation, and abstraction. Researchers test candidate directions, interpret the evidence, and carry the resulting lessons into later attempts. We study how an AI agent can run this loop autonomously over long horizons. We introduce Arbor, a general framework for autonomous research that combines a long-lived coordinator, short-lived executors, and Hypothesis Tree Refinement (HTR), a persistent tree that links hypotheses, artif</p>
+            <a href="https://arxiv.org/abs/2606.11926" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-1')">
             <div class="paper-title-wrap">
-              <div class="paper-title">The Role of Feedback Alignment in Self-Distillation</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Semih Kara, Oğuzhan Ersoy</div>
+              <div class="paper-title">Verifiable Environments Are LEGO Bricks: Recursive Composition for Reasoning Generalization</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Hao Xiang, Qiaoyu Tang, Le Yu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-1">›</span>
           </div>
           <div class="paper-body" id="body-paper-1">
-            <p class="paper-abstract">Conditioning a language model on additional context, such as feedback on a previous attempt, typically improves its response. Self-distillation trains the model to retain this improvement when the context is not present. The method works by matching the model's output distribution under two settings: a student that sees only the question, and a self-teacher that also sees the context. What the model learns therefore depends on what context the self-teacher receives, yet the design of this contex</p>
-            <a href="https://arxiv.org/abs/2606.11173" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Reinforcement Learning (RL) with verifiable environments has emerged as a powerful approach for enhancing the reasoning capabilities of Large Language Models (LLMs). While prior research demonstrates that scaling environment quantity improves RL performance, existing manual or individual construction methods suffer from linear scaling limits, thereby hindering scalable reasoning generalization. This paper introduces RACES (Recursive Automated Composition for Environment Scaling), a framework tha</p>
+            <a href="https://arxiv.org/abs/2606.12373" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-2')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Next Forcing: Causal World Modeling with Multi-Chunk Prediction</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Gangwei Xu, Qihang Zhang, Jiaming Zhou et al.</div>
+              <div class="paper-title">Agentic Environment Engineering for Large Language Models: A Survey of Environment Modeling, Synthesis, Evaluation, and Application</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Jiachun Li, Zhuoran Jin, Tianyi Men et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-2">›</span>
           </div>
           <div class="paper-body" id="body-paper-2">
-            <p class="paper-abstract">Autoregressive video generation has emerged as a powerful paradigm for World Action Models (WAMs). However, existing approaches suffer from slow training convergence and limited converged accuracy, particularly at high frame rates, as the training supervision is confined to the current chunk without explicit signals about future dynamics; they also suffer from slow inference due to iterative video denoising. In this paper, we present Next Forcing, a multi-chunk prediction (MCP) framework for cau</p>
-            <a href="https://arxiv.org/abs/2606.11187" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Environments serve as interactive systems for large language model (LLM) based agents across diverse scenarios and play a crucial role in driving the continual evolution of model capabilities. Despite this importance, existing work lacks a systematic categorization and deep analysis. This paper systematically studies current researches on agentic environments from the perspective of the environment engineering lifecycle, covering their modeling, synthesis, evaluation and application. Specificall</p>
+            <a href="https://arxiv.org/abs/2606.12191" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-3')">
             <div class="paper-title-wrap">
-              <div class="paper-title">FadeMem: Distance-Aware Memory Consolidation for Autoregressive Video Diffusion</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Yu Lu, Junjie Yang, Piotr Koniusz et al.</div>
+              <div class="paper-title">InternVideo3: Agentify Foundation Models with Multimodal Contextual Reasoning</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Ziang Yan, Sheng Xia, Jiashuo Yu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-3">›</span>
           </div>
           <div class="paper-body" id="body-paper-3">
-            <p class="paper-abstract">Autoregressive video generators synthesize long videos by generating successive temporal segments, but their historical KV cache grows with video length. Existing bounded-cache methods reduce this cost with local windows, sink tokens, or compressed memory states, yet they usually assign fixed roles to different parts of the history. We propose FadeMem, a distance-aware KV memory consolidation mechanism that organizes historical KV blocks into a temporal hierarchy under a fixed cache budget. This</p>
-            <a href="https://arxiv.org/abs/2606.10671" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Recent progress in foundation models has shifted toward agentic behavior involving multi-step reasoning and tool use. However, open-source efforts largely focus on text-dominant settings, leaving long-horizon multimodal tasks underexplored. This gap is evident in video tasks requiring sustained temporal understanding and iterative interaction. We present InternVideo3, a framework enhancing these capabilities via Multimodal Contextual Reasoning (MCR). MCR treats understanding as a closed-loop pro</p>
+            <a href="https://arxiv.org/abs/2606.12195" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-4')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Kwai Keye-VL-2.0 Technical Report</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Kwai Keye Team, Bin Wen, Changyi Liu et al.</div>
+              <div class="paper-title">World Model Self-Distillation: Training World Models to Solve General Tasks</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Sebastian Stapf, Pablo Acuaviva Huertos, Aram Davtyan et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-4">›</span>
           </div>
           <div class="paper-body" id="body-paper-4">
-            <p class="paper-abstract">We introduce Kwai Keye-VL-2.0-30B-A3B, an open-source Mixture-of-Experts (MoE) multimodal foundation model designed to advance long-video understanding and agentic intelligence. To address the challenges of ultra-long contexts, information redundancy, and prohibitive computational costs inherent in hour-level videos, Keye-VL-2.0 is the first to adapt DeepSeek Sparse Attention (DSA) to GQA-based multimodal architectures, enabling lossless 256K context processing while capturing critical frames an</p>
-            <a href="https://arxiv.org/abs/2606.10651" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Pretrained video generators are promising visual world models that exhibit emergent task-solving abilities; however, their reliance on detailed textual descriptions limits their direct use for planning and decision-making. Existing approaches either outsource this reasoning to language or vision-language models, or rely on supervised fine-tuning with paired task-execution videos, which are costly to collect and difficult to scale. We propose a scalable framework that elicits task-solving ability</p>
+            <a href="https://arxiv.org/abs/2606.12072" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-5')">
             <div class="paper-title-wrap">
-              <div class="paper-title">UniPET: a universal network for high-quality PET image denoising across varied dose reduction factors</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Zhiwen Yang, Yang Zhou, Haowei Chen et al.</div>
+              <div class="paper-title">Breaking Entropy Bounds: Accelerating RL Training via MTP with Rejection Sampling</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Yucheng Li, Huiqiang Jiang, Yang Xu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-5">›</span>
           </div>
           <div class="paper-body" id="body-paper-5">
-            <p class="paper-abstract">Most existing deep learning-based PET image denoising methods assume a fixed and known dose reduction factor (DRF) for low-dose PET images. However, these methods encounter significant performance degradation when the DRF varies beyond the assumed one in practical applications. To address the challenge posed by varied DRFs, several preliminary studies focus on the task of universal PET image denoising, aiming to train a universal model over low-dose data across DRFs. Nonetheless, these vanilla u</p>
-            <a href="https://arxiv.org/abs/2606.11131" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Reinforcement learning (RL) has become a key component in modern large language models, yet the rollout stage remains the key bottleneck in RL training pipelines. Although Multi-Token Prediction (MTP) offers a natural solution to accelerate rollouts through speculative decoding, many studies have observed that MTP acceptance rates degrade significantly during RL training, leading to limited speedup performance. To address this bottleneck, we present Bebop, a systematic study of MTP in LLM post-t</p>
+            <a href="https://arxiv.org/abs/2606.12370" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-6')">
             <div class="paper-title-wrap">
-              <div class="paper-title">U-TTT: Towards Generalizable PET Image Denoising via Test-Time Training</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Zhiwen Yang, Jiayin Li, Hao Lu et al.</div>
+              <div class="paper-title">World Pilot: Steering Vision-Language-Action Models with World-Action Priors</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Zefu Lin, Rongxu Cui, Junjia Xu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-6">›</span>
           </div>
           <div class="paper-body" id="body-paper-6">
-            <p class="paper-abstract">Existing deep learning models for Positron Emission Tomography (PET) image denoising often suffer from severe performance degradation under distribution shifts, fundamentally restricting their robust clinical deployment. This lack of generalization stems from the conventional paradigm of fixed-parameter models that cannot adapt to variations in test data (e.g., dose levels or scanner types) after training. To overcome this limitation and achieve robust generalization, we introduce U-TTT, a novel</p>
-            <a href="https://arxiv.org/abs/2606.11032" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Vision-Language-Action (VLA) models inherit semantic grounding from large-scale pretraining and perform competently across in-distribution manipulation tasks. This grounding, however, is built on static image-text pairs, whereas manipulation is a continuous, contact-rich process whose dynamics this pretraining cannot capture. We present World Pilot, a VLA framework that augments the policy with priors from a World-Action Model (WAM), routed into the decision chain through two complementary pathw</p>
+            <a href="https://arxiv.org/abs/2606.12403" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-7')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Role-Agent: Bootstrapping LLM Agents via Dual-Role Evolution</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Xucong Wang, Ziyu Ma, Shidong Yang et al.</div>
+              <div class="paper-title">Lius: Translation Model Based Instructional Lingustic Using Continual Instruction Tuning In Kupang Malay</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Joanito Agili Lopo, Yunita Sari, Guntur Budi Herwanto</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-7">›</span>
           </div>
           <div class="paper-body" id="body-paper-7">
-            <p class="paper-abstract">Although Large Language Model (LLM) agents have demonstrated strong performance on complex tasks, their learning is often limited by inefficient interaction feedback and static training environments, which hinder broader generalization. To address these limitations, this paper introduces Role-Agent, black{a framework} that harnesses a single LLM to function concurrently as both the agent and the environment, enabling a bootstrapped co-evolution. Role-Agent comprises two synergistic components: W</p>
-            <a href="https://arxiv.org/abs/2606.10917" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Large Language Models (LLMs) offer new potential for translation tasks but often experience performance degradation when handling low-resource languages. To address this limitation, we propose an approach for fine-tuning LLMs on a low-resource language, Kupang Malay. Our approach involves designing a set of instructions by leveraging explicit lexical and semantic features from a bilingual dictionary, and introducing Continual Instruction Tuning (CIT), a training paradigm that enables iterative i</p>
+            <a href="https://arxiv.org/abs/2606.11786" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-8')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Interpreting and Steering a Text-to-Speech Language Model with Sparse Autoencoders</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-08 · Nikita Koriagin, Georgii Aparin, Nikita Balagansky et al.</div>
+              <div class="paper-title">ICA Lens: Interpreting Language Models Without Training Another Dictionary</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-10 · Sida Liu, Feijiang Han</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-8">›</span>
           </div>
           <div class="paper-body" id="body-paper-8">
-            <p class="paper-abstract">Language models increasingly serve as the backbone of text-to-speech (TTS) systems, yet we understand little about the representations they build when text and generated speech tokens share a single residual stream. We train BatchTopK sparse autoencoders on the LM backbone of CosyVoice3 and introduce a modality-aware auto-interp pipeline that labels each feature from where it fires-text-prefix context, 1-second speech clips, or both. The recovered features are interpretable, spanning phonemes, l</p>
-            <a href="https://arxiv.org/abs/2606.10029" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Finding interpretable directions in language-model representations is critical for understanding and controlling model behavior. Sparse autoencoders (SAEs) have become the standard tool for this purpose, but using them as the default first lens often requires training, storing, and evaluating large overcomplete dictionaries. This bottleneck limits rapid exploration and raises a fundamental question: how much interpretable structure is already visible from activation geometry before training anot</p>
+            <a href="https://arxiv.org/abs/2606.11722" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-9')">
             <div class="paper-title-wrap">
-              <div class="paper-title">PsychoSafe: Eliciting Psychologically-Informed Refusals in Large Language Models</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-08 · Gianluca Barmina, Federico Torrielli, Sven Harms et al.</div>
+              <div class="paper-title">ComBench: A Benchmark for Rigorous Proof Reasoning and Constructive Realization in Olympiad-Level Combinatorics</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Shunkai Zhang, Haoran Zhang, Yun Luo et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-9">›</span>
           </div>
           <div class="paper-body" id="body-paper-9">
-            <p class="paper-abstract">Large language models (LLMs) routinely face requests that should be refused, creating a trade-off between helpfulness and harm prevention. However, refusals themselves can be helpful. In high-risk interactions involving crisis, coercion, or escalating intent, blunt non-compliance may prevent direct harm while still failing to support the needs of the person behind the request. We present PsychoSafe, a psychologically-informed refusal framework that reframes refusal as structured supportive commu</p>
-            <a href="https://arxiv.org/abs/2606.09697" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Combinatorics is central to Olympiad-level mathematical problem solving, requiring deep discrete reasoning, creative constructions, and rigorous structural insight. Recent evidence suggests that even today's strongest frontier models remain uneven on Olympiad combinatorics, revealing a gap in creative mathematical reasoning. We introduce ComBench, an Olympiad-level combinatorics benchmark for evaluating and diagnosing the combinatorial reasoning capabilities of large language models. ComBench co</p>
+            <a href="https://arxiv.org/abs/2606.10479" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-10')">
             <div class="paper-title-wrap">
-              <div class="paper-title">BrainSurgery: Reproducible and Reliable Declarative Weight Manipulations for Model Editing and Upcycling</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-08 · Gianluca Barmina, Annemette Broch Pirchert, Andrea Blasi Núñez et al.</div>
+              <div class="paper-title">Embodied-R1.5: Evolving Physical Intelligence via Embodied Foundation Models</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Yifu Yuan, Yaoting Huang, Xianze Yao et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-10">›</span>
           </div>
           <div class="paper-body" id="body-paper-10">
-            <p class="paper-abstract">As deep learning models scale, managing, inspecting, and modifying large checkpoints has become increasingly challenging. Researchers often need to alter model weights for layer restructuring, precision casting, low-rank factorization, and architectural debugging, yet these workflows often rely on fragile ad-hoc Python scripts. Here, we introduce BrainSurgery, a tool for robust and reproducible "tensor surgery" on neural network checkpoints, and provide a system demonstration covering four examp</p>
-            <a href="https://arxiv.org/abs/2606.09707" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">We introduce Embodied-R1.5, a unified Embodied Foundation Model (EFM) that integrates comprehensive embodied reasoning capabilities, spanning embodied cognition, task planning, correction, and pointing, within a single architecture toward general physical intelligence. Leveraging three automated data construction pipelines to significantly expand the data coverage of critical capabilities, we build a large-scale data system of over 15B tokens, and design a multi-task balanced RL recipe to allevi</p>
+            <a href="https://arxiv.org/abs/2606.11324" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
         <div class="paper-item">
           <div class="paper-header" onclick="togglePaper('paper-11')">
             <div class="paper-title-wrap">
-              <div class="paper-title">Late-Layer Fusion is Enough: Dual-Path Vision Token Routing for Multimodal Large Language Models under Visual Saturation</div>
-              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-08 · Siyuan Liu, Jinyang Wu</div>
+              <div class="paper-title">i1: A Simple and Fully Open Recipe for Strong Text-to-Image Models</div>
+              <div class="paper-meta"><span class="paper-source-tag">HF Daily Papers</span> · 2026-06-09 · Boya Zeng, Tianze Luo, Shu Pu et al.</div>
             </div>
             <span class="paper-toggle" id="toggle-paper-11">›</span>
           </div>
           <div class="paper-body" id="body-paper-11">
-            <p class="paper-abstract">Multimodal large language models (MLLMs) commonly inherit the deep, symmetric Transformer backbone designed for unimodal text modeling, and apply the same computation uniformly to image and language tokens. This design overlooks a key modality asymmetry: image and text tokens differ substantially in information density, redundancy, and required reasoning depth. Through a layer-wise analysis of LLaVA-1.5, we observe that vision tokens tend to saturate in the middle layers. Specifically, text-to-i</p>
-            <a href="https://arxiv.org/abs/2606.09131" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
+            <p class="paper-abstract">Diffusion models have consistently driven progress in text-to-image generation. However, it is challenging to attribute recent progress to specific modeling and data choices: state-of-the-art open-weight models provide limited ablations, and do not disclose their training data and full training details. The research community needs fully open (weights, data, and code) models as a foundation for further research; yet existing fully open models still fall significantly short of leading models in p</p>
+            <a href="https://arxiv.org/abs/2606.11289" target="_blank" rel="noopener" class="paper-read-btn">Read paper →</a>
           </div>
         </div>
       </div>
     </section>
     <section class="footer-card" data-index="13">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Wednesday, June 10, 2026 · 16:36 UTC</div>
+      <div class="footer-sub">Generated Thursday, June 11, 2026 · 03:52 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
