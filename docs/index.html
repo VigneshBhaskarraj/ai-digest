@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ AI Digest — Evening Edition · Saturday, June 13, 2026</title>
+  <title>⚡ AI Digest — Morning Edition · Saturday, June 13, 2026</title>
   <meta name="description" content="Daily AI news digest — top stories, quick hits, research picks, and whitepapers.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#6366F1">
@@ -607,13 +607,13 @@ body {
     <section class="card card-header-type" data-index="0">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
         <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#64748B">⚡ AI Digest</span>
-        <span class="card-counter">1 / 14</span>
+        <span class="card-counter">1 / 13</span>
       </div>
       <div class="card-body">
-        <div class="header-date">Saturday, June 13, 2026 · 03:36 UTC</div>
-        <div class="header-session">🌆 Evening Edition</div>
-        <h1 class="header-headline">Anthropic's AI pulled by government over jailbreak concerns as AI IPO summer heats up and agentic benchmarking goes mainstream</h1>
-        <div class="header-note"><strong>Today's signal</strong>The Anthropic government recall story is the one to study deeply — it reveals that radical transparency about AI risks can now be used against you by regulators, which means every AI practitioner building enterprise or government-facing products needs to understand how safety disclosures translate into legal and regulatory exposure, not just reputational goodwill.</div>
+        <div class="header-date">Saturday, June 13, 2026 · 15:03 UTC</div>
+        <div class="header-session">🌅 Morning Edition</div>
+        <h1 class="header-headline">US Government forces Anthropic to take its most powerful AI models offline over a jailbreak — sparking a local-model revolt and AI safety debate</h1>
+        <div class="header-note"><strong>Today's signal</strong>The US government just proved that even the most advanced commercial AI can be switched off overnight — if you're building on or around frontier closed-source models, today is the day to stress-test your vendor dependency and seriously explore open-weight alternatives like GLM-5.2 or Mistral as fallback infrastructure.</div>
       </div>
       <div class="card-bottom">
         <button class="start-btn" onclick="document.querySelector('.feed').scrollBy({top:window.innerHeight,behavior:'smooth'})">Read today's digest ↓</button>
@@ -623,13 +623,13 @@ body {
     <section class="card card-surge-type" data-index="1">
       <div class="card-top" style="border-bottom:1px solid rgba(165,180,252,0.15);padding-bottom:0.75rem;margin-bottom:0">
         <span class="surge-label">⚡ Signal Surge — trending across 5 sources</span>
-        <span class="card-counter" style="color:#6366F1">2 / 14</span>
+        <span class="card-counter" style="color:#6366F1">2 / 13</span>
       </div>
       <div class="card-body" style="justify-content:flex-start;padding-top:2rem">
         <div class="surge-label" style="margin-bottom:0.75rem">What everyone&apos;s watching</div>
-        <div class="surge-topic">AI Agents & Agentic Infrastructure</div>
-        <p class="surge-why">NVIDIA's Blackwell chip just topped the first-ever agentic AI benchmark (AgentPerf), while multiple arXiv papers this cycle tackle agent cognition, tool retrieval, and strategic decision-making — signaling that agentic AI has crossed from research curiosity to infrastructure priority. Enterprises and chip makers are now racing to define what 'production-grade agent infrastructure' looks like.</p>
-        <div class="surge-sources"><span class="surge-source-tag">NVIDIA Blog</span><span class="surge-source-tag">arXiv CS.AI (Arbor)</span><span class="surge-source-tag">arXiv CS.AI (ToolSense)</span><span class="surge-source-tag">arXiv CS.AI (Strategic Decision Support)</span><span class="surge-source-tag">arXiv CS.AI (Evoflux)</span></div>
+        <div class="surge-topic">US Government ordering Anthropic to shut down Fable 5 and Mythos 5 models</div>
+        <p class="surge-why">An emergency US government directive citing national security and export control authority forced Anthropic to globally disable its top-tier Claude Fable 5 and Mythos 5 models over a discovered jailbreak — a historically unprecedented government intervention in commercial AI. This is galvanizing the local/open-source model community, who see it as proof that cloud-only AI dependency is fragile and subject to political seizure.</p>
+        <div class="surge-sources"><span class="surge-source-tag">TechCrunch AI</span><span class="surge-source-tag">Wired AI</span><span class="surge-source-tag">Simon Willison</span><span class="surge-source-tag">r/LocalLLaMA</span><span class="surge-source-tag">r/LocalLLaMA</span></div>
       </div>
       <div class="card-bottom" style="border-top:1px solid rgba(165,180,252,0.15)">
         <span class="swipe-hint" style="color:#A5B4FC"><span class="swipe-arrow">↑</span> swipe up</span>
@@ -638,203 +638,220 @@ body {
     <section class="card card-story-type" data-index="2">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">3 / 14</span>
+        <span class="card-counter">3 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Government Pulls Anthropic's Most Powerful AI After Jailbreak Finding — Anthropic Pushes Back Hard</h2>
+        <div class="card-source">Wired AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">US Government Forces Anthropic to Pull Fable 5 and Mythos 5 Offline Globally Over Jailbreak</h2>
         <div class="card-divider"></div>
-        <p class="card-why">This is a landmark moment: a government body has used a commercial model's own safety disclosure against it, forcing a recall over a narrow jailbreak vulnerability. Anthropic's public disagreement signals a growing collision between AI labs' voluntary transparency and regulators weaponizing that transparency — a dynamic that will shape every major lab's disclosure strategy going forward.</p>
+        <p class="card-why">This is the first known instance of the US government invoking national security authority to force a commercial AI lab to disable its flagship models over a jailbreak vulnerability. Anthropic publicly pushed back, calling the jailbreak 'narrow' and disputing that it warrants a full model recall — but complied anyway. For AI builders, this signals that cloud-hosted frontier models can be yanked from under you with zero warning, making vendor lock-in risk very real.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.wired.com/story/anthropic-says-us-government-ordered-it-to-shut-down-mythos-models/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="3">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">4 / 14</span>
+        <span class="card-counter">4 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">NVIDIA Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">NVIDIA Blackwell Tops AgentPerf — The Industry's First Agentic AI Infrastructure Benchmark</h2>
+        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
+        <h2 class="card-title">Anthropic Disputes US Government's Decision to Recall Fable 5, Calls Jailbreak Finding 'Narrow'</h2>
         <div class="card-divider"></div>
-        <p class="card-why">AgentPerf is the first benchmark specifically designed to measure agentic AI workloads, giving enterprises a concrete yardstick for hardware and infrastructure decisions. NVIDIA topping it with Blackwell cements its position as the de facto agentic compute platform and raises the stakes for competitors like AMD and custom silicon providers.</p>
+        <p class="card-why">Anthropic's own safety-forward messaging may have been used against it — the government cited Anthropic's own documented risks to justify the recall, in what TechCrunch frames as a backfire. This creates a chilling effect: labs that are transparent about model risks could face regulatory blowback, while less transparent competitors avoid scrutiny.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://blogs.nvidia.com/blog/nvidia-blackwell-agentperf-artificial-analysis/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="4">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">5 / 14</span>
+        <span class="card-counter">5 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Mistral Rumored to Be Raising €3B at €20B Valuation — Nearly Double Its Last Round</h2>
+        <div class="card-source">NVIDIA Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">NVIDIA Blackwell Tops First-Ever Agentic AI Infrastructure Benchmark (AgentPerf)</h2>
         <div class="card-divider"></div>
-        <p class="card-why">A near-doubling of valuation in one funding cycle signals that investor appetite for European open-source AI challengers remains red-hot, even as OpenAI and Anthropic dominate headlines. If confirmed, this gives Mistral significant runway to compete on frontier models and enterprise deployments — making it a serious third option alongside the US duopoly.</p>
+        <p class="card-why">Artificial Analysis has launched AgentPerf, the industry's first benchmark specifically designed for agentic AI workloads — a major gap that has made infrastructure comparisons difficult for teams building AI agents. NVIDIA's Blackwell leads, which will influence enterprise hardware decisions and could entrench NVIDIA's dominance in the agent infrastructure layer.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/12/mistral-is-rumored-to-be-raising-e3b-at-e20-valuation/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://blogs.nvidia.com/blog/nvidia-blackwell-agentperf-artificial-analysis/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="5">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">6 / 14</span>
+        <span class="card-counter">6 / 13</span>
       </div>
       <div class="card-body">
         <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Meta's 6,500-Person AI Unit Described as 'Soul-Crushing' by Engineers — Revolt Brewing</h2>
+        <h2 class="card-title">Mistral Rumored to Be Raising €3B at €20B Valuation — Nearly Doubling Its Previous Worth</h2>
         <div class="card-divider"></div>
-        <p class="card-why">When 6,500 engineers at one of the world's most-resourced AI organizations are reportedly on the verge of revolt, it's a signal that organizational structure and culture are becoming critical bottlenecks in AI development — not just compute or data. Talent retention at scale is emerging as the hidden cost of centralized AI units.</p>
+        <p class="card-why">If confirmed, this round would make Mistral one of Europe's most valuable AI companies and signals that the open-weights model market is attracting serious capital even as US frontier labs dominate headlines. A well-funded Mistral accelerates the open-source model ecosystem, giving developers a credible alternative to OpenAI and Anthropic.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/12/metas-months-old-ai-unit-is-a-soul-crushing-gulag-say-the-engineers-stuck-inside-it/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://techcrunch.com/2026/06/12/mistral-is-rumored-to-be-raising-e3b-at-e20-valuation/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="6">
       <div class="card-top">
-        <span class="category-pill" style="background:#1D4ED8">Tools & Products</span>
-        <span class="card-counter">7 / 14</span>
+        <span class="category-pill" style="background:#6366F1">Industry News</span>
+        <span class="card-counter">7 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">OpenAI Blog<span class="cred-badge cred-high">✓ Lab / Research</span></div>
-        <h2 class="card-title">OpenAI Launches New Academy Courses on AI Agents and Practical Workflows</h2>
+        <div class="card-source">Wired AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Court Rules Google Legally Liable for False Statements Generated by AI Overviews</h2>
         <div class="card-divider"></div>
-        <p class="card-why">OpenAI is investing in workforce upskilling with structured courses on agents and repeatable AI workflows — a direct move to embed its ecosystem deeper into enterprise organizations. For AI practitioners, this signals that 'how to use agents at work' is now considered a mainstream skill gap, not a niche capability.</p>
+        <p class="card-why">This ruling establishes that companies designing and operating AI systems bear legal liability for harmful outputs — a precedent that could reshape how AI products are built, tested, and deployed. Any team shipping AI-generated content to end users should treat this as a wake-up call to invest in output validation and legal review of their AI product pipelines.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://openai.com/index/academy-courses-applying-ai-at-work" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.wired.com/story/a-court-has-ruled-that-google-is-liable-for-false-statements-generated-by-ai-overviews/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-story-type" data-index="7">
       <div class="card-top">
         <span class="category-pill" style="background:#6366F1">Industry News</span>
-        <span class="card-counter">8 / 14</span>
+        <span class="card-counter">8 / 13</span>
       </div>
       <div class="card-body">
-        <div class="card-source">TechCrunch AI<span class="cred-badge cred-medium">◎ Tech Press</span></div>
-        <h2 class="card-title">Google Sues Chinese Cybercrime Group 'Outsider Enterprise' for AI-Powered SMS Scam Targeting Hundreds of Thousands</h2>
+        <div class="card-source">Wired AI<span class="cred-badge cred-high">✓ Lab / Research</span></div>
+        <h2 class="card-title">Meta's New Companywide AI Unit Is in Open Revolt — 6,500 Engineers Describe a 'Soul-Crushing' Environment</h2>
         <div class="card-divider"></div>
-        <p class="card-why">AI-powered phishing at scale — 2.5 million text messages — is no longer theoretical. Google suing directly (rather than just reporting) sets a precedent for tech companies as frontline defenders against AI-enabled cybercrime, and should prompt every AI practitioner building communication tools to tighten abuse detection.</p>
+        <p class="card-why">Multiple reports from Wired and TechCrunch describe Meta's centralized AI unit as chaotic, demoralized, and poorly managed — with employees openly rejecting Zuckerberg's AI hackathon initiative. This level of internal dysfunction at one of the world's largest AI organizations suggests Meta's AI strategy execution is lagging far behind its ambitions and spend.</p>
       </div>
       <div class="card-bottom">
-        <a href="https://techcrunch.com/2026/06/12/chinese-cybercrime-operation-that-used-ai-to-scam-hundreds-of-thousands-of-victims-sued-by-google/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
+        <a href="https://www.wired.com/story/mark-zuckerberg-meta-employee-meeting-interrupt-ai/" target="_blank" rel="noopener" class="read-btn">Read full story →</a>
       </div>
     </section>
     <section class="card card-hits-type" data-index="8">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Quick Hits</span>
-        <span class="card-counter">9 / 14</span>
+        <span class="card-counter">9 / 13</span>
       </div>
       <div class="card-body-scroll">
         <ul class="hits-list">
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://huggingface.co/blog/allenai/olmo-eval" target="_blank" rel="noopener" class="hit-title">AllenAI Releases olmo-eval: Open Evaluation Workbench for Model Development</a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u4nmpl/glm_52_is_deployed_in_glm_coding_plan_api_and_mit/" target="_blank" rel="noopener" class="hit-title">GLM-5.2 Launches with 1M Context Window and Two Thinking Modes — Open MIT Weights in One Week</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">GLM-5.2 is live in coding deployment with a 1M context window and MIT-licensed weights dropping next week, making it one to watch for local coding setups.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://huggingface.co/blog/allenai/olmo-eval" target="_blank" rel="noopener" class="hit-title">AllenAI Releases olmo-eval: Open Evaluation Workbench for the Model Dev Loop</a>
               <span class="hit-source">— HuggingFace Blog</span>
-              <p class="hit-liner">AllenAI's olmo-eval gives researchers and builders an open, modular benchmark harness designed to fit directly into the model development iteration loop.</p>
+              <p class="hit-liner">AllenAI drops olmo-eval, a structured evaluation toolkit designed to integrate directly into model development workflows.</p>
             </div>
           </li>
           <li class="hit-item">
             <span class="hit-dot">▸</span>
             <div class="hit-content">
-              <a href="https://simonwillison.net/2026/Jun/12/openai-webrtc/#atom-everything" target="_blank" rel="noopener" class="hit-title">Simon Willison Upgrades OpenAI WebRTC Audio Tool with Document Context</a>
+              <a href="https://techcrunch.com/2026/06/12/chinese-cybercrime-operation-that-used-ai-to-scam-hundreds-of-thousands-of-victims-sued-by-google/" target="_blank" rel="noopener" class="hit-title">Google Sues Chinese Cybercrime Group 'Outsider Enterprise' for AI-Powered SMS Scam Hitting Hundreds of Thousands</a>
+              <span class="hit-source">— TechCrunch AI</span>
+              <p class="hit-liner">Google is suing a Chinese group that used AI to send 2.5 million scam texts, marking one of the first major legal actions against AI-powered cybercrime at scale.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u4bne8/diffusion_gemma_is_4x_faster_but_makes_6x_more/" target="_blank" rel="noopener" class="hit-title">Diffusion Gemma Is 4x Faster Than Autoregressive Gemma but Makes 6x More Errors on Benchmarks</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">Community benchmarks on an H100 show diffusion-based Gemma trades speed for accuracy — useful for latency-sensitive tasks, not for precision-critical ones.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u4fzg1/new_model_on_huggingface/" target="_blank" rel="noopener" class="hit-title">Rio-3.5-Open-397B: A Qwen Fine-Tune from Brazil That Reportedly Matches Qwen 3.7 Plus</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">A 397B open-source Qwen fine-tune from a Brazilian municipal government is drawing attention for reportedly matching closed-access Qwen 3.7 Plus performance.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u4gto1/we_should_set_up_a_torrent_network_for_open/" target="_blank" rel="noopener" class="hit-title">Community Pushes for a Torrent Network for Open-Source AI Models After Government Takedowns</a>
+              <span class="hit-source">— r/LocalLLaMA</span>
+              <p class="hit-liner">The Anthropic model shutdown is prompting LocalLLaMA users to seriously propose decentralized torrent-based distribution for open-source weights.</p>
+            </div>
+          </li>
+          <li class="hit-item">
+            <span class="hit-dot">▸</span>
+            <div class="hit-content">
+              <a href="https://simonwillison.net/2026/Jun/12/openai-webrtc/#atom-everything" target="_blank" rel="noopener" class="hit-title">OpenAI WebRTC Audio Session Tool Updated With Document Context Support</a>
               <span class="hit-source">— Simon Willison</span>
-              <p class="hit-liner">Willison's popular WebRTC audio session tool now supports document context, making real-time voice AI interactions significantly more useful for document-heavy workflows.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u4fzg1/new_model_on_huggingface/" target="_blank" rel="noopener" class="hit-title">Rio-3.5-Open-397B: Open-Source Qwen Finetune Matches Qwen 3.7 Plus</a>
-              <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">A fully open-source 397B Qwen finetune from Rio's government claims competitive performance with the closed Qwen 3.7 Plus — a notable open-source win if benchmarks hold up.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://www.reddit.com/r/LocalLLaMA/comments/1u3tvgh/new_model_supratitle03b_just_released/" target="_blank" rel="noopener" class="hit-title">Supra-Title-0.3B: Tiny Purpose-Built Model for Chat Title Generation</a>
-              <span class="hit-source">— r/LocalLLaMA</span>
-              <p class="hit-liner">A 350M parameter model built specifically for generating conversation titles — a reminder that small, task-specific models often beat general-purpose giants for narrow production use cases.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://techcrunch.com/2026/06/11/cheaper-faster-and-culturally-aware-avataars-video-ai-is-built-for-indias-scale/" target="_blank" rel="noopener" class="hit-title">Avataar AI Launches India-Focused Video Model at $0.005 Per Second</a>
-              <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">Avataar's distilled video model targets India's price-sensitive market with aggressive pricing and cultural awareness baked in — a template for AI-for-emerging-markets plays.</p>
-            </div>
-          </li>
-          <li class="hit-item">
-            <span class="hit-dot">▸</span>
-            <div class="hit-content">
-              <a href="https://techcrunch.com/video/spacex-anthropic-and-openais-hot-ipo-summer/" target="_blank" rel="noopener" class="hit-title">IPO Summer: SpaceX, Anthropic, and OpenAI Headlining a New Tech Market Cycle</a>
-              <span class="hit-source">— TechCrunch AI</span>
-              <p class="hit-liner">The AI lab IPO wave is officially in motion, with Anthropic and OpenAI joining SpaceX in what analysts are calling the hottest IPO summer since the FAANG era.</p>
+              <p class="hit-liner">Simon Willison's OpenAI WebRTC audio session tool now supports document context, enabling real-time voice Q&A grounded in uploaded documents.</p>
             </div>
           </li></ul>
       </div>
     </section>
-    <section class="card card-arxiv-type" data-index="9">
-      <div class="card-top">
-        <span class="category-pill" style="background:#0F766E">Research Picks</span>
-        <span class="card-counter">10 / 14</span>
-      </div>
-      <div class="card-body-scroll">
-        
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2606.12563" target="_blank" rel="noopener" class="arxiv-title">Arbor: Tree Search as a Cognition Layer for Autonomous Agents</a>
-            <p class="arxiv-tldr">Arbor introduces structured tree search as a reasoning backbone for multi-agent systems, giving autonomous agents a principled way to explore decision branches — directly relevant to anyone building production agentic pipelines that need more than greedy next-step selection.</p>
-          </div>
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2606.12451" target="_blank" rel="noopener" class="arxiv-title">ToolSense: A Diagnostic Framework for Auditing Parametric Tool Knowledge in LLMs</a>
-            <p class="arxiv-tldr">ToolSense provides a systematic way to audit what tools an LLM actually 'knows' when deployed over large tool catalogs — critical for practitioners building agent systems where silent tool-retrieval failures cause silent task failures.</p>
-          </div>
-          <div class="arxiv-item">
-            <a href="https://arxiv.org/abs/2606.12618" target="_blank" rel="noopener" class="arxiv-title">"Did you lie?" Evaluating Lie Detectors across Model Scale and Belief-Verified Model Organisms</a>
-            <p class="arxiv-tldr">This paper evaluates automated lie detection in LLMs across model scales, directly addressing one of the hardest alignment and auditing problems — with implications for enterprise deployments where model honesty is a compliance requirement.</p>
-          </div>
-      </div>
-    </section>
-    <section class="card card-pulse-type" data-index="10">
+    <section class="card card-pulse-type" data-index="9">
       <div class="card-top">
         <span class="category-pill" style="background:#5C3A4A">Community Pulse</span>
-        <span class="card-counter">11 / 14</span>
+        <span class="card-counter">10 / 13</span>
       </div>
       <div class="card-body">
-        <p class="pulse-text">"LocalLLaMA is energized by the Rio-3.5-Open-397B drop — an open-source Qwen finetune claiming parity with closed frontier models, which has the community stress-testing benchmarks with skeptical enthusiasm. Meanwhile, there's growing chatter about small, purpose-built models (like Supra-Title-0.3B) as a practical alternative to throwing large general-purpose models at narrow tasks, reflecting a maturing 'right-tool-for-the-job' mindset in the open-source community."</p>
+        <p class="pulse-text">"The US government's forced shutdown of Anthropic's Fable 5 and Mythos 5 models has lit a fire under the local AI community — r/LocalLLaMA is buzzing with 'I told you so' energy, with threads advocating for torrent-based model distribution and local-first setups as the only reliable path to AI sovereignty. Separately, GLM-5.2's upcoming MIT-licensed release and a community-benchmarked Qwen fine-tune from Brazil are keeping the open-weights momentum strong, while a user's Pi + Qwen3.6-27B setup claiming to replace Claude Code is getting traction as a practical alternative for local coding workflows."</p>
       </div>
     </section>
-    <section class="card card-leaders-type" data-index="11">
+    <section class="card card-leaders-type" data-index="10">
       <div class="card-top">
         <span class="category-pill" style="background:#4338CA">Leaders&apos; Voices</span>
-        <span class="card-counter">12 / 14</span>
+        <span class="card-counter">11 / 13</span>
       </div>
       <div class="card-body-scroll">
         
         <div class="leader-item">
           <div class="leader-avatar">A(</div>
           <div class="leader-content">
-            <div class="leader-name">Anthropic (company statement)</div>
-            <div class="leader-role">AI Safety Lab</div>
-            <p class="leader-insight">Anthropic publicly stated it 'disagrees that the finding of a narrow potential jailbreak should be cause for recalling a commercial model' — a rare and direct pushback against a government regulator's decision.</p>
-            <p class="leader-context">The statement came after a government body ordered Anthropic's most powerful model pulled from deployment, citing a jailbreak vulnerability discovered via Anthropic's own safety disclosures.</p>
-            <a href="https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+            <div class="leader-name">Anthropic (Corporate Statement)</div>
+            <div class="leader-role">AI Safety Company / Claude Developer</div>
+            <p class="leader-insight">Anthropic publicly stated it 'disagrees that the finding of a narrow potential jailbreak should be cause for recalling a commercial model,' but complied with the US government directive to take Fable 5 and Mythos 5 offline globally.</p>
+            <p class="leader-context">This is Anthropic's first public pushback against a government regulatory action and marks a pivotal moment in US AI governance.</p>
+            <a href="https://www.wired.com/story/anthropic-says-us-government-ordered-it-to-shut-down-mythos-models/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">SW</div>
+          <div class="leader-content">
+            <div class="leader-name">Simon Willison</div>
+            <div class="leader-role">Independent AI Researcher / Developer / Blogger</div>
+            <p class="leader-insight">Willison called the US government's directive to suspend Fable 5 and Mythos 5 'nuts,' framing it as a stunning and unprecedented intervention in commercial AI deployment.</p>
+            <p class="leader-context">Willison is one of the most closely followed independent AI commentators, and his framing often shapes how the developer community interprets major events.</p>
+            <a href="https://simonwillison.net/2026/Jun/13/us-government-directive-to-suspend-access/#atom-everything" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">MZ</div>
+          <div class="leader-content">
+            <div class="leader-name">Mark Zuckerberg</div>
+            <div class="leader-role">CEO / Meta</div>
+            <p class="leader-insight">Zuckerberg's push for a companywide AI hackathon has been met with open hostility from Meta employees, who say the company's culture no longer supports it — with internal forums showing employees mocking the initiative.</p>
+            <p class="leader-context">The blowback comes amid broader reporting that Meta's centralized AI unit is dysfunctional, with executives and engineers clashing over strategy.</p>
+            <a href="https://www.wired.com/story/meta-employees-absolutely-hate-mark-zuckerbergs-hackathon-idea/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
+          </div>
+        </div>
+        <div class="leader-item">
+          <div class="leader-avatar">AY</div>
+          <div class="leader-content">
+            <div class="leader-name">Andrew Yang</div>
+            <div class="leader-role">Entrepreneur / Former Presidential Candidate</div>
+            <p class="leader-insight">Yang argues the next wave of startup opportunity isn't AI itself but using AI and technology to directly cut the cost of housing, food, and wireless for American consumers.</p>
+            <p class="leader-context">Yang's framing positions AI as infrastructure for cost reduction rather than a product category, a narrative gaining traction among non-technical investors.</p>
+            <a href="https://techcrunch.com/2026/06/12/andrew-yang-thinks-the-next-big-startup-opportunity-is-lowering-the-cost-of-living/" target="_blank" rel="noopener" class="leader-link">Read more →</a>
           </div>
         </div>
       </div>
     </section>
-    <section class="card card-paper-type" data-index="12">
+    <section class="card card-paper-type" data-index="11">
       <div class="card-top">
         <span class="category-pill" style="background:#0F766E">📄 Whitepapers &amp; Research</span>
-        <span class="card-counter">13 / 14</span>
+        <span class="card-counter">12 / 13</span>
       </div>
       <div class="card-body-scroll">
         
@@ -996,9 +1013,9 @@ body {
         </div>
       </div>
     </section>
-    <section class="footer-card" data-index="13">
+    <section class="footer-card" data-index="12">
       <div class="footer-brand-lg">⚡ AI Digest</div>
-      <div class="footer-sub">Generated Saturday, June 13, 2026 · 03:36 UTC</div>
+      <div class="footer-sub">Generated Saturday, June 13, 2026 · 15:03 UTC</div>
       <button class="footer-restart" onclick="document.querySelector('.feed').scrollTo({top:0,behavior:'smooth'})">↑ Back to top</button>
     </section>
 </div>
