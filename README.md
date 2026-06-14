@@ -1,41 +1,97 @@
 # ⚡ AI Digest
 
-A self-updating AI news dashboard that runs twice daily, summarizes the latest
-LLM releases, tools, research papers, and industry news using Claude API,
-then delivers it as a beautiful HTML email **and** a live GitHub Pages dashboard.
+A self-updating AI news intelligence platform. It reads **30+ AI sources**
+twice a day, runs a cheap multi-model pass to extract cross-source signals,
+then uses **Claude** to synthesize a structured briefing — and publishes it as a
+dark-mode dashboard on GitHub Pages. No server. No database service. Just a cron
+and an API key.
 
-**Live Dashboard → [vigneshbhaskarraj.github.io/ai-digest](https://vigneshbhaskarraj.github.io/ai-digest)**
+**Live dashboards:**
+
+| Edition | Link |
+|---|---|
+| 🌍 **Global** — the worldwide AI briefing (morning + evening) | [vigneshbhaskarraj.github.io/ai-digest](https://vigneshbhaskarraj.github.io/ai-digest) |
+| 🇮🇳 **India AI Pulse** — India funding, startups & policy | [/india.html](https://vigneshbhaskarraj.github.io/ai-digest/india.html) |
+| 🌟 **Tamil Nadu Innovation** — TN deeptech, policy & ecosystem | [/tn.html](https://vigneshbhaskarraj.github.io/ai-digest/tn.html) |
+| ⚡ **Lite** — fast flip-card read for mobile | [/lite.html](https://vigneshbhaskarraj.github.io/ai-digest/lite.html) |
+
+Installable as a PWA — "Add to Home Screen" on any edition.
 
 ---
 
-## What It Does
+## What makes it more than a feed-summarizer
 
-- Pulls news from 20+ sources: lab blogs (Anthropic, OpenAI, DeepMind, HuggingFace, Mistral),
-  top tech outlets (TechCrunch, The Verge, Wired, VentureBeat), newsletters (Rundown AI,
-  Ben's Bites, Import AI), Reddit (r/LocalLLaMA, r/MachineLearning), arXiv CS.AI
-- Summarizes with Claude (claude-sonnet-4) into structured sections
-- Renders a dark-mode HTML dashboard
-- Pushes the dashboard to GitHub Pages (shareable link)
-- Emails the digest at **7 AM CST (Morning)** and **6 PM CST (Evening)**
+Most "AI news" tools pipe one RSS feed through a model and call it a day.
+AI Digest is a **cost-aware pipeline with memory**:
+
+```
+30+ RSS sources  ──►  fetch + AI-relevance filter + relevance ranking
+        │
+        ▼
+[ Signal extraction ]   cheap/fast model via OpenRouter reads ~35 articles and
+        │               returns a structured signal graph: entities, corroborated
+        │               claims (2+ sources), cross-source tensions, emerging patterns
+        ▼
+[ Temporal memory ]     last 14 days of headlines, surges & entities pulled from a
+        │               local SQLite store and injected as context
+        ▼
+[ Claude synthesis ]    reasons over the dense signal graph + history instead of
+        │               raw text → "connect the dots" insights, not just summaries
+        ▼
+[ Render + persist ]    dark-mode HTML dashboard → docs/ (GitHub Pages)
+                        run stored back into memory for tomorrow
+```
+
+Why this design:
+
+- **Cheap models do the cheap work.** A small model extracts structured facts from
+  dozens of articles in seconds; Claude only pays for the expensive *reasoning*.
+- **It remembers.** Because every run is persisted, the digest can say *"third
+  consecutive day X has surfaced"* or *"this builds on last week's Y"* — continuity
+  a stateless summarizer can't produce.
+- **Cross-source corroboration.** Claims seen in 2+ sources are marked
+  high-confidence; single-source claims are flagged low. Genuine disagreements are
+  surfaced as "tensions" rather than averaged away.
 
 ---
 
-## Sources Covered
+## Editions & schedule
+
+| Pipeline | Entry point | Runs | Output |
+|---|---|---|---|
+| Global AI Digest | `src/main.py` | Morning **and** evening | `docs/index.html` |
+| India AI Pulse | `src/india_main.py` | Morning | `docs/india.html` |
+| Tamil Nadu Innovation | `src/tn_main.py` | Morning | `docs/tn.html` |
+| AI Digest Lite | `src/lite_main.py` | Morning | `docs/lite.html` |
+
+| Time | Session |
+|---|---|
+| 7:00 AM CST (13:00 UTC) | 🌅 Morning — all four editions |
+| 6:00 PM CST (00:00 UTC) | 🌆 Evening — Global refresh |
+
+Everything runs on **GitHub Actions** — no server, works 24/7.
+
+---
+
+## Sources covered
 
 | Category | Sources |
 |---|---|
-| Lab Blogs | Anthropic, OpenAI, Google DeepMind, HuggingFace, Mistral, Meta AI |
-| Tech News | TechCrunch AI, The Verge, Ars Technica, VentureBeat, Wired, MIT Tech Review, Techmeme |
-| Newsletters | The Rundown AI, Ben's Bites, Import AI, Simon Willison |
-| Research | arXiv CS.AI, arXiv CS.LG |
-| Community | r/LocalLLaMA, r/MachineLearning |
-| Aggregated | NewsAPI.org (with AI/LLM keyword filters) |
+| Lab blogs | Anthropic, OpenAI, Google DeepMind, HuggingFace, Mistral, Meta AI, xAI, Cohere, NVIDIA, Microsoft, Databricks, Groq |
+| Tech news | TechCrunch AI, The Verge AI, VentureBeat AI, Wired AI, Ars Technica, MIT Tech Review |
+| Newsletters | The Rundown AI, Ben's Bites, Import AI, Simon Willison, Last Week in AI, The Batch, The Gradient, AI Snake Oil |
+| Research | arXiv CS.AI · CS.LG · CS.CL, Papers With Code |
+| Community | r/LocalLLaMA, r/MachineLearning, r/artificial, Hacker News (AI) |
+
+General-interest sources are passed through an AI-relevance keyword filter so only
+on-topic items make it into the digest. NewsAPI is supported as an optional extra
+source but is off by default — RSS already covers the field.
 
 ---
 
-## Setup (One Time)
+## Setup (one time)
 
-### 1. Fork or clone this repo
+### 1. Fork or clone
 
 ```bash
 git clone https://github.com/VigneshBhaskarraj/ai-digest.git
@@ -44,84 +100,70 @@ cd ai-digest
 
 ### 2. Get your API keys
 
-| Key | Where to get it |
-|---|---|
-| `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com) |
-| `NEWSAPI_KEY` | [newsapi.org/register](https://newsapi.org/register) — free tier |
-| `GMAIL_USER` | Your Gmail address |
-| `GMAIL_APP_PASS` | [Google App Password](https://myaccount.google.com/apppasswords) — NOT your real password |
+| Key | Required? | Where |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | **Yes** — Claude synthesis | [console.anthropic.com](https://console.anthropic.com) |
+| `OPENROUTER_API_KEY` | Recommended — enables the cheap signal-extraction pass | [openrouter.ai/keys](https://openrouter.ai/keys) (free tier) |
+| `NEWSAPI_KEY` | Optional — extra source, off by default | [newsapi.org/register](https://newsapi.org/register) |
 
-### 3. Add secrets to GitHub
+If `OPENROUTER_API_KEY` is absent the pipeline still runs — it simply skips the
+signal-extraction pass and sends Claude the ranked articles directly.
 
-Go to your repo → **Settings → Secrets and variables → Actions → New repository secret**
+### 3. Add them as GitHub Actions secrets
 
-Add each of these:
-- `ANTHROPIC_API_KEY`
-- `NEWSAPI_KEY`
-- `GMAIL_USER`
-- `GMAIL_APP_PASS`
-- `DIGEST_RECIPIENT` (email to send to, e.g. `vignesh.bhaskarraj@gmail.com`)
+**Settings → Secrets and variables → Actions → New repository secret** — add
+`ANTHROPIC_API_KEY` and `OPENROUTER_API_KEY` (and `NEWSAPI_KEY` if you want it).
 
 ### 4. Enable GitHub Pages
 
-Go to **Settings → Pages → Source → Deploy from a branch**
-Set branch to `main`, folder to `/docs`. Save.
-
-Your dashboard will be live at:
-`https://vigneshbhaskarraj.github.io/ai-digest`
+**Settings → Pages → Source → Deploy from a branch** → branch `main`, folder
+`/docs`. Your dashboards go live at `https://<you>.github.io/ai-digest`.
 
 ### 5. Trigger your first run
 
-Go to **Actions → AI Digest — Scheduled Run → Run workflow**
-Select `morning` or `evening`. Hit Run.
-
-Check your email and the Pages URL within ~2 minutes.
+**Actions → AI Digest — Scheduled Run → Run workflow** → pick `morning` or
+`evening`. The dashboards update within ~2 minutes.
 
 ---
 
-## Running Locally
+## Running locally
 
 ```bash
-# Install dependencies
 pip install -r requirements.txt
 
-# Copy and fill in your secrets
-cp .env.example .env
-# edit .env with your keys
-
-# Load secrets and run
+cp .env.example .env          # then fill in your keys
 export $(cat .env | xargs)
-python src/main.py --session morning
-python src/main.py --session evening
+
+python src/main.py --session morning   # Global
+python src/india_main.py               # India AI Pulse
+python src/tn_main.py                  # Tamil Nadu Innovation
+python src/lite_main.py                # Lite
 ```
 
----
-
-## Schedule
-
-| Time | Session |
-|---|---|
-| 7:00 AM CST (13:00 UTC) | 🌅 Morning Edition |
-| 6:00 PM CST (00:00 UTC) | 🌆 Evening Edition |
-
-Runs via GitHub Actions — no server needed, works 24/7.
+Output HTML lands in `docs/`. The temporal memory DB is created at
+`data/digest_memory.db` (gitignored).
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 ai-digest/
-├── .github/workflows/digest.yml   # Scheduler + pipeline runner
+├── .github/workflows/digest.yml   # Scheduler — runs all four pipelines
 ├── src/
-│   ├── main.py                    # Orchestrator
-│   ├── fetch_news.py              # RSS + NewsAPI fetcher
-│   ├── summarize.py               # Claude API summarizer
-│   ├── render_html.py             # HTML dashboard renderer
-│   └── send_email.py              # Gmail SMTP sender
-├── docs/index.html                # Live GitHub Pages output
+│   ├── main.py / india_main.py / tn_main.py / lite_main.py   # orchestrators
+│   ├── fetch_news.py              # 30+ RSS sources + relevance ranking
+│   ├── fetch_papers.py            # arXiv / research fetcher
+│   ├── extract_signals.py         # cheap multi-model signal-graph pass (OpenRouter)
+│   ├── openrouter_client.py       # OpenRouter wrapper
+│   ├── summarize*.py              # Claude synthesis prompts per edition
+│   ├── memory.py                  # SQLite temporal memory store
+│   ├── render_*.py                # dark-mode HTML renderers
+│   └── send_email.py              # optional Gmail delivery (disabled by default)
+├── docs/                          # GitHub Pages output (PWA: manifest, sw.js, icons)
 ├── requirements.txt
 ├── .env.example
+├── LICENSE
 └── README.md
 ```
 
@@ -129,9 +171,13 @@ ai-digest/
 
 ## Sharing
 
-The GitHub Pages link (`https://vigneshbhaskarraj.github.io/ai-digest`) is public
-and updates automatically twice a day. Share it with colleagues directly — no login required.
+Every dashboard link is public and refreshes automatically twice a day — share it
+with colleagues directly, no login required.
 
 ---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
 
 Built by [@VigneshBhaskarraj](https://github.com/VigneshBhaskarraj)
