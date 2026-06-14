@@ -13,7 +13,7 @@ import requests
 from datetime import datetime, timedelta, timezone
 from typing import List, Dict
 
-USER_AGENT = "TN-Innovation-Digest/1.0 (Research aggregator; contact: pixerp@yahoo.com)"
+USER_AGENT = "TN-Innovation-Digest/1.0 (Research aggregator; +https://github.com/VigneshBhaskarraj/ai-digest)"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Sources — tiered: TN-dedicated (low relevance bar) vs. national (higher bar)
