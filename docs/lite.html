@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>&#x26A1; AI Digest Lite &middot; Jun 21, 2026</title>
+  <title>&#x26A1; AI Digest Lite &middot; Jun 23, 2026</title>
   <meta name="description" content="AI business briefing for leaders &mdash; one card at a time. Swipe up, tap to flip.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x26A1;</text></svg>">
   <style>
@@ -326,18 +326,18 @@
   <header>
     <div class="logo">&#x26A1; AI <span>Lite</span></div>
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('global',this)">&#x1F30D; Global <small style="opacity:.55">(8)</small></button>
-      <button class="tab-btn"        onclick="switchTab('india',this)" >&#x1F1EE;&#x1F1F3; India <small style="opacity:.55">(3)</small></button>
+      <button class="tab-btn active" onclick="switchTab('global',this)">&#x1F30D; Global <small style="opacity:.55">(9)</small></button>
+      <button class="tab-btn"        onclick="switchTab('india',this)" >&#x1F1EE;&#x1F1F3; India <small style="opacity:.55">(8)</small></button>
     </div>
-    <div class="hdr-time">Jun 21, 2026<br>15:22 UTC</div>
+    <div class="hdr-time">Jun 23, 2026<br>15:59 UTC</div>
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle light/dark mode">&#x2600;&#xFE0F;</button>
   </header>
 
   <div class="deck" id="deck-global">
   <div class="card-wrap intro-wrap">
     <div class="intro-card">
-      <div class="intro-label">&#x1F30D; Global AI &middot; Jun 21, 2026</div>
-      <p class="intro-headline">Talent war escalates as Nobel laureate defects from DeepMind to Anthropic — while AI infrastructure costs expose a subsidy bubble that will reprice enterprise AI budgets.</p>
+      <div class="intro-label">&#x1F30D; Global AI &middot; Jun 23, 2026</div>
+      <p class="intro-headline">AI agents go always-on: looping autonomous systems, NVIDIA's telecom push, and Groq's $650M bet signal the agentic economy is no longer theoretical.</p>
       <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
     </div>
   </div>
@@ -348,20 +348,489 @@
         <!-- FRONT -->
         <div class="flip-front">
           <div class="card-img-wrap">
-            <img src="https://techcrunch.com/wp-content/uploads/2024/10/GettyImages-2148577076-e1728469833661.jpg?resize=1200,676" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <img src="https://techcrunch.com/wp-content/uploads/2018/08/safetynet.jpg?resize=1200,1058" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">💰 Funding</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 22, 2026</span>
+            </div>
+            <h2 class="card-title">Groq Confirms $650M Raise and Neocloud Pivot After NVIDIA's $20B Not-Acqui-Hire</h2>
+            <p class="card-summary">Groq has confirmed a $650M funding round and is rebuilding its executive bench after NVIDIA's landmark talent deal left it restructured but independent. The company is doubling down on its inference-as-a-service neocloud business rather than pure chip sales.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">1 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">Groq's pivot to neocloud means enterprises now have a credible third inference infrastructure option alongside AWS and Azure — with speed benchmarks that undercut both on latency-sensitive workloads like real-time agents and trading systems. For CIOs running high-volume LLM inference, this creates a negotiating lever against hyperscaler lock-in worth testing immediately. NVIDIA's not-acqui-hire model — paying for talent without a full acquisition — signals a new M&amp;A playbook that will compress exit timelines for AI chip and infrastructure startups. Valuations in inference infrastructure are resetting upward; firms sitting on AI infrastructure vendor contracts should reprice their renewal assumptions. In the next 90 days, run a structured inference cost benchmark between Groq, AWS Bedrock, and Azure AI Foundry on your top three LLM workloads and use the results in your next hyperscaler negotiation.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">1 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-1" onclick="flip('g-1')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://blogs.nvidia.com/wp-content/uploads/2026/06/hpc-corp-blog-isc26-wrap-up-blog-1280x680-5375050.png" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">NVIDIA Powers 81% of TOP500 Supercomputers, Cementing Hardware Monopoly at AI's Foundation</h2>
+            <p class="card-summary">NVIDIA now runs 81% of the world's 500 fastest supercomputers, with 90% of newly listed systems adopting its architecture. The Grace CPU Superchip appears on 26 systems, marking its rapid penetration into the compute stack beneath every frontier AI model.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">NVIDIA Blog</span>
+                <span class="card-counter">2 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">This level of hardware concentration means every major AI lab, national government, and cloud provider is structurally dependent on NVIDIA's roadmap and pricing — there is no near-term alternative at scale. For enterprises negotiating multi-year GPU commitments, NVIDIA's leverage is at an all-time high; expect 15-25% price increases on next-gen H-series and Blackwell allocations through 2027. Defense, pharma, and financial services firms building sovereign compute capabilities face a binary choice: pay NVIDIA's premium or wait 3+ years for AMD or custom silicon to reach comparable density. The supply concentration also means any NVIDIA export restriction or geopolitical disruption creates immediate model training bottlenecks across the entire industry. In the next 90 days, audit your AI infrastructure roadmap for NVIDIA dependency and model the cost impact of a 20% GPU price increase on your 2027 compute budget.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://blogs.nvidia.com/blog/top500-green500-supercomputers-isc-2026/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">2 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-2" onclick="flip('g-2')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://techcrunch.com/wp-content/uploads/2026/06/Screenshot-2026-06-22-at-3.44.39-PM.jpg?resize=1200,676" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 22, 2026</span>
+            </div>
+            <h2 class="card-title">The AI World Goes 'Loopy': Always-On Swarm Agents Redefine Enterprise Automation</h2>
+            <p class="card-summary">A structural shift is underway as AI deployments move from discrete task agents to continuously running background swarms — 'loops' — that operate without human triggers. This architecture authorizes clusters of agents to work in parallel and indefinitely, fundamentally changing what automation means for enterprise workflows.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">3 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">Looping agent architectures directly threaten the labor model underlying managed services contracts at TCS, Infosys, Wipro, and Accenture — specifically the application management, IT helpdesk, and back-office BPO segments worth an estimated $40B+ in annual revenue. Any enterprise running 500+ FTEs on repetitive digital workflows — claims processing, reconciliation, ticket triage — should model a 40-60% headcount reduction scenario over 18 months as looping agents reach production maturity. The build-vs-buy question sharpens: off-the-shelf looping agent platforms (Cognition, Devin-class systems) will commoditize what took years to custom-build, making proprietary workflow IP a diminishing asset. Founders in vertical SaaS should immediately assess whether their product's value proposition survives a world where the workflow layer is automated by default. In the next 90 days, identify your top three highest-volume, lowest-judgment workflows and commission a looping agent proof-of-concept with a 90-day ROI target.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://techcrunch.com/2026/06/22/the-ai-world-is-getting-loopy/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">3 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-3" onclick="flip('g-3')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://blogs.nvidia.com/wp-content/uploads/2026/06/agentic-ai-agent-toolkit-kv-r3b-1920x1080-2.png" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🚀 Product</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">NVIDIA Agent Toolkit Launches: Enterprises Get a Secure Runtime for Specialized AI Agents</h2>
+            <p class="card-summary">NVIDIA has released an open agent toolkit enabling businesses to build specialized, workflow-native AI agents with secure runtime execution and pre-built skills. The toolkit targets the enterprise gap between general-purpose LLMs and production-ready agentic deployments.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">NVIDIA Blog</span>
+                <span class="card-counter">4 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">NVIDIA is moving aggressively up the stack — from chips to agent infrastructure — which puts it in direct competition with Microsoft Copilot Studio, Salesforce Agentforce, and ServiceNow's AI platform for enterprise agent orchestration budgets. For CTOs at large enterprises, this creates a genuine third option for agentic middleware that is hardware-optimized and potentially cheaper to run on existing NVIDIA infrastructure. IT services firms that built practices around hyperscaler agent platforms now face margin compression as NVIDIA commoditizes the orchestration layer. The secure runtime feature directly addresses the compliance objection that has stalled agent deployments in BFSI and healthcare — expect accelerated procurement in these sectors in H2 2026. In the next 90 days, have your platform architecture team evaluate NVIDIA's agent toolkit against your current agentic stack and quantify the infrastructure cost delta.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://blogs.nvidia.com/blog/nvidia-agent-toolkit-open-models-tools-skills-secure-runtime-ai-agents/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">4 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-4" onclick="flip('g-4')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://blogs.nvidia.com/wp-content/uploads/2026/06/telco-tm-forum-1920x1080-1.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">NVIDIA AI Agents Hit Telecom Operations: 24/7 Autonomous Network Management Goes Live</h2>
+            <p class="card-summary">NVIDIA has deployed AI agents across telecom operators for continuous network management, customer care, and back-office automation, presenting measurable ROI at DTW Ignite 2026. The deployments move telecom AI from pilot to production at scale.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">NVIDIA Blog</span>
+                <span class="card-counter">5 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">Telecom is the first major infrastructure sector where AI agents are operating 24/7 in production — this is the proof-of-concept reference every CISO, CTO, and CFO at a utility, logistics firm, or financial services company needs to see before approving their own agent rollouts. Network operations centers (NOCs) at Vodafone, Airtel, and AT&amp;T-scale operators are the most immediate casualty; NOC headcount reductions of 30-50% are now structurally justified and will appear in 2026 annual reports. For IT services firms with telecom NOC and OSS/BSS managed services contracts — a segment worth $8B+ globally — this is an existential signal requiring immediate portfolio repositioning toward agent integration and oversight roles. Vendors building AI observability, agent audit, and telco-specific AI governance tools face a 12-month window to establish category leadership before hyperscalers absorb the market. In the next 90 days, if you hold telecom managed services contracts, brief your account teams on agent displacement risk and propose an 'agent co-management' transition offering before your client does it without you.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://blogs.nvidia.com/blog/telecom-ai-agents-dtw-ignite-2026/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">5 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-5" onclick="flip('g-5')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://techcrunch.com/wp-content/uploads/2026/06/GettyImages-2252299302.jpg?w=1024" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class='card-date'>June 22, 2026</span>
+            </div>
+            <h2 class="card-title">Google DeepMind Bets $75M on AI Filmmaking with A24 Partnership</h2>
+            <p class="card-summary">Google DeepMind is investing $75M alongside entertainment studio A24 to co-develop AI tools specifically for film and television production. The deal is the largest AI-native entertainment production partnership announced to date.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">6 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">This deal legitimizes AI as a core production tool in Hollywood — not a novelty — and will accelerate adoption of AI in script development, visual effects, sound design, and post-production workflows that currently cost $50-200M per major film. For media and entertainment companies in India — including Reliance's content arms, Zee, and Sony India — this creates both a competitive threat and a technology access opportunity; firms that adopt comparable AI production tooling cut per-episode costs by an estimated 25-35%. The creative talent implication is immediate: VFX houses, animation studios, and post-production firms across Mumbai and Hyderabad face structural headcount reduction in the 12-18 month window as these tools reach commercial availability. Investors should treat AI-native media tools as the next high-velocity vertical — expect 5-8 well-funded entrants in this space within 6 months of DeepMind's tools releasing. In the next 90 days, media and entertainment CTOs should commission an AI production tool audit and identify which workflows — VFX, dubbing, localization — can be piloted before DeepMind's tools reach general availability.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">6 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-6" onclick="flip('g-6')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://techcrunch.com/wp-content/uploads/2026/06/Robot-hand.png?resize=1200,800" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
             <div class="img-overlay"></div>
           </div>
           <div class="card-content">
             <div class="meta-row">
               <span class="cat-pill">👥 Workforce</span>
               <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 20, 2026</span>
+              <span class='card-date'>June 22, 2026</span>
             </div>
-            <h2 class="card-title">Nobel Laureate John Jumper Leaves Google DeepMind for Anthropic</h2>
-            <p class="card-summary">John Jumper, who won the Nobel Prize for AlphaFold and is among the world's most credentialed AI researchers, is departing Google DeepMind to join Anthropic. He is not alone — multiple senior DeepMind names are reported to be exiting.</p>
+            <h2 class="card-title">2026 Tech Layoff Tracker: AI Now the Named Cause in Major Workforce Cuts</h2>
+            <p class="card-summary">TechCrunch's running tracker documents that AI is now being explicitly cited as a driver — not just background context — in major 2026 tech layoffs across companies including significant enterprise software and services players. This represents a rhetorical and structural shift from 'efficiency' language to direct AI attribution.</p>
             <div class="card-foot">
               <div class="foot-row">
                 <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">7 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">When public companies cite AI as a layoff driver in SEC filings and earnings calls, it normalizes the practice and accelerates board-level approval for AI-driven headcount reductions across every sector — expect this to cascade from tech into BFSI, retail, and professional services in H2 2026. For CHROs and CFOs, the legal and reputational risk of AI-attributed layoffs is now a first-order concern requiring documented human-oversight frameworks before cuts are announced. IT services firms — particularly those with significant bench strength in testing, data entry, and junior coding roles — face investor pressure to show AI-driven margin improvement, creating a self-reinforcing cycle of displacement. The talent implication is clear: roles in prompt engineering, AI agent oversight, and AI audit are the safe harbors; generic software engineering and BPO roles are not. In the next 90 days, have HR and legal jointly develop an AI workforce transition policy that is board-approved and publicly defensible before your next earnings call.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://techcrunch.com/2026/06/22/the-running-list-major-tech-layoffs-in-2026-where-employers-cited-ai/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">7 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-7" onclick="flip('g-7')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://techcrunch.com/wp-content/uploads/2025/09/GettyImages-2214107176.jpg?resize=1200,800" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">OpenAI Launches Open Source Security Initiative to Find and Patch Vulnerabilities at Scale</h2>
+            <p class="card-summary">OpenAI is deploying AI systems to actively scan, identify, and propose patches for vulnerabilities across open source codebases. This marks OpenAI's first structured contribution to the open source security ecosystem at infrastructure scale.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">TechCrunch AI</span>
+                <span class="card-counter">8 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              <p class='swipe-hint'>&#x2191; swipe up for next</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">Any enterprise running open source dependencies — which is effectively every enterprise — benefits from an AI-accelerated vulnerability discovery cycle that compresses the window between CVE disclosure and patch availability from weeks to hours. For CISOs, this shifts the security calculus: the threat surface from unpatched open source vulnerabilities shrinks, but so does the differentiation of expensive manual security audit vendors who charge $500K+ for what AI now does continuously. IT services firms with cybersecurity managed services practices should immediately assess how this affects their vulnerability management offering's value proposition and pricing. The initiative also signals OpenAI's intent to embed itself as critical infrastructure in enterprise software supply chains — a strategic moat that goes far beyond model subscriptions. In the next 90 days, brief your CISO on this initiative and evaluate whether your current open source vulnerability management vendor contract should be renegotiated or paused.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://techcrunch.com/2026/06/22/openai-launches-new-initiative-to-help-find-and-patch-open-source-bugs/" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">8 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-g-8" onclick="flip('g-8')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://images.ctfassets.net/kftzwdyauwt9/6wFIgOcT1xK5IvZQIDJ2xQ/edf82561f00cdb27cf3ffcfcad7cd215/oai_Omio_SEO.png?w=1600&amp;amp;h=900&amp;amp;fit=fill" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🚀 Product</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">Omio Goes AI-Native: OpenAI Powers Full Conversational Travel Booking Overhaul</h2>
+            <p class="card-summary">European travel platform Omio has rebuilt its core product around OpenAI's models, enabling end-to-end conversational travel booking and accelerating its internal product development velocity. Omio is positioning itself as a reference case for AI-native transformation in a transaction-heavy vertical.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">OpenAI Blog</span>
+                <span class="card-counter">9 / 9</span>
+              </div>
+              <p class="tap-hint">Tap to see implications &#x21A9;</p>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="flip-back">
+          <div class="back-hdr">
+            <span class="back-label">&#x26A1; Business Implications</span>
+            <span class="back-sub">&#x2190; tap to go back</span>
+          </div>
+          <div class="back-body" onclick="event.stopPropagation()">
+            <div class="impl-section">
+              <p class="impl-text">Omio's full-stack AI-native rebuild is the clearest enterprise case study yet of a mid-market platform replacing traditional search-and-filter UX with conversational agents — and the conversion rate and revenue per session data from this deployment will set the benchmark that every e-commerce and travel CXO is asked about in their next board meeting. For MakeMyTrip, Ixigo, and EaseMyTrip, the competitive threat is direct: a conversational travel layer trained on superior data will compress the UX advantage of incumbent apps within 12-18 months. The build-vs-buy signal here is unambiguous — Omio bought OpenAI's API rather than building its own model, validating the 'model-as-utility' approach for product companies below the hyperscaler tier. Founders in transaction-heavy verticals (insurance, logistics, real estate) should treat Omio's architecture as the default template for their next product cycle. In the next 90 days, map your current product's highest-friction user journeys and scope a conversational AI overlay pilot with a 60-day build timeline.</p>
+            </div>
+
+          </div>
+          <div class="back-foot">
+            <a href="https://openai.com/index/omio" target="_blank" rel="noopener"
+               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
+            <span class="back-counter">9 / 9</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="deck hidden" id="deck-india">
+  <div class="card-wrap intro-wrap">
+    <div class="intro-card">
+      <div class="intro-label">&#x1F1EE;&#x1F1F3; India AI &middot; Jun 23, 2026</div>
+      <p class="intro-headline">Meta doubles down on India's consumer stack — Cred's Kunal Shah takes WhatsApp global, Jio's voice AI agent raises privacy flags, and Amazon brings Hindi Alexa+ to beta.</p>
+      <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
+    </div>
+  </div>
+  <div class="card-wrap">
+    <div class="flip-card" id="fc-i-0" onclick="flip('i-0')">
+      <div class="flip-inner">
+
+        <!-- FRONT -->
+        <div class="flip-front">
+          <div class="card-img-wrap">
+            <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-133094,resizemode-75,msid-131942330/tech/technology/why-metas-cred-investment-matters-for-whatsapp-pay-in-india.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
+            <div class="meta-row">
+              <span class="cat-pill">🏭 Industry</span>
+              <span class="impact-badge i-high">HIGH</span>
+              <span class='card-date'>June 23, 2026</span>
+            </div>
+            <h2 class="card-title">Meta Installs Cred's Kunal Shah as WhatsApp Global Head with $900M Investment Backing</h2>
+            <p class="card-summary">Meta has invested approximately $900M in Cred at a valuation that makes Kunal Shah one of India's wealthiest founders, simultaneously elevating him to run WhatsApp globally. The move signals Meta's most serious commitment yet to cracking India's payments market through WhatsApp Pay.</p>
+            <div class="card-foot">
+              <div class="foot-row">
+                <span class="card-source">ET Tech</span>
                 <span class="card-counter">1 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -378,12 +847,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">This is the clearest signal yet that Anthropic has closed the prestige gap with Google in frontier AI research, which directly threatens Google's ability to monetise its AI infrastructure investments through DeepMind-derived products. For enterprise buyers at TCS, Infosys, or Accenture evaluating which foundation model vendor to anchor on, Anthropic's research depth now rivals OpenAI and Google — making multi-vendor strategies mandatory, not optional. Life sciences and drug discovery units that built roadmaps on AlphaFold derivatives need to watch whether Jumper's work at Anthropic shifts the protein-structure-to-drug-design pipeline toward Claude-based tooling. The talent signal also tells VCs that Anthropic at its current valuation (~$60B+) still has enough equity upside to attract Nobel-calibre scientists — a green light for continued institutional investment in the Anthropic ecosystem. In the next 90 days, CTOs at pharma, biotech, and enterprise software firms should request a technical briefing from Anthropic on their bio/science research agenda and reassess whether their DeepMind API dependencies warrant a hedge contract.</p>
+              <p class="impl-text">WhatsApp Pay's path to becoming India's default payments rail — with 500M+ active WhatsApp users as the distribution base — becomes structurally more credible with an India-native founder who understands premium consumer behavior running global product strategy. PhonePe, Paytm, and Google Pay face a genuine threat to their UPI market share as WhatsApp Pay can embed payment initiation inside conversations without requiring app switches — the single biggest UX friction in current flows. For fintech founders, this accelerates the platform consolidation risk: building on WhatsApp's API versus competing with its native payments layer is now a board-level strategic question with a 12-month decision horizon. Think tank GTRI's concern about foreign control of India's consumer financial data is legitimate and will drive RBI to tighten data localization enforcement — expect a regulatory response within 6 months that affects all MNC fintech plays. In the next 90 days, fintech founders and bank digital heads should model a scenario where WhatsApp Pay captures 15% of UPI transaction volume by Q4 2027 and stress-test their acquisition cost economics against that baseline.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/" target="_blank" rel="noopener"
+            <a href="https://economictimes.indiatimes.com/tech/technology/why-metas-cred-investment-matters-for-whatsapp-pay-in-india/articleshow/131942330.cms" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">1 / 8</span>
           </div>
@@ -393,26 +862,23 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-1" onclick="flip('g-1')">
+    <div class="flip-card" id="fc-i-1" onclick="flip('i-1')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-          <div class="card-img-wrap">
-            <img src="https://techcrunch.com/wp-content/uploads/2026/01/tim-cook-iphone-GettyImages-2234563479.jpg?w=1024" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-            <div class="img-overlay"></div>
-          </div>
-          <div class="card-content">
+
+          <div class="card-content no-img">
             <div class="meta-row">
-              <span class="cat-pill">🚀 Product</span>
+              <span class="cat-pill">📋 Policy</span>
               <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 21, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">Apple iOS 27 Embeds Practical AI Across the Entire iPhone — Beyond Siri</h2>
-            <p class="card-summary">iOS 27 ships AI capabilities deeply integrated across native apps — not just Siri — including writing tools, visual intelligence, and on-device automation. This moves Apple's AI from a headline feature into ambient, always-on infrastructure for 1.4 billion active iPhone users.</p>
+            <h2 class="card-title">Reliance Jio's 'Hey Jio' Network-Level AI Agent Raises Unanswered Privacy and Processing Questions</h2>
+            <p class="card-summary">Jio's voice-activated AI agent operates at the network layer — meaning it activates on a spoken phrase during live calls — but the company has not disclosed where voice processing occurs, whether data is retained, or what TRAI consent frameworks apply. Medianama's investigation surfaces significant regulatory ambiguity around this deployment.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">TechCrunch AI</span>
+                <span class="card-source">Medianama</span>
                 <span class="card-counter">2 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -429,12 +895,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">Every enterprise mobile workflow — field service, sales enablement, insurance claims, healthcare documentation — now has a capable AI layer arriving free via OS update, directly cannibalising point-solution apps charging $15–40/user/month for similar functionality. For IT services firms building mobile AI apps on top of iOS, the build-vs-buy calculus shifts: Apple commoditises the bottom 60% of the feature set, compressing margins on existing contracts. Consumer-facing brands face a new reality where Apple's on-device AI processes user intent before third-party apps see it, creating a distribution moat that will reshape app store economics within 12 months. Enterprise MDM and security vendors (Jamf, Microsoft Intune) face immediate pressure to certify AI feature policies before the iOS 27 rollout hits corporate fleets. In the next 90 days, heads of enterprise mobility should audit which vendor contracts overlap with native iOS 27 AI capabilities and begin renegotiation or termination planning.</p>
+              <p class="impl-text">A network-level AI agent with access to live call audio across Jio's 450M+ subscriber base represents the largest AI data collection surface in India's history — the processing architecture and data retention policy will determine whether this is transformative telecom AI or a regulatory enforcement trigger. TRAI and MeitY will be forced to address network-layer AI processing rules within 6-9 months; any enterprise building voice AI products in India needs to track this precedent closely as it will define the compliance baseline. For competing telcos — Airtel and BSNL — the strategic question is whether to replicate Jio's network-agent approach or wait for the regulatory framework to crystallize before investing. IT services firms with telecom clients should immediately brief those clients on the compliance exposure of network-layer AI deployments and position themselves as governance advisors. In the next 90 days, CIOs at enterprises with significant Jio network dependencies should raise the voice data processing question formally with Jio account managers and document the response for their compliance records.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/06/21/beyond-siri-here-are-the-practical-ai-features-coming-to-your-iphone-in-ios-27/" target="_blank" rel="noopener"
+            <a href="https://www.medianama.com/2026/06/223-dont-know-reliance-jio-network-level-ai-agent/" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">2 / 8</span>
           </div>
@@ -444,7 +910,7 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-2" onclick="flip('g-2')">
+    <div class="flip-card" id="fc-i-2" onclick="flip('i-2')">
       <div class="flip-inner">
 
         <!-- FRONT -->
@@ -452,15 +918,15 @@
 
           <div class="card-content no-img">
             <div class="meta-row">
-              <span class="cat-pill">🔓 Open Source</span>
+              <span class="cat-pill">🚀 Product</span>
               <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 21, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">Qwen Closes Open-Source Pipeline After Firing Lead Researcher Junyang Lin</h2>
-            <p class="card-summary">Alibaba's Qwen team has stopped open-sourcing its flagship models following the departure of lead researcher Junyang Lin, with Qwen 3.7 confirmed to remain closed. The move reverses Qwen's prior strategy of releasing frontier-class weights freely, which had made it a foundation for hundreds of enterprise deployments.</p>
+            <h2 class="card-title">Amazon Tests Hindi Alexa+ in India Beta: Conversational AI Comes to 600M Hindi Speakers</h2>
+            <p class="card-summary">Amazon is running a private beta of Alexa+ with Hindi language support in India, inviting select users ahead of a planned broader launch. This makes Alexa+ the first major conversational AI assistant from a global hyperscaler to target India's dominant vernacular language at this stage of development.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-source">Medianama</span>
                 <span class="card-counter">3 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -477,12 +943,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">Any enterprise or IT services firm that built internal tooling, fine-tuned models, or client-facing products on Qwen open weights now faces a forced migration decision — either freeze on older weights and accept capability stagnation, or shift to a commercial API relationship with margin implications. This reduces the pool of genuinely open frontier models to Meta's Llama series and a handful of smaller labs, concentrating negotiating leverage back toward closed providers and pushing up effective per-token costs for high-volume workloads. For Indian IT outsourcers who used Qwen weights to avoid GPU cloud spend on client AI projects, the cost structure of those engagements needs immediate repricing. M&amp;A activity in open-source model infrastructure (fine-tuning platforms, quantisation tooling) accelerates as acquirers lock in assets before the window closes further. In the next 90 days, engineering leaders should catalogue every production dependency on Qwen weights and initiate a parallel evaluation on Llama 4 or Mistral as a drop-in hedge.</p>
+              <p class="impl-text">Hindi-language Alexa+ gives Amazon a first-mover position in voice-first AI commerce for India's Tier 2 and Tier 3 markets — precisely the segments where Google Assistant and Jio's 'Hey Jio' are battling for the next 200M internet users. For consumer brands selling on Amazon India, voice-optimized product listings and conversational commerce strategies become a priority immediately — the brands that optimize for Alexa+ discovery in 2026 will hold a 12-18 month advantage. Domestic AI assistant players — Sarvam AI, Krutrim — face direct competitive pressure from a well-resourced Hindi-language entrant with Amazon's e-commerce distribution as a built-in monetization engine. The talent implication is clear: Hindi NLP, multilingual fine-tuning, and voice UX design are skills that will see 40-60% salary premium increases in the next 12 months. In the next 90 days, consumer brand CTOs and e-commerce heads should register for the Alexa+ beta and assign a product team member to map their catalog for voice-first discoverability.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ubjnh5/qwen_is_never_going_to_open_source_qwen_37_arent/" target="_blank" rel="noopener"
+            <a href="https://www.medianama.com/2026/06/223-amazon-alexa-plus-hindi-beta-india/" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">3 / 8</span>
           </div>
@@ -492,7 +958,7 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-3" onclick="flip('g-3')">
+    <div class="flip-card" id="fc-i-3" onclick="flip('i-3')">
       <div class="flip-inner">
 
         <!-- FRONT -->
@@ -500,15 +966,15 @@
 
           <div class="card-content no-img">
             <div class="meta-row">
-              <span class="cat-pill">🏭 Industry</span>
-              <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 21, 2026</span>
+              <span class="cat-pill">💰 Funding</span>
+              <span class="impact-badge i-med">MEDIUM</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">LLM Subscription Subsidies Are Burning VC Capital at Unsustainable Scale — $200 Sub = $8,000 in API Value</h2>
-            <p class="card-summary">A widely-shared analysis confirms that a $200/month Anthropic subscription delivers approximately $8,000 in API-equivalent compute, a 40x subsidy ratio funded by venture capital. The thread catalyses serious debate about what enterprise AI pricing looks like when subsidies end.</p>
+            <h2 class="card-title">Info Edge's AI Portfolio Doubles to ₹1,200 Crore: India's Listed Tech Bellwether Signals Deeptech Confidence</h2>
+            <p class="card-summary">Info Edge has invested over ₹1,000 crore in AI and deeptech startups, with portfolio value reaching ₹1,200 crore — nearly doubling since 2020. This makes Info Edge the most active listed Indian corporate investor in domestic AI infrastructure.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-source">Medianama</span>
                 <span class="card-counter">4 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -525,12 +991,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">CFOs building AI cost models on today's subscription pricing are underestimating future spend by 5–15x — when subsidy drawdown begins, the repricing will arrive as a budget shock, not a gradual increase. IT services firms that signed fixed-price AI transformation contracts using subsidised API costs as the margin backstop face contract-level losses when true cost-of-compute is reflected in vendor pricing. The companies best positioned are those already running workloads on owned or reserved infrastructure (on-prem GPUs, reserved cloud instances) rather than pay-as-you-go API calls. This is also an investment signal: GPU hardware, inference optimisation software, and on-premise deployment tooling (vLLM, TensorRT-LLM, Ollama) see structural demand growth as enterprises de-risk from API dependency. In the next 90 days, CFOs should commission a true-cost AI audit — model what current workloads cost at market-rate API pricing and stress-test vendor contracts against a 5x price increase scenario.</p>
+              <p class="impl-text">Info Edge's portfolio appreciation signals that Indian AI deeptech is generating real mark-to-market returns, not just speculative paper value — this will accelerate domestic institutional capital into the sector and reduce the field's dependence on US and Singapore VC funding. For founders building AI in India, Info Edge's continued deployment signals a credible domestic lead investor who understands Indian market dynamics, reducing the pressure to relocate to Silicon Valley for Series A access. The portfolio concentration in HR tech (Naukri) and edtech (Shiksha) means Info Edge is uniquely positioned to fund AI companies that augment or disrupt its own core products — a strategic dynamic that creates both partnership and competitive risk for startups in those verticals. Listed Indian tech companies — MakeMyTrip, Zomato, Policybazaar — will face board pressure to disclose and grow their own AI portfolio strategies in response. In the next 90 days, Indian AI founders at the seed-to-Series A stage should request a formal pitch meeting with Info Edge Ventures and frame their proposition around augmenting Info Edge's existing B2C platforms.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ubbj6n/what_happens_when_they_stop_subsidizing_llm/" target="_blank" rel="noopener"
+            <a href="https://www.medianama.com/2026/06/223-info-edge-ai-deeptech-startup-investments-rs-1200-crore/" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">4 / 8</span>
           </div>
@@ -540,23 +1006,26 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-4" onclick="flip('g-4')">
+    <div class="flip-card" id="fc-i-4" onclick="flip('i-4')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-
-          <div class="card-content no-img">
+          <div class="card-img-wrap">
+            <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-152464,resizemode-75,msid-131941625/tech/funding/early-anthropic-backer-menlo-lands-3-billion-in-its-largest-ever-haul.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
             <div class="meta-row">
-              <span class="cat-pill">🧠 Model Release</span>
+              <span class="cat-pill">💰 Funding</span>
               <span class="impact-badge i-med">MEDIUM</span>
-              <span class='card-date'>June 21, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">Vercel CEO Calls GLM-5.2 Coding Performance 'Genuinely Shocking' — Chinese Lab Zhipu Enters Tier-1</h2>
-            <p class="card-summary">Guillermo Rauch, CEO of Vercel — which processes billions of developer deployments — publicly declared GLM-5.2 from Chinese lab Zhipu AI among the best coding models he has tested, placing it alongside GPT-4o and Claude. This marks the first time a non-Alibaba, non-Baidu Chinese model has received top-tier endorsement from a major Western developer infrastructure CEO.</p>
+            <h2 class="card-title">Menlo Ventures Closes $3B Fund — Largest Ever — Dedicated to AI Startups</h2>
+            <p class="card-summary">Menlo Ventures, an early Anthropic backer, has raised $3 billion across a set of funds exclusively targeting AI startups — its largest fundraise in the firm's history. The close confirms that AI-dedicated VC capital is still expanding, not contracting, at the fund level.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-source">ET Startups</span>
                 <span class="card-counter">5 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -573,12 +1042,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">For developer tooling companies and IDE vendors (Cursor, GitHub Copilot, JetBrains), GLM-5.2 becomes an immediate cost-competitive alternative that expands the supply side of frontier coding models and puts further downward pressure on per-token pricing. Enterprise engineering teams at Fortune 500s evaluating coding copilot vendors now have a credible third option outside the OpenAI/Anthropic duopoly — with potential latency and cost advantages if routed through Asia-Pacific infrastructure. Geopolitical procurement risk is real: CISOs at defence-adjacent or regulated enterprises need an explicit policy on Chinese-origin model usage before procurement teams adopt GLM-5.2 at scale. For Indian IT services firms, this is an opportunity — GLM-5.2's strength in coding accelerates the case for AI-augmented offshore development, but also compresses the value of low-complexity code-writing work done by junior engineers. In the next 90 days, heads of engineering should run a blind benchmark of GLM-5.2 against current coding copilot vendors on their actual codebase and get a legal/CISO sign-off on usage policy.</p>
+              <p class="impl-text">A $3B AI-dedicated fund from a firm with Anthropic-level returns will deploy aggressively into Series A-C AI companies over the next 24 months, inflating valuations in enterprise AI, AI infrastructure, and vertical AI SaaS — founders in these categories have pricing power right now that will compress by 2028. For Indian AI founders, Menlo's fund size and track record make it a priority relationship to establish — the firm has demonstrated willingness to back non-US companies with global ambitions, and India's deeptech founders are systematically underrepresented in US tier-1 VC portfolios. Indian IT services firms evaluating AI startup acquisitions face rising acquisition costs as Menlo and similar funds increase the floor valuation for enterprise AI targets by 30-40%. The fund close is also an investment signal for LP confidence: family offices and sovereign wealth funds that co-invest with Menlo will follow its deal flow, creating a capital multiplier for whatever sectors it prioritizes. In the next 90 days, Indian AI founders with enterprise SaaS or infrastructure plays should book a meeting with Menlo's India-connected partners and prepare a narrative that leads with global TAM, not India-first positioning.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ubk57k/vercel_ceo_almost_shocked_by_how_good_glm52_is_at/" target="_blank" rel="noopener"
+            <a href="https://economictimes.indiatimes.com/tech/funding/early-anthropic-backer-menlo-lands-3-billion-in-its-largest-ever-haul/articleshow/131941625.cms" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">5 / 8</span>
           </div>
@@ -588,23 +1057,26 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-5" onclick="flip('g-5')">
+    <div class="flip-card" id="fc-i-5" onclick="flip('i-5')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-
-          <div class="card-content no-img">
+          <div class="card-img-wrap">
+            <img src="https://inc42.com/cdn-cgi/image/quality=90/https://asset.inc42.com/2026/06/soc-37.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
             <div class="meta-row">
-              <span class="cat-pill">🏭 Industry</span>
+              <span class="cat-pill">📋 Policy</span>
               <span class="impact-badge i-med">MEDIUM</span>
-              <span class='card-date'>June 20, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">RTX 6000 PRO GPU Prices Jump 42% in Six Months — AI Hardware Inflation Accelerates</h2>
-            <p class="card-summary">NVIDIA RTX 6000 PRO cards that were available at $8,165 six months ago now sell for $11,575 — a 42% price increase — reflecting sustained demand that continues to outpace supply for professional-grade inference hardware. This is secondary market data, making it a leading indicator of data centre procurement cost trends.</p>
+            <h2 class="card-title">SEBI's GARUDA Framework Unlocks AIF Investment Flexibility for India's Startup Ecosystem</h2>
+            <p class="card-summary">SEBI has introduced the GARUDA framework, easing operational and regulatory bottlenecks for Alternative Investment Funds backing Indian startups. The policy change directly addresses constraints that have slowed domestic institutional capital deployment into early-stage companies.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-source">Inc42</span>
                 <span class="card-counter">6 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -621,12 +1093,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">Enterprises with AI infrastructure CapEx plans built on 2025 hardware price assumptions are looking at budget overruns of 30–50% on GPU procurement, which changes the ROI calculus for on-premise AI deployments versus cloud API spend. For IT services firms managing client AI infrastructure builds, fixed-price hardware procurement contracts signed before this price run need to be flagged to CFOs immediately. Cloud providers (AWS, Azure, GCP) absorb this inflation through reserved instance pricing mechanisms, meaning the relative attractiveness of cloud vs. on-prem AI shifts back toward cloud for all but the highest-volume, most latency-sensitive workloads. NVIDIA's pricing power reinforces its status as the dominant investment in the AI stack — AMD's ROCm ecosystem remains the only credible alternative, and the dual-R9700 performance threads appearing in developer communities signal accelerating AMD adoption as a cost hedge. In the next 90 days, procurement and infrastructure leaders should lock in GPU hardware orders now if on-prem deployment is in the 12-month plan, or switch to 1–3 year reserved cloud GPU commitments before cloud providers reprice.</p>
+              <p class="impl-text">GARUDA removes structural friction that caused Indian AIFs to be slower and more risk-averse than offshore funds — this accelerates the pace at which domestic institutional capital reaches Series A-B startups, directly competing with the foreign VC dominance that currently shapes India's AI funding landscape. For AI founders, this means more domestic term sheets with fewer cross-border compliance complications, improving optionality and negotiating leverage in fundraising rounds. Family offices, HNIs, and domestic financial institutions that were AIF LPs but constrained by previous rules will increase commitments — expect a 20-30% increase in domestic AIF deployment into tech and AI in the next 12 months. This is a direct policy win for MeitY's India AI Mission goals, as domestic capital backing domestic AI reduces the IP export risk that comes with foreign VC ownership. In the next 90 days, CFOs of Indian AI startups raising in the next 6 months should engage two or three SEBI-registered AIFs that previously cited regulatory constraints as barriers and re-open those conversations.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ub693e/six_months_ago_i_turned_down_8165_for_an_rtx_6000/" target="_blank" rel="noopener"
+            <a href="https://inc42.com/buzz/sebis-garuda-framework-eases-key-bottlenecks-for-indian-startup-investors/" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">6 / 8</span>
           </div>
@@ -636,26 +1108,26 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-6" onclick="flip('g-6')">
+    <div class="flip-card" id="fc-i-6" onclick="flip('i-6')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
           <div class="card-img-wrap">
-            <img src="https://techcrunch.com/wp-content/uploads/2024/03/meredith-whittaker-1.jpg?resize=1200,800" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-920104,resizemode-75,msid-131918740/tech/funding/cybersecurity-firm-mitigata-raises-15-million-funding-led-by-bessemer-venture-partners.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
             <div class="img-overlay"></div>
           </div>
           <div class="card-content">
             <div class="meta-row">
-              <span class="cat-pill">📋 Policy</span>
+              <span class="cat-pill">💰 Funding</span>
               <span class="impact-badge i-med">MEDIUM</span>
-              <span class='card-date'>June 20, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">Signal's Meredith Whittaker Issues Boardroom Warning: AI Chatbots Are Surveillance Products, Not Advisors</h2>
-            <p class="card-summary">Signal president Meredith Whittaker delivered a pointed public rebuke of AI chatbot anthropomorphisation, framing conversational AI as data-collection infrastructure — not sentient advisors — and warning that treating them as trusted confidants creates serious privacy and security risks. The statement lands as enterprises are actively expanding chatbot deployments for customer service, HR, and internal knowledge management.</p>
+            <h2 class="card-title">Mitigata Raises $15M Led by Bessemer: AI-Native Cybersecurity Hits Indian Enterprise Market</h2>
+            <p class="card-summary">Bengaluru-based Mitigata has closed a $15M round led by Bessemer Venture Partners to expand its AI-driven cybersecurity platform targeting Indian enterprises. Bessemer's lead signals international VC confidence in India-built, India-first enterprise security products.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">TechCrunch AI</span>
+                <span class="card-source">ET Startups</span>
                 <span class="card-counter">7 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -672,12 +1144,12 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">For enterprises deploying AI chatbots in HR, legal, or customer-facing roles, the data governance and liability exposure is larger than most legal teams have modelled — every 'confidential' conversation with an enterprise chatbot is potentially training data or a compliance exposure. Regulated industries (banking, healthcare, insurance) face specific DPDP Act, GDPR, and HIPAA obligations that chatbot vendors' terms of service do not adequately cover, creating audit risk that is materialising in regulatory reviews now. Customer trust is a board-level concern: brands that position AI chatbots as empathetic advisors — financial planning, mental health support, HR grievance handling — face reputational and legal liability when the surveillance-product framing becomes mainstream public understanding. This reinforces the case for private, on-premise LLM deployments where data does not leave the enterprise perimeter, accelerating spend on tools like LlamaFile, private Azure OpenAI instances, and similar. In the next 90 days, General Counsel and CISOs should jointly review all active chatbot deployments for data retention clauses, consent frameworks, and alignment with sector-specific data regulations.</p>
+              <p class="impl-text">Bessemer's bet on a Bengaluru cybersecurity firm is a direct validation that India-first enterprise SaaS can attract top-tier US VC without relocating — a signal that will pull more Indian founders away from the 'flip to Delaware first' playbook. Indian enterprises have dramatically underinvested in cybersecurity relative to their AI adoption pace, creating a structurally large addressable market as AI-generated attack vectors (deepfake phishing, AI-accelerated exploits) require AI-native defenses. For TCS, Wipro, and HCL Tech, which operate large cybersecurity managed services businesses, an AI-native Indian vendor with Bessemer backing is a credible competitive threat in the mid-market segment they dominate. The funding also signals that the India AI security stack — threat detection, compliance automation, identity — is the next high-velocity investment category after LLM application layers. In the next 90 days, CISOs at Indian enterprises and MNC India operations should add Mitigata to their security vendor evaluation shortlist and request a proof-of-concept against their current endpoint and threat detection stack.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://techcrunch.com/2026/06/20/signals-meredith-whittaker-wants-you-to-remember-that-ai-chatbots-are-not-your-friends/" target="_blank" rel="noopener"
+            <a href="https://economictimes.indiatimes.com/tech/funding/cybersecurity-firm-mitigata-raises-15-million-funding-led-by-bessemer-venture-partners/articleshow/131918740.cms" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">7 / 8</span>
           </div>
@@ -687,23 +1159,26 @@
     </div>
   </div>
   <div class="card-wrap">
-    <div class="flip-card" id="fc-g-7" onclick="flip('g-7')">
+    <div class="flip-card" id="fc-i-7" onclick="flip('i-7')">
       <div class="flip-inner">
 
         <!-- FRONT -->
         <div class="flip-front">
-
-          <div class="card-content no-img">
+          <div class="card-img-wrap">
+            <img src="https://img.etimg.com/thumb/msid-131939384,width-1070,height-580,imgsize-117428,overlay-ettech/editionshow.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+            <div class="img-overlay"></div>
+          </div>
+          <div class="card-content">
             <div class="meta-row">
-              <span class="cat-pill">🔓 Open Source</span>
+              <span class="cat-pill">🏭 Industry</span>
               <span class="impact-badge i-med">MEDIUM</span>
-              <span class='card-date'>June 21, 2026</span>
+              <span class='card-date'>June 23, 2026</span>
             </div>
-            <h2 class="card-title">Google's Gemma 4 QAT Solves KV Cache Quantisation — Unlocks Long-Context Inference at Lower Cost</h2>
-            <p class="card-summary">Community benchmarks confirm that Gemma 4's Quantisation-Aware Training (QAT) variant responds significantly better to KV cache quantisation than prior versions, enabling high-quality inference at 16k+ context lengths on consumer and mid-tier hardware. This resolves a key deployment blocker that had limited Gemma 4's enterprise adoption for document-intensive workloads.</p>
+            <h2 class="card-title">India Bourses Stay Sidelined from AI Boom as Global AI Equity Valuations Surge</h2>
+            <p class="card-summary">While NASDAQ-listed AI companies continue to generate outsized equity returns, Indian stock exchanges remain largely insulated from the AI valuation boom — with domestic listed tech companies failing to capture the AI premium that their US counterparts command. The structural gap reflects a listed AI company deficit on Indian bourses.</p>
             <div class="card-foot">
               <div class="foot-row">
-                <span class="card-source">r/LocalLLaMA</span>
+                <span class="card-source">ET Tech</span>
                 <span class="card-counter">8 / 8</span>
               </div>
               <p class="tap-hint">Tap to see implications &#x21A9;</p>
@@ -720,177 +1195,14 @@
           </div>
           <div class="back-body" onclick="event.stopPropagation()">
             <div class="impl-section">
-              <p class="impl-text">Long-context document processing — contract analysis, medical records review, financial report summarisation — becomes viable on $10,000–$30,000 on-premise hardware setups rather than requiring $200,000+ GPU clusters, directly enabling mid-market enterprise deployments that were previously cloud-API dependent. For BPO and document-processing operations running high-volume workflows, this halves effective inference costs for long-document tasks and makes on-premise deployment economics competitive with API pricing even before subsidy normalisation. Indian IT services firms managing document-heavy back-office outsourcing for global clients now have a clear technology path to AI-augmented workflows that stays within client data residency requirements. Google strengthens its enterprise AI position through open-weight Gemma as a trojan horse for Google Cloud adoption — enterprises that deploy Gemma on-prem will naturally scale to Vertex AI for production. In the next 90 days, AI engineering leads at firms with document-intensive workflows should run a Gemma 4 QAT pilot on a representative long-context task and benchmark cost-per-document against current API spend.</p>
+              <p class="impl-text">India has the world's third-largest startup ecosystem and a significant AI talent base, but the absence of AI-pure-play listed companies means domestic retail and institutional investors cannot access the sector's equity upside — a gap that will drive pressure for AI startup IPOs and SPAC-equivalent structures in 2026-27. For founders considering IPO timelines, the 'AI premium' available on US markets versus BSE/NSE creates a direct incentive to list abroad or delay domestic listing until Indian bourses develop AI investor literacy. Jio Platforms' anticipated IPO — backed by Meta, Intel, and others — is the most likely catalyst for an India AI equity market; its valuation multiple will set the benchmark for every subsequent Indian tech IPO for the next three years. Indian institutional investors (LIC, SBI Mutual Fund) are structurally underweight in AI equity and will face beneficiary pressure to increase exposure — domestic AI ETF products are a near-term product opportunity. In the next 90 days, CFOs of Indian AI companies with IPO horizons under 24 months should commission a dual-listing feasibility study comparing BSE/NSE versus NASDAQ/NYSE AI company valuation multiples.</p>
             </div>
 
           </div>
           <div class="back-foot">
-            <a href="https://www.reddit.com/r/LocalLLaMA/comments/1ubl0df/gemma_4_qat_seems_to_respond_significantly_better/" target="_blank" rel="noopener"
+            <a href="https://economictimes.indiatimes.com/tech/newsletters/tech-top-5/kunal-shahs-whatsapp-win-india-bourses-insulated-from-ai-boom/articleshow/131939384.cms" target="_blank" rel="noopener"
                onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
             <span class="back-counter">8 / 8</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="deck hidden" id="deck-india">
-  <div class="card-wrap intro-wrap">
-    <div class="intro-card">
-      <div class="intro-label">&#x1F1EE;&#x1F1F3; India AI &middot; Jun 21, 2026</div>
-      <p class="intro-headline">Indian executives flood back to classrooms for AI upskilling as the $2T IT services sector races to avoid commoditisation.</p>
-      <p class="intro-hint">&#x2191; Swipe up to start &nbsp;&middot;&nbsp; Tap cards to flip</p>
-    </div>
-  </div>
-  <div class="card-wrap">
-    <div class="flip-card" id="fc-i-0" onclick="flip('i-0')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-img-wrap">
-            <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-85614,resizemode-75,msid-131885663/tech/artificial-intelligence/ai-ai-sir-indian-execs-back-in-the-classroom-for-a-fresh-chapter.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-            <div class="img-overlay"></div>
-          </div>
-          <div class="card-content">
-            <div class="meta-row">
-              <span class="cat-pill">👥 Workforce</span>
-              <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 21, 2026</span>
-            </div>
-            <h2 class="card-title">Indian Executives Flood AI Classrooms — Coursera, Eruditus, upGrad Report Surge in C-Suite Enrolments</h2>
-            <p class="card-summary">Online education platforms including Coursera, Eruditus, upGrad, and Simplilearn report a sharp spike in AI course enrolments from Indian executives over the past year, framed against the $2 trillion AI opportunity in the Indian economy. The demand is coming from mid-to-senior management, not entry-level workers, signalling a top-down reskilling push.</p>
-            <div class="card-foot">
-              <div class="foot-row">
-                <span class="card-source">ET Tech</span>
-                <span class="card-counter">1 / 3</span>
-              </div>
-              <p class="tap-hint">Tap to see implications &#x21A9;</p>
-              <p class='swipe-hint'>&#x2191; swipe up for next</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-hdr">
-            <span class="back-label">&#x26A1; Business Implications</span>
-            <span class="back-sub">&#x2190; tap to go back</span>
-          </div>
-          <div class="back-body" onclick="event.stopPropagation()">
-            <div class="impl-section">
-              <p class="impl-text">This is the clearest leading indicator yet that India's IT services leadership — at TCS, Infosys, Wipro, HCL, and their Tier-2 peers — has internalised that AI literacy at the top is an existential competitive requirement, not a nice-to-have L&amp;D initiative. Eruditus and upGrad are the immediate commercial beneficiaries, but the real opportunity is for enterprise learning platforms that can offer contextualised, role-specific AI training mapped to specific industry verticals (BFSI, healthcare, logistics) rather than generic LLM tutorials. For MNC captives and GCCs in India, this executive upskilling wave accelerates the shift from labour-arbitrage delivery models to AI-augmented consulting — the talent that emerges from this cycle will command 25–40% salary premiums and directly compete with onshore advisory roles. Indian IT majors that don't build structured AI leadership curricula internally will face brain drain to GCCs and product companies offering better AI career trajectories. In the next 90 days, CHROs at IT services firms should design and mandate an AI fluency certification track for all Director-and-above roles, partnered with a platform like Eruditus or built in-house, and tie completion to promotion criteria.</p>
-            </div>
-
-          </div>
-          <div class="back-foot">
-            <a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/ai-ai-sir-indian-execs-back-in-the-classroom-for-a-fresh-chapter/articleshow/131885663.cms" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
-            <span class="back-counter">1 / 3</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="card-wrap">
-    <div class="flip-card" id="fc-i-1" onclick="flip('i-1')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-img-wrap">
-            <img src="https://www.livemint.com/lm-img/img/2026/06/21/1600x900/logo/INDIA-TELEGRAM-EDUCATION-0_1782030039380_1782030049695_bb34f097-77b5-4ee2-b852-d878a14c56bf.JPG" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-            <div class="img-overlay"></div>
-          </div>
-          <div class="card-content">
-            <div class="meta-row">
-              <span class="cat-pill">📋 Policy</span>
-              <span class="impact-badge i-high">HIGH</span>
-              <span class='card-date'>June 21, 2026</span>
-            </div>
-            <h2 class="card-title">Delhi High Court Upholds Telegram Blocking — Digital Platform Compliance Risk Rises for AI App Operators</h2>
-            <p class="card-summary">The Delhi High Court ruled that the Indian government had sufficient grounds to justify blocking Telegram, affirming the government's authority to issue platform-level blocking orders under IT Act provisions. The ruling sets a precedent that extends directly to AI platforms, chatbot services, and any application that facilitates encrypted or large-scale user communication.</p>
-            <div class="card-foot">
-              <div class="foot-row">
-                <span class="card-source">Livemint Tech</span>
-                <span class="card-counter">2 / 3</span>
-              </div>
-              <p class="tap-hint">Tap to see implications &#x21A9;</p>
-              <p class='swipe-hint'>&#x2191; swipe up for next</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-hdr">
-            <span class="back-label">&#x26A1; Business Implications</span>
-            <span class="back-sub">&#x2190; tap to go back</span>
-          </div>
-          <div class="back-body" onclick="event.stopPropagation()">
-            <div class="impl-section">
-              <p class="impl-text">Every AI platform operator — whether a homegrown startup or an MNC deploying AI-native SaaS in India — now faces a higher compliance burden: the government's blocking authority is judicially validated, meaning non-compliance with data localisation, content moderation, or law enforcement access requests carries platform-shutdown risk, not just fines. For Series A–C founders building consumer AI apps with social or communication features in India, this ruling makes legal infrastructure and government relations a product requirement, not an afterthought — factor ₹2–5Cr in annual compliance costs into your unit economics. MNCs deploying AI assistants, enterprise chatbots, or AI-enabled collaboration tools in Indian operations need an immediate review of their data routing and government access protocols against the Telegram precedent. The ruling accelerates the case for sovereign AI infrastructure — Indian government agencies and regulated enterprises will increasingly mandate on-premise or India-cloud deployments to avoid cross-border data exposure that triggers blocking risk. In the next 90 days, legal and compliance teams at any platform operating in India should map current data flows against the IT Act's blocking criteria and brief the board on shutdown-scenario risk.</p>
-            </div>
-
-          </div>
-          <div class="back-foot">
-            <a href="https://www.livemint.com/technology/what-the-delhi-high-court-telegram-ruling-means-for-digital-platform-mint-explainer-11782024817547.html" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
-            <span class="back-counter">2 / 3</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="card-wrap">
-    <div class="flip-card" id="fc-i-2" onclick="flip('i-2')">
-      <div class="flip-inner">
-
-        <!-- FRONT -->
-        <div class="flip-front">
-          <div class="card-img-wrap">
-            <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-23194,resizemode-75,msid-131891457/tech/artificial-intelligence/onfinance-ai-founder-criticises-all-in-capital-for-not-investing-apologises.jpg" class="card-img" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-            <div class="img-overlay"></div>
-          </div>
-          <div class="card-content">
-            <div class="meta-row">
-              <span class="cat-pill">💰 Funding</span>
-              <span class="impact-badge i-med">MEDIUM</span>
-              <span class='card-date'>June 21, 2026</span>
-            </div>
-            <h2 class="card-title">OnFinance AI Founder's Public VC Spat Exposes Fragility of India's Early-Stage Fintech AI Funding</h2>
-            <p class="card-summary">Bengaluru-based OnFinance AI founder Anuj Srivastava publicly criticised venture firm All In Capital for passing on his startup, then issued an apology — a sequence that attracted significant attention in India's startup community. The episode surfaces the funding pressure on early-stage Indian AI fintech startups navigating a tighter Series A environment.</p>
-            <div class="card-foot">
-              <div class="foot-row">
-                <span class="card-source">ET Tech</span>
-                <span class="card-counter">3 / 3</span>
-              </div>
-              <p class="tap-hint">Tap to see implications &#x21A9;</p>
-              
-            </div>
-          </div>
-        </div>
-
-        <!-- BACK -->
-        <div class="flip-back">
-          <div class="back-hdr">
-            <span class="back-label">&#x26A1; Business Implications</span>
-            <span class="back-sub">&#x2190; tap to go back</span>
-          </div>
-          <div class="back-body" onclick="event.stopPropagation()">
-            <div class="impl-section">
-              <p class="impl-text">India's AI fintech sector is experiencing a funding bifurcation: well-networked founders with prior exits or MNC pedigree are closing rounds cleanly, while first-generation technical founders building legitimate AI products face a longer, more adversarial fundraising cycle that is creating behavioural pressure visible in incidents like this. For VCs evaluating Indian AI fintech, the signal is that deal flow quality is high but founder resilience and investor-relations sophistication needs more active portfolio support — the next wave of breakout companies may come from non-obvious backgrounds. Series A–C founders in Indian AI should treat investor communications as a product: maintain a structured CRM for investor relationships, and never conflate a pass with a permanent no — All In Capital's pass on OnFinance today does not preclude a term sheet in 18 months. Indian AI fintech specifically — credit underwriting, wealth management automation, regulatory reporting — remains structurally underfunded relative to its addressable market of 600M+ financially active users, making it a high-conviction thesis for patient capital. In the next 90 days, venture partners with India mandates should schedule a dedicated AI fintech deal sprint — pipeline 15–20 seed-to-Series A companies and prioritise teams with regulatory understanding over pure model capability.</p>
-            </div>
-
-          </div>
-          <div class="back-foot">
-            <a href="https://economictimes.indiatimes.com/tech/artificial-intelligence/onfinance-ai-founder-criticises-all-in-capital-for-not-investing-apologises/articleshow/131891457.cms" target="_blank" rel="noopener"
-               onclick="event.stopPropagation()" class="read-link">Read full story &#x2197;</a>
-            <span class="back-counter">3 / 3</span>
           </div>
         </div>
 
